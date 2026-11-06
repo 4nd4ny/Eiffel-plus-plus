@@ -7,11 +7,13 @@ This checks structure, not requirement semantics, security or proof validity.
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 import re
 from urllib.parse import unquote, urlsplit
 
 from instantiate import PLACEHOLDERS, ROLES, ROOT
+from meta_harness import check_bundle
 
 
 SECTIONS = (
@@ -76,6 +78,27 @@ def check_catalog(root: Path) -> list[str]:
         tokens = set(re.findall(r"\{\{([A-Z_]+)\}\}", path.read_text(encoding="utf-8")))
         if tokens - PLACEHOLDERS:
             errors.append(f"{path.relative_to(root)} : variables inconnues {sorted(tokens - PLACEHOLDERS)}")
+    for relative in (
+        "meta/START.md", "meta/README.md", "meta/CONTRACT.md", "meta/TETRAHEDRON.md",
+        "meta/prompts/01-characterize.md", "meta/prompts/02-generate-meta-harness.md",
+        "meta/prompts/03-qualify.md", "meta/prompts/04-adapt.md",
+    ):
+        if not (root / relative).is_file():
+            errors.append(f"Patron génératif incomplet : {relative}")
+    for name in ("profile", "meta-harness", "project-harness"):
+        path = root / "meta" / "schemas" / f"{name}.schema.json"
+        try:
+            schema = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(schema, dict) or schema.get("type") != "object":
+                errors.append(f"Schéma invalide : {path.relative_to(root)}")
+        except (OSError, ValueError) as exc:
+            errors.append(f"{path.relative_to(root)} : {exc}")
+    for filename in ("meta-harness.json", "harness.json"):
+        for path in sorted((root / "examples" / "meta").rglob(filename)):
+            try:
+                check_bundle(path.parent)
+            except (OSError, ValueError) as exc:
+                errors.append(f"{path.relative_to(root)} : {exc}")
     return errors
 
 
@@ -88,7 +111,7 @@ def main() -> int:
         print("\n".join(errors))
         return 1
     count = len(list(args.root.rglob("*.md")))
-    print(f"Catalogue cohérent structurellement : {count} fichiers Markdown, quatre patrons et quatre templates. Aucun audit métier ou de sécurité n'a été exécuté par ce contrôle.")
+    print(f"Catalogue cohérent structurellement : {count} fichiers Markdown, patron N2, schémas, exemples N1/N0 et quatre bibliothèques de responsabilité. Aucun audit métier ou de sécurité n'a été exécuté par ce contrôle.")
     return 0
 
 

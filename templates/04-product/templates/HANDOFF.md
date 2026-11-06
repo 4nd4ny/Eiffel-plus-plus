@@ -1,6 +1,6 @@
 # Passation — {{PROJECT_NAME}}
 
-Version du gabarit : **0.1.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du gabarit : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Créer une passation lorsqu'une autre session ou un autre agent doit reprendre. Transmettre l'état utile et les raisons des décisions, sans recopier toute la conversation. Voir le [protocole commun](../../../protocol/README.md).
 

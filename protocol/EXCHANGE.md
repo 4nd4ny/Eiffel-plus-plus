@@ -3,7 +3,7 @@
 Les métadonnées suivantes peuvent figurer dans le front matter d'un Markdown. Le YAML stocke l'information ; il ne rend pas les phrases exécutables et ne prouve ni l'identité de l'émetteur ni la véracité du contenu.
 
 ```yaml
-protocol_version: "0.1.0"
+protocol_version: "0.2.0"
 type: CANDIDATE
 id: CHG-0001
 from_role: product

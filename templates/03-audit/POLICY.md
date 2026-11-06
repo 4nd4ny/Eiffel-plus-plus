@@ -1,6 +1,6 @@
 # Politique d'audit — {{PROJECT_NAME}}
 
-Version du métapatron : **0.1.0**. Politique proposée, à rattacher à une décision de gouvernance avant de la déclarer applicable. Référence commune : [protocole](../../protocol/README.md).
+Version du métapatron : **0.2.0**. Politique proposée, à rattacher à une décision de gouvernance avant de la déclarer applicable. Référence commune : [protocole](../../protocol/README.md).
 
 ## 1. Identité de la campagne
 

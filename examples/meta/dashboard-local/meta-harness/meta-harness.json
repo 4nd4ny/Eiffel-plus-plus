@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "meta-harness",
+  "level": 1,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "entrypoint": "prompts/GENERATE.md",
+  "prompts": [
+    "prompts/GENERATE.md",
+    "prompts/ADAPT.md"
+  ],
+  "output_contract": "GENERATION_CONTRACT.md",
+  "source_pattern": "Eiffel++ 0.2.0",
+  "illustration": true,
+  "qualification": "NOT_RUN"
+}

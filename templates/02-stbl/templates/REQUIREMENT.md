@@ -1,6 +1,6 @@
 # REQ-0001 — Intitulé du besoin
 
-Modèle Eiffel++ **0.1.0** pour **{{PROJECT_NAME}}**. L'identifiant est illustratif : attribuer un identifiant libre lors de la création d'une fiche.
+Modèle Eiffel++ **0.2.0** pour **{{PROJECT_NAME}}**. L'identifiant est illustratif : attribuer un identifiant libre lors de la création d'une fiche.
 
 | Champ | Valeur initiale |
 | --- | --- |

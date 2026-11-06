@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.2.0",
+  "project": {
+    "slug": "access-service",
+    "name": "Service d'autorisations entre organisations — exemple fictif",
+    "brief": "Créer un service d'autorisation pour une application utilisée par plusieurs organisations. Les sujets, ressources et permissions sont rattachés à une organisation. Les accès doivent respecter une politique explicite et l'isolation doit subsister face à un identifiant d'objet ou d'organisation manipulé. Les évolutions autorisées doivent demander peu d'attention humaine."
+  },
+  "preferences": {
+    "weights": {
+      "speed": 0.1,
+      "economy": 0.1,
+      "scope": 0.35,
+      "autonomy": 0.45
+    },
+    "status": "PROPOSED",
+    "source": "Arbitrage fictif du catalogue Eiffel++ ; aucune décision de Christian ou d'un client.",
+    "measures": {
+      "speed": {
+        "metric": "lead_time_hours",
+        "unit": "heures par changement accepté",
+        "direction": "minimize",
+        "target": 40,
+        "evidence": "Cible illustrative, aucune durée observée."
+      },
+      "economy": {
+        "metric": "machine_cost_chf",
+        "unit": "CHF par changement, génération, audit et reprises compris",
+        "direction": "minimize",
+        "target": 120,
+        "evidence": "Cible illustrative, aucun coût observé ; temps humain compté séparément."
+      },
+      "scope": {
+        "metric": "accepted_scope_fraction",
+        "unit": "fraction pondérée des fonctions d'autorisation acceptées",
+        "direction": "maximize",
+        "target": 1,
+        "evidence": "Valeurs métier à établir ; les garanties d'isolation sont obligatoires."
+      },
+      "autonomy": {
+        "metric": "human_active_minutes",
+        "unit": "minutes humaines actives par changement accepté",
+        "direction": "minimize",
+        "target": 30,
+        "evidence": "Cible illustrative ; relever séparément interruptions, arbitrages et attente."
+      }
+    }
+  },
+  "constraints": [
+    {
+      "id": "REQ-0001",
+      "statement": "Un sujet ne peut accéder aux ressources d'une autre organisation hors d'un cas explicitement prévu par une décision de politique.",
+      "verification": "Matrice sujet/organisation/ressource/action et essais négatifs de substitution d'identifiants, exécutés hors du périmètre d'écriture du producteur."
+    },
+    {
+      "id": "REQ-0002",
+      "statement": "La décision d'autorisation utilise une identité et un contexte d'organisation établis par une frontière de confiance déclarée.",
+      "verification": "Contrat de l'authentification et tests où les paramètres fournis par l'appelant contredisent le contexte autorisé."
+    },
+    {
+      "id": "REQ-0003",
+      "statement": "Une permission absente ou une politique indéterminée ne devient pas un accès accordé.",
+      "verification": "Cas de refus par défaut, entrées incomplètes, révocation et politique inconnue ; les résultats non concluants ne valent pas succès."
+    },
+    {
+      "id": "REQ-0004",
+      "statement": "Chaque acceptation est rattachée aux versions exactes de la politique, du code et des contrôles exécutés.",
+      "verification": "Manifeste de versions, résultats produits par l'exécuteur et essai d'invalidation après modification."
+    }
+  ],
+  "authority": {
+    "mandate": "Mandat fictif proposé : correction technique et préparation de candidats autonomes dans une politique adoptée ; publication et changements de droits exigent leur propre délégation.",
+    "autonomous_actions": [
+      "Décomposer l'implémentation après stabilisation des interfaces.",
+      "Corriger et retester dans le périmètre de la politique acceptée.",
+      "Préparer une révision du harnais à partir de défauts ou coûts observés, sans changer son autorité."
+    ],
+    "human_decisions": [
+      "Établir les rôles métier et les exceptions éventuelles d'accès entre organisations.",
+      "Changer la politique, accepter une réserve autorisable ou étendre un mandat.",
+      "Autoriser une mise en production si elle ne relève pas déjà d'une délégation explicite."
+    ]
+  },
+  "unknowns": [
+    "Fournisseur d'identité, stockage, infrastructure d'exécution et moyens d'isolation disponibles.",
+    "Matrice métier des rôles et actions, exigences de révocation et exceptions éventuelles.",
+    "Périmètre exact d'une délégation de livraison automatique."
+  ],
+  "generation_budget": {
+    "max_candidates": 2,
+    "max_iterations": 2,
+    "max_tokens": null
+  }
+}

@@ -1,6 +1,16 @@
-# Protocole Eiffel++ — 0.1.0
+# Protocole Eiffel++ — 0.2.0
 
 Ce protocole lie quatre dépôts indépendants. Dans le catalogue, il est la référence commune. Après instanciation, le dépôt `governance` détient l'autorité sur sa version adoptée ; les copies présentes ailleurs sont des instantanés identifiés, jamais des normes concurrentes.
+
+## 0. Génération et niveaux d'application
+
+L'étape zéro comporte trois niveaux : **N2**, le patron Eiffel++ ; **N1**, un méta-harnais composé de prompts spécialisés pour le projet ; **N0**, le harnais opérationnel produit par N1. Le logiciel est produit par N0. Les quatre responsabilités ci-dessous restent celles du harnais opérationnel, quel que soit le nombre d'agents ou d'outils mobilisés.
+
+N2 et N1 peuvent travailler avant la création des dépôts et sous un mandat limité d'exploration. Les préconditions de la section 1 sont exigées pour l'acceptation d'une réalisation, pas pour commencer à comprendre le besoin ou proposer sa méthode. Une structure créée localement reste `UNBOUND` tant que ses références et autorités effectives ne sont pas établies.
+
+Chaque génération conserve le profil utilisé, sa source, ses préférences, ses contraintes, ses inconnues, son budget et l'identité de ses instructions parentes. La pondération `speed/economy/scope/autonomy` exprime une préférence, pas un résultat ni une autorisation. Les obligations acceptées et la frontière des droits se transmettent d'un niveau au suivant. Les stratégies de travail, la granularité des documents, les agents éventuels et les mécanismes de contrôle peuvent être synthétisés pour le contexte.
+
+Le méta-harnais doit produire de véritables prompts de conception et d'adaptation ; quatre coefficients appliqués à des recettes fixes ne constituent pas, à eux seuls, N1. Le harnais N0 doit pouvoir être utilisé sans recharger N2 ou refaire toute l'étape zéro à chaque tâche.
 
 ## 1. Contrat global
 
@@ -135,3 +145,15 @@ Une inconnue bloquante revient au rôle compétent. Les tâches indépendantes e
 Charger d'abord `AGENTS.md`, le mandat, les contrats utiles et le dernier diagnostic. Ouvrir les références détaillées à la demande. Les résumés peuvent faciliter la navigation ; les décisions et contrats faisant autorité restent consultables intégralement.
 
 Voir [le modèle de confiance](TRUST.md) et [le format des échanges](EXCHANGE.md).
+
+## 10. Adaptation du harnais
+
+Une observation peut déclencher une révision de N0 par N1. N2 n'est sollicité de nouveau que si une hypothèse de conception de N1 devient invalide : changement substantiel du besoin, du mandat, des ressources, du modèle ou des préférences. Chaque révision possède un périmètre, un budget, un résultat attendu et une condition d'arrêt. L'absence de gain justifié peut conduire à conserver la version courante ou à la simplifier.
+
+Le budget d'une génération couvre ses niveaux, qualifications et délégations ; changer de niveau ne réinitialise pas sa consommation. Une nouvelle phase d'adaptation ne dispose que du budget explicitement alloué par le mandat applicable.
+
+Le changement précise les tâches et résultats affectés ; il ne réécrit pas rétroactivement les règles d'une exécution. Les versions nécessaires à l'explication d'une livraison restent conservées. Le retour à une version antérieure ne rétablit pas automatiquement des conclusions invalidées par un changement métier.
+
+Une délégation existante peut autoriser la promotion automatique d'adaptations réversibles dans ses limites. Une nouvelle permission, une modification sémantique des besoins ou un changement d'obligation d'audit exige l'autorité compétente. Ne pas fabriquer une nouvelle demande d'approbation lorsque le mandat couvre déjà l'action.
+
+Les catalogues, traces et mémoires peuvent informer N1 ; ils ne décident pas des droits ni des besoins. Les hypothèses d'efficacité restent distinctes des mesures. Une vérification structurelle du paquet généré ne constitue ni une preuve de conformité de sa méthode ni une attestation d'exécution de ses contrôles.

@@ -1,0 +1,87 @@
+{
+  "schema_version": "0.2.0",
+  "project": {
+    "slug": "dashboard-local",
+    "name": "Tableau de bord CSV local — exemple fictif",
+    "brief": "Créer un petit outil local pour importer un CSV non sensible (id, nom, categorie, quantite), filtrer le catalogue et afficher le nombre de lignes retenues. Aucun serveur, aucun transfert réseau ni modification du fichier source. Recherche textuelle et export filtré restent des options."
+  },
+  "preferences": {
+    "weights": {
+      "speed": 0.45,
+      "economy": 0.3,
+      "scope": 0.15,
+      "autonomy": 0.1
+    },
+    "status": "PROPOSED",
+    "source": "Arbitrage fictif du catalogue Eiffel++ ; aucune décision de Christian ou d'un client.",
+    "measures": {
+      "speed": {
+        "metric": "lead_time_hours",
+        "unit": "heures par livraison",
+        "direction": "minimize",
+        "target": 4,
+        "evidence": "Cible illustrative, aucune durée observée."
+      },
+      "economy": {
+        "metric": "machine_cost_chf",
+        "unit": "CHF par livraison, génération et contrôles compris",
+        "direction": "minimize",
+        "target": 10,
+        "evidence": "Cible illustrative, aucun coût observé ; temps humain compté séparément."
+      },
+      "scope": {
+        "metric": "accepted_scope_fraction",
+        "unit": "fraction des fonctions du périmètre retenu effectivement acceptées",
+        "direction": "maximize",
+        "target": 1,
+        "evidence": "Valeur fonctionnelle à définir avant calcul ; les obligations ne sont pas compensables."
+      },
+      "autonomy": {
+        "metric": "human_active_minutes",
+        "unit": "minutes humaines actives par livraison",
+        "direction": "minimize",
+        "target": 15,
+        "evidence": "Cible illustrative ; relever aussi le nombre d'interruptions et l'attente."
+      }
+    }
+  },
+  "constraints": [
+    {
+      "id": "REQ-0001",
+      "statement": "Le fichier CSV reste local ; aucun appel réseau ni téléversement n'est nécessaire au fonctionnement.",
+      "verification": "Examiner les dépendances et observer les accès réseau pendant les scénarios de fonctionnement."
+    },
+    {
+      "id": "REQ-0002",
+      "statement": "L'import, le filtre par catégorie et le comptage préservent les valeurs des lignes ; le fichier source n'est jamais modifié.",
+      "verification": "Comparer les sorties aux jeux CSV de référence et l'empreinte du fichier d'entrée avant/après."
+    },
+    {
+      "id": "REQ-0003",
+      "statement": "Une entrée non prise en charge produit un diagnostic compréhensible ; aucune conversion silencieuse ne change les données.",
+      "verification": "Cas valides et malformés, champs cités, fichier vide et caractères accentués ; préciser les cas encore indéterminés."
+    }
+  ],
+  "authority": {
+    "mandate": "Mandat fictif proposé pour un prototype local ; son adoption réelle reste à établir.",
+    "autonomous_actions": [
+      "Choisir l'organisation des fichiers et la technique locale dans les capacités vérifiées.",
+      "Corriger les défauts détectés sans modifier les exigences ni les contrôles indépendants.",
+      "Écarter un outil ou une procédure dont le coût n'est pas justifié par le besoin."
+    ],
+    "human_decisions": [
+      "Changer le périmètre obligatoire ou autoriser un transfert réseau.",
+      "Décider une règle métier de traitement des données qui ne découle pas du brief."
+    ]
+  },
+  "unknowns": [
+    "Navigateur et outils de test effectivement disponibles.",
+    "Comportement métier attendu pour les doublons d'id et quantités manquantes.",
+    "Valeur relative des options recherche textuelle et export filtré."
+  ],
+  "generation_budget": {
+    "max_candidates": 2,
+    "max_iterations": 2,
+    "max_tokens": null
+  }
+}

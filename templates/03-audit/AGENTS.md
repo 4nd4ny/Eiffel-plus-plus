@@ -1,6 +1,6 @@
 # Instructions du cabinet d'audit — {{PROJECT_NAME}}
 
-Version du métapatron : **0.1.0**. Appliquer le [protocole commun](../../protocol/README.md), `AUDIT_CHARTER.md` et `POLICY.md` dans le cadre du mandat reçu.
+Version du métapatron : **0.2.0**. Appliquer le [protocole commun](../../protocol/README.md), `AUDIT_CHARTER.md` et `POLICY.md` dans le cadre du mandat reçu.
 
 ## Mission et pouvoirs
 

@@ -1,5 +1,19 @@
 # Journal des changements
 
+## 0.2.0 — 2026-11-06
+
+Eiffel++ devient un **patron de génération à trois niveaux** : N2 produit un méta-harnais N1 composé de prompts spécialisés ; N1 produit le harnais opérationnel N0 du projet. La génération de la méthode constitue l'étape zéro.
+
+- Ajout des prompts génériques de caractérisation, synthèse du méta-harnais, qualification et adaptation.
+- Préférences représentées par le tétraèdre rapidité, économie, fonctionnalités utiles et autonomie ; obligations et performances observées séparées.
+- Transformation du gabarit d'expérience en point d'entrée du processus génératif, avec évaluation proportionnée.
+- Ajout de contrats de génération, schémas JSON et outils de préparation, contrôle structurel et matérialisation des sorties N0.
+- Deux chaînes fictives complètes illustrent des méthodes différentes, avec le générateur N1 conservable dans la gouvernance.
+- Protocole 0.2.0 : filiation entre niveaux, adaptation bornée, mandat transmis et adoption distincte d'une validation structurelle. Les états existants gardent leur sens.
+- L'instanciation générique reste disponible ; ses composants ne sont plus la seule sortie possible du patron.
+
+Les exemples n'ont pas fait l'objet d'un benchmark de production. Les scripts ne réalisent pas eux-mêmes l'inférence LLM ou l'application des droits distants.
+
 ## 0.1.0 — 2026-11-06
 
 Première édition : quatre métapatrons, modèles de dépôts Markdown, protocole commun, séparation des autorités, exemple de réservation, instanciation locale et contrôles structurels.

@@ -1,6 +1,6 @@
 # Mandat de l'agent producteur — {{PROJECT_NAME}}
 
-Version : **0.1.0**. Projet : `{{PROJECT_SLUG}}`. Dépôt : produit (`{{PRODUCT_REPO}}`).
+Version : **0.2.0**. Projet : `{{PROJECT_SLUG}}`. Dépôt : produit (`{{PRODUCT_REPO}}`).
 
 ## But et autorité
 

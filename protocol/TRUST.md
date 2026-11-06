@@ -1,5 +1,13 @@
 # Modèle de confiance
 
+## La génération n'accorde pas d'autorité
+
+N2 génère des instructions N1, puis N1 génère le harnais N0. Ce passage ne convertit ni une préférence, ni un texte externe, ni une estimation en permission. Le mandat, les obligations métier et les règles de preuve s'appliquent aux générateurs comme au producteur final.
+
+Conserver les instructions parentes et le profil de génération avec la version du harnais. Le moteur qui qualifie un changement ne doit pas laisser le candidat réécrire seul son critère d'adoption. Les capacités réelles du moteur et des outils sont vérifiées séparément des fichiers qui les décrivent.
+
+Une révision automatique dans une délégation existante ne nécessite pas une nouvelle validation humaine systématique. L'autonomie est une capacité bornée, accompagnée de traces ; elle ne signifie pas la disparition des contrôles ou une extension silencieuse du mandat.
+
 ## Le Markdown exprime une politique, il ne la fait pas respecter
 
 Quatre dépôts séparés ne rendent pas automatiquement l'audit indépendant. Déployer les droits, les protections de branches et les environnements décrits ici avant de revendiquer leur effet. Un administrateur conserve potentiellement des pouvoirs d'exception ; identifier ces personnes, les usages autorisés et leur journalisation.

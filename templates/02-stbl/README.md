@@ -1,6 +1,6 @@
 # {{PROJECT_NAME}} — Besoins et décisions
 
-Harnais Eiffel++ **0.1.0** · Projet : `{{PROJECT_SLUG}}` · Rôle : `stbl`
+Harnais Eiffel++ **0.2.0** · Projet : `{{PROJECT_SLUG}}` · Rôle : `stbl`
 
 Ce dépôt porte la spécification technique des besoins logiciels (STBL), les questions au Product Owner (PO) et les décisions qui définissent le comportement attendu du produit.
 

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Instantiate the four Eiffel++ Markdown templates without network access."""
+"""Copy the four generic Eiffel++ component templates without network access.
+
+For a contextually generated harness, use meta_harness.py materialize instead.
+"""
 
 from __future__ import annotations
 
@@ -14,7 +17,7 @@ import subprocess
 import tempfile
 
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = {
     "governance": "01-governance",
@@ -56,7 +59,8 @@ def render(text: str, relative_file: Path, project: str, name: str) -> str:
     # Source templates link back to the catalogue's canonical protocol.
     # Instantiated repositories use their own explicitly pinned snapshot.
     prefix = "../" * len(relative_file.parent.parts)
-    text = re.sub(r"(?:\.\./)+protocol/", prefix + "_eiffel/protocol/", text)
+    for namespace in ("protocol", "meta"):
+        text = re.sub(r"(?:\.\./)+" + namespace + "/", prefix + "_eiffel/" + namespace + "/", text)
     return text
 
 
@@ -80,6 +84,9 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
     protocol = source_files(ROOT / "protocol")
     if not protocol:
         raise ValueError("Protocole absent.")
+    meta_pattern = source_files(ROOT / "meta")
+    if not meta_pattern:
+        raise ValueError("Patron de génération absent.")
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=".eiffel-staging-", dir=destination.parent))
@@ -106,6 +113,14 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
                 target = repo / "_eiffel" / "protocol" / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(raw)
+            if role == "governance":
+                for path in meta_pattern:
+                    relative = path.relative_to(ROOT / "meta")
+                    raw = path.read_bytes()
+                    source_manifest[str(path.relative_to(ROOT))] = digest(raw)
+                    target = repo / "_eiffel" / "meta" / relative
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(raw)
             shutil.copyfile(ROOT / "LICENSE", repo / "_eiffel" / "LICENSE")
             metadata = {
                 "template_version": VERSION,
@@ -113,6 +128,7 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
                 "role": role,
                 "project_name": name,
                 "project_slug": project,
+                "generation_mode": "generic-components",
                 "binding_status": "UNBOUND",
                 "repositories": {
                     key: {"directory": f"{project}-{key}", "remote": None, "commit": None}

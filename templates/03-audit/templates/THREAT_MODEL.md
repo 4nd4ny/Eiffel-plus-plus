@@ -1,9 +1,9 @@
 # Modèle de menaces — AUD-0001
 
-Version du métapatron : **0.1.0**. Document de travail pour {{PROJECT_NAME}}, sans menace confirmée par défaut. Référence : [protocole commun](../../../protocol/README.md).
+Version du métapatron : **0.2.0**. Document de travail pour {{PROJECT_NAME}}, sans menace confirmée par défaut. Référence : [protocole commun](../../../protocol/README.md).
 
 ```yaml
-template_version: "0.1.0"
+template_version: "0.2.0"
 audit_id: AUD-0001
 decision_status: PROPOSED
 binding_manifest_ref: null

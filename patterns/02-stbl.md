@@ -1,6 +1,6 @@
 # Métapatron 02 — Besoin explicite et décisions traçables
 
-Version : **0.1.0** · Rôle : **stbl**
+Version : **0.2.0** · Rôle : **stbl**
 
 ## Intention
 

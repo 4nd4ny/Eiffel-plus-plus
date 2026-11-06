@@ -1,6 +1,6 @@
 # Cabinet d'audit — {{PROJECT_NAME}}
 
-Version du métapatron : **0.1.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du métapatron : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Ce dépôt organise un cabinet d'audit fonctionnel indépendant pour le projet. Il aide à examiner bugs, sécurité, qualité et adéquation aux besoins du client. Il ne constitue ni une accréditation ni une certification.
 

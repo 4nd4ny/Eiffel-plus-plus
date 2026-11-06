@@ -1,6 +1,6 @@
 # Charte du cabinet — {{PROJECT_NAME}}
 
-Version du métapatron : **0.1.0**. Document de départ à compléter ; aucun mandat n'est présumé accepté.
+Version du métapatron : **0.2.0**. Document de départ à compléter ; aucun mandat n'est présumé accepté.
 
 ## Mandat
 

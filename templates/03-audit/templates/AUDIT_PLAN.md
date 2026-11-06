@@ -1,13 +1,13 @@
 # Plan de campagne — AUD-0001
 
-Version du métapatron : **0.1.0**. Modèle non exécuté pour {{PROJECT_NAME}}.
+Version du métapatron : **0.2.0**. Modèle non exécuté pour {{PROJECT_NAME}}.
 
 Ce document suit le [protocole commun](../../../protocol/README.md), la [charte](../AUDIT_CHARTER.md) et la [politique](../POLICY.md). Réserver l'identifiant de campagne avant usage. `null` signifie « non renseigné » et ne satisfait aucune précondition.
 
 ## Identification et liaison
 
 ```yaml
-template_version: "0.1.0"
+template_version: "0.2.0"
 audit_id: AUD-0001
 project: "{{PROJECT_SLUG}}"
 decision_status: PROPOSED

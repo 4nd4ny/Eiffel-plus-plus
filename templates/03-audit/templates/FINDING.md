@@ -1,9 +1,9 @@
 # Constat — FND-0001
 
-Version du métapatron : **0.1.0**. Modèle sans défaut observé. Réserver un identifiant unique avant usage et suivre le [protocole commun](../../../protocol/README.md).
+Version du métapatron : **0.2.0**. Modèle sans défaut observé. Réserver un identifiant unique avant usage et suivre le [protocole commun](../../../protocol/README.md).
 
 ```yaml
-template_version: "0.1.0"
+template_version: "0.2.0"
 finding_id: FND-0001
 audit_id: AUD-0001
 decision_status: PROPOSED

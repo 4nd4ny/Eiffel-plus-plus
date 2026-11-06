@@ -1,5 +1,11 @@
 # Ordonnancement — {{PROJECT_NAME}}
 
+## Étape zéro : générer la méthode
+
+Le [patron N2](../../meta/START.md) produit les prompts spécialisés N1, puis N1 produit le harnais opérationnel N0. Conserver le profil du projet, les impératifs, les capacités disponibles, les références de génération et les conditions de révision dans la gouvernance. Utiliser `templates/EXPERIMENT.md` comme point d'entrée de génération ou d'adaptation.
+
+La boucle ci-dessous est un composant de référence. N1 peut en regrouper les opérations, en automatiser les contrôles ou concevoir une autre organisation préservant les obligations. Ne pas en déduire un nombre imposé d'agents ou de conversations.
+
 ## Boucle générale
 
 1. Sélectionner des obligations dont le besoin et les interfaces sont suffisamment déterminés.

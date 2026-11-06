@@ -1,6 +1,6 @@
 # Architecture — {{PROJECT_NAME}}
 
-Version du gabarit : **0.1.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du gabarit : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Ce document décrit l'architecture réellement observée ou décidée. Les sections vides ne prescrivent ni langage, ni framework, ni découpage. Une proposition reste une proposition jusqu'à la décision correspondant à son niveau d'autorité.
 

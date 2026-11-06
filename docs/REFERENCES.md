@@ -29,3 +29,18 @@ Sources consultées pour concevoir le catalogue le **6 novembre 2026**. Les text
 ## Choix propres à Eiffel++
 
 La répartition en quatre dépôts, leurs métapatrons, le protocole d'échange, les états, les formats de mandat, la liaison aux quatre commits et les heuristiques de coût constituent la proposition de ce catalogue. Ils ne sont pas présentés comme une méthode de Bertrand Meyer ni comme un résultat expérimental déjà démontré.
+
+La version 0.2.0 formalise la demande de Christian : trois niveaux de génération et un tétraèdre de préférences rapidité/coût/fonctionnalités/autonomie. N2 engendre des prompts spécialisés N1, puis N1 engendre le harnais N0. Cette architecture et ses contrats sont une proposition propre au projet, sans revendication de nouveauté scientifique ni garantie d'optimalité.
+
+## Catalogues, mémoire et évolution des harnais
+
+Sources également examinées le **6 novembre 2026** :
+
+- **Harness Lens**, [application](https://huggingface.co/spaces/harness-hub/harness-lens) et [méthodologie à version figée](https://huggingface.co/spaces/harness-hub/harness-lens/blob/5db2b0410a38dadadefe661c3f95c30e9e360e0a/src/routes/Methodology.tsx). Cartographie des mécanismes, sources et configurations ; la présence d'une fonctionnalité ne prouve pas son utilité pour un projet.
+- **The harness (still) matters**, [revue](https://tmustier.github.io/harness-benchmarks/). Point d'accès aux comparaisons et à leurs limites. Les études réutilisant les mêmes familles de tâches ne constituent pas autant de réplications indépendantes.
+- Databricks, **Benchmarking Coding Agents on Databricks' Multi-Million Line Codebase**, [étude](https://www.databricks.com/blog/benchmarking-coding-agents-databricks-multi-million-line-codebase). Comparaisons situées, coût du contexte et construction de tâches locales avec des contrôles comportementaux.
+- Joel Niklaus, **Don't Train the Model, Evolve the Harness**, [étude](https://joelniklaus-harness-optimization.hf.space/). Proposition et évaluation séparées de modifications du harnais, limites du transfert et distinction entre critères satisfaits et tâches entièrement réussies.
+- LatchBio, **Why An Open Source Harness Outperforms Claude Code On Frontier Biology Tasks**, [étude](https://blog.latch.bio/p/why-an-open-source-harness-outperforms). Effets de consignes dépendants du type de tâche ; ces observations ne sont pas une règle universelle de conception.
+- Anthropic, [mémoire des Managed Agents](https://platform.claude.com/docs/en/managed-agents/memory) et [dreaming](https://platform.claude.com/docs/en/managed-agents/dreams). Exemples de mémoire persistante et de consolidation asynchrone. N1 peut retenir ces mécanismes, les remplacer ou les omettre selon le besoin ; Eiffel++ ne dépend pas de leur fournisseur.
+
+Ces sources alimentent les hypothèses des générateurs. Le catalogue ne reprend pas leurs prompts ni leurs résultats comme des garanties propres à Eiffel++.

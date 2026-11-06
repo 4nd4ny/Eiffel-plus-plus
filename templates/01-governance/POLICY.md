@@ -13,6 +13,8 @@ Statut initial : **PROPOSED**. Aucun champ ci-dessous ne constitue une configura
 
 ## Profil de garantie
 
+Le profil de projet distingue les poids `speed`, `economy`, `scope`, `autonomy`, leurs sources, les mesures, les obligations non compensables et le mandat. La charge humaine s'observe en temps actif, interruptions et décisions ; elle ne se confond pas avec l'absence de contrôle. Une préférence pour l'autonomie n'accorde aucun droit nouveau.
+
 Définir, par famille de besoins, les contrôles obligatoires, les critères, les environnements et l'autorité habilitée à accepter les risques résiduels. Distinguer exploration non livrable, développement standard et périmètres nécessitant une assurance renforcée. Les obligations de sécurité découlent du domaine et du modèle de menace.
 
 ## Règle normale de livraison
@@ -32,3 +34,5 @@ Les exigences applicables sont `ACCEPTED`. Aucun point ouvert bloquant ne subsis
 ## Changements
 
 Toute modification des critères, pouvoirs ou niveaux de garantie suit `templates/POLICY_CHANGE.md`. Elle précise quels travaux et résultats deviennent périmés. Une proposition peut être préparée par un agent ; son adoption requiert l'autorité enregistrée dans le mandat.
+
+Les adaptations automatiques de N0 suivent les prompts du méta-harnais N1 et la délégation existante. N2 ne régénère N1 que si une hypothèse de conception est invalidée. Définir les seuils de déclenchement, le budget de révision et le retour possible ; ne pas changer continuellement de méthode pour optimiser un indicateur bruité.

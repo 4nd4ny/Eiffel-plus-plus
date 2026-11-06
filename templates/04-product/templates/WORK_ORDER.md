@@ -1,6 +1,6 @@
 # Ordre de travail — {{PROJECT_NAME}}
 
-Version du gabarit : **0.1.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du gabarit : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Ce document prépare un travail dans le produit (`{{PRODUCT_REPO}}`). Il ne crée pas d'exigence acceptée ni de verdict. Les champs sont à renseigner selon le [protocole commun](../../../protocol/README.md) ; les sections inutiles peuvent être retirées.
 

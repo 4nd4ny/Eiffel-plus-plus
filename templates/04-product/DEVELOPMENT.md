@@ -1,6 +1,6 @@
 # Développement et vérification — {{PROJECT_NAME}}
 
-Version : **0.1.0**. Projet : `{{PROJECT_SLUG}}`.
+Version : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Ce document contient les commandes et conditions réelles du dépôt produit (`{{PRODUCT_REPO}}`). Les champs à renseigner ne sont pas des commandes exécutables. Les échanges suivent le [protocole commun](../../protocol/README.md).
 

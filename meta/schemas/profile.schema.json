@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Profil de génération Eiffel++ 0.2.0",
+  "description": "Les poids sont des préférences, pas des résultats. La somme 1 et l'unicité des identifiants sont contrôlées par tools/meta_harness.py. Une décision déclarée n'est pas authentifiée par ce schéma.",
+  "type": "object",
+  "required": ["schema_version", "project", "preferences", "constraints", "authority", "unknowns", "generation_budget"],
+  "properties": {
+    "schema_version": {"const": "0.2.0"},
+    "project": {
+      "type": "object",
+      "required": ["slug", "name", "brief"],
+      "properties": {
+        "slug": {"type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"},
+        "name": {"type": "string", "minLength": 1, "pattern": "^[^\r\n\u0000]+$"},
+        "brief": {"$ref": "#/$defs/text"}
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "required": ["weights", "status", "source", "measures"],
+      "properties": {
+        "weights": {
+          "type": "object",
+          "description": "Quatre coefficients non négatifs de somme 1, à 1e-9 près ; aucune normalisation silencieuse.",
+          "required": ["speed", "economy", "scope", "autonomy"],
+          "additionalProperties": false,
+          "properties": {
+            "speed": {"$ref": "#/$defs/weight"},
+            "economy": {"$ref": "#/$defs/weight"},
+            "scope": {"$ref": "#/$defs/weight"},
+            "autonomy": {"$ref": "#/$defs/weight"}
+          }
+        },
+        "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
+        "source": {"$ref": "#/$defs/text"},
+        "decision_ref": {"$ref": "#/$defs/text"},
+        "measures": {
+          "type": "object",
+          "required": ["speed", "economy", "scope", "autonomy"],
+          "additionalProperties": false,
+          "properties": {
+            "speed": {"$ref": "#/$defs/measure"},
+            "economy": {"$ref": "#/$defs/measure"},
+            "scope": {"$ref": "#/$defs/measure"},
+            "autonomy": {"$ref": "#/$defs/measure"}
+          }
+        }
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "ACCEPTED"}}}, "then": {"required": ["decision_ref"]}}]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "verification"],
+        "properties": {
+          "id": {"$ref": "#/$defs/text"},
+          "statement": {"$ref": "#/$defs/text"},
+          "verification": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["mandate", "autonomous_actions", "human_decisions"],
+      "properties": {
+        "mandate": {"$ref": "#/$defs/text"},
+        "autonomous_actions": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+        "human_decisions": {"type": "array", "items": {"$ref": "#/$defs/text"}}
+      }
+    },
+    "unknowns": {"type": "array", "items": {"anyOf": [{"$ref": "#/$defs/text"}, {"type": "object"}]}},
+    "generation_budget": {
+      "type": "object",
+      "required": ["max_candidates", "max_iterations", "max_tokens"],
+      "properties": {
+        "max_candidates": {"type": "integer", "minimum": 1},
+        "max_iterations": {"type": "integer", "minimum": 1},
+        "max_tokens": {"anyOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]}
+      }
+    }
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\s]*$)[^\u0000]+$"},
+    "weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "measure": {
+      "type": "object",
+      "required": ["metric", "unit", "direction"],
+      "properties": {
+        "metric": {"$ref": "#/$defs/text"},
+        "unit": {"$ref": "#/$defs/text"},
+        "direction": {"enum": ["minimize", "maximize"]},
+        "target": {"type": ["number", "null"]}
+      }
+    }
+  }
+}

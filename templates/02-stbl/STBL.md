@@ -1,6 +1,6 @@
 # STBL — {{PROJECT_NAME}}
 
-Eiffel++ **0.1.0** · Projet : `{{PROJECT_SLUG}}`
+Eiffel++ **0.2.0** · Projet : `{{PROJECT_SLUG}}`
 
 **Base initiale à renseigner. Aucune exigence ni décision client n'est acceptée par ce modèle.**
 

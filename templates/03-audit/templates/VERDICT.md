@@ -1,9 +1,9 @@
 # Verdict — AUD-0001
 
-Version du métapatron : **0.1.0**. Modèle non exécuté : l'état initial est inconclusif. Appliquer le [protocole commun](../../../protocol/README.md) et la [politique](../POLICY.md).
+Version du métapatron : **0.2.0**. Modèle non exécuté : l'état initial est inconclusif. Appliquer le [protocole commun](../../../protocol/README.md) et la [politique](../POLICY.md).
 
 ```yaml
-template_version: "0.1.0"
+template_version: "0.2.0"
 audit_id: AUD-0001
 project: "{{PROJECT_SLUG}}"
 decision_status: PROPOSED

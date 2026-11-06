@@ -1,6 +1,6 @@
 # 04 — Le producteur sous contrat
 
-Version du métapatron : **0.1.0**.
+Version du métapatron : **0.2.0**.
 
 ## Intention
 

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Paquet N0 de harnais de projet Eiffel++ 0.2.0",
+  "description": "Les quatre dossiers sont distincts et non imbriqués ; chacun contient AGENTS.md et README.md non vides. generator est une référence descriptive, jamais un chemin suivi automatiquement. La matérialisation ne constitue pas une adoption.",
+  "type": "object",
+  "required": ["schema_version", "kind", "level", "status", "profile", "generator", "repositories"],
+  "properties": {
+    "schema_version": {"const": "0.2.0"},
+    "kind": {"const": "project-harness"},
+    "level": {"const": 0},
+    "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
+    "decision_ref": {"$ref": "#/$defs/text"},
+    "profile": {"$ref": "#/$defs/path"},
+    "generator": {"$ref": "#/$defs/text"},
+    "repositories": {
+      "type": "object",
+      "required": ["governance", "stbl", "audit", "product"],
+      "additionalProperties": false,
+      "properties": {
+        "governance": {"$ref": "#/$defs/path"},
+        "stbl": {"$ref": "#/$defs/path"},
+        "audit": {"$ref": "#/$defs/path"},
+        "product": {"$ref": "#/$defs/path"}
+      }
+    }
+  },
+  "allOf": [{"if": {"properties": {"status": {"const": "ACCEPTED"}}}, "then": {"required": ["decision_ref"]}}],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\s]*$)[^\u0000]+$"},
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)(?:\\.{1,2}|\\.git|_eiffel)(?:/|$))(?!.*[\\\\:\u0000-\u001f])[^/]+(?:/[^/]+)*$"
+    }
+  }
+}

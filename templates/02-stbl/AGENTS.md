@@ -1,6 +1,6 @@
 # Instructions aux agents du dépôt STBL
 
-Eiffel++ **0.1.0** · Projet : **{{PROJECT_NAME}}** · Rôle : `stbl`
+Eiffel++ **0.2.0** · Projet : **{{PROJECT_NAME}}** · Rôle : `stbl`
 
 ## Mission et autorité
 

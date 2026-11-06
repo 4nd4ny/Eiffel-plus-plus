@@ -35,6 +35,12 @@ class InstantiateTests(unittest.TestCase):
             self.assertTrue(all(value["commit"] is None and value["remote"] is None for value in metadata["repositories"].values()))
             snapshot = (repo / "_eiffel/protocol/README.md").read_bytes()
             self.assertEqual(hashlib.sha256(snapshot).hexdigest(), metadata["source_sha256"]["protocol/README.md"])
+            self.assertEqual(metadata["generation_mode"], "generic-components")
+            if metadata["role"] == "governance":
+                pattern = (repo / "_eiffel/meta/START.md").read_bytes()
+                self.assertEqual(hashlib.sha256(pattern).hexdigest(), metadata["source_sha256"]["meta/START.md"])
+            else:
+                self.assertFalse((repo / "_eiffel/meta").exists())
 
     def test_existing_directory_is_never_overwritten(self):
         output = self.base / "existing"

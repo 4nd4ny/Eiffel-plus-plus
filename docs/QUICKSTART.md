@@ -1,54 +1,76 @@
-# Démarrer avec Eiffel++
+# Démarrer : l'étape zéro du projet
 
-## 1. Comprendre le catalogue
+Eiffel++ 0.2.0 génère la méthode de travail avant de produire le logiciel. Les trois niveaux sont N2 (patron générique), N1 (prompts spécialisés de conception) et N0 (harnais opérationnel du projet). Le logiciel est le résultat du travail de N0.
 
-Lire le [README](../README.md), les quatre [métapatrons](../patterns/01-governance.md) et le [protocole commun](../protocol/README.md). Un métapatron décrit une famille de décisions de harnais ; il n'est pas un algorithme d'optimisation doté d'une garantie de convergence.
+## 1. Donner une intention au patron
 
-Le catalogue public distribue quatre modèles. Il ne fusionne pas les quatre responsabilités d'un projet : l'instanciation produit quatre racines Git indépendantes.
+Lire ou transmettre à un agent [meta/START.md](../meta/START.md). Fournir un brief : résultat recherché, situation actuelle, impératifs, ressources et limites de délégation. Les informations déjà présentes dans les documents du projet doivent être réutilisées ; il n'est pas nécessaire de recopier un questionnaire complet.
 
-## 2. Générer un projet
+Le [profil à quatre axes](../meta/TETRAHEDRON.md) exprime les préférences de rapidité, économie, fonctionnalités utiles et autonomie. Identifier les obligations non compensables séparément. Les valeurs proposées par un agent restent des hypothèses, avec leur source, jusqu'à leur adoption dans le mandat.
 
-Depuis la racine du catalogue :
+Les [deux exemples complets](../examples/meta/README.md) sont fictifs. Ils montrent des choix différents, pas des profils imposés à tous les projets.
+
+## 2. Préparer un paquet autonome si nécessaire
+
+Depuis la racine du catalogue, avec Python 3.10 ou plus récent :
+
+```bash
+python3 tools/meta_harness.py prepare --brief examples/meta/dashboard-local/brief.md --profile examples/meta/dashboard-local/profile.json --output ../etape-zero
+```
+
+La destination doit être nouvelle et extérieure au catalogue. Le paquet préparé contient les entrées et les instructions de génération. Cette commande ne produit pas, à elle seule, un méta-harnais ou un harnais adapté : elle n'appelle aucun LLM. Confier son point d'entrée à l'agent choisi pour la synthèse.
+
+On peut aussi utiliser directement le patron dans le catalogue, sans passer par ce script. N2 demande seulement les précisions qui changeraient matériellement la méthode, puis poursuit sous les hypothèses autorisées.
+
+## 3. Générer N1, puis N0
+
+N2 produit un dossier `meta-harness/` contenant un manifeste `meta-harness.json`, un profil, un contrat de génération et des prompts spécialisés. Ces prompts définissent comment concevoir la méthode, comment l'examiner et quand la réviser. Ils ne doivent pas simplement choisir un modèle préétabli en fonction de quatre coefficients.
+
+L'agent applique ensuite l'entrée de N1 pour produire un dossier `harness/` : manifeste `harness.json`, profil identique et quatre répertoires `governance`, `stbl`, `audit`, `product`. Chaque rôle possède un `AGENTS.md` court, un README et les procédures dont ce projet a besoin. Les quatre responsabilités peuvent mobiliser un nombre variable d'agents et de contrôles déterministes.
+
+Conserver des raisons de conception rattachées aux exigences, préférences et hypothèses. Fixer un budget d'étape zéro. Un contrôle proportionné peut suffire à démarrer un travail réversible ; les expériences approfondies répondent à des incertitudes précises et ne sont pas un préalable universel.
+
+## 4. Contrôler les sorties générées
+
+Les commandes suivantes prennent les exemples fournis ; remplacer les chemins par les sorties effectivement produites pour son projet :
+
+```bash
+python3 tools/meta_harness.py check examples/meta/dashboard-local/meta-harness
+python3 tools/meta_harness.py check examples/meta/dashboard-local/harness
+```
+
+Le contrôle porte sur le profil, les manifestes, les chemins et les fichiers requis. Il ne vérifie ni l'autorité d'une décision, ni la qualité sémantique des prompts, ni les performances de la méthode. Le [prompt de qualification](../meta/prompts/03-qualify.md) organise cet examen ; les capacités et obligations techniques requièrent leurs vérifications effectives.
+
+Une sortie `PROPOSED` ne devient pas `ACCEPTED` par le seul succès du contrôle structurel. Une délégation existante peut permettre son adoption dans les limites déjà accordées.
+
+## 5. Matérialiser les quatre dépôts
+
+```bash
+python3 tools/meta_harness.py materialize examples/meta/dashboard-local/harness --meta-harness examples/meta/dashboard-local/meta-harness --output ../dashboard-local --git-init
+```
+
+L'outil copie les fichiers N0 fournis, leur ajoute un instantané du protocole et des métadonnées de génération. L'option `--meta-harness` conserve N1 dans la gouvernance sous `_eiffel/meta-harness` ; ses profils doivent correspondre à ceux de N0. Sans cette option, la présence de N1 n'est pas présumée et les métadonnées le signalent. Le patron N2 courant est conservé sous `_eiffel/meta` pour une régénération ultérieure, avec ses empreintes : sa disponibilité ne prouve pas qu'il a effectivement engendré le N1 reçu.
+
+Quatre racines Git indépendantes sont créées avec `--git-init`, sans commit ni remote. Aucun droit n'est accordé et aucune publication distante n'est faite. Les références restent `UNBOUND` jusqu'à leur résolution réelle. Les empreintes de contenu identifient des fichiers, sans prouver une approbation ni une provenance authentifiée.
+
+Installer les mécanismes d'accès, de contrôle et d'exécution décrits dans le [déploiement](DEPLOYMENT.md) selon le harnais effectivement généré. Ne pas confondre présence d'une consigne et activation d'un mécanisme.
+
+## 6. Produire le logiciel avec N0
+
+Utiliser les points d'entrée des quatre rôles et le mandat actif. STBL conserve les besoins et les décisions autorisées ; le produit réalise un candidat ; l'audit applique les contrôles requis au candidat exact ; la gouvernance conserve la méthode et les références.
+
+Avant acceptation, établir `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`. Le plan d'audit est figé avant exécution ; le rapport est conservé dans un commit ultérieur. Les états inconclusifs ou périmés ne deviennent pas des réussites.
+
+## 7. Adapter au niveau nécessaire
+
+N0 émet des observations courtes : coût, délai, fonctionnalités effectivement acceptées, temps humain, défauts et limites. Utiliser le prompt d'adaptation de N1 lorsqu'un événement pertinent le justifie. Garder les deux générations et leurs raisons.
+
+Remonter à N2 seulement si le domaine de validité de N1 change. Préserver les décisions métier et les frontières d'autorité. Une amélioration de méthode n'exige pas de redemander une permission déjà accordée ; un élargissement du mandat suit l'autorité compétente.
+
+## Compatibilité avec la bibliothèque générique
 
 ```bash
 python3 tools/instantiate.py --project atelier --name "Inscriptions aux ateliers" --output ../atelier --git-init
 ```
 
-Les dossiers créés sont `atelier-governance`, `atelier-stbl`, `atelier-audit` et `atelier-product`. La destination entière doit être nouvelle et extérieure au catalogue. Aucun remote, compte, droit ou dépôt public n'est créé par cette commande.
-
-## 3. Établir l'autorité et les références
-
-Dans la gouvernance, nommer le Product Owner, les délégations, le responsable d'audit et l'autorité de livraison. Adopter une politique et un premier mandat. Installer les protections techniques du [guide de déploiement](DEPLOYMENT.md).
-
-Chaque dépôt possède `_eiffel/project.json`. Les adresses et commits y sont initialement vides. Le fichier est un registre local de contexte ; il ne prouve pas l'existence d'un remote ni l'approbation d'une version. Une enveloppe de candidat ultérieure doit fixer les références exactes réellement observées.
-
-Les copies `_eiffel/protocol/` sont des instantanés identifiés. Le dépôt de gouvernance adopte la version faisant autorité. Une mise à jour se propose et s'évalue explicitement ; ne pas faire flotter automatiquement les références vers `main`.
-
-## 4. Décrire un premier besoin
-
-Dans STBL, remplir le document principal et une fiche `REQ`, préciser sa source, rédiger les questions qui changeraient réellement le comportement et enregistrer les décisions du PO. Les critères de réussite incluent les services attendus, les refus et les conditions dégradées.
-
-Une proposition d'agent reste `PROPOSED`. Un mandat d'exploration peut autoriser une maquette sous hypothèses visibles ; il ne suffit pas à transformer ces hypothèses en exigences acceptées.
-
-## 5. Préparer l'examen et produire
-
-L'audit prépare un plan, des oracles et un modèle de menace proportionné au périmètre. Le produit reçoit un ordre de travail et réalise un candidat. Les tests techniques du producteur sont utiles ; ils ne remplacent pas l'examen indépendant requis.
-
-Figer `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`, puis construire et examiner le candidat exact. Le `audit_commit` désigne le plan avant exécution ; le rapport est conservé dans un commit ultérieur.
-
-## 6. Livrer et faire évoluer
-
-Appliquer les critères du mandat à l'état intégré et à l'artefact construit. Une réserve ou un contrôle inconclusif reste explicite. Les corrections d'oracles passent par une décision distincte de la correction du code.
-
-Lors d'une évolution métier, retrouver les contrats, contrôles et composants dépendants, invalider les résultats concernés et vérifier de nouveau. L'exemple [réservation](../examples/booking/README.md) montre ce trajet.
-
-## Les premiers documents à utiliser
-
-| Rôle | Document de départ | Livrable courant |
-| --- | --- | --- |
-| Gouvernance | `AGENTS.md`, `POLICY.md`, `ROLES.md` | Mandat ou modification du harnais |
-| STBL | `AGENTS.md`, `STBL.md` | Exigence, question, décision ou contrat |
-| Audit | `AGENTS.md`, charte et politique d'audit | Plan, constat, élément probant ou avis |
-| Produit | `AGENTS.md`, architecture et méthode de développement | Ordre de travail, candidat ou compte rendu |
-
-Les `AGENTS.md` sont des points d'entrée courts. Ne pas charger systématiquement tous les formulaires et tous les historiques dans chaque contexte.
+Cette commande historique copie les composants génériques. Elle conserve le patron N2 dans la gouvernance, mais ne crée pas de N1 spécialisé. Utiliser alors `templates/EXPERIMENT.md` comme point d'entrée pour générer ou adapter la méthode. L'[exemple de réservation](../examples/booking/README.md) illustre les contrats métier, indépendamment du choix de générateur.

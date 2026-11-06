@@ -12,6 +12,8 @@ Un processus très détaillé peut devenir plus coûteux que la tâche ; une aut
 
 Le dépôt `governance` contient les règles communes, les responsabilités, les capacités accordées, les profils de vérification, les budgets et les expériences destinées à améliorer le harnais. Il référence les trois autres dépôts sans absorber leur contenu métier.
 
+Depuis la version 0.2.0, ce patron est un composant de N0. L'[étape zéro](../meta/START.md) génère d'abord N1, dont les prompts synthétisent la méthode concrète et ses conditions d'adaptation. Le dépôt gouvernance conserve le profil, le générateur N1 et la version applicable de N0. Il peut utiliser ou remplacer les composants documentaires ci-dessous selon le besoin.
+
 Fichiers : [README](../templates/01-governance/README.md), `AGENTS.md`, `POLICY.md`, `ROLES.md`, `WORKFLOW.md`, et formulaires de mandat, de modification de méthode et d'expérience.
 
 ## Contrat
@@ -55,4 +57,4 @@ Coût et délai par comportement accepté, attention humaine, reprises, défauts
 
 ## Variantes
 
-Exploration limitée : résultats non livrables, hypothèses visibles. Standard : garanties ordinaires du projet. Renforcé : séparation d'identités et preuves ciblées supplémentaires. Les profils ne changent pas le sens des états ni le droit d'inventer une décision.
+Exploration limitée, développement courant ou assurance renforcée sont des exemples de configurations possibles, pas une liste de sorties imposée au générateur. N1 peut concevoir une méthode différente, avec une granularité par lot, composant ou phase si cela est utile. Les variantes ne changent pas le sens des états ni le droit d'inventer une décision.

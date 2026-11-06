@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "project-harness",
+  "level": 0,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "generator": "N1 illustratif dashboard-local / Eiffel++ 0.2.0 ; aucune identité de version exécutée revendiquée",
+  "repositories": {
+    "governance": "governance",
+    "stbl": "stbl",
+    "audit": "audit",
+    "product": "product"
+  },
+  "illustration": true,
+  "qualification": "NOT_RUN"
+}
