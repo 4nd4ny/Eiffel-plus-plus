@@ -7,8 +7,8 @@ Date : **6 novembre 2026**. Périmètre : documents du catalogue, formats JSON, 
 | Contrôle | Résultat observé | Portée |
 | --- | --- | --- |
 | `python3 tools/check_catalog.py` | **PASS**, 97 fichiers Markdown | Liens locaux, blocs de code, sections, variables, schémas lisibles, paquets illustratifs et graines publiques. |
-| `python3 -m unittest discover -s tests -v` | **PASS**, 26 tests | Sept tests des composants génériques, treize tests de préparation/matérialisation et six tests de graines. |
-| Catalogue public | **PASS**, 7 fiches | Six recettes externes et un exemple local ; aucune observation de production déclarée. |
+| `python3 -m unittest discover -s tests -v` | **PASS**, 27 tests | Sept tests des composants génériques, treize tests de préparation/matérialisation et sept tests de graines. |
+| Catalogue public | **PASS**, 9 fiches | Huit recettes externes, dont les deux recettes ICO autorisées à la publication, et un exemple local ; aucune observation de production déclarée. |
 | Parcours CLI de `forge-local` | **PASS** | Contrôle N0, matérialisation avec un seul Git, aucun remote, conservation des trois fichiers de travail, absence de copie automatique de N2. |
 | Préparation avec deux graines | **PASS** | Deux fiches sélectionnées copiées, aucun artefact de graine chargé, liens locaux du paquet exporté valides. |
 | Capture de `forge-local` puis contrôle | **PASS** | Empreinte vérifiée ; statuts `unreviewed` et `illustrative`, observations vides, inchangés. |
@@ -25,6 +25,7 @@ Les essais de matérialisation, de préparation et de capture ont utilisé des d
 - Les destinations préexistantes, les chemins sortants, les recouvrements et les liens symboliques sont refusés dans les cas examinés. Une course simulée à la création ne provoque pas d'écrasement.
 - Une capture conserve les déclarations, vérifie l'identité du paquet et détecte un changement des octets ou du caractère exécutable. Son empreinte est portable avec Git et ne couvre pas toutes les permissions.
 - Une co-construction déclarée exige une référence de décision ; une observation ou comparaison exige une référence de résultat. Leur existence dans la fiche ne les authentifie pas.
+- Une recette publique peut conserver une provenance privée. La préparation respecte le statut du contenu sélectionné, conserve la provenance et ne publie pas automatiquement le brief ou le profil.
 - La sélection à l'étape zéro copie uniquement les fiches demandées. Les sources externes ne sont pas téléchargées, exécutées ou investies d'une autorité.
 - Les références de générateurs restent descriptives ; un instantané N1 doit être fourni explicitement et partager le profil de N0.
 - Structure, adoption, autorité et résultats restent distincts. Les outils n'élèvent aucun statut par le seul succès d'une copie.

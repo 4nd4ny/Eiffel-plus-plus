@@ -22,6 +22,8 @@ python3 tools/meta_harness.py prepare --brief BRIEF.md --profile PROFILE.json --
 
 `prepare` assemble le besoin, le profil et les prompts de conception. `--seed ID` est répétable ; `--catalog DOSSIER` choisit leur base. Seules les fiches sélectionnées sont copiées dans `context/seeds/`, sans leurs artefacts ou dépendances. `preparation.json` indique `seed_artifacts_loaded: false` et conserve un statut de publication prudent. Sans graine sélectionnée, un index vide explique comment en choisir.
 
+La visibilité de la source et celle de la fiche restent distinctes : une recette autorisée à la publication peut provenir d'un dépôt privé. Pour les seules fiches copiées, `publication.status` et `contains_private_material` déterminent si la préparation doit être marquée privée. Sinon elle reste `unreviewed`, car la publication des graines n'autorise pas celle du brief et du profil. Ce contrôle conserve les déclarations ; il n'authentifie pas l'autorisation et ne lit pas la source privée.
+
 Le paquet obtenu est une entrée pour un agent, pas un harnais déjà produit. L'agent peut proposer directement N0 dans un dossier distinct ; un générateur N1 n'est utile que si le réemploi le justifie.
 
 ## Contrôler un paquet N0 ou N1

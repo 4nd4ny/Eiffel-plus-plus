@@ -168,6 +168,26 @@ class SeedTests(unittest.TestCase):
         self.assertFalse(info["seed_artifacts_loaded"])
         self.assertEqual(info["generation_status"], "NOT_RUN")
 
+    def test_published_recipe_preserves_private_origin_without_restricting_public_content(self):
+        brief = self.base / "brief.md"
+        brief.write_text("# Besoin de test\n", encoding="utf-8")
+        for contains_private, expected in ((False, "unreviewed"), (True, "private")):
+            with self.subTest(contains_private=contains_private):
+                catalog = self.base / f"catalog-{expected}"
+                selected = note()
+                selected["source"]["visibility"] = "private"
+                selected["publication"] = {"status": "public", "contains_private_material": contains_private}
+                source = catalog / "records/selected.json"
+                write_json(source, selected)
+                if not contains_private:
+                    self.assertEqual(seeds.check_catalog(catalog, require_public=True)["record_count"], 1)
+                destination = self.base / f"prepared-{expected}"
+                meta.prepare(brief, self.bundle / "profile.json", destination, ("local-test",), catalog)
+                self.assertEqual((destination / "context/seeds/local-test.json").read_bytes(), source.read_bytes())
+                info = json.loads((destination / "preparation.json").read_text(encoding="utf-8"))
+                self.assertEqual(info["publication_status"], expected)
+                self.assertFalse(info["seed_artifacts_loaded"])
+
 
 if __name__ == "__main__":
     unittest.main()

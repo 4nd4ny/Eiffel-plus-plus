@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.3.0",
+  "kind": "external-pattern",
+  "source": {
+    "url": "https://github.com/4nd4ny/ICO",
+    "revision": "988c58c6376ef764c4b4a5e1e9af288703b3e84b",
+    "paths": [
+      "harness/harnais-plus-robustes.md",
+      "harness/README.md",
+      "CLAUDE.md",
+      "LICENSE"
+    ],
+    "license": "MIT — LICENSE consulté ; Copyright (c) 2026 Harmonia Education — projet NISOZ. Publication des recettes du harnais autorisée par Christian le 6 novembre 2026 ; le dépôt source reste privé.",
+    "visibility": "private",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "Lien ICO partagé par Christian dans la discussion Eiffel++."
+  },
+  "lineage": {
+    "parents": []
+  },
+  "publication": {
+    "status": "public",
+    "contains_private_material": false
+  },
+  "review": {
+    "status": "unreviewed",
+    "decision_ref": null
+  },
+  "id": "ico-mechanical-controls-proposal",
+  "title": "Transformer des consignes en contrôles — propositions ICO",
+  "summary": "Recette originale issue des suggestions d’amélioration : vérifier les capacités réelles, installer seulement les contrôles nécessaires et examiner leur effet avant d’en revendiquer la protection.",
+  "context": {
+    "suitable_for": [
+      "Une règle importante existe seulement en prose et un mécanisme ciblé peut la rendre vérifiable.",
+      "Le risque d’auto-validation justifie de séparer les critères et les résultats du producteur."
+    ],
+    "avoid_when": [
+      "Le coût du contrôle dépasse l’enjeu sans bénéfice attendu identifiable.",
+      "L’environnement ne permet pas la séparation annoncée."
+    ],
+    "required_capabilities": [
+      "Inventaire réel des outils, droits et points de contrôle.",
+      "Exécuteur de tests et provenance des résultats."
+    ],
+    "cost_notes": [
+      "Les coûts qualitatifs de la source sont des propositions, pas des mesures transférables.",
+      "Préférer un contrôle pertinent à l’installation de toutes les options."
+    ]
+  },
+  "recipe": [
+    "Choisir une règle importante et définir un cas qui montrerait sa violation.",
+    "Vérifier qu’un mécanisme peut effectivement contrôler cette frontière dans l’environnement disponible.",
+    "Configurer le moyen minimal adapté et l’essayer avec un candidat qui viole la règle.",
+    "Garder les critères d’acceptation hors de la modification opportuniste du producteur lorsque l’indépendance est requise.",
+    "Borner les reprises et conserver un état inconclusif si l’information manque.",
+    "Relever ce que le contrôle a détecté, raté et coûté, puis adapter avec l’opérateur."
+  ],
+  "operator_questions": [
+    "Quelle violation concrète doit être empêchée ou détectée ?",
+    "Le niveau d’indépendance annoncé est-il réalisé par des droits distincts ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "Le document harness/harnais-plus-robustes.md propose notamment des contrôles mécaniques, une revue séparée, des critères de recette protégés et des budgets."
+    ],
+    "limitations": [
+      "Ces éléments sont lus comme suggestions ; cette fiche ne déclare pas qu’ils sont déployés.",
+      "Un filtrage de commandes ou un hook ne démontre pas à lui seul un isolement réseau ou une frontière de sécurité.",
+      "La revue par un contexte neuf ne prouve pas une indépendance statistique.",
+      "Le dépôt source reste privé : ses références identifient la provenance, sans donner au lecteur public un accès aux fichiers originaux.",
+      "Publication autorisée de cette recette générique ; aucun essai Eiffel++ ni résultat de production ne valide son efficacité."
+    ],
+    "runs": []
+  }
+}

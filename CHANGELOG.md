@@ -1,5 +1,12 @@
 # Journal des changements
 
+## Publication des graines ICO — 2026-11-06
+
+- Ajout public de `ico-incremental-lanes` et `ico-mechanical-controls-proposal`, sur autorisation explicite de Christian. Le catalogue contient maintenant neuf fiches.
+- Provenance privée d’ICO conservée ; les deux recettes publiées deviennent utilisables depuis le catalogue public, sans recopier le produit ou ses données.
+- La préparation distingue la visibilité de la source et le statut du contenu sélectionné. Une recette autorisée à la publication n’est pas traitée comme confidentielle du seul fait de sa provenance.
+- Autorisation de publication et efficacité restent distinctes : aucune nouvelle mesure d’usage n’est revendiquée. Les formats restent en 0.3.0.
+
 ## 0.3.0 — 2026-11-06
 
 Eiffel++ devient un **prototype de forge de harnais à partir de graines**, guidé par les spécifications du produit et de sa production. La co-construction humaine, les essais et le réemploi sont distingués de toute promesse d'efficacité.

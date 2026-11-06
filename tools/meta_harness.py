@@ -409,9 +409,9 @@ def prepare(brief_path: Path, profile_path: Path, destination: Path,
                 raise ValueError(f"Graine absente du catalogue choisi : {seed_id}")
             path, record = records[seed_id]
             selected.append((seed_id, _read_file(path)))
+            # La publication concerne la fiche copiée ; sa source peut rester privée.
             private_seed |= (record["publication"]["status"] != "public"
-                             or record["publication"]["contains_private_material"]
-                             or record["source"]["visibility"] == "private")
+                             or record["publication"]["contains_private_material"])
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=".eiffel-stage-zero-", dir=destination.parent))
     try:

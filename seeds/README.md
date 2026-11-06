@@ -16,6 +16,8 @@ Commencer par les obligations, le budget et les capacités du projet. Lire les c
 
 Les six graines externes initiales proviennent de projets référencés par [Harness Lens](https://huggingface.co/spaces/harness-hub/harness-lens). Les fichiers primaires et licences ont été examinés aux révisions indiquées dans les fiches. La [revue des benchmarks](https://tmustier.github.io/harness-benchmarks/) aide à repérer des comparaisons, sans transférer leurs résultats à Eiffel++.
 
+Deux recettes du harnais ICO complètent cette sélection : [incréments et couloirs de travail](records/ico-incremental-lanes.json) et [propositions de contrôles mécaniques](records/ico-mechanical-controls-proposal.json). Leur publication a été autorisée par Christian le 6 novembre 2026. La base publique comprend donc huit graines externes et un exemple local. Le dépôt ICO reste privé ; sa visibilité est conservée dans la provenance. Le statut de publication concerne le contenu de chaque fiche, distinct de celui de sa source. L’autorisation de publication ne constitue ni une co-construction déclarée ni une validation d’efficacité.
+
 Les fiches sont des synthèses originales. Elles ne contiennent pas les runtimes, dépendances ou prompts complets des projets cités. Une extension publique de Claude Code peut être examinée sans donner accès au fonctionnement de son cœur propriétaire.
 
 ## Forger avec l'opérateur

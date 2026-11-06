@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.3.0",
+  "kind": "external-pattern",
+  "source": {
+    "url": "https://github.com/4nd4ny/ICO",
+    "revision": "988c58c6376ef764c4b4a5e1e9af288703b3e84b",
+    "paths": [
+      "CLAUDE.md",
+      ".claude/skills/ico-cycle-sprint/SKILL.md",
+      ".claude/agents/chef-de-projet.md",
+      "harness/README.md",
+      "LICENSE"
+    ],
+    "license": "MIT — LICENSE consulté ; Copyright (c) 2026 Harmonia Education — projet NISOZ. Publication des recettes du harnais autorisée par Christian le 6 novembre 2026 ; le dépôt source reste privé.",
+    "visibility": "private",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "Lien ICO partagé par Christian dans la discussion Eiffel++."
+  },
+  "lineage": {
+    "parents": []
+  },
+  "publication": {
+    "status": "public",
+    "contains_private_material": false
+  },
+  "review": {
+    "status": "unreviewed",
+    "decision_ref": null
+  },
+  "id": "ico-incremental-lanes",
+  "title": "Incréments et couloirs de travail — harnais ICO",
+  "summary": "Recette originale issue des rôles et procédures ICO : articuler un petit résultat montrable, des interfaces explicites, des tâches séparables et une mémoire de reprise.",
+  "context": {
+    "suitable_for": [
+      "Plusieurs modules ou responsabilités peuvent avancer séparément autour d’interfaces stabilisées.",
+      "Un projet évolue par incréments et bénéficie d’un état de reprise court."
+    ],
+    "avoid_when": [
+      "Une tâche courte ne justifie pas de planification par couloirs.",
+      "Une incertitude métier centrale rend prématuré le gel des interfaces."
+    ],
+    "required_capabilities": [
+      "Contrôle de version et identification des fichiers modifiables.",
+      "Tests adaptés au produit et moyens d’intégration des contributions."
+    ],
+    "cost_notes": [
+      "Limiter le nombre de couloirs aux dépendances réellement séparables.",
+      "Ne pas reprendre automatiquement tous les rôles, sprints et documents de la source. Aucun gain mesuré ici."
+    ]
+  },
+  "recipe": [
+    "Choisir un incrément utile et ses comportements acceptables avant de répartir les tâches.",
+    "Identifier les interfaces partagées et les décisions vraiment nécessaires à leur stabilisation.",
+    "Attribuer des zones de modification distinctes quand le parallélisme se justifie ; garder une voie d’intégration explicite.",
+    "Relier les vérifications aux comportements attendus et examiner l’état intégré.",
+    "Conserver un état courant court, les décisions et les questions qui affectent la prochaine action.",
+    "Adapter avec l’opérateur les rôles et la cadence, puis relever les coûts et échecs avant de généraliser."
+  ],
+  "operator_questions": [
+    "Quelles interfaces sont assez stables pour autoriser un travail en parallèle ?",
+    "Quel incrément utile vaut le coût de cette coordination ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "Les fichiers de rôles et la procédure de sprint décrivent des responsabilités, des zones de fichiers, des critères de sortie et une reprise à partir d’un état courant."
+    ],
+    "limitations": [
+      "Les consignes consultées ne démontrent pas leur application effective.",
+      "Les résultats métier et mesures d’ICO ne sont pas repris comme preuves de cette recette.",
+      "Le dépôt source reste privé : ses références identifient la provenance, sans donner au lecteur public un accès aux fichiers originaux.",
+      "Publication autorisée de cette recette générique ; aucun essai Eiffel++ ni résultat de production ne valide son efficacité."
+    ],
+    "runs": []
+  }
+}

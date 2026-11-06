@@ -51,7 +51,7 @@ Ces sources alimentent les hypothèses des générateurs. Le catalogue ne repren
 
 ## Base initiale de graines
 
-Les [fiches de graines](../seeds/records/) indiquent les fichiers lus, les révisions immuables, les licences, les adaptations proposées et les limites. La sélection publique comprend :
+Les [fiches de graines](../seeds/records/) indiquent les fichiers lus, les révisions immuables, les licences, les adaptations proposées et les limites. La sélection publiée comprend :
 
 | Projet primaire | Fiche et mécanisme étudié |
 | --- | --- |
@@ -61,7 +61,14 @@ Les [fiches de graines](../seeds/records/) indiquent les fichiers lus, les révi
 | [Deep Agents](https://github.com/langchain-ai/deepagents) | [Délégation de tâches séparables](../seeds/records/deepagents-delegation.json) |
 | [Letta Code](https://github.com/letta-ai/letta-code) | [Mémoire attribuée et versionnée](../seeds/records/letta-versioned-memory.json) |
 | [Extension publique feature-dev de Claude Code](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) | [Exploration, décision et revue](../seeds/records/claude-feature-review.json) |
+| ICO — source privée, publication du harnais autorisée | [Incréments et couloirs de travail](../seeds/records/ico-incremental-lanes.json) ; [propositions de contrôles mécaniques](../seeds/records/ico-mechanical-controls-proposal.json) |
 
 Ce relevé est une sélection, pas une couverture exhaustive des catalogues. Les sources ont été lues, pas exécutées dans Eiffel++. Les recettes sont des synthèses originales ; les licences des projets cités continuent de s'appliquer à leurs contenus. La fiche Claude Code porte uniquement sur l'extension publique examinée, dont la licence est signalée, sans import du cœur du produit ou d'un prompt complet.
 
 L'[exemple local](../examples/forge-local/README.md) est une composition illustrative, sans décision humaine d'adoption inventée ni résultat de production. Les futurs harnais co-construits pourront être capturés avec leurs propres traces et contre-indications.
+
+### Publication des recettes ICO
+
+Le 6 novembre 2026, Christian a donné dans la conversation Eiffel++ cette instruction : « Tu peux rendre public le harnais du projet privé ICO. » Les deux fiches de recettes sont publiées sur cette base. Le dépôt source conserve sa visibilité privée ; les références au commit `988c58c6376ef764c4b4a5e1e9af288703b3e84b` indiquent les fichiers examinés sans garantir leur accessibilité publique.
+
+Cette publication porte sur les recettes génériques dérivées des instructions et des suggestions d’amélioration du harnais. Les observations métier, données, code produit et résultats d’audit privés ne sont pas incorporés. La licence MIT et son attribution sont conservées dans les fiches. Leur statut reste `source-inspected`, sans résultat d’essai ni co-construction fictive.

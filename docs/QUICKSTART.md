@@ -15,7 +15,7 @@ python3 tools/seeds.py list
 python3 tools/seeds.py show eiffel-minimal-local
 ```
 
-La [base](../seeds/README.md) contient des mécanismes tirés de sources publiques et un exemple local. Le choix est raisonné à partir des besoins et des capacités ; aucun score automatique ne désigne un optimum. Ne lire que les fiches utiles. Pour une base privée, passer `--catalog CHEMIN` explicitement.
+La [base](../seeds/README.md) contient des mécanismes tirés de sources examinées, dont les recettes du harnais ICO autorisées à la publication, et un exemple local. Le choix est raisonné à partir des besoins et des capacités ; aucun score automatique ne désigne un optimum. Ne lire que les fiches utiles. Pour une base privée, passer `--catalog CHEMIN` explicitement.
 
 Consigner en quelques lignes : graine retenue, origine, éléments conservés, éléments écartés et raison. Une graine externe ne donne aucune permission et ne modifie pas les obligations du projet.
 
