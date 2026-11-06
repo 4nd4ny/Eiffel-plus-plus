@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.3.0",
+  "id": "codex-scoped-instructions",
+  "kind": "external-pattern",
+  "title": "Instructions à portée locale — Codex",
+  "summary": "Organiser les règles utiles selon la zone du projet concernée, avec une entrée commune courte et des compléments locaux. La recette s'inspire du chargeur d'AGENTS.md de Codex ; son emploi ailleurs exige de vérifier le chargement réellement disponible.",
+  "source": {
+    "url": "https://github.com/openai/codex",
+    "revision": "83086188ae0614bd882818ff1aa23f3194962012",
+    "paths": [
+      "codex-rs/core/src/agents_md.rs",
+      "LICENSE"
+    ],
+    "license": "Apache-2.0",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "https://huggingface.co/spaces/harness-hub/harness-lens"
+  },
+  "context": {
+    "suitable_for": [
+      "Projet existant dont les composants ont des commandes, conventions ou contraintes différentes.",
+      "Instructions réutilisées sur plusieurs interventions dans les mêmes zones du code."
+    ],
+    "avoid_when": [
+      "Un petit projet possède déjà quelques règles communes suffisantes et aucune différence locale pertinente.",
+      "L'outil de destination ne charge pas ces fichiers comme prévu et aucun mécanisme explicite ne les remplace."
+    ],
+    "required_capabilities": [
+      "Repérage fiable de la racine du projet et de la zone de travail.",
+      "Chargement vérifiable des instructions applicables, automatiquement ou sur demande explicite.",
+      "Autorité et règles de priorité définies hors des documents externes importés."
+    ],
+    "cost_notes": [
+      "Les règles locales peuvent éviter des instructions inutiles aux autres composants, mais leur multiplication crée un coût de maintenance.",
+      "Une hiérarchie de fichiers n'économise rien si l'agent les relit tous sans nécessité.",
+      "Vérifier le volume réellement chargé avant d'attribuer un gain à ce découpage."
+    ]
+  },
+  "recipe": [
+    "Conserver dans l'entrée commune la finalité, les obligations transversales et les seules commandes indispensables au démarrage.",
+    "Ajouter une instruction locale uniquement lorsqu'une différence de composant change une décision ou une vérification concrète.",
+    "Identifier pour une tâche les règles applicables et leurs versions ; résoudre les contradictions selon le mandat, sans additionner aveuglément les consignes.",
+    "Vérifier dans l'outil retenu quels fichiers sont réellement chargés et quelle limite de contexte s'applique. Fournir une lecture explicite si cette découverte n'existe pas.",
+    "Réviser ou supprimer une règle qui duplique une source fiable ou ne change plus le travail ; conserver les raisons des différences encore nécessaires."
+  ],
+  "operator_questions": [
+    "Quelles zones du projet demandent réellement une manière de travailler différente ?",
+    "Quelles conventions ne sont pas déjà accessibles dans les commandes, le code ou la documentation existante ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "agents_md.rs décrit la collecte des instructions entre une racine de projet déterminée et le répertoire courant, sans remontée au-delà de cette racine.",
+      "Le chargeur inspecté utilise une limite de volume project_doc_max_bytes, définit AGENTS.override.md et ne charge pas les instructions de projet lorsque celui-ci est considéré non fiable."
+    ],
+    "limitations": [
+      "Cette recette n'a pas été exécutée ni évaluée dans Eiffel++.",
+      "Les règles de chargement décrites appartiennent à la révision de Codex examinée ; elles ne sont pas présumées identiques dans d'autres agents.",
+      "La portée documentaire ne constitue pas une séparation technique des droits ou une indépendance d'audit."
+    ],
+    "runs": []
+  },
+  "lineage": {"parents": []},
+  "publication": {"status": "public", "contains_private_material": false},
+  "review": {"status": "unreviewed", "decision_ref": null}
+}

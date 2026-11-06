@@ -1,10 +1,10 @@
 # Métapatron 02 — Besoin explicite et décisions traçables
 
-Version : **0.2.0** · Rôle : **stbl**
+Version : **0.3.0** · Rôle : **stbl**
 
 ## Intention
 
-Transformer la demande du client en exigences compréhensibles, réfutables et reliées à leur source. Produire une **spécification technique des besoins logiciels (STBL)** qui permette au dépôt produit d'implémenter et au dépôt audit de juger le même comportement attendu.
+Transformer la demande du client en exigences compréhensibles, réfutables et reliées à leur source. Produire une **spécification technique des besoins logiciels (STBL)** qui permette de produire et d’examiner le même comportement attendu.
 
 La STBL décrit les résultats attendus et leurs contraintes. Elle ne devient pas une copie de l'implémentation, ni un ensemble d'exemples présentés comme une définition complète du besoin.
 
@@ -18,7 +18,7 @@ La STBL décrit les résultats attendus et leurs contraintes. Elle ne devient pa
 
 ## Structure
 
-Le dépôt `stbl` contient un index `STBL.md` et cinq types de fiches :
+La responsabilité `stbl` peut partager une racine Git avec les autres responsabilités. Ce composant optionnel propose un index `STBL.md` et cinq types de fiches à retenir selon le besoin :
 
 | Fiche | Fonction |
 | --- | --- |

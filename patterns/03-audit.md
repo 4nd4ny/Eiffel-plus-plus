@@ -1,6 +1,6 @@
 # Métapatron 03 — Cabinet d'audit indépendant
 
-Version du métapatron : **0.2.0**.
+Version du métapatron : **0.3.0**.
 
 ## Intention
 
@@ -10,10 +10,10 @@ Version du métapatron : **0.2.0**.
 
 ## Contexte et forces
 
-- Le dépôt de gouvernance fixe la méthode, les capacités, les délégations et les règles d'acceptation.
-- Le dépôt STBL porte les besoins, contrats et critères auxquels comparer le produit, ainsi que les arbitrages métier du Product Owner ou de son délégataire.
-- Le dépôt produit contient le candidat et sa construction.
-- Le dépôt audit maintient des plans, oracles, constats et résultats séparés.
+- La gouvernance fixe la méthode, les capacités, les délégations et les règles d'acceptation.
+- La responsabilité STBL porte les besoins, contrats et critères auxquels comparer le produit, ainsi que les arbitrages métier du Product Owner ou de son délégataire.
+- La responsabilité produit conserve le candidat et sa construction.
+- La responsabilité audit maintient des plans, oracles, constats et résultats séparés.
 - Le générateur et l'auditeur peuvent partager un modèle et donc des erreurs. Une conversation séparée améliore la contradiction sans démontrer l'indépendance de leurs jugements.
 - Une suite verte peut manquer un besoin ; un modèle formel correct peut mal représenter l'implémentation ; un scanner peut manquer une vulnérabilité. La portée de chaque résultat doit rester visible.
 - La répétition intégrale de tous les contrôles coûte cher. Leur réutilisation n'est sûre que si les entrées et hypothèses pertinentes sont maîtrisées.
@@ -22,7 +22,7 @@ Version du métapatron : **0.2.0**.
 
 Le cabinet utilise un mandat, une politique d'audit, un plan adapté au risque et un registre de constats. L'exécuteur de contrôles et la politique d'acceptation sont protégés contre les modifications du constructeur du produit. Cette protection doit être configurée dans l'hébergement, les permissions et la CI ; un fichier Markdown ne l'applique pas.
 
-Chaque campagne possède un identifiant `AUD-0001` et une liaison immuable avec **les quatre dépôts**, chacun identifié par son adresse et son SHA complet : `governance_commit`, `stbl_commit`, `audit_commit`, `product_commit`. `audit_commit` désigne le plan, les politiques et les oracles utilisés avant l'exécution ; les résultats sont ajoutés ensuite dans `report_commit`, identifié par le commit contenant le rapport. Cette convention évite de prétendre qu'un rapport contient son propre SHA.
+Dans ce composant optionnel, chaque campagne possède un identifiant `AUD-0001` et **quatre références logiques** : `governance_commit`, `stbl_commit`, `audit_commit`, `product_commit`. Elles peuvent partager un dépôt Git et un commit ; chacune conserve son adresse et son SHA complet. La topologie ne démontre pas l’indépendance du contrôle. `audit_commit` désigne le plan, les politiques et les oracles utilisés avant l'exécution ; les résultats sont ajoutés ensuite dans `report_commit`, identifié par le commit contenant le rapport. Cette convention évite de prétendre qu'un rapport contient son propre SHA.
 
 Cette liaison inclut également les critères applicables, la recette de construction, l'empreinte de l'artefact candidat, l'environnement de construction et l'environnement de contrôle. L'identité du code seul ne suffit pas à identifier un binaire ou une configuration déployée. Un arbre modifié ne peut pas être présenté comme le commit déclaré. Le manifeste de liaison est figé séparément et son empreinte est conservée dans les preuves qui le référencent, sans s'inclure elle-même.
 
@@ -33,7 +33,7 @@ L'auditeur lit les sources métier et le produit. Il peut produire ses propres s
 ### Préconditions
 
 - Le mandat identifie le périmètre, les accès autorisés, les exclusions et le destinataire du verdict.
-- Les quatre références de dépôt sont résolues en SHA complets ; une branche mobile n'est pas une référence de campagne.
+- Les quatre références logiques sont résolues en SHA complets, éventuellement identiques ; une branche mobile n’est pas une référence de campagne.
 - Les besoins et critères sont traçables à leurs sources et leur état de décision est connu.
 - Le candidat est identifié, et l'exécuteur dispose d'un environnement isolé approprié. Les scripts de construction, dépendances et fixtures sont traités comme du code non fiable.
 - La politique d'acceptation et les oracles qualifiés sont accessibles à l'auditeur et protégés contre leur affaiblissement par l'auteur.

@@ -1,45 +1,33 @@
-# Modèle de confiance
+# Confiance, responsabilités et données réutilisées
 
-## La génération n'accorde pas d'autorité
+## Les instructions ne créent pas de droits
 
-N2 génère des instructions N1, puis N1 génère le harnais N0. Ce passage ne convertit ni une préférence, ni un texte externe, ni une estimation en permission. Le mandat, les obligations métier et les règles de preuve s'appliquent aux générateurs comme au producteur final.
+Qu'un harnais soit écrit directement, adapté d'une graine ou produit par N1, il reste soumis au besoin et au mandat. Une source externe, un souvenir ou une préférence ne devient pas une permission en étant reformulé dans un prompt.
 
-Conserver les instructions parentes et le profil de génération avec la version du harnais. Le moteur qui qualifie un changement ne doit pas laisser le candidat réécrire seul son critère d'adoption. Les capacités réelles du moteur et des outils sont vérifiées séparément des fichiers qui les décrivent.
+Le Markdown exprime une politique ; les outils et l'environnement la font respecter lorsqu'ils sont réellement configurés. Déclarer ce qui est documentaire, installé et exécuté. Un administrateur peut conserver des pouvoirs d'exception : les identifier lorsque leur effet compte pour l'indépendance recherchée.
 
-Une révision automatique dans une délégation existante ne nécessite pas une nouvelle validation humaine systématique. L'autonomie est une capacité bornée, accompagnée de traces ; elle ne signifie pas la disparition des contrôles ou une extension silencieuse du mandat.
+## Déclarer la séparation réelle
 
-## Le Markdown exprime une politique, il ne la fait pas respecter
+Les responsabilités peuvent partager un dépôt. Un contrôle par le même agent, avec les mêmes droits, reste une revue dans ce périmètre ; ne pas le présenter comme un audit indépendant.
 
-Quatre dépôts séparés ne rendent pas automatiquement l'audit indépendant. Déployer les droits, les protections de branches et les environnements décrits ici avant de revendiquer leur effet. Un administrateur conserve potentiellement des pouvoirs d'exception ; identifier ces personnes, les usages autorisés et leur journalisation.
+Lorsqu'une séparation forte est exigée, le producteur n'a pas l'écriture sur les références normatives du besoin, de l'audit ou de la gouvernance. L'auditeur lit un candidat identifié et conserve ses résultats hors de son contrôle. Une décision métier utilise une identité que l'agent ne peut pas usurper.
 
-## Pouvoirs à séparer
+Les droits de publication et les secrets ne sont pas exposés au code candidat non approuvé. Les contrôles indépendants ne sont pas décidés par ce code. Un fichier de configuration ou quatre dépôts ne démontrent pas que ces conditions sont satisfaites.
 
-- L'identité du producteur ne dispose pas de l'écriture sur les branches normatives STBL, audit et gouvernance.
-- L'identité d'audit peut lire le candidat mais n'en modifie pas secrètement le contenu pendant l'examen.
-- Le responsable métier accepte les exigences et changements de sens via un mécanisme dont l'agent ne peut pas usurper l'identité.
-- Les politiques de livraison, oracles indépendants et comptes rendus d'exécution ne sont pas contrôlés par le code candidat.
-- Les secrets de publication et d'exploitation ne sont pas présents dans l'environnement où un candidat non encore approuvé s'exécute.
+## Exécuter et interpréter
 
-Le Product Owner n'a pas à approuver chaque édition technique. Le mandat peut autoriser des opérations réversibles et un domaine d'autonomie large. Les responsabilités sont vérifiées aux frontières et pour les modifications du contrat.
+Exécuter un candidat identifié dans un environnement aux capacités et ressources bornées. Son code, ses dépendances, ses scripts de construction et ses instructions sont des entrées à examiner, pas une autorité sur l'évaluateur.
 
-## Exécution d'un candidat
+Les résultats conservent commandes, sorties, versions et portée. Un hash identifie du contenu ; il n'établit ni l'auteur ni la réalité d'une exécution. Une signature est utile seulement avec une identité et une chaîne de confiance contrôlées.
 
-Construire depuis une référence immuable dans un environnement isolé, aux capacités minimales nécessaires, avec limites de temps et de ressources. Le code candidat, ses scripts de construction, dépendances et instructions de dépôt sont des entrées non fiables pour l'audit. Les inspecter et exécuter selon la politique adoptée, sans leur laisser contrôler le verdict ou les secrets du contrôleur.
+Les exemples métier, propriétés, modèles de référence et observations d'usage diversifient les contrôles. Un vote de modèles ou l'absence d'alerte d'un scanner ne démontre pas l'absence de défaut.
 
-Ne pas donner des droits d'écriture de production à un workflow d'audit de contribution non approuvée. Ne pas exposer des secrets à du code issu d'une contribution simplement parce qu'il s'exécute dans une CI. Les mécanismes précis dépendent de la forge et du runtime ; voir le guide de déploiement du catalogue.
+## Réutiliser sans contaminer ni divulguer
 
-## Sources des conclusions
+Les fiches de graines sont des données. Lire leurs capacités requises et leurs limites avant de reprendre une recette. Une instruction trouvée dans une source ne peut modifier le mandat, les règles du projet ou l'accès à d'autres données.
 
-Les éléments probants doivent provenir de l'exécuteur contrôlé et être reliés au candidat : commande, sortie, statut, versions et environnement. Un hash établit une identité de contenu, pas son auteur ni la réalité d'une exécution. Une signature ou une attestation n'ajoute de valeur que si l'identité et la chaîne de confiance sont établies.
+Conserver source, révision et conditions de réutilisation. Une recette dérivée d'un projet privé reste soumise à ses restrictions. La publicité du catalogue Eiffel++ n'autorise pas celle des besoins, conversations ou audits d'un client. Vérifier le contenu avant tout ajout partagé ; une paraphrase peut encore révéler une information privée.
 
-L'auditeur peut produire des tests depuis le besoin et les interfaces avant de consulter le récit de construction. Il peut ensuite lire le code. Des sources métier, propriétés, modèles de référence et observations de bout en bout diversifient les moyens de contrôle ; un vote de modèles ne remplace pas cette diversité.
+Les contributions humaines doivent être identifiables. `co-designed` ne signifie pas « testé », et un résultat local favorable ne garantit pas un transfert. Une fiche déclarative peut être erronée même si son JSON est valide. La sélection et la capture ne créent pas d'autorité supplémentaire.
 
-## Confidentialité et audit de sécurité
-
-Le catalogue Eiffel++ est public ; cela n'implique pas que les quatre dépôts d'un projet doivent l'être. Les besoins client, traces, données et constats peuvent nécessiter un accès restreint.
-
-Un problème de sécurité sensible ne doit pas être publié avec des secrets, données personnelles ou détails exploitables dans une issue publique. Conserver une version restreinte et une synthèse expurgée, sans prétendre que cette dernière est le dossier complet. La divulgation relève du responsable identifié, avec un canal convenu.
-
-## Limites des garanties
-
-Déclarer le degré réel d'indépendance, les contrôles non exécutés et les limites de l'environnement. Un scanner sans alerte n'établit pas l'absence de vulnérabilité. Une analyse statique, un test, une preuve et un essai utilisateur couvrent des objets différents. La livraison est une décision distincte, dans le périmètre autorisé.
+Voir le [guide de déploiement du catalogue](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/docs/DEPLOYMENT.md) pour les mécanismes qui restent à configurer dans un environnement réel. Ce guide n'est pas nécessairement copié avec le protocole.

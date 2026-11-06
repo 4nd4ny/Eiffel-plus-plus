@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.3.0",
+  "id": "claude-feature-review",
+  "kind": "external-pattern",
+  "title": "Exploration et revue d'une fonctionnalité — exemple feature-dev de Claude Code",
+  "summary": "Inspiration tirée du plugin public officiel feature-dev : relier une fonctionnalité au code existant, expliciter les choix importants puis examiner le résultat. La recette est une reformulation originale allégée ; aucun prompt propriétaire ni runtime Claude Code n'est redistribué.",
+  "source": {
+    "url": "https://github.com/anthropics/claude-code",
+    "revision": "772c6bee5c36f58be43bbb2b182862aeb22aceff",
+    "paths": [
+      "plugins/feature-dev/commands/feature-dev.md",
+      "plugins/feature-dev/README.md",
+      "plugins/feature-dev/.claude-plugin/plugin.json",
+      "plugins/README.md",
+      "LICENSE.md"
+    ],
+    "license": "Proprietary — LICENSE.md indique All rights reserved et renvoie aux Commercial Terms d'Anthropic ; aucune licence locale distincte trouvée dans le dossier feature-dev inspecté.",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "https://huggingface.co/spaces/harness-hub/harness-lens"
+  },
+  "context": {
+    "suitable_for": [
+      "Fonctionnalité qui doit s'intégrer dans une base de code existante et comporte des choix d'architecture significatifs.",
+      "Co-construction où l'opérateur veut examiner les compromis avant une modification coûteuse à inverser."
+    ],
+    "avoid_when": [
+      "Correction triviale ou choix déjà couvert par une spécification et un mandat clairs.",
+      "Budget insuffisant pour plusieurs explorations et revues, sans bénéfice identifiable de cette profondeur.",
+      "Recherche d'une implémentation libre complète du runtime Claude Code."
+    ],
+    "required_capabilities": [
+      "Accès aux interfaces et aux conventions pertinentes du code existant.",
+      "Échange ciblé avec l'opérateur pour les décisions non déléguées.",
+      "Vérification du résultat et revue de ses risques ; sous-agents facultatifs selon le coût et les capacités."
+    ],
+    "cost_notes": [
+      "Le workflow source prescrit plusieurs phases et groupes d'agents ; leur coût ne doit pas être hérité automatiquement.",
+      "Une exploration ciblée et une seule revue peuvent suffire. Le nombre d'agents est un choix du projet, pas un critère de sérieux.",
+      "Les questions inutiles et les approbations déjà acquises doivent être retirées lors de la co-construction."
+    ]
+  },
+  "recipe": [
+    "Relier la fonctionnalité demandée aux comportements attendus et aux interfaces existantes ; lire les seules parties qui peuvent changer les choix de réalisation.",
+    "Isoler les ambiguïtés ayant un effet métier ou un coût important à inverser ; demander à l'opérateur seulement les décisions que le mandat ne couvre pas.",
+    "Comparer des options concrètes lorsque leur différence est pertinente, en montrant leur impact sur le budget, l'intégration et la vérification.",
+    "Réaliser l'option retenue dans le mandat, avec des contrôles liés aux spécifications ; réutiliser les conventions existantes lorsqu'elles conviennent.",
+    "Examiner les erreurs possibles, la simplicité et les régressions, puis conserver les résultats, les décisions et les limites de la réalisation."
+  ],
+  "operator_questions": [
+    "Quel choix d'intégration doit être discuté avant de commencer, et lesquels sont déjà délégués ?",
+    "Quelle profondeur d'exploration et de revue vaut son coût pour cette fonctionnalité ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "La commande publique feature-dev.md décrit sept phases allant de la découverte au résumé, avec exploration du code, clarification, conception, réalisation et revue.",
+      "Le workflow source demande plusieurs agents spécialisés et plusieurs interventions humaines ; son README déconseille son usage pour les changements triviaux.",
+      "Le dossier inspecté contient un exemple d'extension officielle. Il ne constitue pas le code du cœur de Claude Code."
+    ],
+    "limitations": [
+      "Cette recette n'a pas été exécutée ni évaluée dans Eiffel++.",
+      "Le caractère public du dépôt n'accorde pas une licence libre ; cette fiche ne redistribue ni le texte du prompt source ni son implémentation.",
+      "L'allègement des phases et des demandes d'approbation est une proposition Eiffel++, pas un comportement attribué au plugin d'origine.",
+      "Une revue par agents ne suffit pas à établir une indépendance technique ou à certifier le logiciel."
+    ],
+    "runs": []
+  },
+  "lineage": {"parents": []},
+  "publication": {"status": "public", "contains_private_material": false},
+  "review": {"status": "unreviewed", "decision_ref": null}
+}

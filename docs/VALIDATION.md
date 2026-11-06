@@ -1,50 +1,44 @@
-# Validation d'Eiffel++ 0.2.0
+# Vérifications d'Eiffel++ 0.3.0
 
-Date : **6 novembre 2026**. Périmètre : patron N2, prompts, exemples N1/N0, protocole, schémas et outils locaux. Cette validation ne constitue pas un audit de logiciel métier, une certification de sécurité ou une mesure de l'efficacité des harnais proposés.
+Date : **6 novembre 2026**. Périmètre : documents du catalogue, formats JSON, outils locaux, exemples et base de graines. **La méthode reste un prototype non évalué sur la production de logiciels réels.**
 
-## Contrôles exécutés
+## Résultats exécutés
 
 | Contrôle | Résultat observé | Portée |
 | --- | --- | --- |
-| `python3 tools/check_catalog.py` | **PASS**, 91 fichiers Markdown | Liens locaux, blocs de code, entrées, sections, variables, schémas JSON lisibles et structure des quatre paquets N1/N0 illustratifs. |
-| `python3 -m unittest discover -s tests -v` | **PASS**, 16 tests | Six tests de l'instanciation générique et dix tests du nouvel outil de génération de paquets. |
-| Paquets `dashboard-local` N1 et N0 | Structure **PASS** | Sémantique et autorité non attestées par le script : `NOT_RUN`. |
-| Paquets `access-service` N1 et N0 | Structure **PASS** | Sémantique et autorité non attestées par le script : `NOT_RUN`. |
-| Préparation et matérialisation des deux exemples | **PASS** | Deux entrées N2 préparées, huit dossiers de rôle matérialisés, fichiers spécifiques conservés et liens locaux valides. Essais réalisés dans des répertoires temporaires. |
-| Revue des niveaux et de la générativité | Corrections intégrées | Revue argumentée par agents, distincte d'une validation expérimentale sur des projets externes. |
+| `python3 tools/check_catalog.py` | **PASS**, 97 fichiers Markdown | Liens locaux, blocs de code, sections, variables, schémas lisibles, paquets illustratifs et graines publiques. |
+| `python3 -m unittest discover -s tests -v` | **PASS**, 26 tests | Sept tests des composants génériques, treize tests de préparation/matérialisation et six tests de graines. |
+| Catalogue public | **PASS**, 7 fiches | Six recettes externes et un exemple local ; aucune observation de production déclarée. |
+| Parcours CLI de `forge-local` | **PASS** | Contrôle N0, matérialisation avec un seul Git, aucun remote, conservation des trois fichiers de travail, absence de copie automatique de N2. |
+| Préparation avec deux graines | **PASS** | Deux fiches sélectionnées copiées, aucun artefact de graine chargé, liens locaux du paquet exporté valides. |
+| Capture de `forge-local` puis contrôle | **PASS** | Empreinte vérifiée ; statuts `unreviewed` et `illustrative`, observations vides, inchangés. |
+| Séparation public/privé | **PASS dans les cas testés** | Catalogue privé explicite lisible, rejet de ses déclarations privées sous contrôle public. Aucun détecteur de secrets n'est revendiqué. |
+| Relecture indépendante des nouveaux chemins de copie | Aucun blocage établi dans le périmètre relu | Revue par un autre agent, sans mesure d'indépendance statistique ni certification. |
 
-## Frontières testées dans les outils
+Les essais de matérialisation, de préparation et de capture ont utilisé des destinations temporaires nouvelles. Le logiciel CSV de l'exemple n'a pas été implémenté ; ses contrôles métier restent `NOT_RUN`.
 
-- Les quatre rôles donnent quatre racines Git distinctes, sans commit ni remote inventé.
-- L'instanciation générique conserve son comportement et ses liens, avec N2 copié uniquement dans la gouvernance.
-- Les poids invalides, booléens, non finis, incomplets ou de somme incorrecte sont refusés ; aucune normalisation silencieuse ne modifie une préférence.
-- Les dossiers et chemins dangereux, imbriqués ou symboliques sont refusés dans les cas testés.
-- Une destination préexistante, y compris créée pendant la préparation, n'est pas écrasée.
-- Les fichiers N0 sont copiés tels que fournis ; le profil et les sources nécessaires sont conservés.
-- N1 peut être archivé dans la gouvernance ; ses profils doivent correspondre à N0. Les générateurs rejetés ou remplacés ne sont pas utilisés comme générateurs actifs.
-- Une référence descriptive à `generator` n'est jamais suivie comme une instruction de lecture externe.
-- Le N2 disponible est archivé comme ressource de régénération, sans affirmation d'une filiation historique non établie.
-- Les métadonnées distinguent structure, sémantique, autorité et statut déclaré ; la matérialisation ne transforme pas une proposition en décision acceptée.
-- La préparation reste explicitement une entrée : elle ne prétend pas avoir appelé un modèle ou généré N1/N0.
+## Frontières couvertes par les tests
 
-## Corrections de conception issues de la revue
+- Les profils 0.3.0 acceptent des priorités verbales ; les poids restent vérifiés lorsqu'ils sont fournis. Les anciens profils 0.2.0 gardent leurs exigences.
+- Une responsabilité n'impose pas un dépôt : le mode `single-repo` regroupe les quatre responsabilités, le mode `four-repos` conserve quatre racines distinctes.
+- Les scripts copiés restent exécutables. Les permissions ordinaires sont conservées, les bits spéciaux supprimés.
+- Les destinations préexistantes, les chemins sortants, les recouvrements et les liens symboliques sont refusés dans les cas examinés. Une course simulée à la création ne provoque pas d'écrasement.
+- Une capture conserve les déclarations, vérifie l'identité du paquet et détecte un changement des octets ou du caractère exécutable. Son empreinte est portable avec Git et ne couvre pas toutes les permissions.
+- Une co-construction déclarée exige une référence de décision ; une observation ou comparaison exige une référence de résultat. Leur existence dans la fiche ne les authentifie pas.
+- La sélection à l'étape zéro copie uniquement les fiches demandées. Les sources externes ne sont pas téléchargées, exécutées ou investies d'une autorité.
+- Les références de générateurs restent descriptives ; un instantané N1 doit être fourni explicitement et partager le profil de N0.
+- Structure, adoption, autorité et résultats restent distincts. Les outils n'élèvent aucun statut par le seul succès d'une copie.
 
-1. Les trois niveaux sont distingués des quatre responsabilités : N2 génère N1, N1 génère N0, N0 produit le logiciel.
-2. Les prompts N1 des exemples lisent le profil courant au lieu de recopier en dur leurs poids et budgets. Ils demandent des transformations de méthode lorsque le contexte pertinent change.
-3. Une fonction de qualification peut être incluse dans un prompt ; trois fonctions ne rendent pas obligatoires trois fichiers ou trois agents.
-4. N1 et N2 restent accessibles après export des quatre dépôts. La disponibilité d'un instantané n'est pas une preuve de sa participation passée à la génération.
-5. Le budget est commun aux niveaux et aux délégations d'une étape zéro ; il n'est pas réinitialisé par un changement de contexte.
-6. Le gabarit d'expérience devient un point d'entrée génératif. Les expériences comparatives sont proportionnées à une incertitude, au lieu d'être un préalable universel.
-7. Les états du protocole et les limites des mandats sont conservés ; les adaptations déjà déléguées ne déclenchent pas de nouvelle approbation systématique.
+## Hypothèses encore ouvertes
 
-## Ce qui n'est pas établi
+Réutiliser une graine pourrait réduire l'effort de conception ; cela pourrait aussi importer des hypothèses inutiles. La co-construction pourrait améliorer l'adéquation au besoin ; elle peut également ajouter du temps humain. Une mémoire d'instances pourrait faciliter les prochains projets ; elle peut accumuler des habitudes devenues inadaptées.
 
-Les exemples sont des instanciations illustratives rédigées pour le catalogue. Les tests ne démontrent pas qu'un LLM quelconque exécutera parfaitement les prompts sur un nouveau projet. Aucun gain chiffré, optimum, taux de généralisation ou niveau d'autonomie n'a été mesuré sur un corpus de projets.
+Ces possibilités ne sont pas départagées par les tests ci-dessus. Aucune réduction de coût, accélération, qualité supérieure, autonomie accrue ou généralisation interprojets n'est mesurée. Les graines externes correspondent à des sources inspectées ; leur adaptation Eiffel++ n'a pas été exécutée sur un corpus de tâches. L'exemple local reste une illustration, sans adoption humaine inventée.
 
-Les outils locaux n'appellent pas de modèle et ne déploient pas les droits, contrôles, infrastructures d'audit ou protections distantes décrits dans les harnais. Ces mécanismes doivent être mis en œuvre dans l'environnement choisi. Les contrôles effectués sur le catalogue ne certifient pas les logiciels qui seront produits avec lui.
+La prochaine observation utile vient d'un lot réel : retenir une graine, noter les adaptations de l'opérateur, exécuter le travail, enregistrer les résultats et les difficultés. Une affirmation comparative demandera une référence de comparaison et des conditions consultables. Le format de capture permet cette collecte ; il ne produit pas à lui seul les résultats.
 
-## Reproduction
+## Reproduire et situer cette version
 
-Les deux commandes de contrôle figurent ci-dessus. Les commandes de préparation et matérialisation des exemples sont données dans le [démarrage](QUICKSTART.md) et les [exemples](../examples/meta/README.md). Utiliser une nouvelle destination extérieure au catalogue pour chaque essai.
+Les commandes de contrôle figurent ci-dessus. Le [démarrage](QUICKSTART.md) et le [guide des outils](../tools/README.md) décrivent les parcours exécutables. Python 3.10 ou plus récent suffit ; Git est requis pour `--git-init`.
 
-Le commit contenant ce document identifie la version livrée sans inscrire son propre identifiant dans le fichier. L'historique Git conserve l'édition 0.1.0 et sa validation initiale de six tests.
+Le commit contenant ce document identifie les fichiers livrés sans inscrire son propre identifiant. Le [rapport 0.2.0](https://github.com/4nd4ny/Eiffel-plus-plus/blob/v0.2.0/docs/VALIDATION.md) reste dans l'historique avec ses 16 tests ; il ne décrit pas les choix de la version courante.

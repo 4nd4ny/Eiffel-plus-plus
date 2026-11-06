@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.3.0",
+  "id": "deepagents-delegation",
+  "kind": "external-pattern",
+  "title": "Délégation ciblée avec retour borné — Deep Agents",
+  "summary": "Confier une sous-tâche autonome à un agent avec les entrées, les limites et le résultat attendus, puis intégrer son rapport dans le travail principal. Cette recette retient un mécanisme de délégation ; elle n'impose pas une équipe d'agents à chaque projet.",
+  "source": {
+    "url": "https://github.com/langchain-ai/deepagents",
+    "revision": "d1962cf329681bb668a9a92b4a38833df235090b",
+    "paths": [
+      "libs/deepagents/deepagents/middleware/subagents.py",
+      "libs/deepagents/deepagents/middleware/memory.py",
+      "LICENSE"
+    ],
+    "license": "MIT",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "https://huggingface.co/spaces/harness-hub/harness-lens"
+  },
+  "context": {
+    "suitable_for": [
+      "Recherches, revues ou réalisations dont les entrées et les sorties peuvent être séparées clairement.",
+      "Travail où une exploration spécialisée encombrerait inutilement le contexte de l'agent principal."
+    ],
+    "avoid_when": [
+      "Les sous-tâches changent continuellement les mêmes fichiers ou attendent les décisions les unes des autres.",
+      "Le coût de transmettre le contexte et d'intégrer les résultats dépasse le travail délégué.",
+      "Le verdict exige une indépendance forte que le simple lancement d'un sous-agent ne réalise pas."
+    ],
+    "required_capabilities": [
+      "Lancement d'agents avec contexte et mandat identifiables, ou exécution séquentielle équivalente si cela suffit.",
+      "Attribution des fichiers ou périmètres modifiables pour éviter les écritures concurrentes non coordonnées.",
+      "Retour de références et de résultats vérifiables au responsable de l'intégration."
+    ],
+    "cost_notes": [
+      "Compter toutes les consommations des sous-agents dans le budget du projet, ainsi que le coût de synthèse.",
+      "Paralléliser seulement les travaux indépendants dont le gain de délai justifie la duplication de contexte.",
+      "Une reprise par l'agent principal peut annuler le gain si les consignes ou le rapport sont incomplets."
+    ]
+  },
+  "recipe": [
+    "Identifier un livrable autonome dont le responsable principal peut vérifier le résultat ; garder le travail dans un seul agent si cette frontière est artificielle.",
+    "Transmettre le but, les sources nécessaires, les droits, le budget et la forme du retour. Préciser si l'agent doit examiner, proposer ou modifier.",
+    "Séparer les périmètres d'écriture et les dépendances avant tout parallélisme ; ne pas laisser la délégation étendre le mandat.",
+    "Demander un rapport final exploitable sans son historique complet : résultat, références, vérifications exécutées, limites et questions restantes.",
+    "Vérifier les éléments déterminants puis intégrer les résultats ; conserver les désaccords et arrêter les délégations qui n'apportent plus d'information."
+  ],
+  "operator_questions": [
+    "Quelle sous-tâche peut être réalisée et évaluée sans attendre une décision du travail principal ?",
+    "Le bénéfice recherché est-il le délai, la séparation des contextes ou une indépendance technique à construire ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "subagents.py décrit un outil task recevant une description complète et un type d'agent ; les appels sont sans état par défaut, avec une variante qui hérite de la conversation.",
+      "Le prompt du sous-agent indique que l'appelant reçoit son rapport final. Le middleware exclut certaines clés d'état des échanges et distingue explicitement les tâches indépendantes.",
+      "memory.py présente le contenu mémorisé comme des données potentiellement périmées ou erronées, à confronter aux demandes et aux observations."
+    ],
+    "limitations": [
+      "Cette recette n'a pas été exécutée ni évaluée dans Eiffel++.",
+      "La séparation des contextes ne démontre ni l'indépendance statistique des agents ni l'exactitude du rapport.",
+      "La recette ne reproduit pas les mécanismes de LangGraph ou les garanties de synchronisation d'un environnement d'exécution."
+    ],
+    "runs": []
+  },
+  "lineage": {"parents": []},
+  "publication": {"status": "public", "contains_private_material": false},
+  "review": {"status": "unreviewed", "decision_ref": null}
+}

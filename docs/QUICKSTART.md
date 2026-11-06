@@ -1,76 +1,66 @@
-# Démarrer : l'étape zéro du projet
+# Démarrer par une proposition concrète
 
-Eiffel++ 0.2.0 génère la méthode de travail avant de produire le logiciel. Les trois niveaux sont N2 (patron générique), N1 (prompts spécialisés de conception) et N0 (harnais opérationnel du projet). Le logiciel est le résultat du travail de N0.
+Eiffel++ 0.3.0 est un prototype de conception de harnais, sans gain d'efficacité démontré. Le parcours courant produit directement un harnais N0 et le travaille avec l'opérateur. Un générateur N1 est facultatif.
 
-## 1. Donner une intention au patron
+## 1. Décrire le projet et la méthode attendue
 
-Lire ou transmettre à un agent [meta/START.md](../meta/START.md). Fournir un brief : résultat recherché, situation actuelle, impératifs, ressources et limites de délégation. Les informations déjà présentes dans les documents du projet doivent être réutilisées ; il n'est pas nécessaire de recopier un questionnaire complet.
+Donner à l'agent [meta/START.md](../meta/START.md), le brief et les décisions disponibles. Indiquer les obligations, les outils accessibles, les ressources, la charge humaine souhaitée et les actions déjà déléguées. Ne pas inventer de pondérations si des priorités verbales suffisent.
 
-Le [profil à quatre axes](../meta/TETRAHEDRON.md) exprime les préférences de rapidité, économie, fonctionnalités utiles et autonomie. Identifier les obligations non compensables séparément. Les valeurs proposées par un agent restent des hypothèses, avec leur source, jusqu'à leur adoption dans le mandat.
+La spécification du logiciel décrit le résultat recherché. La spécification de méthode décrit comment organiser sa production : moyens, contrôles, coordination et limites. Une inconnue sur l'une ne doit pas être résolue silencieusement dans l'autre.
 
-Les [deux exemples complets](../examples/meta/README.md) sont fictifs. Ils montrent des choix différents, pas des profils imposés à tous les projets.
+## 2. Examiner quelques graines
 
-## 2. Préparer un paquet autonome si nécessaire
+```bash
+python3 tools/seeds.py list
+python3 tools/seeds.py show eiffel-minimal-local
+```
+
+La [base](../seeds/README.md) contient des mécanismes tirés de sources publiques et un exemple local. Le choix est raisonné à partir des besoins et des capacités ; aucun score automatique ne désigne un optimum. Ne lire que les fiches utiles. Pour une base privée, passer `--catalog CHEMIN` explicitement.
+
+Consigner en quelques lignes : graine retenue, origine, éléments conservés, éléments écartés et raison. Une graine externe ne donne aucune permission et ne modifie pas les obligations du projet.
+
+## 3. Forger N0 avec l'opérateur
+
+Produire les fichiers concrets, puis montrer les décisions importantes et les limites. L'opérateur peut modifier la répartition des tâches, les contrôles, les budgets ou le degré d'autonomie dans son autorité. Regrouper les questions qui changent réellement la méthode ; poursuivre les travaux déjà autorisés.
+
+Réemployer, paramétrer ou composer suffit lorsque cela répond au besoin. Les quatre responsabilités peuvent pointer vers les mêmes documents. Le [petit exemple](../examples/forge-local/README.md) utilise `AGENTS.md`, `SPEC.md` et `CHECKS.md` dans un seul dépôt.
+
+Une spécification compatible avec un projet n'est pas encore un essai de cette méthode. La proposition garde ce statut jusqu'à une décision applicable ; une décision ne transforme pas un contrôle non exécuté en succès.
+
+## 4. Vérifier la structure et matérialiser si utile
 
 Depuis la racine du catalogue, avec Python 3.10 ou plus récent :
 
 ```bash
-python3 tools/meta_harness.py prepare --brief examples/meta/dashboard-local/brief.md --profile examples/meta/dashboard-local/profile.json --output ../etape-zero
+python3 tools/meta_harness.py check examples/forge-local/harness
+python3 tools/meta_harness.py materialize examples/forge-local/harness --output ../essai-eiffel --git-init
 ```
 
-La destination doit être nouvelle et extérieure au catalogue. Le paquet préparé contient les entrées et les instructions de génération. Cette commande ne produit pas, à elle seule, un méta-harnais ou un harnais adapté : elle n'appelle aucun LLM. Confier son point d'entrée à l'agent choisi pour la synthèse.
+Remplacer l'exemple par le paquet effectivement forgé. La destination doit être nouvelle. Le mode `single-repo` produit une racine Git ; le mode historique `four-repos` en produit quatre. Les références restent `UNBOUND` tant qu'elles ne sont pas établies dans un environnement réel.
 
-On peut aussi utiliser directement le patron dans le catalogue, sans passer par ce script. N2 demande seulement les précisions qui changeraient matériellement la méthode, puis poursuit sous les hypothèses autorisées.
+Le contrôle est structurel. Il ne juge ni les besoins, ni les instructions, ni l'autorité d'une décision. La matérialisation ne configure pas les outils de vérification, les permissions ou l'intégration continue. Voir le [déploiement](DEPLOYMENT.md).
 
-## 3. Générer N1, puis N0
+## 5. Essayer un travail limité
 
-N2 produit un dossier `meta-harness/` contenant un manifeste `meta-harness.json`, un profil, un contrat de génération et des prompts spécialisés. Ces prompts définissent comment concevoir la méthode, comment l'examiner et quand la réviser. Ils ne doivent pas simplement choisir un modèle préétabli en fonction de quatre coefficients.
+Exécuter un premier lot réel selon N0. Relever au minimum ce qui a été accepté, ce qui a échoué, le temps humain, les coûts accessibles et les conditions d'exécution. Conserver les valeurs inconnues comme inconnues. Examiner un changement d'exigence ou une reprise seulement si cela appartient à l'usage prévu.
 
-L'agent applique ensuite l'entrée de N1 pour produire un dossier `harness/` : manifeste `harness.json`, profil identique et quatre répertoires `governance`, `stbl`, `audit`, `product`. Chaque rôle possède un `AGENTS.md` court, un README et les procédures dont ce projet a besoin. Les quatre responsabilités peuvent mobiliser un nombre variable d'agents et de contrôles déterministes.
+L'[expérience comparative](../templates/01-governance/templates/EXPERIMENT.md) sert à départager une incertitude utile. Une petite tâche ne nécessite pas systématiquement une campagne de benchmarks. Une affirmation de gain, elle, nécessite une comparaison pertinente.
 
-Conserver des raisons de conception rattachées aux exigences, préférences et hypothèses. Fixer un budget d'étape zéro. Un contrôle proportionné peut suffire à démarrer un travail réversible ; les expériences approfondies répondent à des incertitudes précises et ne sont pas un préalable universel.
+## 6. Conserver l'instance comme nouvelle graine
 
-## 4. Contrôler les sorties générées
-
-Les commandes suivantes prennent les exemples fournis ; remplacer les chemins par les sorties effectivement produites pour son projet :
+Copier et remplir la [note d'exemple](../examples/forge-local/record.json) avec les faits réels : contexte, parents, modifications, référence de co-construction si elle existe, résultats et limites. Capturer le paquet N0, pas tout le dépôt du logiciel :
 
 ```bash
-python3 tools/meta_harness.py check examples/meta/dashboard-local/meta-harness
-python3 tools/meta_harness.py check examples/meta/dashboard-local/harness
+python3 tools/seeds.py capture examples/forge-local/harness --record examples/forge-local/record.json --output ../graine-a-examiner
+python3 tools/seeds.py check --catalog ../graine-a-examiner
 ```
 
-Le contrôle porte sur le profil, les manifestes, les chemins et les fichiers requis. Il ne vérifie ni l'autorité d'une décision, ni la qualité sémantique des prompts, ni les performances de la méthode. Le [prompt de qualification](../meta/prompts/03-qualify.md) organise cet examen ; les capacités et obligations techniques requièrent leurs vérifications effectives.
+La commande ne demande pas une nouvelle approbation à la place d'un mandat existant. Elle ne fabrique pas non plus l'accord d'un humain. Elle conserve les statuts fournis et une empreinte du paquet. Avec les fichiers d'exemple, le résultat reste illustratif et non testé.
 
-Une sortie `PROPOSED` ne devient pas `ACCEPTED` par le seul succès du contrôle structurel. Une délégation existante peut permettre son adoption dans les limites déjà accordées.
+Une instance destinée au catalogue public pourra être capturée dans `seeds/instances/IDENTIFIANT` après examen de ce qui peut être partagé. Une instance privée reste hors de ce dépôt public. Le [guide des graines](../seeds/README.md) précise la provenance et les niveaux d'observation.
 
-## 5. Matérialiser les quatre dépôts
+## Parcours plus élaborés
 
-```bash
-python3 tools/meta_harness.py materialize examples/meta/dashboard-local/harness --meta-harness examples/meta/dashboard-local/meta-harness --output ../dashboard-local --git-init
-```
+Le [guide des prompts](../meta/README.md) décrit la génération facultative de N1 et l'adaptation. Les anciens paquets 0.2.0 restent lisibles et conservent leurs exigences d'origine ; ils ne sont pas requalifiés rétroactivement.
 
-L'outil copie les fichiers N0 fournis, leur ajoute un instantané du protocole et des métadonnées de génération. L'option `--meta-harness` conserve N1 dans la gouvernance sous `_eiffel/meta-harness` ; ses profils doivent correspondre à ceux de N0. Sans cette option, la présence de N1 n'est pas présumée et les métadonnées le signalent. Le patron N2 courant est conservé sous `_eiffel/meta` pour une régénération ultérieure, avec ses empreintes : sa disponibilité ne prouve pas qu'il a effectivement engendré le N1 reçu.
-
-Quatre racines Git indépendantes sont créées avec `--git-init`, sans commit ni remote. Aucun droit n'est accordé et aucune publication distante n'est faite. Les références restent `UNBOUND` jusqu'à leur résolution réelle. Les empreintes de contenu identifient des fichiers, sans prouver une approbation ni une provenance authentifiée.
-
-Installer les mécanismes d'accès, de contrôle et d'exécution décrits dans le [déploiement](DEPLOYMENT.md) selon le harnais effectivement généré. Ne pas confondre présence d'une consigne et activation d'un mécanisme.
-
-## 6. Produire le logiciel avec N0
-
-Utiliser les points d'entrée des quatre rôles et le mandat actif. STBL conserve les besoins et les décisions autorisées ; le produit réalise un candidat ; l'audit applique les contrôles requis au candidat exact ; la gouvernance conserve la méthode et les références.
-
-Avant acceptation, établir `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`. Le plan d'audit est figé avant exécution ; le rapport est conservé dans un commit ultérieur. Les états inconclusifs ou périmés ne deviennent pas des réussites.
-
-## 7. Adapter au niveau nécessaire
-
-N0 émet des observations courtes : coût, délai, fonctionnalités effectivement acceptées, temps humain, défauts et limites. Utiliser le prompt d'adaptation de N1 lorsqu'un événement pertinent le justifie. Garder les deux générations et leurs raisons.
-
-Remonter à N2 seulement si le domaine de validité de N1 change. Préserver les décisions métier et les frontières d'autorité. Une amélioration de méthode n'exige pas de redemander une permission déjà accordée ; un élargissement du mandat suit l'autorité compétente.
-
-## Compatibilité avec la bibliothèque générique
-
-```bash
-python3 tools/instantiate.py --project atelier --name "Inscriptions aux ateliers" --output ../atelier --git-init
-```
-
-Cette commande historique copie les composants génériques. Elle conserve le patron N2 dans la gouvernance, mais ne crée pas de N1 spécialisé. Utiliser alors `templates/EXPERIMENT.md` comme point d'entrée pour générer ou adapter la méthode. L'[exemple de réservation](../examples/booking/README.md) illustre les contrats métier, indépendamment du choix de générateur.
+`instantiate.py` reste un copieur de composants génériques en quatre dépôts. Son existence ne signifie pas que cette implantation soit recommandée pour chaque projet.

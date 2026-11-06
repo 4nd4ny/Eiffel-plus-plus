@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.3.0",
+  "id": "mini-swe-loop",
+  "kind": "external-pattern",
+  "title": "Boucle courte de correction — mini-SWE-agent",
+  "summary": "Point de départ pour une tâche circonscrite : observer un problème, modifier, exécuter un contrôle puis arrêter. Cette recette originale retient la simplicité de la boucle ; elle n'installe pas mini-SWE-agent et ne reprend pas ses prompts.",
+  "source": {
+    "url": "https://github.com/SWE-agent/mini-swe-agent",
+    "revision": "a83fcae82d2a08f0ee0c688f9d137b3566c097f8",
+    "paths": [
+      "src/minisweagent/config/mini.yaml",
+      "src/minisweagent/agents/default.py",
+      "LICENSE.md"
+    ],
+    "license": "MIT",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "https://huggingface.co/spaces/harness-hub/harness-lens"
+  },
+  "context": {
+    "suitable_for": [
+      "Correction ou petite fonctionnalité dont le comportement attendu peut être contrôlé directement.",
+      "Référence simple à comparer à une organisation plus coûteuse."
+    ],
+    "avoid_when": [
+      "L'incertitude principale porte sur le besoin métier et aucun contrôle pertinent n'est encore défini.",
+      "Le mandat exige une séparation forte entre producteur et évaluateur que l'environnement ne fournit pas."
+    ],
+    "required_capabilities": [
+      "Lecture et modification des fichiers autorisés.",
+      "Exécution bornée de commandes de test dans un environnement adapté au code examiné.",
+      "Conservation du candidat, des commandes et de leurs résultats."
+    ],
+    "cost_notes": [
+      "Un agent principal peut suffire ; aucun étage de génération ni agent supplémentaire n'est requis par cette graine.",
+      "Le coût augmente si les observations ou l'historique deviennent volumineux ; une boucle simple n'est pas automatiquement économique sur une longue tâche.",
+      "Fixer les limites depuis le budget du projet, sans recopier les valeurs de configuration de la source."
+    ]
+  },
+  "recipe": [
+    "Écrire le comportement attendu, le périmètre modifiable et une condition de fin observable. Isoler les inconnues qui empêchent réellement ce contrôle.",
+    "Lire les fichiers nécessaires et produire un cas qui manifeste le problème ou le comportement manquant.",
+    "Appliquer une modification limitée, puis exécuter le contrôle pertinent et conserver son résultat lié à la version candidate.",
+    "Ajouter seulement les cas voisins rendus nécessaires par le défaut ou la modification ; traiter un résultat indisponible comme une inconnue.",
+    "Arrêter à satisfaction des critères, à épuisement du budget ou en l'absence d'information nouvelle ; remettre le candidat et les limites restantes."
+  ],
+  "operator_questions": [
+    "Quel comportement observable suffit à accepter cette petite tâche ?",
+    "Quel échec ou quelle incertitude justifierait de passer à une méthode plus élaborée ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "mini.yaml décrit une progression depuis la lecture du code et la reproduction du problème jusqu'à la vérification de la modification.",
+      "DefaultAgent alterne requête au modèle et exécution d'actions ; son code contient des limites de coût, d'étapes et de temps, ainsi qu'une sauvegarde de trajectoire."
+    ],
+    "limitations": [
+      "Cette recette n'a pas été exécutée ni évaluée dans Eiffel++.",
+      "La lecture de la source n'établit ni la qualité des contrôles métier ni l'isolation du shell dans l'environnement de destination.",
+      "Un message de fin du producteur ne constitue pas un verdict indépendant."
+    ],
+    "runs": []
+  },
+  "lineage": {"parents": []},
+  "publication": {"status": "public", "contains_private_material": false},
+  "review": {"status": "unreviewed", "decision_ref": null}
+}

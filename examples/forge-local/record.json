@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.3.0",
+  "id": "eiffel-minimal-local",
+  "kind": "local-example",
+  "title": "Une boucle locale dans un seul dépôt",
+  "summary": "Illustrer un N0 direct pour un petit outil CSV, sans générateur N1 ni poids numériques.",
+  "source": {
+    "url": "https://github.com/4nd4ny/Eiffel-plus-plus",
+    "revision": null,
+    "paths": [
+      "examples/forge-local/harness/AGENTS.md",
+      "examples/forge-local/harness/SPEC.md",
+      "examples/forge-local/harness/CHECKS.md"
+    ],
+    "license": "MIT",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "Exemple original de la version 0.3.0 ; le commit contenant la fiche en fixe la version."
+  },
+  "context": {
+    "suitable_for": [
+      "Petit outil local, peu de dépendances et lot réversible."
+    ],
+    "avoid_when": [
+      "Données sensibles ou droits nécessitant une séparation forte non disponible.",
+      "Travail distribué durable exigeant une coordination spécifique."
+    ],
+    "required_capabilities": [
+      "Lecture des fichiers et exécution de contrôles locaux à vérifier."
+    ],
+    "cost_notes": [
+      "Un agent principal et une courte boucle ; aucun coût mesuré."
+    ]
+  },
+  "recipe": [
+    "Reprendre les comportements obligatoires et les limites du mandat.",
+    "Placer les instructions utiles, le besoin et les critères dans trois documents courts.",
+    "Réaliser une première tranche puis corriger sur les résultats observés.",
+    "Modifier la proposition avec l’opérateur sur les arbitrages importants.",
+    "Conserver le harnais, son contexte et les observations pour un réemploi éventuel."
+  ],
+  "operator_questions": [
+    "La sortie proposée est-elle celle dont vous avez besoin ?",
+    "Le risque justifie-t-il un contrôle réalisé par une autre identité ?"
+  ],
+  "evidence": {
+    "level": "illustrative",
+    "claims": [
+      "Le paquet contient un N0 direct et une implantation single-repo."
+    ],
+    "limitations": [
+      "Aucun logiciel métier produit ou évalué.",
+      "Aucune acceptation d’un opérateur ni performance mesurée."
+    ],
+    "runs": []
+  },
+  "lineage": {
+    "parents": [
+      "mini-swe-loop",
+      "codex-scoped-instructions"
+    ]
+  },
+  "publication": {
+    "status": "public",
+    "contains_private_material": false
+  },
+  "review": {
+    "status": "unreviewed",
+    "decision_ref": null
+  }
+}

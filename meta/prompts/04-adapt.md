@@ -1,50 +1,51 @@
-# Prompt N2 — adapter au bon niveau
+# Adapter une instance et enrichir la base de graines
 
 ## Mission
 
-À partir d'un changement de contexte, d'une préférence révisée ou d'observations d'exécution, détermine quelle transformation est utile. Préserve le [contrat de génération](../CONTRACT.md) et les décisions déjà acceptées. Ne régénère que ce que le changement rend pertinent.
+À partir d'un changement ou d'observations, modifier la partie utile du harnais. Conserver le [cadre de conception](../CONTRACT.md), les décisions acceptées et le budget restant. La méthode peut être simplifiée ou conservée sans changement.
 
-## Choisir le niveau de transformation
+## Choisir la transformation
 
-| Situation | Transformation à envisager |
+| Situation | Suite possible |
 | --- | --- |
-| Un paramètre ou une procédure N0 change dans le domaine prévu par N1. | Appliquer le prompt ADAPT de N1 ; produire un changement local de N0. |
-| Une nouvelle phase ou famille de tâches reste dans le domaine de N1 mais appelle une autre organisation. | Réappliquer GENERATE de N1 sur le profil et le contexte courants. |
-| Le domaine, les contraintes structurantes ou les capacités disponibles dépassent les règles N1. | Utiliser N2 pour réviser les prompts N1, puis engendrer le N0 nécessaire. |
-| Les besoins ou les droits doivent changer pour que l'adaptation soit possible. | Préparer une décision pour l'autorité compétente ; poursuivre les parties déjà autorisées. |
+| Un paramètre ou une procédure locale ne convient plus. | Modifier N0 dans le mandat et reprendre les contrôles concernés. |
+| Une nouvelle tâche reste proche d'une instance disponible. | Réemployer ou adapter cette graine, directement ou avec N1 si ce générateur existe. |
+| Des situations récurrentes imposent de refaire les mêmes décisions de méthode. | Examiner si un N1 réutilisable apporterait quelque chose ; ne pas le créer automatiquement. |
+| N1 ne couvre plus le domaine ou coûte plus qu'il ne rapporte. | Le réviser, revenir au patron N2 ou conserver une conception directe de N0. |
+| Le besoin ou les droits doivent changer. | Préparer la décision compétente et poursuivre les parties déjà autorisées. |
 
-Une nouvelle préférence n'impose pas toujours de changer les prompts N1 : un générateur capable de la prendre en compte peut produire N0 directement. En revanche, sa version de profil et le paquet N0 matérialisé doivent rester cohérents.
+Une nouvelle préférence n'impose pas une nouvelle organisation. Distinguer l'observation de son explication supposée. Plusieurs relances du même échec ne sont pas plusieurs confirmations indépendantes. Une erreur rare mais grave peut compter davantage qu'un inconfort fréquent.
 
-Après matérialisation, le patron N2 disponible peut être retrouvé dans la gouvernance sous `_eiffel/meta/START.md`. Examiner son identité et sa compatibilité avant emploi. L'archive conserve une ressource de régénération ; elle ne prouve pas à elle seule que cette version a historiquement engendré N1.
+## Co-construire la révision
 
-## Exploiter l'expérience sans la transformer en obligation automatique
+Montrer à l'opérateur le changement concret, sa raison, les effets attendus et les conséquences sur son travail. Solliciter les choix qui ne sont pas déjà délégués ; appliquer les corrections autorisées. Consigner les contributions réellement reçues et les inconnues restantes.
 
-Commence par les nouveaux événements et les sources pertinentes. Distingue une observation d'une explication proposée. Plusieurs copies ou relances d'un même incident ne deviennent pas plusieurs confirmations indépendantes.
+Garder la version de départ et les résultats associés. Préciser le devenir du travail en cours. Une règle nouvelle n'est pas appliquée rétroactivement à un ancien rapport. Un profil révisé et les paquets qui l'emploient doivent rester cohérents ; si N1 est archivé avec N0, leurs profils correspondent.
 
-Cherche l'effet sur le besoin et les quatre axes du tétraèdre, ainsi que les risques de régression. Une erreur grave peut justifier un changement même si elle est rare. Une procédure récurrente peut être déplacée vers un programme ordinaire si cela simplifie le travail.
+Pour une écriture partagée, utiliser un mécanisme conditionnel disponible qui vérifie la révision attendue. Calculer deux hashes dans un prompt ne remplace pas une opération atomique. En cas de conflit, relire et réévaluer la partie concernée.
 
-Les résultats historiques restent rattachés à leur version. Une nouvelle configuration n'hérite pas automatiquement de leur validité. Les données et conclusions restent dans le périmètre de confidentialité de leurs sources.
+## Capturer ce qui mérite d'être réutilisé
 
-## Produire une adaptation identifiable
+Lorsque l'opérateur choisit de conserver l'instance, préparer une fiche selon la [base de graines](../../seeds/README.md). Elle décrit :
 
-Décris le déclencheur, l'effet recherché, les fichiers concernés, les conditions de validité et ce qui pourrait justifier un retour. Donne la modification concrète lorsque le mandat l'autorise.
+- les sources et graines parentes, avec leurs versions lorsqu'elles sont connues ;
+- les conditions d'emploi, capacités nécessaires, limites et situations où éviter l'instance ;
+- les choix de travail réellement retenus et les contributions humaines identifiables ;
+- les observations et références d'essais disponibles, ou l'absence d'essai ;
+- les conditions de réutilisation, licence et confidentialité.
 
-Si le profil change, conserver l'origine de la nouvelle préférence ou contrainte. Créer un état cohérent du paquet N1 avec ce profil avant de matérialiser N0 avec son générateur ; les prompts inchangés peuvent être réutilisés. Ne pas fusionner implicitement deux versions du profil.
+Le type `co-designed-instance` exige une co-construction réelle. `review.status: co-designed` et sa `decision_ref` décrivent cette provenance ; le script ne l'authentifie pas. L'adoption est une décision distincte. `evidence.level` conserve le niveau effectivement établi : `untested` sans essai, `local-observation` avec observations situées, `comparison` avec comparaison documentée. Une source lue reste `source-inspected` ; un exemple rédigé reste `illustrative`.
 
-Prévoir le devenir des travaux en cours : maintien sur l'ancienne version, migration explicitement autorisée ou nouvelle qualification. Ne pas déplacer les critères d'acceptation d'un candidat à son insu.
+Pour capturer un paquet N0 existant depuis la racine du catalogue :
 
-Les changements partagés doivent être publiés sur la révision attendue par un mécanisme d'écriture conditionnelle réellement disponible. Une instruction de calculer un hash ne constitue pas à elle seule cette protection. En cas de conflit, relire et réévaluer les conclusions concernées.
+```bash
+python3 tools/seeds.py capture ../mon-harnais --record ../fiche-instance.json --output ../ma-graine
+```
 
-## Qualifier proportionnellement
+La commande conserve le paquet et sa fiche avec une empreinte ; elle ne publie rien et ne produit aucun verdict. Examiner les données avant d'intégrer l'instance dans une base partagée. Un contenu privé n'est pas rendu public par son adaptation ou sa reformulation. Les notes de séance complètes ne sont pas nécessaires à la réutilisation.
 
-Reprendre les contrôles affectés et examiner les conséquences sur les autres obligations. Une modification locale correctement délimitée ne nécessite pas de relancer tous les acteurs et de relire tout le projet.
+## Apprendre sans accumuler
 
-Une expérience n'est ajoutée que si elle peut départager des options encore pertinentes. Garder ses coûts, échecs et incertitudes. En l'absence de mesures, décrire le bénéfice attendu comme une hypothèse et choisir un périmètre d'emploi compatible avec cette incertitude.
+Une observation favorable ne garantit pas le transfert. Réexaminer les conditions au prochain emploi. Conserver les échecs, les coûts et les contre-indications ; éviter les doublons sans différence utile. La suppression d'une procédure inutile est une amélioration possible.
 
-## Autorité, budget et arrêt
-
-Adopter automatiquement les adaptations effectivement déléguées et suffisamment qualifiées pour leur usage. Préparer une décision distincte pour celles qui dépassent le mandat ; ne pas demander à nouveau une autorisation déjà acquise.
-
-Respecter le budget restant et transmettre sa consommation entre niveaux. Une nouvelle séance, une délégation ou un retour à N2 ne recrée pas le budget initial. Arrêter les révisions sans information nouvelle. La profondeur reste bornée à N2 → N1 → N0. Une modification de N1 ne déclenche pas la création d'un niveau supplémentaire.
-
-Le résultat final est une version applicable, une proposition encore ouverte ou un diagnostic d'incompatibilité. Aucun de ces états ne doit être rebaptisé « optimum » sans domaine et résultats permettant cette conclusion.
+Arrêter les révisions sans information nouvelle. Un changement d'agent, de séance ou de niveau ne recrée pas le budget. Ne lancer une comparaison que si elle peut trancher une question encore pertinente ; ne présenter aucune attente comme un gain observé.

@@ -4,7 +4,7 @@
 
 Maintenir un cadre de travail explicite, économique et vérifiable. Lire d'abord le mandat actif, `POLICY.md`, `ROLES.md` et le [protocole](../../protocol/README.md). Charger le reste à la demande.
 
-À l'étape zéro, faire générer les prompts N1 qui concevront le harnais N0 du projet. Utiliser le [patron de génération](../../meta/START.md) si N1 n'existe pas ; sinon utiliser son instantané identifié. La bibliothèque présente dans ce dépôt fournit des composants, pas une méthode universelle à appliquer intégralement.
+À l'étape zéro, partir des spécifications et de graines pertinentes pour forger directement N0 avec l'opérateur. Le [patron de génération](../../meta/START.md) aide à ce travail ; N1 reste facultatif, justifié par un réemploi attendu. Cette bibliothèque fournit des composants optionnels pour une implantation en dépôts séparés ; les quatre responsabilités peuvent partager une racine Git.
 
 ## Préconditions
 

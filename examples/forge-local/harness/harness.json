@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.3.0",
+  "kind": "project-harness",
+  "level": 0,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "generator": "Exemple direct original ; aucune exécution N2 ou N1 revendiquée.",
+  "layout": "single-repo",
+  "entrypoint": "AGENTS.md",
+  "responsibilities": {
+    "governance": "AGENTS.md",
+    "stbl": "SPEC.md",
+    "audit": "CHECKS.md",
+    "product": "AGENTS.md"
+  }
+}

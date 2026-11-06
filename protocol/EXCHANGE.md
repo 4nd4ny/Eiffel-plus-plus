@@ -1,9 +1,9 @@
-# Enveloppe d'échange
+# Enveloppe d'échange facultative
 
-Les métadonnées suivantes peuvent figurer dans le front matter d'un Markdown. Le YAML stocke l'information ; il ne rend pas les phrases exécutables et ne prouve ni l'identité de l'émetteur ni la véracité du contenu.
+Une note courte avec des références peut suffire. Employer une enveloppe lorsque plusieurs acteurs ou un outil ont besoin d'un format commun. Le YAML conserve des déclarations ; il ne rend pas les phrases exécutables et n'authentifie personne.
 
 ```yaml
-protocol_version: "0.2.0"
+protocol_version: "0.3.0"
 type: CANDIDATE
 id: CHG-0001
 from_role: product
@@ -15,30 +15,24 @@ references:
   audit_commit: "À_RÉSOUDRE"
   product_commit: "À_RÉSOUDRE"
 requirements: [REQ-0001]
-contracts: [CTR-0001]
+contracts: []
 evidence: []
 ```
 
-Cet exemple **ne peut pas être accepté** : les références sont non résolues et aucun élément probant n'est fourni. Les remplacer par des identifiants réellement observés ; ne jamais fabriquer des suites hexadécimales pour remplir les champs.
+Cet exemple ne permet aucune acceptation : les références sont non résolues et aucun résultat n'est fourni. Les quatre références peuvent désigner un même commit lorsque les responsabilités partagent un dépôt. Ajouter les chemins concernés ; ne jamais inventer un SHA. La liste `contracts` est utile seulement si le projet emploie des contrats identifiés.
 
-## Corps minimal
+## Corps utile
 
-1. **Objet** : décision ou observation attendue, en une phrase.
-2. **Périmètre** : comportements, chemins et environnements concernés ; exclusions.
-3. **Changement** : ce qui diffère de la version de référence.
-4. **Justification** : sources et raison du changement.
-5. **Éléments probants** : liens exacts vers résultats complets ; aucun journal inutilement recopié.
-6. **Inconnues** : questions, hypothèses et réserves restant à traiter.
-7. **Suite attendue** : rôle responsable, action et condition d'arrêt.
+Indiquer l'objet de la décision ou de l'observation, le périmètre, le changement, sa raison, les éléments probants, les inconnues et la prochaine action attendue. Regrouper les informations déjà présentes ailleurs par référence ; ne pas recopier tous les échanges de la séance.
 
-## Élément probant minimal
+Un élément probant décrit le critère, le candidat exact, le moyen de contrôle, les commandes ou paramètres, le statut, les sorties conservées et les limites. Ajouter l'empreinte de l'artefact et l'environnement pertinent. Un mot `PASS` ou un identifiant de test ne remplace pas ces informations.
 
-Un `EVD` décrit le critère vérifié, le type de justification, l'identité exacte du candidat, l'outil et sa version, les commandes ou paramètres, le statut normalisé, les sorties conservées, la portée et les limites. Ajouter le digest de l'artefact construit et les informations de provenance émises par l'exécuteur.
+Les journaux volumineux peuvent rester dans un stockage adapté ; Git conserve les références nécessaires. Les données privées gardent leur périmètre d'accès.
 
-Un identifiant de contrôle ou une déclaration `PASS` sans ces liens ne suffit pas à accepter le candidat. Les gros journaux peuvent être conservés dans un stockage d'artefacts avec empreinte, règles d'accès et durée de rétention ; Git garde les références et synthèses nécessaires.
+## Révisions
 
-## Concurrence et révisions
+Avant une écriture partagée, vérifier la révision attendue avec un mécanisme conditionnel réellement disponible. En cas de conflit, relire et réévaluer l'impact plutôt que d'écraser le travail concurrent.
 
-Avant d'appliquer une décision, vérifier sa version de départ. Si le dépôt cible a évolué, recalculer l'impact plutôt que d'écraser silencieusement le travail concurrent. Une modification qui change la signification d'une exigence produit un nouvel objet ou une nouvelle version, avec relation explicite vers l'ancien.
+Un changement sémantique d'exigence conserve sa relation avec la version antérieure. Un audit fixe les critères avant l'exécution ; son rapport ultérieur ne prétend pas contenir son propre commit.
 
-Pour les audits, l'enveloppe fige la révision des oracles avant le travail. Le compte rendu ultérieur ne doit pas créer une dépendance circulaire en prétendant contenir son propre commit.
+La fiche d'une graine conserve séparément provenance, co-construction et observations. Un échange d'adoption peut y être référencé ; cette référence ne transforme pas une instance non testée en méthode évaluée.

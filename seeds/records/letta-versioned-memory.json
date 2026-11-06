@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.3.0",
+  "id": "letta-versioned-memory",
+  "kind": "external-pattern",
+  "title": "Mémoire procédurale indexée et versionnée — Letta Code",
+  "summary": "Conserver les décisions et apprentissages réutilisables entre séances dans une mémoire courte, indexée et révisable. La graine retient l'organisation documentaire de MemFS sans reprendre le discours d'identité de l'agent ni présumer qu'une mémoire augmente la qualité.",
+  "source": {
+    "url": "https://github.com/letta-ai/letta-code",
+    "revision": "5a0f7f4b532ac16926718e0a9eed3c33e5f1786b",
+    "paths": [
+      "src/agent/prompts/letta_root_memfs.md",
+      "LICENSE"
+    ],
+    "license": "Apache-2.0",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "https://huggingface.co/spaces/harness-hub/harness-lens"
+  },
+  "context": {
+    "suitable_for": [
+      "Projet repris sur plusieurs séances, avec des décisions ou erreurs dont le réemploi est plausible.",
+      "Procédures co-construites qu'il serait coûteux de réexpliquer à chaque nouvel opérateur ou agent."
+    ],
+    "avoid_when": [
+      "Tâche unique dont les informations utiles sont déjà retrouvables simplement dans les sources du projet.",
+      "Mémoires de périmètres confidentiels différents qui ne peuvent pas être regroupées.",
+      "Absence de mécanisme pour corriger une mémoire fausse ou gérer les écritures concurrentes."
+    ],
+    "required_capabilities": [
+      "Stockage versionné, index lisible et recherche dans les sources pertinentes.",
+      "Droits de lecture et d'écriture réellement adaptés au périmètre de chaque mémoire.",
+      "Écriture conditionnelle ou travail isolé suivi d'une intégration contrôlée lorsque plusieurs acteurs écrivent."
+    ],
+    "cost_notes": [
+      "Compter le coût de rédaction, de récupération et de consolidation, y compris hors des séances de production.",
+      "L'investissement ne se justifie que si des réemplois utiles compensent cet entretien ; aucun amortissement n'est établi ici.",
+      "Un index court peut réduire les lectures inutiles, mais une mémoire vieillissante peut aussi générer des corrections supplémentaires."
+    ]
+  },
+  "recipe": [
+    "Identifier une décision, une correction ou une procédure susceptible de servir à nouveau ; conserver la source, la date et le domaine de validité.",
+    "Garder un index court et placer les détails dans des fichiers consultables à la demande, sans recopier les données déjà faciles à retrouver.",
+    "Distinguer observation, hypothèse et règle de travail adoptée. Une note d'agent ne devient pas une décision humaine par son enregistrement.",
+    "Versionner les modifications et respecter les droits de chaque périmètre ; garder les secrets et les informations non autorisées hors de la mémoire partagée.",
+    "Lors d'un réemploi, confronter la note au besoin courant et aux faits vérifiables ; corriger ou retirer une règle devenue fausse.",
+    "Si plusieurs usages le justifient, proposer une consolidation bornée avec les exemples à l'appui et faire adopter les changements selon le mandat existant."
+  ],
+  "operator_questions": [
+    "Quelles informations coûteuses à retrouver ont effectivement servi plusieurs fois ?",
+    "Qui peut lire, modifier et adopter les procédures mémorisées dans ce projet ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "Le prompt letta_root_memfs.md décrit une mémoire projetée en fichiers et suivie par Git, avec un index racine et des index dans les sous-dossiers.",
+      "Ce prompt réserve le contexte initial aux éléments courts, distingue les détails externes et précise qu'une modification de mémoire n'agit qu'après une recompilation ultérieure.",
+      "Il décrit des worktrees privés pour les travailleurs de mémoire et rappelle qu'un commit local ne prouve pas une synchronisation distante."
+    ],
+    "limitations": [
+      "Cette recette n'a pas été exécutée ni évaluée dans Eiffel++.",
+      "La source lue est un prompt du runtime ; elle décrit des mécanismes dont le déploiement et le fonctionnement n'ont pas été exécutés pendant cette revue.",
+      "Versionner une information n'en garantit ni l'exactitude ni la pertinence future. Le schéma de mémoire ne démontre pas un apprentissage du modèle."
+    ],
+    "runs": []
+  },
+  "lineage": {"parents": []},
+  "publication": {"status": "public", "contains_private_material": false},
+  "review": {"status": "unreviewed", "decision_ref": null}
+}

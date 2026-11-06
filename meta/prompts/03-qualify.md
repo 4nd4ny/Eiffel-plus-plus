@@ -1,58 +1,38 @@
-# Prompt N2 — examiner un générateur ou un harnais candidat
+# Examiner ce qui est réellement fourni
 
 ## Mission
 
-Examine le paquet annoncé, ses entrées et son mandat. Commence par identifier le niveau : N1 contient des prompts qui engendrent une méthode ; N0 contient la méthode opérationnelle du projet.
+Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lorsqu'un générateur spécialisé existe. Annoncer si l'examen est réalisé par son propre auteur. Adapter l'effort à la décision et au budget ; ne pas refaire un contrôle encore valable sans motif.
 
-Utilise le [contrat de génération](../CONTRACT.md). Adapte la profondeur de l'examen à la décision actuelle et au budget. Ne répète pas les contrôles déjà valides sans motif d'invalidation. Annonce si l'examen est réalisé par le même agent que la génération.
+## Questions qui peuvent invalider le candidat
 
-## Examen commun
+- Une obligation a-t-elle disparu ou été transformée en préférence ?
+- Une graine exige-t-elle un outil absent ou un droit non accordé ?
+- La méthode peut-elle commencer une action concrète, ou délègue-t-elle encore toute sa conception ?
+- Un nouveau fichier, agent, dépôt ou niveau évite-t-il un problème identifié ? Une version plus simple suffirait-elle ?
+- Le contexte utile est-il accessible sans charger tout le catalogue ?
+- La séparation annoncée est-elle effective, ou les mêmes droits permettent-ils de réécrire le besoin et son évaluation ?
+- Une contribution humaine ou une observation a-t-elle été inventée, exagérée ou transférée à un autre contexte ?
 
-Vérifie que le paquet correspond au profil et au besoin fournis. Les choix importants doivent être reliés à une raison précise : contrainte, préférence, capacité ou observation. Les inconnues et les décisions non établies doivent rester identifiables.
+Contrôler la cohérence des fichiers et références. Pour N1, examiner aussi son domaine de réemploi et la possibilité d'ajuster N0 sans régénération générale. Le nombre de niveaux et la sophistication du vocabulaire ne servent pas de critères d'acceptation.
 
-Cherche notamment :
+## Distinguer les résultats
 
-- une obligation perdue ou transformée en préférence négociable ;
-- un élargissement de permissions présenté comme un gain d'autonomie ;
-- une précondition qui exclurait un usage que le client attend ;
-- une fonctionnalité disponible supposée activée sans observation ;
-- une assertion d'efficacité sans mesure, ou une simulation décrite comme une exécution ;
-- une source, un souvenir ou un exemple promu en autorité sans décision ;
-- une procédure coûteuse dont aucune condition du projet ne justifie l'emploi.
-
-Corrige les défauts réversibles dans le mandat. Un désaccord sur le besoin ou sur une autorité appelle une question ciblée au rôle compétent.
-
-## Examen de N1
-
-Lis effectivement les prompts de génération, de qualification et d'adaptation. Vérifie qu'ils contiennent les informations nécessaires à leur usage hors de la conversation d'origine.
-
-Sur les variations pertinentes décrites par le concepteur, demande quels choix de méthode changeraient et pourquoi. Vérifie que les règles savent traiter une situation nouvelle dans leur domaine de validité, ou reconnaître qu'elle le dépasse. La présence des mots « adaptable » et « méta-harnais » ne suffit pas.
-
-Vérifie les conditions de retour vers N2 et la borne de révision. Aucun prompt ne doit s'accorder la faculté de changer seul l'objectif, le mandat ou le contrôle qui permettra son adoption.
-
-## Examen de N0
-
-Vérifie que les quatre responsabilités et leur séparation existent dans les fichiers effectifs. Une entrée courte doit permettre à chaque acteur de connaître sa prochaine action, ses sources, son mandat et ses conditions d'arrêt.
-
-Contrôle la cohérence des chemins, interfaces, états et références entre dépôts. Vérifie qu'un résultat attendu ne reste pas formulé comme une consigne vague alors qu'un contrôle ou une décision précise est nécessaire.
-
-Identifie ce qui est documentaire, configuré et exécuté. Si une obligation nécessite une protection technique, préciser la capacité requise et ce qui a réellement été vérifié. L'absence de cette protection bloque les actions concernées ; elle n'empêche pas de livrer un candidat explicitement limité.
-
-## Niveaux de qualification
-
-| Niveau examiné | Ce que l'examen peut établir |
+| Examen | Ce qu'il peut établir |
 | --- | --- |
-| Structure | Formats, chemins, fichiers et champs requis. |
-| Cohérence | Accord entre besoin, profil, responsabilités et règles générées. |
-| Fonctionnement | Observations d'exécution des mécanismes concernés. |
-| Efficacité | Résultats mesurés sur les tâches et conditions annoncées. |
+| Structure | Formats, chemins et présence des éléments requis. |
+| Cohérence | Accord argumenté entre les spécifications et la méthode proposée. |
+| Fonctionnement | Observations des mécanismes réellement exécutés, sur une version identifiée. |
+| Efficacité | Effets mesurés dans des conditions données, éventuellement face à une référence. |
 
-Le programme `tools/meta_harness.py check` aide au premier niveau. Il ne remplace pas les autres. Employer les niveaux nécessaires à la décision ; l'efficacité comparative n'est pas une précondition universelle pour produire un premier harnais.
+`meta_harness.py check` et `seeds.py check` aident à contrôler les structures. Ils n'authentifient pas une décision ni une exécution. Une fiche `source-inspected` ne prouve pas un usage local ; une fiche `co-designed` ne prouve pas une amélioration.
 
-## Résultat à écrire
+Exécuter les contrôles disponibles qui sont nécessaires à l'usage annoncé. Lorsqu'une protection essentielle manque, bloquer les actions concernées et proposer un périmètre compatible. La simple existence d'une politique Markdown ne satisfait pas cette protection.
 
-Fournis un rapport court : objet et version examinés, niveau d'examen, contrôles et états, constats, corrections faites, limites, actions possibles dans le mandat et blocages restants.
+Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, comparer à une organisation crédible avec les mêmes informations et moyens ; compter aussi conception, échecs, reprises et temps humain. Pour étudier N1, inclure une génération directe de N0 comme alternative.
 
-Pour chaque contrôle, utiliser les états du protocole. Pour chaque résultat exécuté, conserver ses références. Une revue textuelle établit une conclusion de revue textuelle ; elle n'est pas une preuve d'exécution des mécanismes décrits.
+## Résultat à remettre
 
-Sépare la qualification de l'adoption. Une autorisation déjà accordée peut permettre l'adoption ou la matérialisation sans nouvelle demande. Une autorité manquante ne se remplace pas par une ligne `ACCEPTED` dans le manifeste.
+Un rapport court suffit : version examinée, contrôles et états, constats, corrections, limites, prochaines actions possibles et blocages précis. Employer les [états du protocole](../../protocol/README.md). Aucun résultat non exécuté ne devient `PASS`.
+
+Séparer examen et adoption. Le mandat peut déjà autoriser l'emploi du candidat ou une modification réversible. Une autorité absente ne se remplace pas par `ACCEPTED`. Conserver aussi les résultats défavorables : ils peuvent rendre une graine plus utile en précisant quand l'éviter.

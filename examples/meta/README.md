@@ -1,6 +1,6 @@
 # Deux chaînes de génération illustratives
 
-Ces exemples montrent ce que le [patron Eiffel++ N2](../../meta/START.md) peut produire : un **méta-harnais N1 composé de prompts spécialisés**, puis un **harnais N0 réparti entre quatre responsabilités**. Le logiciel final se situe après ces trois niveaux.
+Ces illustrations héritées de **0.2.0** conservent leurs profils et manifestes N1/N0 dans cette version. Elles montrent un parcours facultatif : un méta-harnais N1 puis un harnais N0 réparti en quatre dépôts. Eiffel++ **0.3.0** permet de forger N0 directement, avec quatre responsabilités et une topologie adaptée ; voir le [petit exemple local](../forge-local/README.md).
 
 Les briefs, poids, cibles et mandats ci-dessous sont fictifs. Ils ne décrivent ni les préférences de Christian ni un projet client réel. Les fichiers sont des instanciations illustratives rédigées pour ce catalogue ; aucune exécution d'agent, qualification opérationnelle ou mesure de gain n'est attestée. Tous les paquets restent `PROPOSED` et leurs contrôles métier `NOT_RUN`.
 
@@ -9,7 +9,7 @@ Les briefs, poids, cibles et mandats ci-dessous sont fictifs. Ils ne décrivent 
 | [Tableau de bord local](dashboard-local/brief.md) | CSV non sensible, exécution locale, interface petite, horizon court | 0,45 / 0,30 / 0,15 / 0,10 | Un producteur, vérifications ciblées, contexte court, pas de consolidation périodique sans réemploi démontré. |
 | [Service d'autorisations](access-service/brief.md) | Isolation entre organisations, décisions sensibles, évolutions répétées | 0,10 / 0,10 / 0,35 / 0,45 | Contrats d'accès explicites, vérification indépendante de l'isolation, correction autonome dans un mandat, remontée humaine des seuls arbitrages de politique. |
 
-Ces conséquences proviennent aussi des contraintes et des capacités disponibles. Les poids ne sélectionnent pas automatiquement une recette. Une autre équipe, un autre environnement ou un besoin modifié doit pouvoir conduire le même N1 à produire une organisation différente.
+Ces choix illustratifs dépendent aussi des contraintes et des capacités. Les poids ne sélectionnent pas automatiquement une recette. L’adaptation du même N1 à d’autres contextes reste une hypothèse à éprouver.
 
 ## Lire une chaîne
 
@@ -34,7 +34,7 @@ python3 tools/meta_harness.py materialize examples/meta/dashboard-local/harness 
 
 Remplacer les deux chemins `dashboard-local` par `access-service` pour l'autre chaîne. Chaque destination doit être nouvelle. L'outil contrôle la structure et copie les fichiers ; il ne lance pas les prompts, n'authentifie pas un mandat et ne valide pas le produit.
 
-Après matérialisation, le N1 est conservé dans le dépôt governance, sous `_eiffel/meta-harness/`. Son prompt `prompts/ADAPT.md` peut donc proposer une nouvelle version N0 à partir d'observations réelles. Le patron N2 est conservé sous `_eiffel/meta/` : si le besoin sort du domaine du N1, son `START.md` sert à préparer une nouvelle spécialisation dans le mandat applicable. Le protocole commun est disponible dans chaque dépôt sous `_eiffel/protocol/`.
+Dans ce parcours à quatre dépôts, la matérialisation conserve N1 sous `_eiffel/meta-harness/` dans governance, le patron courant sous `_eiffel/meta/` et le protocole sous `_eiffel/protocol/`. `prompts/ADAPT.md` peut servir à proposer une révision de N0 ; une conception directe reste possible. Ces copies ne démontrent aucune exécution des prompts ni compatibilité métier.
 
 ## Comparer sans fabriquer de résultats
 

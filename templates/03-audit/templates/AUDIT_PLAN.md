@@ -1,13 +1,13 @@
 # Plan de campagne — AUD-0001
 
-Version du métapatron : **0.2.0**. Modèle non exécuté pour {{PROJECT_NAME}}.
+Version du métapatron : **0.3.0**. Modèle non exécuté pour {{PROJECT_NAME}}.
 
 Ce document suit le [protocole commun](../../../protocol/README.md), la [charte](../AUDIT_CHARTER.md) et la [politique](../POLICY.md). Réserver l'identifiant de campagne avant usage. `null` signifie « non renseigné » et ne satisfait aucune précondition.
 
 ## Identification et liaison
 
 ```yaml
-template_version: "0.2.0"
+template_version: "0.3.0"
 audit_id: AUD-0001
 project: "{{PROJECT_SLUG}}"
 decision_status: PROPOSED
@@ -42,7 +42,7 @@ binding_manifest_ref: null
 binding_manifest_sha256: null
 ```
 
-Le bloc décrit les métadonnées à résoudre dans le dossier d'exécution. Figer d'abord le plan et les oracles dans un commit, en laissant `audit_commit` à `null` dans ce plan préparatoire. Observer ensuite le SHA obtenu et renseigner les **quatre SHA complets dans le manifeste distinct**. Ne pas modifier le plan pour lui faire contenir son propre SHA. Aucun cinquième dépôt n'est implicitement admis dans cette liaison. Le candidat se rattache au SHA produit déjà déclaré. Les dépendances externes figurent dans les enregistrements de construction et d'exécution.
+Le bloc décrit les métadonnées à résoudre dans le dossier d'exécution. Figer d'abord le plan et les oracles dans un commit, en laissant `audit_commit` à `null` dans ce plan préparatoire. Observer ensuite le SHA obtenu et renseigner les **quatre SHA complets dans le manifeste distinct**. Ne pas modifier le plan pour lui faire contenir son propre SHA. Ces quatre références logiques peuvent partager un dépôt Git et un commit ; leur nombre n’impose pas celui des dépôts. Le candidat se rattache au SHA produit déjà déclaré. Les dépendances externes figurent dans les enregistrements de construction et d'exécution.
 
 `audit_commit` désigne le plan, les politiques et les oracles utilisés avant exécution. Le compte rendu et les résultats sont ajoutés dans un commit ultérieur, `report_commit`, retrouvé par le commit contenant le rapport ; le rapport n'inscrit pas son propre SHA.
 

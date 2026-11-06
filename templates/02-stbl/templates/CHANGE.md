@@ -1,6 +1,6 @@
 # CHG-0001 — Proposition de changement du besoin
 
-Modèle Eiffel++ **0.2.0**. Identifiant illustratif · Statut de décision : `PROPOSED`.
+Modèle Eiffel++ **0.3.0**. Identifiant illustratif · Statut de décision : `PROPOSED`.
 
 | Champ | Valeur initiale |
 | --- | --- |

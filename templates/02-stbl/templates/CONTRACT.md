@@ -1,6 +1,6 @@
 # CTR-0001 — Contrat d'une opération ou d'un composant
 
-Modèle Eiffel++ **0.2.0**. Identifiant illustratif · Statut de décision : `PROPOSED`.
+Modèle Eiffel++ **0.3.0**. Identifiant illustratif · Statut de décision : `PROPOSED`.
 
 | Champ | Valeur initiale |
 | --- | --- |

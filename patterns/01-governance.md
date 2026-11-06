@@ -1,5 +1,7 @@
 # 01 — Le cadre révisable
 
+Version du patron : **0.3.0**. Composant optionnel.
+
 ## Intention
 
 Faire porter la discipline sur le mandat, les interfaces et les critères d'acceptation, en laissant aux agents une latitude de réalisation proportionnée aux garanties disponibles.
@@ -10,9 +12,9 @@ Un processus très détaillé peut devenir plus coûteux que la tâche ; une aut
 
 ## Structure
 
-Le dépôt `governance` contient les règles communes, les responsabilités, les capacités accordées, les profils de vérification, les budgets et les expériences destinées à améliorer le harnais. Il référence les trois autres dépôts sans absorber leur contenu métier.
+La responsabilité `governance` conserve les règles communes, les capacités accordées, les contrôles, les budgets et les observations de méthode. Les quatre responsabilités peuvent partager une racine Git ; des dépôts séparés sont une option selon les droits et l’organisation.
 
-Depuis la version 0.2.0, ce patron est un composant de N0. L'[étape zéro](../meta/START.md) génère d'abord N1, dont les prompts synthétisent la méthode concrète et ses conditions d'adaptation. Le dépôt gouvernance conserve le profil, le générateur N1 et la version applicable de N0. Il peut utiliser ou remplacer les composants documentaires ci-dessous selon le besoin.
+L'[étape zéro](../meta/START.md) peut forger N0 directement depuis les spécifications et les graines retenues. N1 reste facultatif, justifié par un réemploi attendu. Conserver le profil, la provenance et la version applicable de N0 ; utiliser ou remplacer les composants ci-dessous selon le besoin.
 
 Fichiers : [README](../templates/01-governance/README.md), `AGENTS.md`, `POLICY.md`, `ROLES.md`, `WORKFLOW.md`, et formulaires de mandat, de modification de méthode et d'expérience.
 
@@ -57,4 +59,4 @@ Coût et délai par comportement accepté, attention humaine, reprises, défauts
 
 ## Variantes
 
-Exploration limitée, développement courant ou assurance renforcée sont des exemples de configurations possibles, pas une liste de sorties imposée au générateur. N1 peut concevoir une méthode différente, avec une granularité par lot, composant ou phase si cela est utile. Les variantes ne changent pas le sens des états ni le droit d'inventer une décision.
+Exploration limitée, développement courant ou assurance renforcée sont des exemples de configurations possibles, pas une liste de sorties imposée au générateur. La conception directe de N0 ou un générateur N1 peut retenir une autre méthode, avec une granularité par lot, composant ou phase si cela est utile. Les variantes ne changent pas le sens des états ni le droit d'inventer une décision.

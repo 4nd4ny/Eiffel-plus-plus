@@ -15,7 +15,7 @@ Cette matrice décrit les droits souhaités. Ajouter les identités réelles, le
 
 ## Cumuls et conflits
 
-Documenter les cumuls de rôles. Une personne seule peut utiliser les quatre dépôts pour la traçabilité, sans revendiquer l'indépendance d'un cabinet externe. Pour un audit contradictoire, dissocier au minimum l'autorité d'acceptation du producteur et la provenance des résultats.
+Documenter les cumuls de rôles et la topologie retenue. Une personne seule peut distinguer les quatre responsabilités dans une ou plusieurs racines Git, sans revendiquer l'indépendance d'un cabinet externe. Pour un audit contradictoire, dissocier au minimum l'autorité d'acceptation du producteur et la provenance des résultats.
 
 ## Modification du mandat
 

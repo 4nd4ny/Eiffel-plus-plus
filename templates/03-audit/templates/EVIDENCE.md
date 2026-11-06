@@ -1,9 +1,9 @@
 # Élément de preuve — EVD-0001
 
-Version du métapatron : **0.2.0**. Modèle non exécuté. Les champs vides ne sont pas des observations. Suivre le [protocole commun](../../../protocol/README.md).
+Version du métapatron : **0.3.0**. Modèle non exécuté. Les champs vides ne sont pas des observations. Suivre le [protocole commun](../../../protocol/README.md).
 
 ```yaml
-template_version: "0.2.0"
+template_version: "0.3.0"
 evidence_id: EVD-0001
 audit_id: AUD-0001
 check_status: NOT_RUN
@@ -29,7 +29,7 @@ public_excerpt_sha256: null
 
 ## Liaison et provenance
 
-Référencer le manifeste immuable de campagne, qui contient les quatre adresses et SHA complets des dépôts gouvernance, STBL, audit et produit, ainsi que la construction et le candidat. L'empreinte de l'artefact ci-dessus doit correspondre à ce manifeste. Une divergence nécessite une nouvelle liaison, pas une modification silencieuse.
+Référencer le manifeste immuable de campagne, qui contient les adresses et SHA complets des quatre références logiques gouvernance, STBL, audit et produit, qui peuvent partager une racine Git, ainsi que la construction et le candidat. L'empreinte de l'artefact ci-dessus doit correspondre à ce manifeste. Une divergence nécessite une nouvelle liaison, pas une modification silencieuse.
 
 L'original est une sortie capturée, une trace d'exécution, un certificat vérifié ou une observation humaine explicitement identifiée. Décrire comment il a été obtenu et conservé hors écriture de l'auteur du candidat. Une description rédigée par un agent sans résultat source n'est pas une preuve exécutée.
 

@@ -1,6 +1,6 @@
 # Q-0001 — Question à arbitrer
 
-Modèle Eiffel++ **0.2.0**. L'identifiant est illustratif. Aucune réponse du PO n'est présumée.
+Modèle Eiffel++ **0.3.0**. L'identifiant est illustratif. Aucune réponse du PO n'est présumée.
 
 | Champ | Valeur initiale |
 | --- | --- |

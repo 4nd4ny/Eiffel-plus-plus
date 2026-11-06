@@ -1,10 +1,10 @@
 # Politique d'audit — {{PROJECT_NAME}}
 
-Version du métapatron : **0.2.0**. Politique proposée, à rattacher à une décision de gouvernance avant de la déclarer applicable. Référence commune : [protocole](../../protocol/README.md).
+Version du métapatron : **0.3.0**. Politique proposée, à rattacher à une décision de gouvernance avant de la déclarer applicable. Référence commune : [protocole](../../protocol/README.md).
 
 ## 1. Identité de la campagne
 
-Une campagne lie exactement les quatre dépôts à leurs SHA complets : gouvernance, STBL, audit et produit. Elle associe au produit l'empreinte de l'artefact candidat et les identités de la recette, des outils, des dépendances et des environnements pertinents.
+Une campagne lie quatre références logiques à leurs SHA complets : gouvernance, STBL, audit et produit. Elles peuvent partager un dépôt Git et un commit, sans démontrer une indépendance de contrôle. Elle associe au produit l'empreinte de l'artefact candidat et les identités de la recette, des outils, des dépendances et des environnements pertinents.
 
 `audit_commit` identifie le plan, les politiques et les oracles utilisés avant l'exécution ; les résultats viennent ensuite dans `report_commit`, identifié par le commit contenant le rapport. Le rapport n'a pas à inscrire son propre SHA. Une archive ou un binaire doit être rattaché au code source par un enregistrement de construction vérifiable. Si ce rattachement n'est pas établi, le verdict ne peut pas accepter ce candidat comme celui annoncé.
 

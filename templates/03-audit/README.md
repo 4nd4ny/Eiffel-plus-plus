@@ -1,10 +1,10 @@
 # Cabinet d'audit — {{PROJECT_NAME}}
 
-Version du métapatron : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du métapatron : **0.3.0**. Projet : `{{PROJECT_SLUG}}`.
 
-Ce dépôt organise un cabinet d'audit fonctionnel indépendant pour le projet. Il aide à examiner bugs, sécurité, qualité et adéquation aux besoins du client. Il ne constitue ni une accréditation ni une certification.
+Composant optionnel pour une implantation en dépôts séparés. Il aide à examiner bugs, sécurité, qualité et adéquation aux besoins du client. Les quatre responsabilités peuvent partager une racine Git ; l'indépendance dépend des droits réellement configurés. Ce gabarit ne constitue ni une accréditation ni une certification.
 
-## Les quatre dépôts
+## Les quatre responsabilités
 
 | Responsabilité | Dépôt |
 |---|---|
@@ -20,7 +20,7 @@ Lire le [protocole commun](../../protocol/README.md), la [charte](AUDIT_CHARTER.
 1. Définir le mandat, les délégations existantes et le périmètre autorisé dans la charte.
 2. Configurer effectivement les permissions, branches protégées et exécuteurs isolés. Les textes de ce dépôt ne les activent pas.
 3. Copier le [plan](templates/AUDIT_PLAN.md) dans un dossier de campagne portant un nouvel identifiant `AUD-0001`.
-4. Figer le plan et les oracles dans `audit_commit`, puis résoudre le quadruplet des dépôts dans un manifeste distinct. Identifier l'artefact candidat, sa construction et les environnements de contrôle ; le plan ne contient pas son propre SHA.
+4. Figer le plan et les oracles dans `audit_commit`, puis résoudre les quatre références logiques dans un manifeste distinct. Identifier l'artefact candidat, sa construction et les environnements de contrôle ; le plan ne contient pas son propre SHA.
 5. Effectuer les contrôles utiles, consigner les [preuves](templates/EVIDENCE.md) et les [constats](templates/FINDING.md), puis préparer un [verdict](templates/VERDICT.md).
 
 Les identifiants présents dans les modèles sont illustratifs : réserver des identifiants uniques selon le protocole. Les champs `null` ne sont pas des données acquises. Aucun modèle ne représente une campagne exécutée.

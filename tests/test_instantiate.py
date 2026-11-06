@@ -4,10 +4,12 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -51,6 +53,26 @@ class InstantiateTests(unittest.TestCase):
             instantiate("atelier", "Atelier", output, False)
         self.assertEqual(sentinel.read_text(encoding="utf-8"), "preserve")
         self.assertEqual(list(output.iterdir()), [sentinel])
+
+    def test_generic_components_also_keep_executable_bits_without_special_permissions(self):
+        catalog = self.base / "catalog"
+        for role, directory in ROLES.items():
+            target = catalog / "templates" / directory
+            target.mkdir(parents=True)
+            (target / "AGENTS.md").write_text(role, encoding="utf-8")
+        for folder in ("meta", "protocol"):
+            target = catalog / folder
+            target.mkdir()
+            (target / "README.md").write_text(folder, encoding="utf-8")
+        (catalog / "LICENSE").write_text("Fixture", encoding="utf-8")
+        script = catalog / "templates/04-product/verify.sh"
+        script.write_bytes(b"#!/bin/sh\nexit 0\n")
+        script.chmod(0o4755)
+        with patch("instantiate.ROOT", catalog):
+            instantiate("atelier", "Atelier", self.base / "out", False)
+        copied = self.base / "out/atelier-product/verify.sh"
+        self.assertEqual(copied.read_bytes(), script.read_bytes())
+        self.assertEqual(stat.S_IMODE(copied.stat().st_mode), 0o755)
 
     def test_symlink_destination_is_not_followed(self):
         target = self.base / "target"

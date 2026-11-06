@@ -1,88 +1,78 @@
-# Prompt N2 — engendrer un méta-harnais spécialisé
+# Choisir des graines et forger le harnais
 
 ## Mission
 
-À partir du profil, du brief et des sources disponibles, écris **le générateur N1 qui saura produire le harnais N0 du projet**. Tu conçois des prompts exécutables par un LLM, avec leur contrat et leurs règles de décision.
+Produis N0 à partir du besoin, du mandat et des ressources disponibles. Utilise le [cadre de conception](../CONTRACT.md). La sortie attendue est une méthode utilisable dans son périmètre, avec ses limites ; N1 est une option de réemploi, pas une étape obligatoire.
 
-Respecte le [contrat de génération](../CONTRACT.md). Les anciens patrons du catalogue et les mécanismes externes sont des composants possibles. Tu peux inventer une méthode adaptée lorsque le contexte le justifie.
+## Choisir un point de départ
 
-## Concevoir les règles de synthèse
+Lire l'index de la [base de graines](../../seeds/README.md), puis les fiches dont le contexte paraît pertinent. Vérifier les sources et révisions consultées, les capacités requises, les cas déconseillés et le niveau d'observation disponible.
 
-Détermine d'abord les décisions de méthode qui dépendent réellement de ce projet. Pour chacune, explique quels indices N1 doit lire et quelle transformation ces indices peuvent provoquer.
+Choisir un candidat principal ; ajouter une alternative seulement si elle permet de trancher un compromis matériel. Comparer aussi à une organisation simple : un producteur, les besoins utiles, des contrôles exécutables et une note de reprise si nécessaire.
 
-Ces décisions peuvent concerner la granularité du travail, le parallélisme, la coordination, les questions au PO, la sélection des sources, la vérification, la mémoire, les budgets, l'arrêt ou la récupération après une interruption. Ne reproduis pas systématiquement toute cette liste dans N0.
+Réemployer, paramétrer, composer ou inventer selon le besoin. Une graine peut convenir sans changement. La ressemblance textuelle, la popularité et le nombre d'agents ne prouvent pas l'adéquation. Une recette issue d'un runtime ne fournit pas automatiquement ses outils ou sa mémoire.
 
-Formule des règles capables de créer une organisation différente lorsque le besoin change. Par exemple, un contexte où les interfaces sont stabilisées peut autoriser une production parallèle ; une incertitude métier sur l'interface peut déplacer le travail vers une clarification et un prototype ciblé. Les conditions doivent provenir du projet et non d'une règle universelle imposant un nombre d'agents.
+## Forger avec l'opérateur
 
-Le résultat de cette conception doit distinguer :
+Présenter un candidat concret : prochaine action, répartition du travail, sources à charger, contrôles, arrêts et décisions réservées. Expliquer brièvement ce qui est repris, supprimé, adapté ou ajouté, et son coût attendu. Ne pas fabriquer un gain chiffré.
 
-- les invariants qui traversent toutes les générations ;
-- les caractéristiques du projet qui déterminent les choix de méthode ;
-- les transformations que N1 peut produire dans son mandat ;
-- les situations qui dépassent son domaine de validité.
+Rendre visibles les choix sur lesquels une contribution humaine changerait la méthode. Intégrer les réponses et corrections effectivement reçues. Les choix déjà autorisés peuvent être exécutés sans nouvelle approbation ; la co-construction ne devient pas une validation systématique de chaque fichier.
 
-## Écrire les prompts N1
+Conserver la référence des arbitrages. Un candidat automatique ne devient pas « co-construit » du seul fait qu'un champ le dit. Une préférence exprimée par l'opérateur ne démontre pas que le harnais fonctionne mieux.
 
-Le paquet contient au moins les trois fonctions ci-dessous. Leurs fichiers doivent être réellement rédigés pour ce contexte. Ils doivent rester utilisables sans relire toute la conversation qui les a engendrés.
+## Produire N0
 
-### GENERATE — produire N0
+Un point d'entrée court doit permettre de commencer le lot autorisé. Les procédures désignent des outils disponibles et des contrôles pertinents ; les moyens encore à construire restent explicites. Éviter de seulement renvoyer les décisions essentielles au prochain agent.
 
-Ce prompt reçoit le profil courant, les besoins disponibles, la phase ou famille de tâches et les capacités d'exécution connues. Il doit :
-
-1. repérer les informations encore nécessaires aux seules décisions concernées ;
-2. dériver une manière de travailler cohérente avec les obligations et le tétraèdre ;
-3. engendrer les instructions courtes et les procédures nécessaires aux quatre responsabilités ;
-4. choisir quels actes sont délégués, quels événements demandent une décision et quels contrôles sont mécaniques, en conservant le mandat ;
-5. définir les sources à charger, les mémoires éventuellement utiles et les règles d'invalidation ;
-6. fournir la première action exécutable du projet, les conditions d'arrêt et le retour d'information attendu ;
-7. écrire `harness.json`, le profil utilisé et les fichiers effectifs des quatre dépôts.
-
-Une contrainte essentielle doit conduire à un contrôle, une décision compétente ou une condition d'activation explicite. Un contrôle technique prévu mais non configuré reste présenté comme tel.
-
-### CHECK — qualifier N0
-
-Ce prompt reçoit le candidat N0 et ses entrées. Il recherche les omissions et contradictions, vérifie la justification des choix, puis exécute ou demande les contrôles nécessaires au niveau de qualification annoncé.
-
-Il doit distinguer structure, cohérence sémantique, capacité opérationnelle et efficacité observée. Il ne doit pas déclarer un succès sur la seule présence d'un fichier de politique. Il conserve la possibilité de conclure `UNKNOWN` ou `NOT_RUN` pour un contrôle non établi.
-
-Il précise également ce qui permet de commencer utilement dans le mandat existant et ce qui bloque une action particulière. Une qualification proportionnée remplace un passage systématique par toutes les analyses concevables.
-
-### ADAPT — réengendrer la partie nécessaire
-
-Ce prompt reçoit les observations, changements de besoin ou de préférence et le harnais actif. Il décide si le contexte demande un ajustement local de N0, une nouvelle génération N0, ou un retour N2 pour modifier les règles N1 elles-mêmes.
-
-Il doit préserver les obligations et les permissions, limiter le changement à son domaine d'impact, conserver les références et indiquer les contrôles à reprendre. Son déclenchement et son coût font partie du harnais ; il n'analyse pas automatiquement toute l'histoire après chaque action.
-
-## Contrat de sortie propre à N1
-
-Écrire `GENERATION_CONTRACT.md` contenant les obligations que les prompts viennent d'incorporer : entrées, sorties N0, invariants, critères de cohérence, conditions d'activation, domaine de validité, budget et règle d'arrêt. Y conserver les invariants applicables sans dépendre d'un chemin extérieur qui disparaîtrait lors de l'export.
-
-Le fichier explique aussi comment une règle N0 se rattache à une source du besoin, une contrainte ou une préférence. La traçabilité peut prendre la forme d'un tableau court ; elle n'exige pas un graphe ni une nouvelle base de données.
-
-Copier le profil courant dans `profile.json`. Ne pas utiliser des versions différentes du profil pour concevoir N1 et matérialiser son N0 sans créer une révision identifiée.
-
-Écrire un manifeste N1 de cette forme, adapté aux noms réellement produits :
+Distinguer les quatre responsabilités. Elles peuvent partager les mêmes fichiers et le même dépôt. Pour le mode léger, le manifeste peut prendre cette forme illustrative :
 
 ```json
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
+  "kind": "project-harness",
+  "level": 0,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "generator": "Conception directe ; référence du brief et des graines à renseigner",
+  "layout": "single-repo",
+  "entrypoint": "AGENTS.md",
+  "responsibilities": {
+    "governance": "AGENTS.md",
+    "stbl": "SPEC.md",
+    "audit": "CHECKS.md",
+    "product": "AGENTS.md"
+  }
+}
+```
+
+Les fichiers indiqués doivent exister. Adapter leurs noms au résultat ; trois fichiers ne sont pas un objectif. Copier le profil utilisé et remplacer la provenance descriptive par les sources réellement employées, sans inventer de filiation.
+
+Le mode `four-repos` utilise `repositories` vers quatre dossiers distincts, chacun avec `AGENTS.md` et `README.md`, selon le [schéma N0](../schemas/project-harness.schema.json). Le choisir lorsque les exigences de séparation ou l'organisation le justifient. Les droits effectifs restent à configurer et à vérifier.
+
+Tous les chemins internes sont relatifs, sans traversée ni lien symbolique. `.git` et `_eiffel` sont réservés aux outils. Examiner le résultat avec [03-qualify.md](03-qualify.md).
+
+## Produire N1 seulement si son réemploi est utile
+
+Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il évitera. Si la raison se réduit à « respecter trois niveaux », produire N0 directement.
+
+N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon le besoin. Les instructions peuvent être reprises de graines existantes. Elles expliquent les indices qui changent la méthode, les invariants, le domaine de validité et les règles d'arrêt. Une stabilité justifiée reste possible.
+
+Écrire le profil, les instructions, une spécification de sortie et un manifeste de cette forme :
+
+```json
+{
+  "schema_version": "0.3.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
   "profile": "profile.json",
-  "entrypoint": "prompts/GENERATE.md",
-  "prompts": ["prompts/GENERATE.md", "prompts/CHECK.md", "prompts/ADAPT.md"],
-  "output_contract": "GENERATION_CONTRACT.md",
-  "source_pattern": "Eiffel++ 0.2.0"
+  "entrypoint": "GENERATE.md",
+  "prompts": ["GENERATE.md"],
+  "output_contract": "SPEC.md",
+  "source_pattern": "Eiffel++ 0.3.0 ; graines réellement utilisées à préciser"
 }
 ```
 
-Le manifeste N0 devra utiliser `kind: project-harness`, `level: 0`, référencer son profil et son `generator`, et mapper `repositories` vers les quatre dossiers distincts `governance`, `stbl`, `audit`, `product`. Chaque dossier contient `AGENTS.md`, `README.md` et les seules procédures nécessaires. Les chemins internes sont relatifs, sans traversée de répertoire ni lien symbolique. `.git` et `_eiffel` sont réservés à la matérialisation.
+Le fichier unique peut inclure les trois fonctions. Le nom machine `output_contract` désigne la spécification attendue, sans lui attribuer une preuve exécutable.
 
-## Vérifier la capacité de généralisation
-
-Sur un exemple bref, explique ce que tes prompts feraient si une préférence importante changeait, puis si une contrainte discriminante changeait. Les réponses doivent désigner des modifications de méthode et les invariants conservés. Il s'agit d'un examen argumenté, pas d'un résultat de benchmark.
-
-Si seul un coefficient change sans effet possible sur la méthode, ou si tous les projets conduisent aux mêmes instructions, revois le générateur. Si la situation justifie une stabilité de méthode, donne cette raison plutôt que fabriquer une différence.
-
-Remets le paquet N1 et son domaine de validité. L'application de son point d'entrée produit ensuite N0 ; ne présente pas la seule écriture de N1 comme la génération du harnais opérationnel.
+Examiner une variation pertinente du contexte : quelle décision changerait, et pourquoi ? Cette réflexion reste un examen argumenté. La capacité d'adaptation sera observée seulement lorsque N1 sera exécuté sur des situations distinctes. Appliquer ensuite son point d'entrée pour produire N0, dans le budget commun.

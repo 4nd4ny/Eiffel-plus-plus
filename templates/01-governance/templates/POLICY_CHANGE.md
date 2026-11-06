@@ -1,5 +1,5 @@
 ---
-protocol_version: "0.2.0"
+protocol_version: "0.3.0"
 type: POLICY_CHANGE
 id: DEC-0001
 status: PROPOSED
@@ -21,7 +21,7 @@ Préconditions d'adoption, bénéfice attendu mesurable, invariants à préserve
 
 ## Impact
 
-Travaux en cours, références et résultats à invalider ; compatibilité avec les quatre dépôts ; éventuelle migration du protocole.
+Travaux en cours, références et résultats à invalider ; compatibilité avec les quatre responsabilités et leur implantation ; éventuelle migration du protocole.
 
 ## Évaluation et décision
 

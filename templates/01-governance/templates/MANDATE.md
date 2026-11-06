@@ -1,5 +1,5 @@
 ---
-protocol_version: "0.2.0"
+protocol_version: "0.3.0"
 type: WORK_ORDER
 id: CHG-0001
 status: PROPOSED

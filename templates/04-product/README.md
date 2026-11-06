@@ -1,8 +1,8 @@
 # {{PROJECT_NAME}} — Dépôt produit
 
-Version du gabarit Eiffel++ : **0.2.0**. Identifiant de projet : `{{PROJECT_SLUG}}`.
+Version du gabarit Eiffel++ : **0.3.0**. Identifiant de projet : `{{PROJECT_SLUG}}`.
 
-Ce dépôt contient le logiciel et les moyens techniques de le construire, de le vérifier et de l'exploiter. L'agent producteur dispose de liberté sur l'implémentation dans le mandat reçu. Les besoins, contrats normatifs et verdicts conservent leurs autorités respectives.
+Composant optionnel pour une implantation en dépôts séparés. Les quatre responsabilités peuvent partager une racine Git ; adapter alors les références et les droits. Ce dépôt contient le logiciel et les moyens techniques de le construire, de le vérifier et de l'exploiter. L'agent producteur dispose de liberté sur l'implémentation dans le mandat reçu. Les besoins, contrats normatifs et verdicts conservent leurs autorités respectives.
 
 | Dépôt | Rôle dans la coopération |
 | --- | --- |

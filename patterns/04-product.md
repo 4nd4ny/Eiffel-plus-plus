@@ -1,6 +1,6 @@
 # 04 — Le producteur sous contrat
 
-Version du métapatron : **0.2.0**.
+Version du métapatron : **0.3.0**.
 
 ## Intention
 
@@ -10,7 +10,7 @@ Le producteur choisit comment implémenter, explorer, tester et corriger. Il ne 
 
 ## Contexte et forces
 
-Ce patron convient à un dépôt de code séparé des dépôts de gouvernance, de spécification STBL et d'audit. Il s'applique aussi à un logiciel existant : l'état initial, ses défauts connus et ses contraintes deviennent des entrées explicites.
+Ce composant optionnel distingue production, gouvernance, spécification STBL et audit sans imposer des dépôts séparés. L'indépendance revendiquée dépend des droits réels. Pour un logiciel existant, l'état initial, ses défauts connus et ses contraintes deviennent des entrées explicites.
 
 Les forces à équilibrer sont les suivantes :
 
@@ -93,7 +93,7 @@ Une exploration peut commencer avec des inconnues si son mandat le permet. Elle 
 
 Les identifiants cités ici illustrent leur format ; ils ne créent aucun enregistrement de projet. Les décisions utilisent `PROPOSED`, `ACCEPTED`, `REJECTED`, `SUPERSEDED`. Les verdicts d'audit reçus utilisent `ACCEPT`, `REJECT`, `INCONCLUSIVE`, `ACCEPT_WITH_RESERVATIONS`. Le dépôt produit les référence sans les réémettre à son nom.
 
-L'enveloppe fige les quatre révisions `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`. Le plan et les oracles de `audit_commit` précèdent l'exécution ; le `report_commit` est ajouté à un reçu extérieur après enregistrement du rapport. Un verdict avec réserves ne constitue pas une autorisation automatique de livraison.
+L'enveloppe fige les quatre références logiques `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`, qui peuvent partager un dépôt Git et une révision. Le plan et les oracles de `audit_commit` précèdent l'exécution ; le `report_commit` est ajouté à un reçu extérieur après enregistrement du rapport. Un verdict avec réserves ne constitue pas une autorisation automatique de livraison.
 
 ## Arrêt et escalade
 

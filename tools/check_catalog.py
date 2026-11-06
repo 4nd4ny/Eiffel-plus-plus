@@ -14,6 +14,7 @@ from urllib.parse import unquote, urlsplit
 
 from instantiate import PLACEHOLDERS, ROLES, ROOT
 from meta_harness import check_bundle
+from seeds import check_catalog as check_seeds
 
 
 SECTIONS = (
@@ -94,11 +95,18 @@ def check_catalog(root: Path) -> list[str]:
         except (OSError, ValueError) as exc:
             errors.append(f"{path.relative_to(root)} : {exc}")
     for filename in ("meta-harness.json", "harness.json"):
-        for path in sorted((root / "examples" / "meta").rglob(filename)):
+        for path in sorted((root / "examples").rglob(filename)):
             try:
                 check_bundle(path.parent)
             except (OSError, ValueError) as exc:
                 errors.append(f"{path.relative_to(root)} : {exc}")
+    try:
+        schema = json.loads((root / "seeds/schema.json").read_text(encoding="utf-8"))
+        if not isinstance(schema, dict) or schema.get("type") != "object":
+            errors.append("Schéma de graines invalide : seeds/schema.json")
+        check_seeds(root / "seeds", require_public=True)
+    except (OSError, ValueError) as exc:
+        errors.append(f"seeds : {exc}")
     return errors
 
 
@@ -111,7 +119,7 @@ def main() -> int:
         print("\n".join(errors))
         return 1
     count = len(list(args.root.rglob("*.md")))
-    print(f"Catalogue cohérent structurellement : {count} fichiers Markdown, patron N2, schémas, exemples N1/N0 et quatre bibliothèques de responsabilité. Aucun audit métier ou de sécurité n'a été exécuté par ce contrôle.")
+    print(f"Catalogue cohérent structurellement : {count} fichiers Markdown, schémas, exemples et graines. Les outils n'ont évalué ni la méthode de travail ni un logiciel métier.")
     return 0
 
 

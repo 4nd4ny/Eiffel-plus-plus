@@ -1,5 +1,20 @@
 # Journal des changements
 
+## 0.3.0 — 2026-11-06
+
+Eiffel++ devient un **prototype de forge de harnais à partir de graines**, guidé par les spécifications du produit et de sa production. La co-construction humaine, les essais et le réemploi sont distingués de toute promesse d'efficacité.
+
+- Parcours direct vers N0 ; N1 et les autres niveaux restent facultatifs et motivés par un besoin de réemploi.
+- Quatre responsabilités logiques, avec un nouveau format à un seul dépôt. Les composants à quatre dépôts restent disponibles.
+- Priorités rédigées possibles sans poids numériques ; lecture des paquets 0.2.0 conservée.
+- Base de six graines issues de sources publiques examinées, avec versions, licences, contre-indications et recettes originales. Un septième enregistrement illustre un petit harnais local dans trois fichiers de travail.
+- Outil `seeds.py` de consultation, contrôle et capture de paquets N0 avec empreinte. Participation humaine déclarée, résultats observés et statut de publication restent distincts.
+- `prepare --seed` copie seulement les fiches choisies ; un catalogue privé peut être désigné explicitement hors du dépôt public.
+- Correction de la copie des permissions : conservation du caractère exécutable et suppression des bits spéciaux.
+- Documentation recentrée sur forger, essayer et capitaliser ; suppression d'obligations de structure non justifiées par le contexte.
+
+Aucune instance issue d'une co-construction sur un projet réel ni aucun gain de production n'est encore établi. Les contrôles des outils ne valent pas évaluation de la méthode.
+
 ## 0.2.0 — 2026-11-06
 
 Eiffel++ devient un **patron de génération à trois niveaux** : N2 produit un méta-harnais N1 composé de prompts spécialisés ; N1 produit le harnais opérationnel N0 du projet. La génération de la méthode constitue l'étape zéro.

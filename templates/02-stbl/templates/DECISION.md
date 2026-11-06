@@ -1,6 +1,6 @@
 # DEC-0001 — Intitulé de la décision
 
-Modèle Eiffel++ **0.2.0**. L'identifiant est illustratif. La décision initiale est une **proposition**.
+Modèle Eiffel++ **0.3.0**. L'identifiant est illustratif. La décision initiale est une **proposition**.
 
 | Champ | Valeur initiale |
 | --- | --- |

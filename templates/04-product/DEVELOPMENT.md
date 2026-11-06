@@ -1,6 +1,6 @@
 # Développement et vérification — {{PROJECT_NAME}}
 
-Version : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
+Version : **0.3.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Ce document contient les commandes et conditions réelles du dépôt produit (`{{PRODUCT_REPO}}`). Les champs à renseigner ne sont pas des commandes exécutables. Les échanges suivent le [protocole commun](../../protocol/README.md).
 
@@ -65,7 +65,7 @@ La sélection de tests peut être accélérée par un graphe de dépendances ou 
 
 Les runners vérifient un commit candidat déjà créé et publient leurs résultats pour ce commit ou pour l'artefact précisément construit à partir de lui. Ils enregistrent les conditions de construction nécessaires. Un rapport ne doit pas contenir un hash futur supposé.
 
-L'enveloppe identifie `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`. `audit_commit` fige le plan et les oracles avant leur exécution. Le commit contenant ensuite un rapport est référencé comme `report_commit` dans un reçu ou une enveloppe extérieure ; il ne remplace aucune des quatre références d'entrée et ne doit pas créer d'auto-référence dans le rapport.
+L'enveloppe identifie les références logiques `governance_commit`, `stbl_commit`, `audit_commit` et `product_commit`, qui peuvent partager un dépôt Git et une révision. `audit_commit` fige le plan et les oracles avant leur exécution. Le commit contenant ensuite un rapport est référencé comme `report_commit` dans un reçu ou une enveloppe extérieure ; il ne remplace aucune des quatre références d'entrée et ne doit pas créer d'auto-référence dans le rapport.
 
 Après fusion, le résultat peut différer de chacune des branches vérifiées. Exécuter les contrôles d'intégration et d'acceptation requis sur cette nouvelle identité. Une reprise de résultats locaux exige une justification explicite de leur applicabilité ; elle n'accorde pas à elle seule un verdict au système fusionné.
 

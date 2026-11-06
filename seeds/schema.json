@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fiche de graine Eiffel++ 0.3.0",
+  "description": "Métadonnées déclarées et recette originale. L’inspection d’une source, la co-construction et les résultats d’usage sont distincts. Les droits, décisions et mesures ne sont pas authentifiés. Le catalogue public exige publication.status=public et contains_private_material=false ; une extension privée reste possible hors de ce catalogue.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "kind",
+    "title",
+    "summary",
+    "source",
+    "context",
+    "recipe",
+    "operator_questions",
+    "evidence",
+    "lineage",
+    "publication",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.3.0"
+    },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "kind": {
+      "enum": [
+        "external-pattern",
+        "local-example",
+        "co-designed-instance"
+      ]
+    },
+    "title": {
+      "$ref": "#/$defs/text"
+    },
+    "summary": {
+      "$ref": "#/$defs/text"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "url",
+        "revision",
+        "paths",
+        "license",
+        "visibility",
+        "reviewed_on",
+        "discovered_via"
+      ],
+      "properties": {
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "URL HTTP(S) descriptive sans identifiant incorporé ; jamais suivie par l’outil."
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "paths": {
+          "$ref": "#/$defs/texts"
+        },
+        "license": {
+          "$ref": "#/$defs/text"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "private",
+            "local"
+          ]
+        },
+        "reviewed_on": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "discovered_via": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "suitable_for",
+        "avoid_when",
+        "required_capabilities",
+        "cost_notes"
+      ],
+      "properties": {
+        "suitable_for": {
+          "$ref": "#/$defs/texts"
+        },
+        "avoid_when": {
+          "$ref": "#/$defs/texts"
+        },
+        "required_capabilities": {
+          "$ref": "#/$defs/texts"
+        },
+        "cost_notes": {
+          "$ref": "#/$defs/texts"
+        }
+      }
+    },
+    "recipe": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "operator_questions": {
+      "$ref": "#/$defs/texts"
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "level",
+        "claims",
+        "limitations",
+        "runs"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "source-inspected",
+            "illustrative",
+            "untested",
+            "local-observation",
+            "comparison"
+          ]
+        },
+        "claims": {
+          "$ref": "#/$defs/texts"
+        },
+        "limitations": {
+          "$ref": "#/$defs/texts"
+        },
+        "runs": {
+          "$ref": "#/$defs/texts"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "level": {
+                "enum": [
+                  "local-observation",
+                  "comparison"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "runs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "parents"
+      ],
+      "properties": {
+        "parents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "required": [
+        "status",
+        "contains_private_material"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "public",
+            "private",
+            "unreviewed"
+          ]
+        },
+        "contains_private_material": {
+          "type": "boolean"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "status",
+        "decision_ref"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "unreviewed",
+            "co-designed"
+          ]
+        },
+        "decision_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "co-designed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "decision_ref": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "path",
+        "format",
+        "sha256"
+      ],
+      "description": "Produit par capture. Empreinte du JSON canonique des chemins, SHA-256 de contenu et booléens executable. Les autres permissions ne font pas partie de cette identité portable en Git.",
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "format": {
+          "const": "sha256-files-executable-v1"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "external-pattern"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source": {
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "co-designed-instance"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "properties": {
+              "status": {
+                "const": "co-designed"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\s]*$)[^\\u0000]+$"
+    },
+    "texts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9](?:[a-z0-9-]{0,94}[a-z0-9])?$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)(?:\\.{1,2}|\\.git|_eiffel)(?:/|$))(?!.*[\\\\:\u0000-\u001f])[^/]+(?:/[^/]+)*$"
+    }
+  }
+}

@@ -1,97 +1,306 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Profil de génération Eiffel++ 0.2.0",
-  "description": "Les poids sont des préférences, pas des résultats. La somme 1 et l'unicité des identifiants sont contrôlées par tools/meta_harness.py. Une décision déclarée n'est pas authentifiée par ce schéma.",
+  "title": "Profil de conception Eiffel++ 0.3.0",
+  "description": "Priorités verbales ou poids facultatifs ; les mesures sont déclaratives. Les profils 0.2.0 restent lisibles avec leurs quatre poids et mesures. Le validateur contrôle la structure, pas la pertinence des arbitrages ni l’autorité.",
   "type": "object",
-  "required": ["schema_version", "project", "preferences", "constraints", "authority", "unknowns", "generation_budget"],
+  "required": [
+    "schema_version",
+    "project",
+    "preferences",
+    "constraints",
+    "authority",
+    "unknowns",
+    "generation_budget"
+  ],
   "properties": {
-    "schema_version": {"const": "0.2.0"},
+    "schema_version": {
+      "enum": [
+        "0.2.0",
+        "0.3.0"
+      ]
+    },
     "project": {
       "type": "object",
-      "required": ["slug", "name", "brief"],
+      "required": [
+        "slug",
+        "name",
+        "brief"
+      ],
       "properties": {
-        "slug": {"type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"},
-        "name": {"type": "string", "minLength": 1, "pattern": "^[^\r\n\u0000]+$"},
-        "brief": {"$ref": "#/$defs/text"}
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\r\n\u0000]+$"
+        },
+        "brief": {
+          "$ref": "#/$defs/text"
+        }
       }
     },
     "preferences": {
       "type": "object",
-      "required": ["weights", "status", "source", "measures"],
+      "required": [
+        "status",
+        "source"
+      ],
       "properties": {
         "weights": {
           "type": "object",
           "description": "Quatre coefficients non négatifs de somme 1, à 1e-9 près ; aucune normalisation silencieuse.",
-          "required": ["speed", "economy", "scope", "autonomy"],
+          "required": [
+            "speed",
+            "economy",
+            "scope",
+            "autonomy"
+          ],
           "additionalProperties": false,
           "properties": {
-            "speed": {"$ref": "#/$defs/weight"},
-            "economy": {"$ref": "#/$defs/weight"},
-            "scope": {"$ref": "#/$defs/weight"},
-            "autonomy": {"$ref": "#/$defs/weight"}
+            "speed": {
+              "$ref": "#/$defs/weight"
+            },
+            "economy": {
+              "$ref": "#/$defs/weight"
+            },
+            "scope": {
+              "$ref": "#/$defs/weight"
+            },
+            "autonomy": {
+              "$ref": "#/$defs/weight"
+            }
           }
         },
-        "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
-        "source": {"$ref": "#/$defs/text"},
-        "decision_ref": {"$ref": "#/$defs/text"},
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "ACCEPTED",
+            "REJECTED",
+            "SUPERSEDED"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/text"
+        },
+        "decision_ref": {
+          "$ref": "#/$defs/text"
+        },
         "measures": {
           "type": "object",
-          "required": ["speed", "economy", "scope", "autonomy"],
           "additionalProperties": false,
           "properties": {
-            "speed": {"$ref": "#/$defs/measure"},
-            "economy": {"$ref": "#/$defs/measure"},
-            "scope": {"$ref": "#/$defs/measure"},
-            "autonomy": {"$ref": "#/$defs/measure"}
+            "speed": {
+              "$ref": "#/$defs/measure"
+            },
+            "economy": {
+              "$ref": "#/$defs/measure"
+            },
+            "scope": {
+              "$ref": "#/$defs/measure"
+            },
+            "autonomy": {
+              "$ref": "#/$defs/measure"
+            }
+          }
+        },
+        "priorities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
           }
         }
       },
-      "allOf": [{"if": {"properties": {"status": {"const": "ACCEPTED"}}}, "then": {"required": ["decision_ref"]}}]
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "decision_ref"
+            ]
+          }
+        }
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "weights"
+          ]
+        },
+        {
+          "required": [
+            "priorities"
+          ]
+        }
+      ]
     },
     "constraints": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "statement", "verification"],
+        "required": [
+          "id",
+          "statement",
+          "verification"
+        ],
         "properties": {
-          "id": {"$ref": "#/$defs/text"},
-          "statement": {"$ref": "#/$defs/text"},
-          "verification": {"$ref": "#/$defs/text"}
+          "id": {
+            "$ref": "#/$defs/text"
+          },
+          "statement": {
+            "$ref": "#/$defs/text"
+          },
+          "verification": {
+            "$ref": "#/$defs/text"
+          }
         }
       }
     },
     "authority": {
       "type": "object",
-      "required": ["mandate", "autonomous_actions", "human_decisions"],
+      "required": [
+        "mandate",
+        "autonomous_actions",
+        "human_decisions"
+      ],
       "properties": {
-        "mandate": {"$ref": "#/$defs/text"},
-        "autonomous_actions": {"type": "array", "items": {"$ref": "#/$defs/text"}},
-        "human_decisions": {"type": "array", "items": {"$ref": "#/$defs/text"}}
+        "mandate": {
+          "$ref": "#/$defs/text"
+        },
+        "autonomous_actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "human_decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
       }
     },
-    "unknowns": {"type": "array", "items": {"anyOf": [{"$ref": "#/$defs/text"}, {"type": "object"}]}},
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/text"
+          },
+          {
+            "type": "object"
+          }
+        ]
+      }
+    },
     "generation_budget": {
       "type": "object",
-      "required": ["max_candidates", "max_iterations", "max_tokens"],
+      "required": [
+        "max_candidates",
+        "max_iterations",
+        "max_tokens"
+      ],
       "properties": {
-        "max_candidates": {"type": "integer", "minimum": 1},
-        "max_iterations": {"type": "integer", "minimum": 1},
-        "max_tokens": {"anyOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]}
+        "max_candidates": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_iterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_tokens": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
       }
     }
   },
   "$defs": {
-    "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\s]*$)[^\u0000]+$"},
-    "weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\s]*$)[^\u0000]+$"
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "measure": {
       "type": "object",
-      "required": ["metric", "unit", "direction"],
+      "required": [
+        "metric",
+        "unit",
+        "direction"
+      ],
       "properties": {
-        "metric": {"$ref": "#/$defs/text"},
-        "unit": {"$ref": "#/$defs/text"},
-        "direction": {"enum": ["minimize", "maximize"]},
-        "target": {"type": ["number", "null"]}
+        "metric": {
+          "$ref": "#/$defs/text"
+        },
+        "unit": {
+          "$ref": "#/$defs/text"
+        },
+        "direction": {
+          "enum": [
+            "minimize",
+            "maximize"
+          ]
+        },
+        "target": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "0.2.0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "preferences": {
+            "required": [
+              "weights",
+              "measures"
+            ],
+            "properties": {
+              "measures": {
+                "required": [
+                  "speed",
+                  "economy",
+                  "scope",
+                  "autonomy"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

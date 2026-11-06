@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -89,6 +90,26 @@ class MetaHarnessTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "somme"):
             meta.validate_profile(invalid)
 
+    def test_qualitative_priorities_need_neither_weights_nor_four_measurements(self):
+        qualitative = profile()
+        qualitative["schema_version"] = "0.3.0"
+        preferences = qualitative["preferences"]
+        preferences.pop("weights")
+        preferences.pop("measures")
+        preferences["priorities"] = ["Préserver les données avant d'ajouter une option."]
+        original = copy.deepcopy(qualitative)
+        meta.validate_profile(qualitative)
+        self.assertEqual(qualitative, original)
+        preferences["measures"] = {"autonomy": {"metric": "human_minutes", "unit": "minutes", "direction": "minimize"}}
+        meta.validate_profile(qualitative)
+        preferences["priorities"] = []
+        with self.assertRaises(ValueError):
+            meta.validate_profile(qualitative)
+        preferences["priorities"] = ["Préserver les données."]
+        preferences["weights"] = {axis: 0.1 for axis in meta.AXES}
+        with self.assertRaisesRegex(ValueError, "somme"):
+            meta.validate_profile(qualitative)
+
     def test_structural_check_never_claims_semantic_or_authority_validation(self):
         for bundle in (self.n1, self.n0):
             result = meta.check_bundle(bundle)
@@ -152,6 +173,55 @@ class MetaHarnessTests(unittest.TestCase):
         saved = self.base / "result/demonstration-governance/_eiffel/meta-harness/prompts/GENERATE.md"
         (self.n1 / "prompts/GENERATE.md").write_text("Version ultérieure", encoding="utf-8")
         self.assertEqual(saved.read_bytes(), original_prompt)
+
+    def test_scripts_remain_executable_without_copying_special_permission_bits(self):
+        source = self.n0 / "product" / "verify.sh"
+        source.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+        source.chmod(0o4755)
+        private_note = self.n0 / "product" / "local-note.md"
+        private_note.write_text("Fixture locale, sans donnée réelle.\n", encoding="utf-8")
+        private_note.chmod(0o600)
+        repos = meta.materialize(self.n0, self.base / "mode-result")
+        product = next(repo for repo in repos if repo.name.endswith("-product"))
+        self.assertEqual((product / "verify.sh").read_bytes(), source.read_bytes())
+        self.assertEqual(stat.S_IMODE((product / "verify.sh").stat().st_mode), 0o755)
+        self.assertEqual(stat.S_IMODE((product / "local-note.md").stat().st_mode), 0o600)
+
+    def test_one_repository_can_hold_four_responsibilities_without_n1_or_n2_copy(self):
+        single = self.base / "single"
+        single.mkdir()
+        current_profile = profile()
+        current_profile["schema_version"] = "0.3.0"
+        write_json(single / "profile.json", current_profile)
+        for filename in ("AGENTS.md", "SPEC.md", "CHECKS.md"):
+            (single / filename).write_text(f"# {filename}\n\nFixture de méthode directe.\n", encoding="utf-8")
+        manifest = {
+            "schema_version": "0.3.0", "kind": "project-harness", "level": 0,
+            "status": "PROPOSED", "profile": "profile.json", "generator": "Conception directe fictive",
+            "layout": "single-repo", "entrypoint": "AGENTS.md",
+            "responsibilities": {"governance": "AGENTS.md", "stbl": "SPEC.md", "audit": "CHECKS.md", "product": "AGENTS.md"},
+        }
+        write_json(single / "harness.json", manifest)
+        self.assertEqual(meta.check_bundle(single)["layout"], "single-repo")
+        repos = meta.materialize(single, self.base / "single-output", git_init=bool(shutil.which("git")))
+        self.assertEqual([p.name for p in repos], ["demonstration"])
+        repo = repos[0]
+        self.assertFalse((repo / "_eiffel/meta").exists())
+        self.assertFalse((repo / "_eiffel/meta-harness").exists())
+        self.assertEqual((repo / "AGENTS.md").read_bytes(), (single / "AGENTS.md").read_bytes())
+        info = json.loads((repo / "_eiffel/project.json").read_text(encoding="utf-8"))
+        self.assertFalse(info["pattern_snapshot_present"])
+        self.assertFalse(info["generator_snapshot_present"])
+        self.assertEqual(info["semantic_status"], "NOT_RUN")
+        self.assertEqual({r["directory"] for r in info["repositories"].values()}, {"demonstration"})
+        if shutil.which("git"):
+            result = subprocess.run(["git", "-C", str(repo), "rev-parse", "--show-toplevel"], check=True, capture_output=True, text=True)
+            self.assertEqual(Path(result.stdout.strip()).resolve(), repo)
+            self.assertEqual(len(list((self.base / "single-output").rglob(".git"))), 1)
+        manifest["responsibilities"]["audit"] = "../private.md"
+        write_json(single / "harness.json", manifest)
+        with self.assertRaises(ValueError):
+            meta.check_bundle(single)
 
     def test_mismatched_profiles_and_inactive_generators_block_materialization(self):
         changed = profile()

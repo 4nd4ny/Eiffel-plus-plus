@@ -28,9 +28,13 @@ Sources consultées pour concevoir le catalogue le **6 novembre 2026**. Les text
 
 ## Choix propres à Eiffel++
 
-La répartition en quatre dépôts, leurs métapatrons, le protocole d'échange, les états, les formats de mandat, la liaison aux quatre commits et les heuristiques de coût constituent la proposition de ce catalogue. Ils ne sont pas présentés comme une méthode de Bertrand Meyer ni comme un résultat expérimental déjà démontré.
+La répartition en quatre responsabilités, les formats de provenance et les heuristiques de choix constituent la proposition du catalogue. Ils ne sont pas présentés comme une méthode de Bertrand Meyer ni comme un résultat expérimental démontré.
 
-La version 0.2.0 formalise la demande de Christian : trois niveaux de génération et un tétraèdre de préférences rapidité/coût/fonctionnalités/autonomie. N2 engendre des prompts spécialisés N1, puis N1 engendre le harnais N0. Cette architecture et ses contrats sont une proposition propre au projet, sans revendication de nouveauté scientifique ni garantie d'optimalité.
+La version 0.2.0 proposait une chaîne N2 → N1 → N0 et quatre dépôts. La version 0.3.0 retire leur caractère obligatoire : on peut réutiliser une graine et forger directement un harnais N0, dans un seul dépôt. Un générateur intermédiaire et la séparation physique des responsabilités doivent répondre à un besoin.
+
+**Specification Driven Development** désigne ici le guidage par les spécifications du produit et celles de sa production. C'est un choix de vocabulaire et de conception d'Eiffel++, pas l'affirmation d'une norme SDD unique. Les préconditions, postconditions et invariants restent des moyens éventuels de vérifier le comportement du code. Ils ne deviennent pas, par analogie, une preuve de l'efficacité de l'organisation du travail.
+
+Le tétraèdre rapidité/coût/fonctionnalités/autonomie décrit des préférences. Une priorité qualitative peut suffire ; ces axes ne constituent ni des mesures indépendantes ni une fonction d'optimisation déjà établie.
 
 ## Catalogues, mémoire et évolution des harnais
 
@@ -44,3 +48,20 @@ Sources également examinées le **6 novembre 2026** :
 - Anthropic, [mémoire des Managed Agents](https://platform.claude.com/docs/en/managed-agents/memory) et [dreaming](https://platform.claude.com/docs/en/managed-agents/dreams). Exemples de mémoire persistante et de consolidation asynchrone. N1 peut retenir ces mécanismes, les remplacer ou les omettre selon le besoin ; Eiffel++ ne dépend pas de leur fournisseur.
 
 Ces sources alimentent les hypothèses des générateurs. Le catalogue ne reprend pas leurs prompts ni leurs résultats comme des garanties propres à Eiffel++.
+
+## Base initiale de graines
+
+Les [fiches de graines](../seeds/records/) indiquent les fichiers lus, les révisions immuables, les licences, les adaptations proposées et les limites. La sélection publique comprend :
+
+| Projet primaire | Fiche et mécanisme étudié |
+| --- | --- |
+| [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | [Boucle courte et bornée](../seeds/records/mini-swe-loop.json) |
+| [Codex](https://github.com/openai/codex) | [Consignes selon la portée des fichiers](../seeds/records/codex-scoped-instructions.json) |
+| [Pi](https://github.com/earendil-works/pi) | [Chargement progressif du contexte](../seeds/records/pi-progressive-context.json) |
+| [Deep Agents](https://github.com/langchain-ai/deepagents) | [Délégation de tâches séparables](../seeds/records/deepagents-delegation.json) |
+| [Letta Code](https://github.com/letta-ai/letta-code) | [Mémoire attribuée et versionnée](../seeds/records/letta-versioned-memory.json) |
+| [Extension publique feature-dev de Claude Code](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) | [Exploration, décision et revue](../seeds/records/claude-feature-review.json) |
+
+Ce relevé est une sélection, pas une couverture exhaustive des catalogues. Les sources ont été lues, pas exécutées dans Eiffel++. Les recettes sont des synthèses originales ; les licences des projets cités continuent de s'appliquer à leurs contenus. La fiche Claude Code porte uniquement sur l'extension publique examinée, dont la licence est signalée, sans import du cœur du produit ou d'un prompt complet.
+
+L'[exemple local](../examples/forge-local/README.md) est une composition illustrative, sans décision humaine d'adoption inventée ni résultat de production. Les futurs harnais co-construits pourront être capturés avec leurs propres traces et contre-indications.

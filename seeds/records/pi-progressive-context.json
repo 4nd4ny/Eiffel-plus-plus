@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.3.0",
+  "id": "pi-progressive-context",
+  "kind": "external-pattern",
+  "title": "Contexte initial court et procédures à la demande — Pi",
+  "summary": "Séparer les instructions utiles immédiatement des procédures spécialisées consultées lorsqu'une tâche les nécessite. Cette graine reprend un mécanisme de composition du contexte ; elle ne fournit ni le runtime Pi ni une mesure d'économie de tokens.",
+  "source": {
+    "url": "https://github.com/earendil-works/pi",
+    "revision": "71023aec1546d6d677a65669c5665c0927ce0dd0",
+    "paths": [
+      "packages/coding-agent/src/core/system-prompt.ts",
+      "packages/coding-agent/docs/skills.md",
+      "LICENSE"
+    ],
+    "license": "MIT",
+    "visibility": "public",
+    "reviewed_on": "2026-11-06",
+    "discovered_via": "https://huggingface.co/spaces/harness-hub/harness-lens"
+  },
+  "context": {
+    "suitable_for": [
+      "Projet disposant de plusieurs procédures spécialisées dont seule une partie sert à chaque tâche.",
+      "Interventions où le contexte répété ou la documentation générale occupe une part importante du travail."
+    ],
+    "avoid_when": [
+      "Quelques instructions courtes couvrent déjà tout le besoin.",
+      "Une procédure indispensable risque de rester introuvable faute de descriptions ou de moyen fiable de la charger."
+    ],
+    "required_capabilities": [
+      "Un index court avec noms, descriptions discriminantes et chemins vérifiables.",
+      "Lecture des procédures et ressources seulement lorsqu'elles sont nécessaires.",
+      "Possibilité d'imposer explicitement une procédure connue lorsque la sélection automatique l'a omise."
+    ],
+    "cost_notes": [
+      "Le coût peut être déplacé de l'injection initiale vers la recherche et la lecture ; mesurer les deux.",
+      "Conserver une procédure en contexte peut être moins coûteux que la redécouvrir à chaque action.",
+      "La granularité de l'index et des procédures doit rester proportionnée à leur fréquence d'emploi."
+    ]
+  },
+  "recipe": [
+    "Préparer une entrée courte contenant le but du lot, les contraintes applicables et les outils effectivement accessibles.",
+    "Décrire chaque procédure spécialisée par ce qu'elle fait et par la situation qui justifie son emploi, sans charger son contenu complet au départ.",
+    "Charger la procédure pertinente au moment où elle change la prochaine action ; suivre seulement ses références nécessaires au travail courant.",
+    "Relier les règles d'usage aux outils réellement sélectionnés ; ne pas annoncer une capacité parce qu'une procédure la mentionne.",
+    "Observer les omissions de chargement, les relectures et le coût total ; simplifier l'index ou garder en contexte les éléments dont le réemploi le justifie."
+  ],
+  "operator_questions": [
+    "Quelles procédures servent rarement, et lesquelles sont nécessaires à presque chaque intervention ?",
+    "Quel oubli de procédure serait assez coûteux pour justifier son chargement systématique ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "system-prompt.ts compose des sections distinctes à partir des outils sélectionnés, de leurs règles, du contexte du projet et des skills.",
+      "La documentation skills.md décrit une annonce initiale par nom et description, puis une lecture des instructions complètes à la demande ; elle prévoit une invocation explicite si le modèle omet un skill."
+    ],
+    "limitations": [
+      "Cette recette n'a pas été exécutée ni évaluée dans Eiffel++.",
+      "Un index ne garantit pas que le modèle choisira la bonne procédure.",
+      "Cette graine ne porte pas sur toutes les extensions, la compaction ou les autres capacités du runtime Pi."
+    ],
+    "runs": []
+  },
+  "lineage": {"parents": []},
+  "publication": {"status": "public", "contains_private_material": false},
+  "review": {"status": "unreviewed", "decision_ref": null}
+}

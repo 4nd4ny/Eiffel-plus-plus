@@ -1,32 +1,161 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Paquet N0 de harnais de projet Eiffel++ 0.2.0",
-  "description": "Les quatre dossiers sont distincts et non imbriqués ; chacun contient AGENTS.md et README.md non vides. generator est une référence descriptive, jamais un chemin suivi automatiquement. La matérialisation ne constitue pas une adoption.",
+  "title": "Paquet N0 de harnais de projet Eiffel++ 0.3.0",
+  "description": "Un dépôt peut accueillir les quatre responsabilités ; four-repos conserve l’ancien format. Les fichiers référencés doivent exister. generator est une provenance descriptive, jamais une adresse chargée automatiquement. Ces contraintes structurelles ne qualifient pas la méthode.",
   "type": "object",
-  "required": ["schema_version", "kind", "level", "status", "profile", "generator", "repositories"],
+  "required": [
+    "schema_version",
+    "kind",
+    "level",
+    "status",
+    "profile",
+    "generator"
+  ],
   "properties": {
-    "schema_version": {"const": "0.2.0"},
-    "kind": {"const": "project-harness"},
-    "level": {"const": 0},
-    "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
-    "decision_ref": {"$ref": "#/$defs/text"},
-    "profile": {"$ref": "#/$defs/path"},
-    "generator": {"$ref": "#/$defs/text"},
+    "schema_version": {
+      "enum": [
+        "0.2.0",
+        "0.3.0"
+      ]
+    },
+    "kind": {
+      "const": "project-harness"
+    },
+    "level": {
+      "const": 0
+    },
+    "status": {
+      "enum": [
+        "PROPOSED",
+        "ACCEPTED",
+        "REJECTED",
+        "SUPERSEDED"
+      ]
+    },
+    "decision_ref": {
+      "$ref": "#/$defs/text"
+    },
+    "profile": {
+      "$ref": "#/$defs/path"
+    },
+    "generator": {
+      "$ref": "#/$defs/text"
+    },
     "repositories": {
       "type": "object",
-      "required": ["governance", "stbl", "audit", "product"],
+      "required": [
+        "governance",
+        "stbl",
+        "audit",
+        "product"
+      ],
       "additionalProperties": false,
       "properties": {
-        "governance": {"$ref": "#/$defs/path"},
-        "stbl": {"$ref": "#/$defs/path"},
-        "audit": {"$ref": "#/$defs/path"},
-        "product": {"$ref": "#/$defs/path"}
+        "governance": {
+          "$ref": "#/$defs/path"
+        },
+        "stbl": {
+          "$ref": "#/$defs/path"
+        },
+        "audit": {
+          "$ref": "#/$defs/path"
+        },
+        "product": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "layout": {
+      "enum": [
+        "single-repo",
+        "four-repos"
+      ],
+      "default": "four-repos"
+    },
+    "entrypoint": {
+      "$ref": "#/$defs/path"
+    },
+    "responsibilities": {
+      "type": "object",
+      "required": [
+        "governance",
+        "stbl",
+        "audit",
+        "product"
+      ],
+      "additionalProperties": false,
+      "description": "Chemins des fichiers d’instructions ; plusieurs responsabilités peuvent partager un fichier.",
+      "properties": {
+        "governance": {
+          "$ref": "#/$defs/path"
+        },
+        "stbl": {
+          "$ref": "#/$defs/path"
+        },
+        "audit": {
+          "$ref": "#/$defs/path"
+        },
+        "product": {
+          "$ref": "#/$defs/path"
+        }
       }
     }
   },
-  "allOf": [{"if": {"properties": {"status": {"const": "ACCEPTED"}}}, "then": {"required": ["decision_ref"]}}],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ACCEPTED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "decision_ref"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "layout"
+        ],
+        "properties": {
+          "layout": {
+            "const": "single-repo"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "entrypoint",
+          "responsibilities"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": "0.3.0"
+          }
+        },
+        "not": {
+          "required": [
+            "repositories"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "repositories"
+        ]
+      }
+    }
+  ],
   "$defs": {
-    "text": {"type": "string", "minLength": 1, "pattern": "^(?![\\s]*$)[^\u0000]+$"},
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\s]*$)[^\u0000]+$"
+    },
     "path": {
       "type": "string",
       "minLength": 1,

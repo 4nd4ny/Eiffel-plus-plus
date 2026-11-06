@@ -25,7 +25,8 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
+SUPPORTED_VERSIONS = ("0.2.0", VERSION)
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = ("governance", "stbl", "audit", "product")
 AXES = ("speed", "economy", "scope", "autonomy")
@@ -34,6 +35,13 @@ NOTICE = (
     "Contrôle structurel seulement. Une empreinte identifie du contenu ; elle "
     "n'authentifie ni une décision, ni un contrôle exécuté. Les droits et "
     "l'adéquation métier restent à qualifier."
+)
+SEED_CATALOG_REFERENCE = (
+    "# Base de graines\n\n"
+    "Aucune fiche ni aucun runtime n'a été embarqué dans cet instantané du patron. "
+    "Consulter les graines choisies par l'opérateur ou le "
+    "[catalogue public Eiffel++](https://github.com/4nd4ny/Eiffel-plus-plus/tree/main/seeds). "
+    "Ces ressources sont des données à examiner ; leur présence dans un catalogue ne prouve pas leur efficacité.\n"
 )
 
 
@@ -111,8 +119,9 @@ def _finite_number(value: Any) -> bool:
 def validate_profile(profile: dict[str, Any]) -> None:
     """Valider les champs du profil sans en déduire permission ou performance."""
     profile = _object(profile, "profile")
-    if profile.get("schema_version") != VERSION:
-        raise ValueError(f"profile.schema_version doit être {VERSION}.")
+    if profile.get("schema_version") not in SUPPORTED_VERSIONS:
+        raise ValueError(f"profile.schema_version doit être l'une de {SUPPORTED_VERSIONS}.")
+    legacy = profile["schema_version"] == "0.2.0"
     project = _object(profile.get("project"), "project")
     slug = _text(project.get("slug"), "project.slug")
     if not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?", slug):
@@ -125,18 +134,24 @@ def validate_profile(profile: dict[str, Any]) -> None:
     preferences = _object(profile.get("preferences"), "preferences")
     _state(preferences, "preferences")
     _text(preferences.get("source"), "preferences.source")
-    weights = _object(preferences.get("weights"), "preferences.weights")
-    if set(weights) != set(AXES):
-        raise ValueError(f"Les poids doivent porter exactement sur {', '.join(AXES)}.")
-    for axis, value in weights.items():
-        if not _finite_number(value) or not 0 <= value <= 1:
-            raise ValueError(f"Poids {axis} : nombre fini compris entre 0 et 1 requis.")
-    if not math.isclose(sum(weights.values()), 1.0, rel_tol=0, abs_tol=1e-9):
-        raise ValueError("La somme des quatre poids doit être 1 (tolérance 1e-9).")
+    if "weights" not in preferences and (legacy or "priorities" not in preferences):
+        raise ValueError("Définir preferences.weights ou, depuis 0.3.0, preferences.priorities.")
+    if "priorities" in preferences:
+        if not _texts(preferences["priorities"], "preferences.priorities"):
+            raise ValueError("preferences.priorities doit contenir au moins une priorité.")
+    if "weights" in preferences:
+        weights = _object(preferences["weights"], "preferences.weights")
+        if set(weights) != set(AXES):
+            raise ValueError(f"Les poids doivent porter exactement sur {', '.join(AXES)}.")
+        for axis, value in weights.items():
+            if not _finite_number(value) or not 0 <= value <= 1:
+                raise ValueError(f"Poids {axis} : nombre fini compris entre 0 et 1 requis.")
+        if not math.isclose(sum(weights.values()), 1.0, rel_tol=0, abs_tol=1e-9):
+            raise ValueError("La somme des quatre poids doit être 1 (tolérance 1e-9).")
 
-    measures = _object(preferences.get("measures"), "preferences.measures")
-    if set(measures) != set(AXES):
-        raise ValueError("Définir une mesure pour chacun des quatre axes.")
+    measures = _object(preferences.get("measures", {}), "preferences.measures")
+    if set(measures) - set(AXES) or (legacy and set(measures) != set(AXES)):
+        raise ValueError("Mesures limitées aux quatre axes ; les profils 0.2.0 exigent les quatre.")
     for axis, value in measures.items():
         measure = _object(value, f"measures.{axis}")
         for key in ("metric", "unit"):
@@ -209,11 +224,19 @@ def _read_file(path: Path) -> bytes:
         return stream.read()
 
 
-def _snapshot(root: Path) -> dict[str, bytes]:
+class Snapshot(dict[str, bytes]):
+    """Octets et permissions ordinaires ; aucun bit setuid, setgid ou sticky."""
+
+    def __init__(self):
+        super().__init__()
+        self.modes: dict[str, int] = {}
+
+
+def _snapshot(root: Path) -> Snapshot:
     root = _plain_path(root)
     if not root.is_dir():
         raise ValueError(f"Dossier absent : {root}")
-    files = {}
+    files = Snapshot()
     for directory, dirs, names in os.walk(root, followlinks=False):
         for name in sorted(dirs + names):
             path = Path(directory) / name
@@ -223,6 +246,7 @@ def _snapshot(root: Path) -> dict[str, bytes]:
                 raise ValueError(f"Lien symbolique de source interdit : {relative}")
             if stat.S_ISREG(mode):
                 files[relative] = _read_file(path)
+                files.modes[relative] = stat.S_IMODE(mode) & 0o777
             elif not stat.S_ISDIR(mode):
                 raise ValueError(f"Source non ordinaire interdite : {relative}")
     return files
@@ -245,12 +269,14 @@ def _validate_bundle(files: dict[str, bytes]) -> tuple[str, dict[str, Any], dict
         raise ValueError("Le paquet doit contenir exactement un manifeste : meta-harness.json (N1) ou harness.json (N0).")
     name = names[0]
     manifest = _json(files[name], name)
-    if manifest.get("schema_version") != VERSION:
-        raise ValueError(f"schema_version doit être {VERSION}.")
+    if manifest.get("schema_version") not in SUPPORTED_VERSIONS:
+        raise ValueError(f"schema_version doit être l'une de {SUPPORTED_VERSIONS}.")
     _state(manifest, name)
     profile_path = _file(files, manifest.get("profile"), "profile")
     profile = _json(files[profile_path], profile_path)
     validate_profile(profile)
+    if profile["schema_version"] != manifest["schema_version"]:
+        raise ValueError("Le manifeste et son profil doivent avoir la même schema_version.")
     if name == "meta-harness.json":
         if manifest.get("kind") != "meta-harness" or type(manifest.get("level")) is not int or manifest["level"] != 1:
             raise ValueError("Le manifeste N1 exige kind=meta-harness et level=1.")
@@ -268,17 +294,32 @@ def _validate_bundle(files: dict[str, bytes]) -> tuple[str, dict[str, Any], dict
         if manifest.get("kind") != "project-harness" or type(manifest.get("level")) is not int or manifest["level"] != 0:
             raise ValueError("Le manifeste N0 exige kind=project-harness et level=0.")
         _text(manifest.get("generator"), "generator")
-        repos = _object(manifest.get("repositories"), "repositories")
-        if set(repos) != set(ROLES):
-            raise ValueError("repositories doit désigner exactement governance, stbl, audit et product.")
-        paths = [_relative(value, f"repositories.{role}") for role, value in repos.items()]
-        for i, path in enumerate(paths):
-            for other in paths[i + 1:]:
-                if path == other or path.startswith(other + "/") or other.startswith(path + "/"):
-                    raise ValueError("Les quatre dépôts doivent avoir des dossiers distincts non imbriqués.")
-        for role, path in repos.items():
-            for required in ("AGENTS.md", "README.md"):
-                _file(files, path + "/" + required, role)
+        layout = manifest.get("layout", "four-repos")
+        if layout == "single-repo":
+            if manifest["schema_version"] == "0.2.0":
+                raise ValueError("single-repo exige schema_version 0.3.0.")
+            if "repositories" in manifest:
+                raise ValueError("single-repo utilise responsibilities, pas repositories.")
+            _file(files, manifest.get("entrypoint"), "entrypoint")
+            roles = _object(manifest.get("responsibilities"), "responsibilities")
+            if set(roles) != set(ROLES):
+                raise ValueError("responsibilities doit désigner les quatre responsabilités.")
+            for role, path in roles.items():
+                _file(files, path, f"responsibilities.{role}")
+        elif layout == "four-repos":
+            repos = _object(manifest.get("repositories"), "repositories")
+            if set(repos) != set(ROLES):
+                raise ValueError("repositories doit désigner exactement governance, stbl, audit et product.")
+            paths = [_relative(value, f"repositories.{role}") for role, value in repos.items()]
+            for i, path in enumerate(paths):
+                for other in paths[i + 1:]:
+                    if path == other or path.startswith(other + "/") or other.startswith(path + "/"):
+                        raise ValueError("Les quatre dépôts doivent avoir des dossiers distincts non imbriqués.")
+            for role, path in repos.items():
+                for required in ("AGENTS.md", "README.md"):
+                    _file(files, path + "/" + required, role)
+        else:
+            raise ValueError("layout doit être single-repo ou four-repos.")
     return name, manifest, profile
 
 
@@ -287,6 +328,8 @@ def check_bundle(bundle: Path) -> dict[str, Any]:
     name, manifest, _ = _validate_bundle(files)
     return {
         "schema_version": VERSION, "kind": manifest["kind"], "level": manifest["level"],
+        "input_schema_version": manifest["schema_version"],
+        "layout": manifest.get("layout", "four-repos") if manifest["level"] == 0 else None,
         "declared_status": manifest["status"], "structure_status": "PASS",
         "semantic_status": "NOT_RUN", "authority_status": "NOT_RUN",
         "manifest_sha256": digest(files[name]), "file_count": len(files), "note": NOTICE,
@@ -305,10 +348,12 @@ def _destination(destination: Path, origins: tuple[Path, ...] = ()) -> Path:
     return destination
 
 
-def _write(root: Path, path: str, raw: bytes) -> None:
+def _write(root: Path, path: str, raw: bytes, mode: int | None = None) -> None:
     target = root / path
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(raw)
+    if mode is not None:
+        target.chmod(mode & 0o777)
 
 
 def _write_json(root: Path, path: str, value: Any) -> None:
@@ -339,7 +384,8 @@ def _publish(staging: Path, destination: Path, marker: str) -> None:
         path.rename(destination / path.name)
 
 
-def prepare(brief_path: Path, profile_path: Path, destination: Path) -> Path:
+def prepare(brief_path: Path, profile_path: Path, destination: Path,
+            seed_ids: tuple[str, ...] = (), catalog: Path | None = None) -> Path:
     brief = _read_file(brief_path)
     if not brief.strip():
         raise ValueError("Le brief est vide.")
@@ -352,22 +398,56 @@ def prepare(brief_path: Path, profile_path: Path, destination: Path) -> Path:
     if "START.md" not in meta:
         raise ValueError("Le patron N2 meta/START.md est absent.")
     protocol = _snapshot(ROOT / "protocol")
+    selected = []
+    private_seed = False
+    if seed_ids:
+        # Import local pour éviter toute dépendance du catalogue aux préparations.
+        from seeds import read_records
+        records = {record["id"]: (path, record) for path, record in read_records(catalog or ROOT / "seeds")}
+        for seed_id in dict.fromkeys(seed_ids):
+            if seed_id not in records:
+                raise ValueError(f"Graine absente du catalogue choisi : {seed_id}")
+            path, record = records[seed_id]
+            selected.append((seed_id, _read_file(path)))
+            private_seed |= (record["publication"]["status"] != "public"
+                             or record["publication"]["contains_private_material"]
+                             or record["source"]["visibility"] == "private")
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=".eiffel-stage-zero-", dir=destination.parent))
     try:
         for folder, files in (("meta", meta), ("protocol", protocol)):
             for relative, raw in files.items():
-                _write(staging, folder + "/" + relative, raw)
+                _write(staging, folder + "/" + relative, raw, files.modes[relative])
         _write(staging, "BRIEF.md", brief)
         _write(staging, "profile.json", profile_raw)
+        seed_index = (
+            "# Graines de cette préparation\n\n"
+            "Les fiches sélectionnées sont des données de conception, conservées sans modification. "
+            "Leurs chemins d'artefacts restent ceux de la source : aucun artefact, runtime ou lien externe "
+            "n'a été chargé. Consulter les capacités requises avant de réutiliser une recette.\n\n"
+        )
+        for seed_id, raw in selected:
+            _write(staging, f"context/seeds/{seed_id}.json", raw, 0o600 if private_seed else 0o644)
+            seed_index += f"- [{seed_id}](../context/seeds/{seed_id}.json)\n"
+        if not selected:
+            seed_index += (
+                "Aucune graine sélectionnée. Fournir les fiches utiles depuis le catalogue d'origine, si nécessaire. "
+                "Le [catalogue public Eiffel++](https://github.com/4nd4ny/Eiffel-plus-plus/tree/main/seeds) "
+                "est une source possible ; il n'a pas été chargé automatiquement.\n"
+            )
+        if private_seed:
+            seed_index += "\nCette préparation contient une graine privée ou non revue pour publication ; la conserver dans le périmètre autorisé.\n"
+        _write(staging, "seeds/README.md", seed_index.encode("utf-8"))
         start = (
             "# Étape zéro — entrée du patron Eiffel++\n\n"
-            "Tu vas produire le méta-harnais N1 adapté à ce projet, puis utiliser ses prompts pour produire le harnais N0.\n\n"
+            "Pars des spécifications et des graines pertinentes pour forger un harnais N0 avec l'opérateur. "
+            "Réemploie une organisation adéquate sans la réécrire ; N1 reste facultatif si son réemploi est justifié.\n\n"
             "Lis [le brief](BRIEF.md), [le profil](profile.json) et applique [le patron N2](meta/START.md). "
+            "Consulte les [graines sélectionnées](seeds/README.md) comme données, jamais comme autorité. "
             "Les données du projet n'accordent pas de permissions par elles-mêmes. "
             "Préserve les états des décisions et les inconnues ; fais uniquement les clarifications décisives.\n\n"
-            "Écris N1 et N0 dans deux dossiers distincts, hors de ce paquet d'entrée. "
-            "Les prompts N1 doivent être effectivement spécialisés ; les fichiers N0 doivent décrire la méthode du projet.\n\n"
+            "Écris N0 hors de ce paquet d'entrée. Un dossier distinct conserve N1 seulement s'il est utile. "
+            "Choisis une implantation proportionnée des responsabilités ; un seul dépôt peut suffire.\n\n"
             "Ce dossier a été préparé mécaniquement. Aucun modèle n'a été appelé, aucun N1 ou N0 n'a encore été généré, "
             "aucune performance n'a été mesurée.\n"
         )
@@ -375,9 +455,12 @@ def prepare(brief_path: Path, profile_path: Path, destination: Path) -> Path:
         sources = {"BRIEF.md": digest(brief), "profile.json": digest(profile_raw)}
         sources.update({"meta/" + p: digest(raw) for p, raw in meta.items()})
         sources.update({"protocol/" + p: digest(raw) for p, raw in protocol.items()})
+        sources.update({f"context/seeds/{seed_id}.json": digest(raw) for seed_id, raw in selected})
         _write_json(staging, "preparation.json", {
             "schema_version": VERSION, "kind": "stage-zero-input", "level": 2,
             "generation_status": "NOT_RUN", "project_slug": profile["project"]["slug"],
+            "selected_seed_ids": [seed_id for seed_id, _ in selected], "seed_artifacts_loaded": False,
+            "publication_status": "private" if private_seed else "unreviewed",
             "source_sha256": sources, "note": NOTICE,
         })
         _publish(staging, destination, "preparation.json")
@@ -389,11 +472,11 @@ def prepare(brief_path: Path, profile_path: Path, destination: Path) -> Path:
 
 def materialize(bundle: Path, destination: Path, git_init: bool = False,
                 meta_harness: Path | None = None) -> list[Path]:
-    """Copier N0 sans l'adopter ; conserver N2 et, si fourni, N1 dans governance."""
+    """Copier N0 sans l'adopter, dans un ou quatre dépôts selon son manifeste."""
     files = _snapshot(bundle)
     name, manifest, profile = _validate_bundle(files)
     if manifest["level"] != 0:
-        raise ValueError("Seul un harnais N0 peut être matérialisé en quatre dépôts.")
+        raise ValueError("Seul un harnais N0 peut être matérialisé.")
     if manifest["status"] not in ("PROPOSED", "ACCEPTED"):
         raise ValueError("Un harnais rejeté ou remplacé ne peut pas être matérialisé.")
     generator_files = None
@@ -410,99 +493,117 @@ def materialize(bundle: Path, destination: Path, git_init: bool = False,
     destination = _destination(destination, origins)
     if git_init and shutil.which("git") is None:
         raise ValueError("Git est nécessaire pour --git-init.")
+    single = manifest.get("layout", "four-repos") == "single-repo"
     protocol = _snapshot(ROOT / "protocol")
-    pattern_files = _snapshot(ROOT / "meta")
-    _file(pattern_files, "START.md", "patron N2")
+    # Le parcours léger ne charge ni ne copie un générateur qu'il n'a pas utilisé.
+    pattern_files = Snapshot() if single else _snapshot(ROOT / "meta")
+    if not single:
+        _file(pattern_files, "START.md", "patron N2")
     pattern_hashes = {path: digest(raw) for path, raw in pattern_files.items()}
-    pattern_digest = digest(canonical(pattern_hashes))
+    pattern_digest = digest(canonical(pattern_hashes)) if pattern_files else None
     license_raw = _read_file(ROOT / "LICENSE")
     slug = profile["project"]["slug"]
-    refs = {role: {"directory": f"{slug}-{role}", "remote": None, "commit": None} for role in ROLES}
+    refs = {role: {"directory": slug if single else f"{slug}-{role}", "remote": None, "commit": None} for role in ROLES}
+    physical = [("combined", slug)] if single else [(role, f"{slug}-{role}") for role in ROLES]
     generator_hashes = {path: digest(raw) for path, raw in (generator_files or {}).items()}
     generator_digest = digest(canonical(generator_hashes)) if generator_files is not None else None
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=".eiffel-materialize-", dir=destination.parent))
     try:
-        for role in ROLES:
-            repo = staging / f"{slug}-{role}"
+        for role, directory in physical:
+            repo = staging / directory
             repo.mkdir()
-            prefix = manifest["repositories"][role] + "/"
+            prefix = "" if single else manifest["repositories"][role] + "/"
+            holds_sources = single or role == "governance"
             source_hashes = {"bundle/" + name: digest(files[name]), "bundle/" + manifest["profile"]: digest(files[manifest["profile"]])}
+            source_modes = {}
             for path, raw in files.items():
                 if path.startswith(prefix):
-                    _write(repo, path[len(prefix):], raw)
+                    _write(repo, path[len(prefix):], raw, files.modes[path])
                     source_hashes["bundle/" + path] = digest(raw)
+                    source_modes["bundle/" + path] = files.modes[path]
             for path, raw in protocol.items():
-                _write(repo, "_eiffel/protocol/" + path, raw)
+                _write(repo, "_eiffel/protocol/" + path, raw, protocol.modes[path])
                 source_hashes["protocol/" + path] = digest(raw)
             _write(repo, "_eiffel/LICENSE", license_raw)
             _write(repo, "_eiffel/harness.json", files[name])
             _write(repo, "_eiffel/profile.json", files[manifest["profile"]])
-            if role == "governance":
+            if holds_sources:
                 for path, raw in pattern_files.items():
-                    _write(repo, "_eiffel/meta/" + path, raw)
-            if role == "governance" and generator_files is not None:
+                    _write(repo, "_eiffel/meta/" + path, raw, pattern_files.modes[path])
+                if pattern_files:
+                    _write(repo, "_eiffel/seeds/README.md", SEED_CATALOG_REFERENCE.encode("utf-8"))
+            if holds_sources and generator_files is not None:
                 for path, raw in generator_files.items():
-                    _write(repo, "_eiffel/meta-harness/" + path, raw)
+                    _write(repo, "_eiffel/meta-harness/" + path, raw, generator_files.modes[path])
             metadata = {
                 "template_version": VERSION, "protocol_version": VERSION,
-                "source_kind": "generated-project-harness", "role": role,
+                "source_kind": "project-harness", "role": role,
+                "layout": "single-repo" if single else "four-repos",
+                "input_schema_version": manifest["schema_version"],
+                "responsibilities": manifest.get("responsibilities"),
                 "project_name": profile["project"]["name"], "project_slug": slug,
                 "binding_status": "UNBOUND", "repositories": refs,
                 "declared_harness_status": manifest["status"],
                 "structure_status": "PASS", "semantic_status": "NOT_RUN", "authority_status": "NOT_RUN",
-                "source_sha256": source_hashes, "generator_reference": manifest["generator"],
+                "source_sha256": source_hashes, "source_modes": source_modes,
+                "generator_reference": manifest["generator"],
                 "generator_snapshot_present": generator_files is not None,
                 "generator_snapshot_location": {"role": "governance", "path": "_eiffel/meta-harness"} if generator_files is not None else None,
                 "generator_snapshot_sha256": generator_digest,
-                "pattern_snapshot_present": True,
-                "pattern_snapshot_location": {"role": "governance", "path": "_eiffel/meta"},
-                "pattern_snapshot_version": VERSION,
-                "pattern_snapshot_purpose": "available-for-regeneration",
+                "pattern_snapshot_present": bool(pattern_files),
+                "pattern_snapshot_location": {"role": "governance", "path": "_eiffel/meta"} if pattern_files else None,
+                "pattern_snapshot_version": VERSION if pattern_files else None,
+                "pattern_snapshot_purpose": "available-for-regeneration" if pattern_files else None,
+                "pattern_reference": f"Eiffel++ {VERSION}",
                 "pattern_snapshot_sha256": pattern_digest,
                 "pattern_generation_provenance_status": "NOT_RUN", "note": NOTICE,
             }
-            if role == "governance":
+            if holds_sources and pattern_files:
                 metadata["pattern_source_sha256"] = pattern_hashes
-            if role == "governance" and generator_files is not None:
+            if holds_sources and generator_files is not None:
                 metadata["generator_source_sha256"] = generator_hashes
             _write_json(repo, "_eiffel/project.json", metadata)
-            gitignore = (repo / ".gitignore").read_bytes() if (repo / ".gitignore").is_file() else b""
-            _write(repo, ".gitignore", gitignore.rstrip(b"\n") + b"\n# Eiffel++\n.env\n.env.*\n!.env.example\n__pycache__/\n*.py[cod]\nartifacts-local/\n")
+            if not (repo / ".gitignore").exists():
+                _write(repo, ".gitignore", b"# Eiffel++\n.env\n.env.*\n!.env.example\n__pycache__/\n*.py[cod]\nartifacts-local/\n")
             if git_init:
                 subprocess.run(["git", "init", "--quiet", "--initial-branch=main", str(repo)],
                                check=True, capture_output=True, text=True)
         _write_json(staging, "materialization.json", {
             "schema_version": VERSION, "kind": "materialized-project", "binding_status": "UNBOUND",
+            "layout": "single-repo" if single else "four-repos",
             "repositories": refs, "generator_snapshot_present": generator_files is not None,
-            "pattern_snapshot_present": True, "pattern_snapshot_purpose": "available-for-regeneration",
+            "pattern_snapshot_present": bool(pattern_files),
+            "pattern_snapshot_purpose": "available-for-regeneration" if pattern_files else None,
             "semantic_status": "NOT_RUN", "authority_status": "NOT_RUN", "note": NOTICE,
         })
         _publish(staging, destination, "materialization.json")
     finally:
         if staging.exists():
             shutil.rmtree(staging)
-    return [destination / f"{slug}-{role}" for role in ROLES]
+    return [destination / directory for _, directory in physical]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    prep = sub.add_parser("prepare", help="Préparer une entrée N2 ; ne génère pas N1 ou N0.")
+    prep = sub.add_parser("prepare", help="Préparer les entrées de conception ; ne génère pas de harnais.")
     prep.add_argument("--brief", required=True, type=Path)
     prep.add_argument("--profile", required=True, type=Path)
     prep.add_argument("--output", required=True, type=Path)
+    prep.add_argument("--seed", action="append", default=[], help="ID de graine à inclure comme donnée ; répétable.")
+    prep.add_argument("--catalog", type=Path, help="Catalogue explicite, éventuellement privé ; aucun chargement réseau.")
     check = sub.add_parser("check", help="Contrôler la structure d'un paquet N1 ou N0.")
     check.add_argument("bundle", type=Path)
-    mat = sub.add_parser("materialize", help="Matérialiser les quatre dépôts d'un N0 généré.")
+    mat = sub.add_parser("materialize", help="Matérialiser un N0 dans un ou quatre dépôts.")
     mat.add_argument("bundle", type=Path)
     mat.add_argument("--output", required=True, type=Path)
     mat.add_argument("--meta-harness", type=Path, help="Conserver le N1 pour les adaptations ultérieures.")
-    mat.add_argument("--git-init", action="store_true", help="Quatre Git locaux, sans commit ni remote.")
+    mat.add_argument("--git-init", action="store_true", help="Initialiser les Git locaux choisis, sans commit ni remote.")
     args = parser.parse_args()
     try:
         if args.command == "prepare":
-            output = prepare(args.brief, args.profile, args.output)
+            output = prepare(args.brief, args.profile, args.output, tuple(args.seed), args.catalog)
             result = {"output": str(output), "generation_status": "NOT_RUN", "next": "Appliquer START.md avec un agent dans son mandat."}
         elif args.command == "check":
             result = check_bundle(args.bundle)

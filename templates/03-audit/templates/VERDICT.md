@@ -1,9 +1,9 @@
 # Verdict — AUD-0001
 
-Version du métapatron : **0.2.0**. Modèle non exécuté : l'état initial est inconclusif. Appliquer le [protocole commun](../../../protocol/README.md) et la [politique](../POLICY.md).
+Version du métapatron : **0.3.0**. Modèle non exécuté : l'état initial est inconclusif. Appliquer le [protocole commun](../../../protocol/README.md) et la [politique](../POLICY.md).
 
 ```yaml
-template_version: "0.2.0"
+template_version: "0.3.0"
 audit_id: AUD-0001
 project: "{{PROJECT_SLUG}}"
 decision_status: PROPOSED
@@ -21,7 +21,7 @@ reservation_decision_ids: []
 
 ## Objet exact du verdict
 
-Référencer le plan et le manifeste immuable contenant les quatre adresses et SHA complets `governance_commit`, `stbl_commit`, `audit_commit`, `product_commit`, la construction du candidat et les environnements examinés. La présente conclusion ne s'applique qu'à cette liaison et à cet artefact. `audit_commit` précède les observations ; le `report_commit` ultérieur est celui contenant le rapport, sans autoréférence dans le document.
+Référencer le plan et le manifeste immuable contenant les adresses et SHA complets des quatre références logiques `governance_commit`, `stbl_commit`, `audit_commit`, `product_commit`, éventuellement communes à une racine Git, la construction du candidat et les environnements examinés. La présente conclusion ne s'applique qu'à cette liaison et à cet artefact. `audit_commit` précède les observations ; le `report_commit` ultérieur est celui contenant le rapport, sans autoréférence dans le document.
 
 Décrire le périmètre examiné et les exclusions. Ne pas présenter un audit du code source comme une validation d'un binaire dont la provenance n'a pas été vérifiée.
 

@@ -1,6 +1,6 @@
 # Rapport de changement — {{PROJECT_NAME}}
 
-Version du gabarit : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du gabarit : **0.3.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Remplir ce rapport à partir de résultats observés, selon le [protocole commun](../../../protocol/README.md). Une case vide ne signifie pas une réussite.
 

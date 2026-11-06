@@ -1,6 +1,6 @@
 # Décision d'architecture — {{PROJECT_NAME}}
 
-Version du gabarit : **0.2.0**. Projet : `{{PROJECT_SLUG}}`.
+Version du gabarit : **0.3.0**. Projet : `{{PROJECT_SLUG}}`.
 
 Utiliser ce support pour un choix durable qui mérite d'être retrouvé. Il ne crée aucun arbitrage accepté. Voir le [protocole commun](../../../protocol/README.md).
 

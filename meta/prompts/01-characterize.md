@@ -1,59 +1,34 @@
-# Prompt N2 — caractériser ce qui doit engendrer la méthode
+# Décrire le besoin de produit et le besoin de méthode
 
 ## Mission
 
-Construis le profil à partir duquel un LLM pourra concevoir le méta-harnais du projet. Recherche les différences de situation qui doivent produire des différences de méthode.
+Extrais des sources disponibles ce qui doit changer la manière de travailler. Le brief, les décisions déjà données et le mandat sont les premières sources. Le [cadre de conception](../CONTRACT.md) et les [arbitrages](../TETRAHEDRON.md) aident à distinguer exigences, préférences et observations.
 
-Applique le [contrat de génération](../CONTRACT.md) et la convention du [tétraèdre](../TETRAHEDRON.md). Le brief, le mandat et les décisions déjà fournis constituent tes premières sources. N'impose pas un entretien standard si ces sources suffisent.
+## Informations discriminantes
 
-## Travail à réaliser
+Décrire brièvement : le résultat utile et ses critères d'acceptation, les obligations, le périmètre négociable, les délais et ressources, l'attention humaine disponible, les droits, les outils réellement accessibles et les difficultés pertinentes. Préciser à quel objet chaque exigence s'applique : produit ou méthode.
 
-Lis les informations utiles et explicite :
+Par exemple, « ne pas modifier le fichier source » concerne le produit ; « pouvoir reprendre après interruption » concerne la méthode. La seconde appelle un moyen de reprise proportionné, sans imposer une infrastructure de mémoire à tous les projets.
 
-- le résultat utile pour les utilisateurs et la manière de le reconnaître ;
-- les obligations essentielles et le périmètre qui peut faire l'objet d'un arbitrage ;
-- les limites de délai, de ressources et d'attention humaine ;
-- les décisions déjà déléguées et les décisions réservées ;
-- les sources de difficulté qui influencent la méthode : ambiguïté, couplage, réversibilité, fréquence des changements, conséquences d'un défaut, durée du projet, outils réellement accessibles ;
-- l'historique pertinent, s'il existe, sans supposer que les erreurs passées se reproduiront dans le nouveau contexte.
+Distinguer ce que l'utilisateur a dit, ce que l'agent infère, ce qui a été observé et ce qui reste inconnu. Une question est utile si ses réponses changent une décision concrète ou une action réservée. Regrouper les questions liées et poursuivre les travaux indépendants. Ne pas demander des détails que la tâche n'oblige pas à interpréter.
 
-Pour chaque information importante, distinguer donnée explicite, inférence, observation et inconnue. Réutiliser les décisions existantes ; ne pas créer une demande d'approbation pour une autorisation déjà accordée.
+## Profil pour les outils de paquets
 
-Pose une question seulement si ses réponses plausibles conduisent à des harnais matériellement différents ou conditionnent une action hors mandat. Grouper les questions liées. Continuer les travaux dont elles ne changent pas le résultat.
+Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.3.0` :
 
-Lorsque des détails manquent, choisir une hypothèse réversible et la consigner. Si une obligation et un budget sont incompatibles, décrire le conflit et les arbitrages possibles sans en décider à la place du responsable.
-
-## Profil à produire
-
-Écrire `profile.json` avec `schema_version: 0.2.0` et les sections suivantes :
-
-| Section | Contenu requis |
+| Section | Contenu |
 | --- | --- |
-| `project` | `slug`, `name`, `brief`. Nom technique de 1 à 64 minuscules, chiffres ou tirets sans tiret aux extrémités ; nom lisible sur une ligne ; brief ou référence utile non vide. |
-| `preferences` | `weights`, `status`, `source`, `measures`. `weights` contient exactement `speed`, `economy`, `scope`, `autonomy`, avec une somme de 1. |
-| `constraints` | Liste de `{id, statement, verification}` décrivant les obligations non compensables. Référencer les décisions et sources disponibles dans les champs ou métadonnées complémentaires. |
-| `authority` | `mandate`, `autonomous_actions`, `human_decisions`. Décrire les droits réellement accordés ; signaler explicitement un mandat non établi. |
-| `unknowns` | Inconnues, effet possible sur le harnais et décision à laquelle elles se rattachent. |
-| `generation_budget` | `max_candidates`, `max_iterations`, `max_tokens`. Les deux premières bornes sont des entiers positifs ; la dernière peut être `null` lorsqu'elle n'est pas fournie. |
+| `project` | `slug`, `name`, `brief`. Slug de 1 à 64 minuscules, chiffres ou tirets sans tiret aux extrémités. |
+| `preferences` | `status`, `source`, puis des `priorities` ordonnées ou des `weights` justifiés. `measures` est facultatif. |
+| `constraints` | `{id, statement, verification}` pour les obligations ; la vérification décrit un moyen prévu, pas un résultat. |
+| `authority` | `mandate`, `autonomous_actions`, `human_decisions` selon les droits effectivement accordés. |
+| `unknowns` | Inconnues qui peuvent influencer le travail et leur effet possible. |
+| `generation_budget` | `max_candidates`, `max_iterations`, `max_tokens`. Deux entiers positifs ; tokens peut être `null` si cette limite n'est pas connue. |
 
-`preferences.measures` contient les quatre clés des poids. Chaque mesure contient `metric`, `unit`, `direction` et éventuellement `target` (nombre ou `null`). Par exemple, l'autonomie peut suivre des minutes de supervision avec `direction: minimize`. Ne pas confondre le nom du sommet et le sens de sa mesure.
+Les poids, s'ils existent, portent sur les quatre axes et totalisent 1. Les mesures ne sont renseignées que lorsqu'elles sont utiles ; chaque mesure indique `metric`, `unit`, `direction` et éventuellement `target`. Une absence de donnée n'est ni un zéro ni une performance prévue.
 
-Le statut des préférences utilise `PROPOSED`, `ACCEPTED`, `REJECTED` ou `SUPERSEDED`. `ACCEPTED` requiert `decision_ref` et une décision réellement identifiable. La présence de cette référence n'est pas à elle seule une preuve d'autorité. Les valeurs inférées ou illustratives restent `PROPOSED` tant qu'aucun mandat ne permet leur adoption.
+Les préférences inférées restent `PROPOSED`. `ACCEPTED` exige une décision identifiable et sa `decision_ref` ; ce champ ne l'authentifie pas. Une modification d'un profil existant conserve l'origine des décisions inchangées.
 
-Une mesure principale par axe suffit au départ. Utiliser `target: null` lorsqu'aucune cible n'est connue. Ne pas convertir une absence de donnée en zéro, ni une préférence verbale en performance prévue.
+## Résultat court
 
-## Justification attendue
-
-Produire une note courte de conception avec les liens suivants :
-
-| Élément du contexte | Conséquence sur la méthode à engendrer | Incertitude ou condition de révision |
-| --- | --- | --- |
-| Source ou observation précise | Ce que N1 devra savoir décider, générer ou vérifier | Ce qui ferait changer ce choix |
-
-Concentrer cette note sur les éléments discriminants. Un inventaire exhaustif sans conséquence sur la génération n'est pas nécessaire.
-
-## Contrat de sortie
-
-Le profil est suffisamment précis pour engendrer un premier N1, ou ses blocages sont localisés. Les poids n'ont accordé aucun droit et n'ont effacé aucune obligation. Le besoin fonctionnel est exprimé par la valeur attendue et les critères applicables, pas par une quantité de fichiers ou de fonctionnalités accessoires.
-
-Si le profil existe déjà, produire un changement identifié plutôt que le réinterpréter silencieusement. Conserver l'origine et le statut des décisions inchangées.
+Donner le profil et les conséquences pratiques : quelle information motive quel choix de méthode, et qu'est-ce qui ferait réviser ce choix ? Ces conséquences servent à chercher les graines compatibles. Décrire les conflits non résolus sans multiplier les formulaires ni inventer un arbitrage du responsable.

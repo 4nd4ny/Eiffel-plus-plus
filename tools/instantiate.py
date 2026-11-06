@@ -13,11 +13,14 @@ import os
 from pathlib import Path
 import re
 import shutil
+import stat
 import subprocess
 import tempfile
 
+from meta_harness import SEED_CATALOG_REFERENCE
 
-VERSION = "0.2.0"
+
+VERSION = "0.3.0"
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = {
     "governance": "01-governance",
@@ -106,6 +109,7 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
                     target.write_text(render(raw.decode("utf-8"), relative, project, name), encoding="utf-8")
                 else:
                     target.write_bytes(raw)
+                target.chmod(stat.S_IMODE(path.stat().st_mode) & 0o777)
             for path in protocol:
                 relative = path.relative_to(ROOT / "protocol")
                 raw = path.read_bytes()
@@ -113,6 +117,7 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
                 target = repo / "_eiffel" / "protocol" / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(raw)
+                target.chmod(stat.S_IMODE(path.stat().st_mode) & 0o777)
             if role == "governance":
                 for path in meta_pattern:
                     relative = path.relative_to(ROOT / "meta")
@@ -121,6 +126,9 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
                     target = repo / "_eiffel" / "meta" / relative
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.write_bytes(raw)
+                    target.chmod(stat.S_IMODE(path.stat().st_mode) & 0o777)
+                (repo / "_eiffel/seeds").mkdir()
+                (repo / "_eiffel/seeds/README.md").write_text(SEED_CATALOG_REFERENCE, encoding="utf-8")
             shutil.copyfile(ROOT / "LICENSE", repo / "_eiffel" / "LICENSE")
             metadata = {
                 "template_version": VERSION,

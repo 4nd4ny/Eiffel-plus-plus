@@ -1,6 +1,6 @@
 # Charte du cabinet — {{PROJECT_NAME}}
 
-Version du métapatron : **0.2.0**. Document de départ à compléter ; aucun mandat n'est présumé accepté.
+Version du métapatron : **0.3.0**. Document de départ à compléter ; aucun mandat n'est présumé accepté.
 
 ## Mandat
 
@@ -47,7 +47,7 @@ Documenter l'état réel de chaque protection : responsable, configuration véri
 
 ## Périmètre des affirmations
 
-Une campagne examine une liaison de quatre SHA et un candidat précis. Les preuves, tests, scans, inspections et validations client conservent chacun leur portée. Le verdict ne promet ni absence universelle de bug ni sécurité absolue, et ne se transmet pas automatiquement à la production ou à une autre configuration.
+Une campagne examine les versions des quatre responsabilités et un candidat précis ; les références peuvent partager un dépôt Git et un commit. Les preuves, tests, scans, inspections et validations client conservent chacun leur portée. Le verdict ne promet ni absence universelle de bug ni sécurité absolue, et ne se transmet pas automatiquement à la production ou à une autre configuration.
 
 ## Publication
 
