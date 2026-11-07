@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-07",
+  "eiffel_version": "0.6.0",
+  "review": "AUTO_EXAMEN",
+  "source_files": 644,
+  "environment": {
+    "python": "3.14.0",
+    "node": "v20.17.0",
+    "node_required_by_product": ">=22",
+    "dependencies_present": false,
+    "product_suite": "NOT_RUN"
+  },
+  "n0_size": {
+    "files": 22,
+    "entry_words": 207,
+    "all_markdown_words": 3878
+  },
+  "product_baseline": {
+    "probes": 11,
+    "pass": 9,
+    "proposed_strengthenings_fail": 2,
+    "global_quality": "NOT_RUN"
+  },
+  "scenarios": {
+    "reference": {
+      "outcome": "KEEP_BASE",
+      "seconds": 7.003531499998644,
+      "missions": 5,
+      "selected_files": 644
+    },
+    "regression": {
+      "outcome": "KEEP_BASE",
+      "seconds": 4.883370374969672,
+      "missions": 6,
+      "selected_files": 644
+    },
+    "restauration": {
+      "outcome": "ADOPT",
+      "seconds": 4.607283874996938,
+      "missions": 6,
+      "selected_files": 644
+    },
+    "interface": {
+      "outcome": "INCONCLUSIVE",
+      "seconds": null,
+      "missions": 0,
+      "selected_files": null
+    }
+  },
+  "integrity_negative_cases_refused": 8,
+  "public_workshop_tests": 14,
+  "repository_tests": 84,
+  "timing_pairs": [
+    {
+      "legacy_diagnostic_seconds": 0.15654933301266283,
+      "new_complete_evaluation_seconds": 0.7286445840145461
+    },
+    {
+      "legacy_diagnostic_seconds": 0.15561754198279232,
+      "new_complete_evaluation_seconds": 0.7613151249825023
+    },
+    {
+      "legacy_diagnostic_seconds": 0.1672901670099236,
+      "new_complete_evaluation_seconds": 0.7589692919864319
+    }
+  ],
+  "timing_medians": {
+    "legacy_diagnostic_seconds": 0.15654933301266283,
+    "new_complete_evaluation_seconds": 0.7589692919864319
+  },
+  "timing_scope": "Même instantané et même oracle ; diagnostic direct ancien versus copie et contrôles de toute une évaluation 0.6.0. Trois paires, ordre fixe, pas un benchmark de vitesse à travail égal.",
+  "costs": {
+    "test_model_calls": 0,
+    "test_model_api_usd": 0,
+    "design_tokens": null,
+    "design_model_usd": null,
+    "machine_cost": null
+  },
+  "model_benchmark": "NOT_RUN — essais antérieurs suspendus, aucun usage de la connexion Codex.",
+  "publication": "Agrégats uniquement ; sources, oracles et sorties brutes ICO exclus."
+}

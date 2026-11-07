@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.6.0",
+  "project": {
+    "slug": "ico",
+    "name": "ICO — atelier local",
+    "brief": "Produire et examiner des changements sur une mémoire personnelle locale et des réponses sourcées."
+  },
+  "preferences": {
+    "status": "PROPOSED",
+    "source": "Demandes de minimalité, contrats, rôles, skills et justifications exprimées par l’opérateur.",
+    "priorities": [
+      "Préserver les données et les contrats avant de sélectionner un gain.",
+      "Charger une compétence au moment de son emploi."
+    ]
+  },
+  "constraints": [
+    {
+      "id": "REQ-0001",
+      "statement": "Travailler sur des copies identifiées, conserver la référence et les originaux.",
+      "verification": "Empreintes des arbres complets avant et après ; destinations neuves."
+    },
+    {
+      "id": "REQ-0002",
+      "statement": "Séparer obligations, propositions et couverture indisponible.",
+      "verification": "Contrat du lot figé et inventaire exact des critères du vérificateur."
+    },
+    {
+      "id": "REQ-0003",
+      "statement": "Relier quatre responsabilités, compétences et remises à des décisions utilisables.",
+      "verification": "Mission et passation avec empreinte conservée ; examen sémantique distinct."
+    }
+  ],
+  "authority": {
+    "mandate": "Régénération, essais locaux et publication d’un exemple partageable autorisés. Aucune adoption produit ou politique d’entreprise inventée.",
+    "autonomous_actions": [
+      "Copies, génération, essais locaux sans accès aux comptes et corrections réversibles dans le lot."
+    ],
+    "human_decisions": [
+      "Nouvelles obligations métier, ouverture de données privées, déploiement ou certification indépendante non mandatés."
+    ]
+  },
+  "unknowns": [
+    "Politique métier de déploiement, moyens d’audit indépendants et budget chiffré non fournis."
+  ],
+  "generation_budget": {
+    "max_candidates": 1,
+    "max_iterations": 2,
+    "max_tokens": null
+  }
+}

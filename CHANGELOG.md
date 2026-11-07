@@ -6,6 +6,7 @@
 - Champ `design_rationale` requis en 0.6.0, contrôlé et conservé avec les captures, matérialisations et missions. La présence du document ne certifie pas la pertinence de ses arguments.
 - Prompts de génération, qualification et adaptation reliés à cette note ; exemples N1/N0 distincts et documentation des décisions utiles du produit sous N0. Aucun journal exhaustif ni approbation supplémentaire imposé.
 - Lecture des anciens paquets et graines conservée ; aucune justification historique inventée.
+- Exemple de réalisation ICO : N2 → N1 → N0, compétences sélectionnées selon le lot, justifications, gel du candidat complet et sélection conservatrice. Cas fictif et tests publics ; code et preuves détaillées du produit exclus. Observations de robustesse mécanique, sans benchmark LLM ni changement du protocole.
 
 ## 0.5.0 — 2026-11-07
 

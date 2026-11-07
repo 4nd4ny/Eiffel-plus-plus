@@ -1,0 +1,7 @@
+{
+  "criteria": ["invalid-input", "preserve-count"],
+  "scope": "Cas synthétique de normalisation ; ce n’est pas le code ICO.",
+  "score_meaning": "Préférence fictive de minuscules, 0 ou 1 ; ne compense aucune obligation.",
+  "authority": "Exemple fictif pour qualifier l’atelier, sans acceptation métier réelle.",
+  "excluded": "Aucune conclusion sur le produit ICO ou la performance d’un LLM."
+}

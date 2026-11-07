@@ -1,0 +1,249 @@
+{
+  "schema_version": "0.6.0",
+  "kind": "project-harness",
+  "level": 0,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "generator": "N1 GENERATE.md et generate.py, application explicite par le même assistant ; aucune génération indépendante.",
+  "layout": "single-repo",
+  "entrypoint": "AGENTS.md",
+  "responsibilities": {
+    "governance": "roles/governance/AGENTS.md",
+    "stbl": "roles/stbl/AGENTS.md",
+    "audit": "roles/audit/AGENTS.md",
+    "product": "roles/product/AGENTS.md"
+  },
+  "capabilities": [
+    {
+      "role": "governance",
+      "task": "Au démarrage d’une demande de changement ou d’un diagnostic.",
+      "skill": "orchestrer-lot"
+    },
+    {
+      "role": "stbl",
+      "task": "Quand un mandat doit devenir des comportements contrôlables.",
+      "skill": "specifier-contrat"
+    },
+    {
+      "role": "audit",
+      "task": "Avant la modification ou lorsque le périmètre de vérification change.",
+      "skill": "planifier-audit"
+    },
+    {
+      "role": "product",
+      "task": "Quand un contrat concerne le moteur ICO, ses formats, personnes, fournisseurs, API, CLI ou synchronisation.",
+      "skill": "modifier-moteur"
+    },
+    {
+      "role": "product",
+      "task": "Quand le lot affecte un parcours, les sources affichées ou l’accessibilité.",
+      "skill": "modifier-interface"
+    },
+    {
+      "role": "audit",
+      "task": "Lorsqu’un candidat complet et son empreinte ont été remis.",
+      "skill": "verifier-candidat"
+    },
+    {
+      "role": "governance",
+      "task": "Quand le rapport de vérification et ses limites sont disponibles.",
+      "skill": "decider-livraison"
+    },
+    {
+      "role": "audit",
+      "task": "Vérifier tout ICO, son interface et ses interactions externes",
+      "unavailable": "Dépendances, navigateurs, données de qualification et environnements externes non fournis dans cet exemple ; ne pas les remplacer par les onze sondes."
+    }
+  ],
+  "components": [
+    {
+      "id": "orchestrer-lot",
+      "kind": "skill",
+      "path": "skills/orchestrer-lot/SKILL.md",
+      "trigger": "Au démarrage d’une demande de changement ou d’un diagnostic.",
+      "inputs": [
+        "request"
+      ],
+      "outputs": [
+        "mandate"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "stbl"
+      ]
+    },
+    {
+      "id": "specifier-contrat",
+      "kind": "skill",
+      "path": "skills/specifier-contrat/SKILL.md",
+      "trigger": "Quand un mandat doit devenir des comportements contrôlables.",
+      "inputs": [
+        "mandate"
+      ],
+      "outputs": [
+        "contract"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "audit"
+      ]
+    },
+    {
+      "id": "planifier-audit",
+      "kind": "skill",
+      "path": "skills/planifier-audit/SKILL.md",
+      "trigger": "Avant la modification ou lorsque le périmètre de vérification change.",
+      "inputs": [
+        "contract"
+      ],
+      "outputs": [
+        "plan"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "governance",
+        "product"
+      ]
+    },
+    {
+      "id": "modifier-moteur",
+      "kind": "skill",
+      "path": "skills/modifier-moteur/SKILL.md",
+      "trigger": "Quand un contrat concerne le moteur ICO, ses formats, personnes, fournisseurs, API, CLI ou synchronisation.",
+      "inputs": [
+        "contract",
+        "plan"
+      ],
+      "outputs": [
+        "candidate",
+        "rationale"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "audit"
+      ]
+    },
+    {
+      "id": "modifier-interface",
+      "kind": "skill",
+      "path": "skills/modifier-interface/SKILL.md",
+      "trigger": "Quand le lot affecte un parcours, les sources affichées ou l’accessibilité.",
+      "inputs": [
+        "contract",
+        "plan"
+      ],
+      "outputs": [
+        "candidate",
+        "rationale"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "audit"
+      ]
+    },
+    {
+      "id": "verifier-candidat",
+      "kind": "skill",
+      "path": "skills/verifier-candidat/SKILL.md",
+      "trigger": "Lorsqu’un candidat complet et son empreinte ont été remis.",
+      "inputs": [
+        "candidate",
+        "rationale"
+      ],
+      "outputs": [
+        "report"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "governance"
+      ]
+    },
+    {
+      "id": "decider-livraison",
+      "kind": "skill",
+      "path": "skills/decider-livraison/SKILL.md",
+      "trigger": "Quand le rapport de vérification et ses limites sont disponibles.",
+      "inputs": [
+        "report"
+      ],
+      "outputs": [
+        "decision"
+      ],
+      "dependencies": [
+        "CONTRAT.md",
+        "ROLES.md",
+        "ROUTAGE.md",
+        "QUALITE.md",
+        "DEMARRER.md",
+        "tools/workshop.py"
+      ],
+      "limitations": [
+        "Auto-examen possible ; sémantique et autorisations à examiner, empreintes non authentifiantes."
+      ],
+      "handoff_to": [
+        "product"
+      ]
+    }
+  ],
+  "design_rationale": "DESIGN.md"
+}
