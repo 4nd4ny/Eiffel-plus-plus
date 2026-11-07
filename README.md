@@ -37,6 +37,8 @@ Une adaptation part d'un problème référencé, d'une hypothèse et d'un effet 
 
 Voir le [parcours d'adaptation observée](protocol/ADAPTATION.md) et son [exemple fictif](examples/observed-adaptation/README.md). Les captures historiques restent lisibles. Les outils vérifient les références et la cohérence des déclarations ; ils ne les authentifient pas.
 
+Des [essais locaux explicites](docs/LOCAL_TRIALS.md) peuvent observer le lancement d'un composant Python et comparer des artefacts avec un vérificateur commun. Le sélecteur conserve une référence valide en l'absence de gain et refuse de remettre une sortie sans contrôle concluant. Ces mécanismes ont des [tests locaux](docs/VALIDATION_0_4.md), sans gain général de productivité revendiqué.
+
 ## Les niveaux et les responsabilités sont des moyens
 
 N0 est le harnais de travail. **N1**, un générateur spécialisé de harnais, devient utile si sa réutilisation ou ses adaptations récurrentes le justifient. **N2**, le patron de conception, aide à produire directement N0 ou à concevoir N1. Une chaîne N2 → N1 → N0 reste possible ; elle n'est plus obligatoire.

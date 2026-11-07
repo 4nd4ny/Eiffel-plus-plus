@@ -7,6 +7,7 @@
 - Fiches d'expérience facultatives conservant conditions d'emploi, échecs, référence de comparaison et coûts inconnus, emportées par la capture existante.
 - Trois recettes originales attribuées à Harness², avec statut `source-inspected` ; aucun runtime ou prompt tiers importé.
 - Lecture des paquets 0.2.0/0.3.0 et des graines 0.3.0 conservée. Les nouveaux champs ne prouvent ni activation ni efficacité.
+- Après essais locaux, ajout d'un lanceur instrumenté pour composants Python et d'une sélection conservatrice incluant la référence. Les copies sont liées à leur évaluation ; états inconnus et échecs restent distincts. Les procédures textuelles ne reçoivent pas de preuve d'activation automatique.
 
 ## Publication des graines ICO — 2026-11-06
 

@@ -51,3 +51,5 @@ La commande conserve le paquet et sa fiche avec une empreinte ; elle ne publie r
 Une observation favorable ne garantit pas le transfert. Réexaminer les conditions au prochain emploi. Conserver les échecs, les coûts et les contre-indications ; éviter les doublons sans différence utile. La suppression d'une procédure inutile est une amélioration possible.
 
 Arrêter les révisions sans information nouvelle. Un changement d'agent, de séance ou de niveau ne recrée pas le budget. Ne lancer une comparaison que si elle peut trancher une question encore pertinente ; ne présenter aucune attente comme un gain observé.
+
+Conserver la sortie de référence parmi les options lorsqu'elle satisfait encore les critères applicables. Une adaptation sans gain établi ne l'emporte pas par sa seule nouveauté. Ne jamais réutiliser une référence invalide, un contrôle périmé ou un artefact différent de celui qui a été évalué. Vérifier toute composition nouvelle avant de la remettre.
