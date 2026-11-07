@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "problem": {
+    "observation": "Scénario fictif : colonne renommée.",
+    "hypothesis": "Un contrôle spécialisé pourrait détecter la divergence.",
+    "expected_change": "Détecter une colonne différente du besoin.",
+    "evidence": [
+      "SITUATION.md"
+    ]
+  },
+  "context": {
+    "applies_when": [
+      "Export CSV à format strict."
+    ],
+    "avoid_when": [
+      "Autre schéma CSV."
+    ]
+  },
+  "reference_run": "base",
+  "runs": [
+    {
+      "id": "base",
+      "status": "NOT_RUN",
+      "outcome": "Exemple non exécuté.",
+      "evidence": [],
+      "costs": {
+        "seconds": null,
+        "tokens": null,
+        "usd": null
+      }
+    },
+    {
+      "id": "candidate",
+      "status": "NOT_RUN",
+      "outcome": "Exemple non exécuté.",
+      "evidence": [],
+      "costs": {
+        "seconds": null,
+        "tokens": null,
+        "usd": null
+      }
+    }
+  ],
+  "decision": {
+    "outcome": "INCONCLUSIVE",
+    "selected_run": null,
+    "reason": "Aucun essai de ce scénario.",
+    "limitations": [
+      "Illustration du format seulement."
+    ]
+  }
+}

@@ -72,3 +72,7 @@ L'[exemple local](../examples/forge-local/README.md) est une composition illustr
 Le 6 novembre 2026, Christian a donné dans la conversation Eiffel++ cette instruction : « Tu peux rendre public le harnais du projet privé ICO. » Les deux fiches de recettes sont publiées sur cette base. Le dépôt source conserve sa visibilité privée ; les références au commit `988c58c6376ef764c4b4a5e1e9af288703b3e84b` indiquent les fichiers examinés sans garantir leur accessibilité publique.
 
 Cette publication porte sur les recettes génériques dérivées des instructions et des suggestions d’amélioration du harnais. Les observations métier, données, code produit et résultats d’audit privés ne sont pas incorporés. La licence MIT et son attribution sont conservées dans les fiches. Leur statut reste `source-inspected`, sans résultat d’essai ni co-construction fictive.
+
+## Harness² — adaptation à partir des exécutions
+
+Sources examinées le 7 novembre 2026 : [article arXiv:2610.14224v1](https://arxiv.org/abs/2610.14224v1), [dépôt Google à la révision 6868817](https://github.com/google-research/harness2/tree/6868817518876de8fd170c6a8354daca273b6191). Les fichiers `core/recursion.py`, `core/library.py`, `core/tree.py`, `core/selection.py`, `core/ledger.py` et `core/prompts.py`, sous `harness2/`, documentent les mécanismes repris. Licence Apache-2.0. Les trois nouvelles graines sont des synthèses originales, sans code ni prompt complet copié. Les scores publiés ne sont pas des résultats Eiffel++.

@@ -1,6 +1,6 @@
 # Forger un harnais à partir des spécifications
 
-**Point d'entrée du prototype Eiffel++ 0.3.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
+**Point d'entrée du prototype Eiffel++ 0.4.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
 
 ## Mission
 

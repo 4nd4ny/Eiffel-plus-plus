@@ -59,3 +59,7 @@ Les champs structurés facilitent la recherche et la discussion. Ils ne sont ni 
 Conserver les versions qui expliquent les résultats ; créer une nouvelle instance lorsque les changements doivent être comparables. Ajouter les situations d'échec aux contre-indications. Réutiliser une graine seulement dans un contexte compatible, et réduire le harnais lorsque son coût ne se justifie plus.
 
 Le [schéma](schema.json) décrit les fiches. Le [rapport de validation](../docs/VALIDATION.md) indique ce qui a effectivement été exécuté sur cette base et ses outils.
+
+## Recettes Harness²
+
+Trois recettes publiques de synthèse complètent le catalogue (12 fiches) : [adaptation comparative](records/harness2-contrastive-adaptation.json), [composants spécialisés](records/harness2-specialized-components.json) et [expériences situées](records/harness2-experience-components.json). Leur statut `source-inspected` reste distinct de toute efficacité locale. Le [format optionnel de composants et expériences](../protocol/ADAPTATION.md) permet de conserver le travail réalisé dans les captures futures.

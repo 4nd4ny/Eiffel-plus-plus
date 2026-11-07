@@ -25,8 +25,8 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.3.0"
-SUPPORTED_VERSIONS = ("0.2.0", VERSION)
+VERSION = "0.4.0"
+SUPPORTED_VERSIONS = ("0.2.0", "0.3.0", VERSION)
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = ("governance", "stbl", "audit", "product")
 AXES = ("speed", "economy", "scope", "autonomy")
@@ -320,6 +320,10 @@ def _validate_bundle(files: dict[str, bytes]) -> tuple[str, dict[str, Any], dict
                     _file(files, path + "/" + required, role)
         else:
             raise ValueError("layout doit être single-repo ou four-repos.")
+    # Contrats optionnels, examinés comme données ; jamais exécutés par check.
+    from components import validate_components, validate_experience
+    validate_components(files, manifest)
+    validate_experience(files, manifest)
     return name, manifest, profile
 
 

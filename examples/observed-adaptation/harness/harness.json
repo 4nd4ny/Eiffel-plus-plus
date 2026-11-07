@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.4.0",
+  "kind": "project-harness",
+  "level": 0,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "generator": "Exemple fictif, aucune exécution de génération revendiquée.",
+  "layout": "single-repo",
+  "entrypoint": "AGENTS.md",
+  "responsibilities": {
+    "governance": "AGENTS.md",
+    "stbl": "AGENTS.md",
+    "audit": "AGENTS.md",
+    "product": "AGENTS.md"
+  },
+  "components": [
+    {
+      "id": "csv-procedure",
+      "kind": "procedure",
+      "path": "procedures/csv.md",
+      "trigger": "Livraison CSV avec colonnes name et score.",
+      "inputs": [
+        "Besoin CSV et fichier produit."
+      ],
+      "outputs": [
+        "Contrôle du format demandé."
+      ],
+      "dependencies": [
+        "scripts/verify_csv.py"
+      ],
+      "limitations": [
+        "Ne vérifie pas l’exactitude métier des données."
+      ]
+    },
+    {
+      "id": "csv-check",
+      "kind": "script",
+      "path": "scripts/verify_csv.py",
+      "trigger": "Après écriture du CSV demandé.",
+      "inputs": [
+        "Chemin CSV passé en argument."
+      ],
+      "outputs": [
+        "Code zéro si le format est admis, erreur sinon."
+      ],
+      "dependencies": [],
+      "limitations": [
+        "Contrôle illustratif limité à deux colonnes et scores finis."
+      ]
+    }
+  ],
+  "experience": "EXPERIENCE.json"
+}

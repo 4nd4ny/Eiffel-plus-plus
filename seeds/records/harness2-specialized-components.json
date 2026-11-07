@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.4.0",
+  "kind": "external-pattern",
+  "source": {
+    "url": "https://github.com/google-research/harness2",
+    "revision": "6868817518876de8fd170c6a8354daca273b6191",
+    "paths": [
+      "harness2/core/tree.py",
+      "harness2/core/prompts.py",
+      "harness2/core/recursion.py",
+      "harness2/core/spec.py",
+      "LICENSE"
+    ],
+    "license": "Apache-2.0 pour les sources examinées ; recette originale de synthèse.",
+    "visibility": "public",
+    "reviewed_on": "2026-11-07",
+    "discovered_via": "Dépôt indiqué par l'utilisateur et article arXiv:2610.14224v1."
+  },
+  "lineage": {
+    "parents": []
+  },
+  "publication": {
+    "status": "public",
+    "contains_private_material": false
+  },
+  "review": {
+    "status": "unreviewed",
+    "decision_ref": null
+  },
+  "id": "harness2-specialized-components",
+  "title": "Procédures spécialisées et auxiliaires déterministes",
+  "summary": "Choisir une procédure à la demande ou un auxiliaire exécutable pour un problème identifié, avec dépendances et limites explicites.",
+  "context": {
+    "suitable_for": [
+      "Harnais comportant plusieurs procédures rares, scripts ou intégrations.",
+      "Échecs liés à un outil mal utilisé, une dépendance absente ou une procédure jamais chargée."
+    ],
+    "avoid_when": [
+      "Quelques instructions courtes couvrent déjà tout le besoin.",
+      "Le runtime ne fournit pas le mécanisme d'activation annoncé.",
+      "Le composant ajoute plus d'entretien et de recherche qu'il n'évite de travail."
+    ],
+    "required_capabilities": [
+      "Décrire les capacités réelles du runtime et les chemins inclus dans le paquet.",
+      "Fournir un déclencheur discriminant et observer le chargement de la procédure.",
+      "Vérifier références et syntaxe puis un cas de fonctionnement pertinent.",
+      "Conserver les permissions essentielles hors du contrôle de l'optimiseur."
+    ],
+    "cost_notes": [
+      "Le contenu chargé à la demande évite de répéter la procédure complète, mais l'index et la recherche ont un coût.",
+      "Un script peut remplacer un travail de raisonnement répétitif ; son développement et ses vérifications doivent rester dans le bilan.",
+      "Un contrôle autour des appels d'outils exige une intégration effective ; un fichier de règles ne l'installe pas."
+    ]
+  },
+  "recipe": [
+    "Partir d'une opération ou d'un défaut observé et choisir le plus petit composant capable d'y répondre.",
+    "Réserver les instructions permanentes aux règles courtes réellement communes ; fournir un index pour les procédures spécialisées.",
+    "Déclarer pour chaque composant son déclencheur, ses entrées, sorties, dépendances et limites.",
+    "Vérifier l'existence de tout auxiliaire référencé et sa compatibilité avec les outils disponibles.",
+    "Consigner séparément les observations de fonctionnement et d’efficacité, les coûts et les limites ; aucune qualité déduite du seul format."
+  ],
+  "operator_questions": [
+    "Quelle opération est assez répétitive ou fragile pour justifier un auxiliaire ?",
+    "Comment constatera-t-on que le composant a réellement été utilisé ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "tree.py contrôle la surface de fichiers, les descriptions de compétences, leur mention dans le contexte initial et certaines références de scripts.",
+      "recursion.py prévoit une tentative de réparation d'une proposition invalide puis un retour au harnais de départ.",
+      "Les prompts privilégient les procédures à la demande et les auxiliaires avant l'accumulation de texte permanent."
+    ],
+    "limitations": [
+      "Recette issue des sources, sans gain Eiffel++ mesuré.",
+      "Les contrôles de structure ne prouvent pas l’exécution.",
+      "Complète la graine de contexte progressif déjà présente dans Eiffel++."
+    ],
+    "runs": []
+  }
+}

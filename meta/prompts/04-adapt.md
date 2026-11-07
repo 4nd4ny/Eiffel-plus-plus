@@ -16,6 +16,8 @@
 
 Une nouvelle préférence n'impose pas une nouvelle organisation. Distinguer l'observation de son explication supposée. Plusieurs relances du même échec ne sont pas plusieurs confirmations indépendantes. Une erreur rare mais grave peut compter davantage qu'un inconfort fréquent.
 
+Pour une adaptation motivée par l'exécution, conserver l'observation et sa référence, formuler une hypothèse et l'effet attendu avant l'essai. Préparer le plus petit changement pertinent. Comparer à la version de départ avec les mêmes informations utiles ; conserver aussi les régressions et l'absence de différence. Les [composants et fiches d'expérience](../../protocol/ADAPTATION.md) peuvent être joints au paquet, sans imposer un essai à toute modification documentaire.
+
 ## Co-construire la révision
 
 Montrer à l'opérateur le changement concret, sa raison, les effets attendus et les conséquences sur son travail. Solliciter les choix qui ne sont pas déjà délégués ; appliquer les corrections autorisées. Consigner les contributions réellement reçues et les inconnues restantes.
