@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Paquet N0 de harnais de projet Eiffel++ 0.5.0",
+  "title": "Paquet N0 de harnais de projet Eiffel++ 0.6.0",
   "description": "Un dépôt peut accueillir les quatre responsabilités ; four-repos conserve l’ancien format. Les fichiers référencés doivent exister. generator est une provenance descriptive, jamais une adresse chargée automatiquement. Ces contraintes structurelles ne qualifient pas la méthode.",
   "type": "object",
   "required": [
@@ -17,7 +17,8 @@
         "0.2.0",
         "0.3.0",
         "0.4.0",
-        "0.5.0"
+        "0.5.0",
+        "0.6.0"
       ]
     },
     "kind": {
@@ -106,6 +107,17 @@
       "type": "string",
       "minLength": 1,
       "description": "Fichier JSON local conforme à experience.schema.json ; déclarations non authentifiées."
+    },
+    "design_rationale": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "pattern": "\\.md$"
+        }
+      ],
+      "description": "Note de conception pour le lecteur humain, produite avec le paquet ; présence et conservation contrôlées, arguments à examiner."
     }
   },
   "allOf": [
@@ -144,7 +156,8 @@
             "enum": [
               "0.3.0",
               "0.4.0",
-              "0.5.0"
+              "0.5.0",
+              "0.6.0"
             ]
           }
         },
@@ -162,6 +175,23 @@
     },
     {
       "$ref": "skills.schema.json"
+    },
+    {
+      "if": {
+        "required": [
+          "schema_version"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": "0.6.0"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "design_rationale"
+        ]
+      }
     }
   ],
   "$defs": {

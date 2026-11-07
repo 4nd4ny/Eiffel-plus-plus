@@ -226,6 +226,13 @@ class SkillTests(unittest.TestCase):
         write_json(self.bundle/'harness.json',self.manifest)
         shutil.rmtree(self.bundle/'skills/filter-rows')
         (self.bundle/'AGENTS.md').write_text('Examen seul : Produit identifie le candidat fourni, Audit utilise check-rows, Gouvernance reçoit le rapport. SPEC.md reste le contrat.\n')
+        (self.bundle/'DESIGN.md').write_text(
+            '# Choix du lot d’examen seul\n\n'
+            'Le candidat est fourni : produire à nouveau ne répond pas au besoin. '
+            'Produit identifie le fichier reçu et Audit conserve check-rows ; filter-rows est retiré. '
+            'SPEC.md reste le contrat, avec les mêmes lignes, ordre et doublons dus. '
+            'Une demande de production réintroduirait sa compétence et sa remise, puis réviserait '
+            'capabilities, AGENTS.md et cette note. Aucun gain de coût ni audit indépendant n’est établi.\n')
         self.assertEqual(skills.catalogue(self.bundle,'product')['skills'],[])
         self.assertEqual(len(skills.catalogue(self.bundle,'audit')['skills']),1)
         order,sha=self.prepare('audit','check-rows','audit',self.inputs/'wrong.csv')

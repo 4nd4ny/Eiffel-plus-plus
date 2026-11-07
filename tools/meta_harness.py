@@ -25,8 +25,8 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.5.0"
-SUPPORTED_VERSIONS = ("0.2.0", "0.3.0", "0.4.0", VERSION)
+VERSION = "0.6.0"
+SUPPORTED_VERSIONS = ("0.2.0", "0.3.0", "0.4.0", "0.5.0", VERSION)
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = ("governance", "stbl", "audit", "product")
 AXES = ("speed", "economy", "scope", "autonomy")
@@ -263,6 +263,36 @@ def _file(files: dict[str, bytes], value: Any, label: str) -> str:
     return value
 
 
+def design_rationale(files: dict[str, bytes], manifest: dict[str, Any]) -> dict[str, Any] | None:
+    """Identifier une note explicative ; ne pas évaluer la qualité de ses arguments."""
+    if "design_rationale" not in manifest:
+        if manifest["schema_version"] == "0.6.0":
+            raise ValueError("design_rationale : note de conception requise pour N1 et N0 en 0.6.0.")
+        return None
+    path = _file(files, manifest["design_rationale"], "design_rationale")
+    if not path.endswith(".md"):
+        raise ValueError("design_rationale doit désigner un document Markdown.")
+    instructions = set(manifest.get("prompts", [])) | set(manifest.get("responsibilities", {}).values())
+    instructions.update(p + "/AGENTS.md" for p in manifest.get("repositories", {}).values())
+    instructions.update(c["path"] for c in manifest.get("components", []) if c["kind"] in ("skill", "procedure"))
+    if "output_contract" in manifest:
+        instructions.add(manifest["output_contract"])
+    if path in instructions or path == manifest.get("entrypoint"):
+        raise ValueError("La note de conception doit être distincte des instructions exécutées.")
+    result = {"path": path, "sha256": digest(files[path]), "review_status": "NOT_RUN"}
+    if manifest["level"] == 0:
+        location = {"role": "governance", "path": path}
+        if manifest.get("layout", "four-repos") == "four-repos":
+            owners = [(role, prefix) for role, prefix in manifest["repositories"].items()
+                      if path.startswith(prefix + "/")]
+            if not owners:
+                raise ValueError("design_rationale doit appartenir à une racine de rôle pour être matérialisée.")
+            role, prefix = owners[0]
+            location = {"role": role, "path": path[len(prefix) + 1:]}
+        result["location"] = location
+    return result
+
+
 def _validate_bundle(files: dict[str, bytes]) -> tuple[str, dict[str, Any], dict[str, Any]]:
     names = [name for name in ("meta-harness.json", "harness.json") if name in files]
     if len(names) != 1:
@@ -326,6 +356,7 @@ def _validate_bundle(files: dict[str, bytes]) -> tuple[str, dict[str, Any], dict
     validate_experience(files, manifest)
     from skills import validate_capabilities
     validate_capabilities(files, manifest)
+    design_rationale(files, manifest)
     return name, manifest, profile
 
 
@@ -338,6 +369,7 @@ def check_bundle(bundle: Path) -> dict[str, Any]:
         "layout": manifest.get("layout", "four-repos") if manifest["level"] == 0 else None,
         "declared_status": manifest["status"], "structure_status": "PASS",
         "semantic_status": "NOT_RUN", "authority_status": "NOT_RUN",
+        "design_rationale": design_rationale(files, manifest),
         "manifest_sha256": digest(files[name]), "file_count": len(files), "note": NOTICE,
     }
 
@@ -552,11 +584,13 @@ def materialize(bundle: Path, destination: Path, git_init: bool = False,
                 "binding_status": "UNBOUND", "repositories": refs,
                 "declared_harness_status": manifest["status"],
                 "structure_status": "PASS", "semantic_status": "NOT_RUN", "authority_status": "NOT_RUN",
+                "design_rationale": design_rationale(files, manifest),
                 "source_sha256": source_hashes, "source_modes": source_modes,
                 "generator_reference": manifest["generator"],
                 "generator_snapshot_present": generator_files is not None,
                 "generator_snapshot_location": {"role": "governance", "path": "_eiffel/meta-harness"} if generator_files is not None else None,
                 "generator_snapshot_sha256": generator_digest,
+                "generator_design_rationale": design_rationale(generator_files, generator) if generator_files is not None else None,
                 "pattern_snapshot_present": bool(pattern_files),
                 "pattern_snapshot_location": {"role": "governance", "path": "_eiffel/meta"} if pattern_files else None,
                 "pattern_snapshot_version": VERSION if pattern_files else None,

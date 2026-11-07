@@ -1,6 +1,6 @@
 # Concevoir la méthode depuis les spécifications
 
-Eiffel++ 0.5.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
+Eiffel++ 0.6.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
 
 ## Deux objets à spécifier
 
@@ -64,3 +64,5 @@ python3 tools/meta_harness.py materialize ../mon-harnais --output ../projet --gi
 La préparation, le contrôle structurel et la copie ne lancent pas de modèle, n'installent pas les contrôles prescrits et ne décident pas de l'adoption. L'archive d'une source disponible n'est pas une preuve qu'elle a engendré historiquement le candidat.
 
 En 0.5.0, la caractérisation identifie les capacités utiles, la génération fournit les skills nécessaires et leurs attributions, la qualification éprouve leurs contrats et passations, et l'adaptation réexamine les dépendances touchées. Voir le [contrat des capacités](../protocol/SKILLS.md). Un plan peut retenir une méthode native ou signaler une capacité indisponible ; quatre rôles ne signifient pas quatre skills.
+
+Le [guide des notes de conception](../protocol/DESIGN.md) rend chaque génération explicable et adaptable par l’humain. [DESIGN.md](DESIGN.md) justifie le patron N2 ; les nouveaux paquets N1 et N0 livrent leur propre note avec leurs instructions.

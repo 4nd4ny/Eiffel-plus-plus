@@ -41,3 +41,5 @@ Remettre l'identité exacte du candidat, ses changements, les résultats observ�
 Respecter les limites d'autorité et le budget du mandat. Si les tentatives n'apportent plus d'information ou si une décision métier bloque, arrêter la boucle concernée et transmettre un état reproductible accompagné de la question précise à arbitrer. Ne pas déclarer le travail accepté à la place de l'autorité compétente.
 
 Mobiliser les skills attribués au lot après lecture de leurs préconditions. Produire les pièces attendues pour le rôle suivant, sans modifier les contrôles indépendants. Une capacité indisponible ne devient pas acquise par déclaration.
+
+Lors d’une livraison, documenter les décisions de conception du produit réellement affectées : besoin, choix, compromis, contrôle et condition de révision. Réutiliser la documentation existante ; ne pas recopier la justification du harnais ni produire un journal de chaque action.

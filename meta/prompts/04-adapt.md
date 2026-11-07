@@ -24,6 +24,8 @@ Pour une adaptation motivée par l'exécution, conserver l'observation et sa ré
 
 Montrer à l'opérateur le changement concret, sa raison, les effets attendus et les conséquences sur son travail. Solliciter les choix qui ne sont pas déjà délégués ; appliquer les corrections autorisées. Consigner les contributions réellement reçues et les inconnues restantes.
 
+Mettre à jour la note de conception dans la même version que les instructions ou scripts modifiés : déclencheur métier, choix révisé, conséquence, compromis et contrôles à reprendre. Conserver les motifs inchangés par référence ; préserver les décisions antérieures dans l’historique. Une note ne donne pas le droit de modifier le besoin ou les critères.
+
 Garder la version de départ et les résultats associés. Préciser le devenir du travail en cours. À contrat inchangé, remplacer une implémentation sans exiger davantage de ses appelants ni réduire les garanties dues. Un changement de besoin ou de critère relève de son autorité, avec révision des contrôles concernés. Une règle nouvelle n'est pas appliquée rétroactivement à un ancien rapport. Un profil révisé et les paquets qui l'emploient doivent rester cohérents ; si N1 est archivé avec N0, leurs profils correspondent.
 
 Pour une écriture partagée, utiliser un mécanisme conditionnel disponible qui vérifie la révision attendue. Calculer deux hashes dans un prompt ne remplace pas une opération atomique. En cas de conflit, relire et réévaluer la partie concernée.

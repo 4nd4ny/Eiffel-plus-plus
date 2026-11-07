@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.5.0",
+  "schema_version": "0.6.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
@@ -11,7 +11,7 @@
     "ADAPT.md"
   ],
   "output_contract": "OUTPUT.md",
-  "source_pattern": "Eiffel++ 0.5.0 ; exemple fictif rédigé avec les prompts N2, sans génération LLM indépendante.",
+  "source_pattern": "Eiffel++ 0.6.0 ; exemple fictif rédigé avec les prompts N2, sans génération LLM indépendante.",
   "capabilities": [
     {
       "role": "governance",
@@ -82,5 +82,6 @@
         "governance"
       ]
     }
-  ]
+  ],
+  "design_rationale": "DESIGN.md"
 }

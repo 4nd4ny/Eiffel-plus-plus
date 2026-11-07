@@ -20,6 +20,12 @@ Rendre visibles les choix sur lesquels une contribution humaine changerait la m�
 
 Conserver la référence des arbitrages. Un candidat automatique ne devient pas « co-construit » du seul fait qu'un champ le dit. Une préférence exprimée par l'opérateur ne démontre pas que le harnais fonctionne mieux.
 
+## Livrer la justification avec la génération
+
+Pour chaque paquet produit, rédiger sa [note de conception](../../protocol/DESIGN.md) avec les instructions et scripts, puis référencer son chemin dans `design_rationale`. Rendre la note accessible depuis le point d’entrée. Partir des choix réellement retenus et de leurs sources, sans reconstituer un journal de délibération. Relier les décisions importantes aux qualités de génie logiciel qu’elles servent, à une alternative pertinente, aux contreparties et aux observations disponibles.
+
+Donner à l’humain des points d’adaptation concrets : si telle exigence métier change, quels contrats, fichiers, rôles, skills et contrôles revoir, et quelle décision ou information est nécessaire ? Conserver les inconnues ; ne pas inventer de politique d’entreprise ou présenter un bénéfice attendu comme mesuré. N1 explique ce qui est stable et paramétrable ; N0 explique le lot effectivement livré. Une reprise de N0 met à jour ses motifs affectés au lieu de recopier ceux de N1.
+
 ## Produire N0
 
 Un point d'entrée doit permettre de commencer le lot autorisé : contrat de référence, périmètre de modification, contrôle associé et condition de remise. Laisser le choix d'implémentation au produit. Référencer les obligations existantes au lieu de les recopier dans chaque consigne. Les moyens encore à construire restent explicites ; ne pas renvoyer toute la conception au prochain agent.
@@ -28,7 +34,7 @@ Traduire la revue [qualité](../QUALITY.md) en obligations et contrôles pertine
 
 Pour un problème identifié, préférer une procédure spécialisée avec déclencheur ou un auxiliaire déterministe à l'accumulation de consignes permanentes. Les champs facultatifs `components` et `experience` décrits dans [l'adaptation observée](../../protocol/ADAPTATION.md) permettent de conserver les dépendances, limites et observations. Ne pas inventer une expérience pour compléter le paquet.
 
-Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.5.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
+Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.6.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
 
 Dans le point d’entrée, expliquer comment choisir la compétence, préparer ses entrées, examiner sa remise et poursuivre ou arrêter. Pour les missions instrumentées, le coordinateur conserve l’empreinte renvoyée par `skills.py prepare` et la transmet à verify/handoff. Une modification du plan ou des contrôles impose une nouvelle qualification ; ne pas recalculer l’empreinte pour faire disparaître STALE. Ne lancer ni quatre processus par défaut ni des boucles réinitialisant le budget.
 
@@ -38,11 +44,12 @@ Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. L
 
 ```json
 {
-  "schema_version": "0.5.0",
+  "schema_version": "0.6.0",
   "kind": "project-harness",
   "level": 0,
   "status": "PROPOSED",
   "profile": "profile.json",
+  "design_rationale": "DESIGN.md",
   "generator": "Conception directe ; référence du brief et des graines à renseigner",
   "layout": "single-repo",
   "entrypoint": "AGENTS.md",
@@ -61,6 +68,8 @@ Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. L
 }
 ```
 
+La note `DESIGN.md` de cet exemple de format reste à rédiger selon les décisions réelles ; aucun argument générique prérempli ne la remplace. En `four-repos`, placer la note dans une racine copiée, par exemple `governance/DESIGN.md`.
+
 Les fichiers indiqués doivent exister et contenir les instructions ou références correspondantes. Quatre chemins valides, même identiques, ne prouvent pas que les responsabilités sont organisées. Adapter les noms au résultat ; trois fichiers ne sont pas un objectif. Copier le profil utilisé et renseigner les sources réellement employées.
 
 Le mode `four-repos` utilise `repositories` vers quatre dossiers distincts, chacun avec `AGENTS.md` et `README.md`, selon le [schéma N0](../schemas/project-harness.schema.json). Le choisir lorsque les exigences de séparation ou l'organisation le justifient. Les droits effectifs restent à configurer et à vérifier.
@@ -70,6 +79,8 @@ Tous les chemins internes sont relatifs, sans traversée ni lien symbolique. `.g
 ## Produire N1 seulement si son réemploi est utile
 
 Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il évitera. Si la raison se réduit à « respecter trois niveaux », produire N0 directement.
+
+N1 demande explicitement à GENERATE de livrer la note N0, à CHECK de confronter ses motifs aux fichiers et au besoin, et à ADAPT de réviser les décisions affectées par les changements métier. Les productions de code sous N0 documentent aussi leurs décisions de conception utiles dans les documents du produit.
 
 N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon le besoin. Elles conservent les contrats du comportement et des responsabilités, leur domaine de validité et les règles d'arrêt ; elles indiquent ce qui ferait changer leur implantation. Une stabilité justifiée reste possible.
 
@@ -81,15 +92,16 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
 
 ```json
 {
-  "schema_version": "0.5.0",
+  "schema_version": "0.6.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
   "profile": "profile.json",
+  "design_rationale": "DESIGN.md",
   "entrypoint": "GENERATE.md",
   "prompts": ["GENERATE.md"],
   "output_contract": "SPEC.md",
-  "source_pattern": "Eiffel++ 0.5.0 ; graines réellement utilisées à préciser",
+  "source_pattern": "Eiffel++ 0.6.0 ; graines réellement utilisées à préciser",
   "capabilities": [
     {"role": "governance", "task": "Coordonner les lots couverts", "unavailable": "Méthode à définir dans GENERATE.md ; cet exemple donne seulement le format."},
     {"role": "stbl", "task": "Spécifier les lots couverts", "unavailable": "Sources et méthode à définir dans SPEC.md avant utilisation."},

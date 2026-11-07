@@ -50,9 +50,9 @@ def skill_header(raw):
 
 def validate_capabilities(files, manifest):
     skills = {c['id']: c for c in manifest.get('components', []) if c['kind'] == 'skill'}
-    if manifest['schema_version'] != '0.5.0':
+    if manifest['schema_version'] not in ('0.5.0', '0.6.0'):
         if 'capabilities' in manifest or skills:
-            raise ValueError('Les capacités explicites exigent schema_version 0.5.0.')
+            raise ValueError('Les capacités explicites exigent schema_version 0.5.0 ou 0.6.0.')
         return
     capabilities = manifest.get('capabilities')
     if not isinstance(capabilities, list) or not capabilities:
@@ -139,6 +139,8 @@ def prepare(bundle, skill_id, role, inputs, destination):
     paths = {name, manifest['profile'], role_path, skill['path'], *skill['dependencies']}
     if 'entrypoint' in manifest:
         paths.add(manifest['entrypoint'])
+    if 'design_rationale' in manifest:
+        paths.add(manifest['design_rationale'])
     with _staging(destination, [bundle, *(p for p, _ in bound.values())]) as stage:
         for path in sorted(paths):
             meta._write(stage, 'resources/' + path, files[path], files.modes[path])
@@ -146,6 +148,7 @@ def prepare(bundle, skill_id, role, inputs, destination):
             meta._write(stage, 'inputs/' + key, raw)
         receipt = {'format': 'eiffel-skill-order-1', 'bundle': str(bundle), 'role': role,
                    'skill': skill_id, 'entrypoint': 'resources/' + skill['path'],
+                   'design_rationale': ('resources/' + manifest['design_rationale']) if 'design_rationale' in manifest else None,
                    'resources': {p: meta.digest(files[p]) for p in sorted(paths)},
                    'inputs': {k: {'source': str(p), 'sha256': meta.digest(raw)} for k, (p, raw) in bound.items()},
                    'outputs': skill['outputs'], 'handoff_to': skill['handoff_to'],

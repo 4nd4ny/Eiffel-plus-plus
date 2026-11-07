@@ -6,6 +6,7 @@ Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lor
 
 ## Questions qui peuvent invalider le candidat
 
+- La note de conception décrit-elle les choix réellement implantés ? Peut-on relier ses motifs à des sources et à des effets de génie logiciel précis, distinguer hypothèse et résultat, puis identifier les fichiers à adapter pour un changement métier plausible ? Une politique d’entreprise a-t-elle été inventée ?
 - Une obligation a-t-elle disparu ou été transformée en préférence ?
 - Chaque [facteur de qualité](../QUALITY.md) a-t-il une décision de projet, un contrôle pertinent ou une raison de report ? Les obligations actives passent-elles de N2 à N1 puis N0, lorsque ces niveaux sont utilisés ? Un résultat sur le harnais est-il attribué à tort au produit ?
 - Peut-on relier un comportement demandé au composant concerné et à son contrôle, disponible ou à construire, sans réinterpréter plusieurs copies du besoin ? Les préconditions n'excluent-elles pas un cas dû ? Les invariants ont-ils un état et une frontière définis ?
@@ -17,6 +18,8 @@ Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lor
 - Le contexte utile est-il accessible sans charger tout le catalogue ?
 - La séparation annoncée est-elle effective, ou les mêmes droits permettent-ils de réécrire le besoin et son évaluation ? Un auto-examen ou un test automatique est-il présenté comme un audit indépendant complet ?
 - Une contribution humaine ou une observation a-t-elle été inventée, exagérée ou transférée à un autre contexte ?
+
+Pour N1, vérifier que les sorties N0 comportent leur propre note de conception. Examiner une variation métier utile et vérifier que la note du lot indique les changements nécessaires sans supprimer une obligation. Une note qui se limite à « bonnes pratiques » ou au nom des rôles ne suffit pas. Ne pas transformer cet examen sémantique en test de mots-clés.
 
 Contrôler la cohérence des fichiers et références. Pour N1, examiner aussi son domaine de réemploi et la possibilité d'ajuster N0 sans régénération générale. Le nombre de niveaux et la sophistication du vocabulaire ne servent pas de critères d'acceptation.
 

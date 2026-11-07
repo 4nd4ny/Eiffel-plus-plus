@@ -20,7 +20,7 @@ Déduire les capacités des opérations à réaliser, pas des titres d’agents.
 
 ## Profil pour les outils de paquets
 
-Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.5.0` :
+Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.6.0` :
 
 | Section | Contenu |
 | --- | --- |
@@ -34,6 +34,8 @@ Le travail de compréhension peut commencer en Markdown. Pour employer les outil
 Les poids, s'ils existent, portent sur les quatre axes et totalisent 1. Les mesures ne sont renseignées que lorsqu'elles sont utiles ; chaque mesure indique `metric`, `unit`, `direction` et éventuellement `target`. Une absence de donnée n'est ni un zéro ni une performance prévue.
 
 Les préférences inférées restent `PROPOSED`. `ACCEPTED` exige une décision identifiable et sa `decision_ref` ; ce champ ne l'authentifie pas. Une modification d'un profil existant conserve l'origine des décisions inchangées.
+
+Identifier les sources et inconnues qui devront soutenir la note de conception : politiques de l’entreprise effectivement fournies, hypothèses de travail, décision compétente et conditions qui changeraient la méthode. Ne pas demander par défaut une politique manquante sans effet sur le lot ; signaler la limite et poursuivre le travail autorisé.
 
 ## Résultat court
 

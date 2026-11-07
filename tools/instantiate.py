@@ -20,7 +20,7 @@ import tempfile
 from meta_harness import SEED_CATALOG_REFERENCE
 
 
-VERSION = "0.5.0"
+VERSION = "0.6.0"
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = {
     "governance": "01-governance",

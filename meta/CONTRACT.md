@@ -37,6 +37,12 @@ Produire les seuls fichiers utiles, avec les sources et raisons des adaptations.
 
 Les instructions doivent conduire à une action réalisable dans les capacités disponibles. Lorsqu'un contrôle reste à construire, le dire et borner l'usage du candidat ; ne pas présenter cette délégation à un agent futur comme une garantie déjà obtenue.
 
+## Justification destinée à l’humain
+
+Chaque paquet N1 ou N0 est livré avec une [note de conception](../protocol/DESIGN.md), référencée par `design_rationale`, produite en même temps que ses instructions et scripts. Elle relie besoins et sources, décisions, compromis de génie logiciel, fichiers concernés, contrôles et limites. Elle indique comment adapter ces choix aux exigences de l’entreprise sans inventer ses politiques. N1 justifie la méthode réemployable ; N0 justifie les choix du lot. La note du patron lui-même se trouve dans [DESIGN.md](DESIGN.md).
+
+La note est une synthèse des décisions et de leurs raisons vérifiables, pas une obligation de journal exhaustif. Une explication ne modifie ni les critères ni le mandat. La revue recherche les incohérences avec les fichiers livrés et les indications d’adaptation inutilisables ; le contrôle de présence ne les détecte pas à lui seul.
+
 ## Capacités mobilisables
 
 Le [contrat des skills](../protocol/SKILLS.md) relie chaque tâche du lot à une responsabilité et à un moyen : méthode native suffisante, skill concret ou capacité manquante. Un skill reçoit des entrées, produit une remise et préserve les invariants pertinents sous ses préconditions. Ses ressources et son destinataire sont explicites. Les capacités déclarées ne deviennent démontrées qu’à la mesure des observations disponibles.

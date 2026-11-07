@@ -1,5 +1,12 @@
 # Journal des changements
 
+## 0.6.0 — 2026-11-07
+
+- Note de conception livrée avec chaque nouveau N1 et N0 : sources, choix, motifs de génie logiciel, compromis, limites et adaptations métier concrètes. Le patron N2 explicite également sa conception.
+- Champ `design_rationale` requis en 0.6.0, contrôlé et conservé avec les captures, matérialisations et missions. La présence du document ne certifie pas la pertinence de ses arguments.
+- Prompts de génération, qualification et adaptation reliés à cette note ; exemples N1/N0 distincts et documentation des décisions utiles du produit sous N0. Aucun journal exhaustif ni approbation supplémentaire imposé.
+- Lecture des anciens paquets et graines conservée ; aucune justification historique inventée.
+
 ## 0.5.0 — 2026-11-07
 
 - Transmission explicite des capacités entre N2, N1 et N0 : tâche, responsabilité et méthode native, skill concret ou moyen indisponible. Aucun quota de skills ou d’agents.

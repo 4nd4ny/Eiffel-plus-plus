@@ -1,4 +1,4 @@
-# Outils locaux d'Eiffel++ 0.5.0
+# Outils locaux d'Eiffel++ 0.6.0
 
 Ces programmes utilisent la bibliothèque standard de Python. Ils préparent et copient des fichiers, contrôlent leur structure et conservent leur provenance. Le choix de la méthode et sa mise en œuvre relèvent de l'opérateur, des agents et de l'environnement du projet.
 
@@ -95,3 +95,9 @@ python3 tools/skills.py handoff MISSION --order-sha256 EMPREINTE_CONSERVEE --to 
 ```
 
 Les ports varient avec le skill ; fournir exactement les entrées/sorties déclarées. `prepare` renvoie l'empreinte de mission que l'appelant doit conserver. Les outils n'exécutent ni le skill ni son code : un acteur autorisé lit ses préconditions, accomplit le travail et examine les postconditions. Une identité périmée interdit la remise ; une remise enregistrée ne certifie pas son contenu. Pour les commandes complètes et les scripts réellement testés, voir [l'exemple CSV](../examples/skill-handoff/README.md).
+
+## Conserver la justification de conception
+
+Les nouveaux paquets N1 et N0 0.6.0 exigent `design_rationale`, chemin vers un document Markdown non vide et distinct des instructions exécutées. `check` expose son chemin et son empreinte avec une revue NOT_RUN. `materialize` conserve la note et indique sa localisation dans `_eiffel/project.json` ; en quatre dépôts, elle doit appartenir à une racine de rôle. Le N1 explicitement fourni est conservé avec sa propre note. Les captures incluent ces documents sans changement.
+
+Les missions de skill rendent la note N0 consultable et la lient à leur empreinte. Les versions historiques 0.2.0–0.5.0 restent lisibles sans note inventée ; une note explicitement référencée est contrôlée. La pertinence des arguments et l’adaptation métier demandent la revue décrite dans [DESIGN.md](../protocol/DESIGN.md).

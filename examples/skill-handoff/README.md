@@ -1,6 +1,6 @@
 # Deux compétences, trois remises
 
-Exemple fictif rédigé pour appliquer le patron N2 0.5.0. Le [brief](brief.md) justifie un [N1](meta-harness/GENERATE.md) réemployable et le [N0](harness/AGENTS.md) du mode production puis examen. Il ne s'agit pas d'une génération indépendante par un autre modèle. Les tests exécutent les opérations déterministes et les remises, pas plusieurs agents LLM.
+Exemple fictif rédigé pour appliquer le patron N2 0.6.0. Le [brief](brief.md) justifie un [N1](meta-harness/GENERATE.md) réemployable et le [N0](harness/AGENTS.md) du mode production puis examen. Il ne s'agit pas d'une génération indépendante par un autre modèle. Les tests exécutent les opérations déterministes et les remises, pas plusieurs agents LLM.
 
 - STBL fournit les règles du lot.
 - Produit utilise `filter-rows` et remet un candidat à Audit.
@@ -42,3 +42,5 @@ Le contenu de rapport.json établit seulement le résultat du contrôle CSV exé
 `tests/test_skills.py` rejoue production, audit, catégorie absente et examen seul. Il vérifie aussi candidat tronqué, source invalide, ressource manquante, mauvais rôle, entrée ou sortie absente, mauvais destinataire, lien symbolique, contrôle/plan/entrée modifié et tentative de supprimer des références dans le reçu de mission. Une modification invalide la mission même si le script altéré pourrait annoncer un succès.
 
 Le fonctionnement est borné à des fichiers locaux, à des dépendances déclarées et à une empreinte conservée par l'appelant. Pas d'identité d'agent authentifiée, de confinement de code hostile, de validation de toutes les descriptions de compétences ou de gain LLM démontré.
+
+Les notes [N1](meta-harness/DESIGN.md) et [N0](harness/DESIGN.md) expliquent des choix différents : méthode réemployable et lot concret. Elles indiquent les changements nécessaires pour une autre catégorie, un examen seul, un format différent ou une exigence de séparation ; aucune politique d’entreprise n’est supposée acceptée.

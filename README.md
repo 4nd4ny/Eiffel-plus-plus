@@ -2,7 +2,7 @@
 
 **Forger avec un humain une manière de travailler adaptée au projet, à partir de graines réutilisables.**
 
-Version **0.5.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
+Version **0.6.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
 
 ## L'idée
 
@@ -86,3 +86,5 @@ python3 -m unittest discover -s tests -v
 Le projet est indépendant, sans affiliation ni approbation de Bertrand Meyer. Licence MIT pour les textes et outils propres à Eiffel++ ; les sources externes gardent leurs licences. Voir les [références](docs/REFERENCES.md), les [contributions](CONTRIBUTING.md) et les [changements](CHANGELOG.md).
 
 Les [capacités et skills 0.5.0](protocol/SKILLS.md) relient les tâches aux responsabilités et aux méthodes disponibles. N1 conserve les compétences réemployables ; N0 sélectionne celles du lot. L'[exemple CSV](examples/skill-handoff/README.md) exerce des missions et remises locales avec empreintes, sans lancer de modèles. Le [nouvel outil](tools/skills.py) contrôle attribution, pièces et péremption ; il ne juge pas la compétence d'un agent.
+
+En 0.6.0, chaque génération livre aussi une [note de conception pour l’humain](protocol/DESIGN.md) : motifs, compromis, sources, limites et fichiers à revoir si le contexte métier change. Le champ `design_rationale` la relie au paquet ; sa présence n’en certifie pas la pertinence.

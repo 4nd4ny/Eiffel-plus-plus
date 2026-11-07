@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Paquet N1 facultatif de méta-harnais Eiffel++ 0.5.0",
+  "title": "Paquet N1 facultatif de méta-harnais Eiffel++ 0.6.0",
   "description": "Les fichiers référencés doivent exister dans le paquet, sans lien symbolique. L'entrypoint appartient à prompts. Ces conditions et le profil sont contrôlés par tools/meta_harness.py ; le sens des prompts et l'autorité restent à qualifier.",
   "type": "object",
   "required": [
@@ -20,7 +20,8 @@
         "0.2.0",
         "0.3.0",
         "0.4.0",
-        "0.5.0"
+        "0.5.0",
+        "0.6.0"
       ]
     },
     "kind": {
@@ -59,6 +60,17 @@
     },
     "source_pattern": {
       "$ref": "#/$defs/text"
+    },
+    "design_rationale": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/path"
+        },
+        {
+          "pattern": "\\.md$"
+        }
+      ],
+      "description": "Note de conception pour le lecteur humain, produite avec le paquet ; présence et conservation contrôlées, arguments à examiner."
     }
   },
   "allOf": [
@@ -78,6 +90,23 @@
     },
     {
       "$ref": "skills.schema.json"
+    },
+    {
+      "if": {
+        "required": [
+          "schema_version"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": "0.6.0"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "design_rationale"
+        ]
+      }
     }
   ],
   "$defs": {

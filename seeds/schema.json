@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Fiche de graine Eiffel++ 0.5.0",
+  "title": "Fiche de graine Eiffel++ 0.6.0",
   "description": "Métadonnées déclarées et recette originale. L’inspection d’une source, la co-construction et les résultats d’usage sont distincts. Les droits, décisions et mesures ne sont pas authentifiés. Le catalogue public exige publication.status=public et contains_private_material=false ; une extension privée reste possible hors de ce catalogue.",
   "type": "object",
   "required": [
@@ -23,7 +23,8 @@
       "enum": [
         "0.3.0",
         "0.4.0",
-        "0.5.0"
+        "0.5.0",
+        "0.6.0"
       ]
     },
     "id": {

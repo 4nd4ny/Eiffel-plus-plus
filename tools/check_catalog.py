@@ -80,7 +80,7 @@ def check_catalog(root: Path) -> list[str]:
         if tokens - PLACEHOLDERS:
             errors.append(f"{path.relative_to(root)} : variables inconnues {sorted(tokens - PLACEHOLDERS)}")
     for relative in (
-        "meta/START.md", "meta/README.md", "meta/CONTRACT.md", "meta/TETRAHEDRON.md",
+        "meta/START.md", "meta/README.md", "meta/CONTRACT.md", "meta/TETRAHEDRON.md", "meta/DESIGN.md",
         "meta/prompts/01-characterize.md", "meta/prompts/02-generate-meta-harness.md",
         "meta/prompts/03-qualify.md", "meta/prompts/04-adapt.md",
     ):
