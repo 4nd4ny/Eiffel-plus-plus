@@ -6,11 +6,13 @@
 
 Produis un harnais N0 assez concret pour commencer le travail autorisé. Pars des spécifications du produit et des conditions de sa production : budget, outils, compétences, décisions réservées et manière de reconnaître un résultat acceptable.
 
+L'intention est le harnais minimal suffisant : relier le contrat du comportement, sa réalisation et sa vérification, en conservant les quatre responsabilités. Choisir les agents selon le travail et l'indépendance nécessaires. Retirer les répétitions et les étapes sans effet utile ; la longueur et le nombre d'agents ne sont pas des objectifs. Comparer à une référence explicite avant de revendiquer un bénéfice.
+
 Recherche une graine pertinente, puis réemploie-la, adapte-la ou compose plusieurs mécanismes. Une organisation inchangée peut être le bon résultat. Invente seulement ce que les ressources disponibles ne couvrent pas. Un générateur spécialisé N1 est facultatif ; il doit avoir un réemploi attendu qui justifie sa conception.
 
 ## Parcours court
 
-1. **Comprendre ce qui compte.** Utiliser [01-characterize.md](prompts/01-characterize.md). Exploiter les décisions existantes et isoler les inconnues qui changeraient réellement la méthode. Des priorités verbales et des plafonds suffisent ; ne pas fabriquer des coefficients.
+1. **Comprendre ce qui compte.** Utiliser [01-characterize.md](prompts/01-characterize.md) et les [repères de qualité du logiciel](QUALITY.md). Exploiter les décisions existantes et isoler les inconnues qui changeraient réellement la méthode. Des priorités verbales et des plafonds suffisent ; ne pas fabriquer des coefficients.
 2. **Chercher un point de départ.** Parcourir l'index de la [base de graines](../seeds/README.md), puis lire seulement les fiches candidates. Examiner leur contexte, leurs sources, leurs limites et les capacités nécessaires. Une source inspectée n'est pas un harnais évalué dans ce projet.
 3. **Forger un candidat.** Appliquer [02-generate-meta-harness.md](prompts/02-generate-meta-harness.md). Fournir N0 directement lorsque cela suffit. Présenter les choix qui comptent pour l'opérateur : organisation du travail, contrôles, attention humaine, coût attendu et inconnues. Proposer une variante seulement si elle aide à trancher un vrai désaccord.
 4. **Co-construire et examiner.** Intégrer les corrections et arbitrages effectivement donnés par l'opérateur, puis utiliser [03-qualify.md](prompts/03-qualify.md). Une décision déjà acquise n'est pas redemandée. Une revue textuelle ne devient pas un résultat d'exécution.
@@ -24,7 +26,7 @@ Dans une préparation exportée, l'index des graines indique les seules fiches f
 
 Le [cadre de conception](CONTRACT.md) conserve le besoin, les droits et les limites des résultats. Les [arbitrages](TETRAHEDRON.md) guident les choix. Le [protocole](../protocol/README.md) fournit les états et références lorsqu'ils sont nécessaires.
 
-N0 distingue gouvernance, STBL, audit et produit. Ces responsabilités peuvent partager des fichiers ou un dépôt. Des dépôts séparés sont justifiés par les droits, la confidentialité ou l'organisation, jamais par leur nombre. Annoncer le degré d'indépendance réellement obtenu.
+N0 rend utilisables les échanges entre gouvernance, STBL, audit et produit décrits dans le [cadre de conception](CONTRACT.md) : entrées, remise attendue, responsable et droits. Elles peuvent partager fichiers, dépôt ou agent ; annoncer le degré d'indépendance réellement obtenu. Quatre noms dans un manifeste ne suffisent pas à organiser le travail.
 
 Conserver un point d'entrée court, le profil utilisé, les graines sources et les raisons des adaptations. Un manifeste décrit les fichiers produits ; il ne prouve ni leur qualité ni les mécanismes qu'ils prescrivent. Les contrôles prévus mais non exécutés restent `NOT_RUN`.
 

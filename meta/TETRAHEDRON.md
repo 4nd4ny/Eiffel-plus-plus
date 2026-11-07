@@ -2,6 +2,8 @@
 
 Les arbitrages portent sur le délai, les ressources, les fonctionnalités utiles et l'attention humaine. Ils ne définissent pas à eux seuls la qualité du logiciel. Les comportements obligatoires, la sécurité ou la fidélité des données restent des exigences lorsque le projet les impose.
 
+Les [quatorze repères de qualité](QUALITY.md) complètent ce cadrage. L'efficience du produit diffère du coût de l'agent ; sa facilité d'usage diffère de l'autonomie de production. Ne pas réduire ces facteurs aux quatre axes du tétraèdre.
+
 ## Commencer par les décisions concrètes
 
 Des priorités ordonnées et des limites peuvent suffire. Par exemple : livrer un premier usage local, préserver les données, limiter la supervision et différer les options. Ne pas convertir automatiquement ces phrases en coefficients.

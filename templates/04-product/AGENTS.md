@@ -10,7 +10,7 @@ La méthode, les budgets et les politiques viennent de la gouvernance (`{{GOVERN
 
 ## Avant de modifier
 
-- Lire l'ordre de travail et les références nécessaires, puis inspecter les zones concernées du code.
+- Lire l'ordre de travail et le contrat de référence ; relier les comportements concernés au code et aux contrôles, sans recopier la spécification dans une nouvelle consigne.
 - Identifier le commit de départ, le périmètre autorisé, les contraintes d'environnement et les contrôles requis.
 - Charger le contexte progressivement. Réutiliser les décisions persistantes au lieu de refaire une enquête complète.
 - Signaler une ambiguïté qui change le comportement attendu ou dépasse le mandat. Continuer les parties indépendantes lorsque cela reste utile et autorisé.
@@ -19,7 +19,7 @@ La méthode, les budgets et les politiques viennent de la gouvernance (`{{GOVERN
 
 - Choisir un lot cohérent avec une obligation vérifiable. Adapter sa taille aux dépendances, aux échecs et au coût de reprise.
 - Utiliser les outils déterministes pour les opérations répétitives ; demander au modèle des choix, diagnostics ou transformations qui nécessitent son raisonnement.
-- Conserver les interfaces et invariants contractuels. Proposer explicitement toute modification nécessaire au propriétaire du contrat.
+- Respecter les préconditions, postconditions, effets et invariants applicables. Une substitution compatible n'exige pas davantage des appelants et ne réduit pas les garanties. Proposer tout changement du contrat à son responsable ; garder la liberté d'implémentation dans ses limites.
 - Ajouter les tests techniques qui distinguent un défaut réel d'un comportement attendu. Ne pas imposer une microboucle TDD ou un document à chaque édition.
 - Garder la solution lisible, maintenable et conforme aux exigences de sécurité. Justifier les nouvelles dépendances et abstractions par leur utilité présente.
 - Travailler en parallèle seulement si les frontières sont compatibles ; utiliser des espaces isolés et vérifier ensuite l'état intégré.

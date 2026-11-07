@@ -2,14 +2,14 @@
 
 **État initial de tous les contrôles : NOT_RUN.** Aucun test du logiciel futur n'est livré ou exécuté avec cet exemple.
 
-| Critère | Observation à obtenir |
+| Contrat de SPEC.md | Observation à obtenir |
 | --- | --- |
-| Filtrage et comptage | Un jeu fictif mêlant deux catégories, des doublons et des champs cités donne exactement les lignes attendues et leur nombre. |
-| Fidélité | Accents, chaînes numériques et champs vides non utilisés pour filtrer sont préservés. |
-| Aucune ligne retenue | Résultat vide, compte nul, absence d'erreur. |
-| Entrée invalide | Fichier inaccessible, colonne absente et CSV malformé produisent un diagnostic explicite. |
-| Fichier source intact | Empreinte du fichier avant et après les scénarios identique. |
-| Traitement local | Examiner le code et les dépendances ; si une garantie réseau forte est requise, observer l'exécution avec un dispositif adapté. L'absence de `curl` dans le texte ne suffit pas. |
+| REQ-0001 — filtrage et comptage | Un jeu mêlant deux catégories, des doublons et des champs cités donne la sous-séquence attendue, dans le même ordre, et son compte exact. |
+| REQ-0001 — valeurs et effets | Accents, chaînes numériques et champs vides conservés ; `L` identique avant et après l'opération interne. |
+| REQ-0003 — résultat vide valide | Résultat vide, compte nul, absence d'erreur. |
+| REQ-0003 — entrée invalide | Fichier inaccessible, colonne absente et CSV malformé produisent un diagnostic explicite. |
+| REQ-0002 — fichier source intact | Empreinte du fichier avant et après les scénarios identique. |
+| REQ-0002 — traitement local | Examiner le code et les dépendances ; si une garantie réseau forte est requise, observer l'exécution avec un dispositif adapté. L'absence de `curl` dans le texte ne suffit pas. |
 
 Le producteur écrit des tests comportementaux, par exemple avec `unittest`, et exécute la commande effectivement disponible. `python3 -m unittest discover -s tests -v` est un moyen proposé une fois ces tests créés ; il ne constitue pas une preuve actuelle.
 

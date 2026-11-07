@@ -7,11 +7,14 @@ Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lor
 ## Questions qui peuvent invalider le candidat
 
 - Une obligation a-t-elle disparu ou été transformée en préférence ?
+- Chaque [facteur de qualité](../QUALITY.md) a-t-il une décision de projet, un contrôle pertinent ou une raison de report ? Les obligations actives passent-elles de N2 à N1 puis N0, lorsque ces niveaux sont utilisés ? Un résultat sur le harnais est-il attribué à tort au produit ?
+- Peut-on relier un comportement demandé au composant concerné et à son contrôle, disponible ou à construire, sans réinterpréter plusieurs copies du besoin ? Les préconditions n'excluent-elles pas un cas dû ? Les invariants ont-ils un état et une frontière définis ?
+- Pour chacune des quatre responsabilités, sait-on qui reçoit quoi, remet quoi et peut décider quoi ? Un manifeste a-t-il remplacé ces instructions par quatre noms ?
 - Une graine exige-t-elle un outil absent ou un droit non accordé ?
 - La méthode peut-elle commencer une action concrète, ou délègue-t-elle encore toute sa conception ?
 - Un nouveau fichier, agent, dépôt ou niveau évite-t-il un problème identifié ? Une version plus simple suffirait-elle ?
 - Le contexte utile est-il accessible sans charger tout le catalogue ?
-- La séparation annoncée est-elle effective, ou les mêmes droits permettent-ils de réécrire le besoin et son évaluation ?
+- La séparation annoncée est-elle effective, ou les mêmes droits permettent-ils de réécrire le besoin et son évaluation ? Un auto-examen ou un test automatique est-il présenté comme un audit indépendant complet ?
 - Une contribution humaine ou une observation a-t-elle été inventée, exagérée ou transférée à un autre contexte ?
 
 Contrôler la cohérence des fichiers et références. Pour N1, examiner aussi son domaine de réemploi et la possibilité d'ajuster N0 sans régénération générale. Le nombre de niveaux et la sophistication du vocabulaire ne servent pas de critères d'acceptation.
@@ -31,7 +34,7 @@ Exécuter les contrôles disponibles qui sont nécessaires à l'usage annoncé. 
 
 Distinguer fichier présent, composant chargé ou lancé, exécution terminée, comportement vérifié et utilité mesurée. Un script qui termine avec succès peut n'avoir rien corrigé. Une procédure texte ne devient pas suivie parce qu'elle existe. Utiliser un mécanisme d'observation réellement disponible ; sinon garder le résultat inconnu.
 
-Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, comparer à une organisation crédible avec les mêmes informations et moyens ; compter aussi conception, échecs, reprises et temps humain. Pour étudier N1, inclure une génération directe de N0 comme alternative.
+Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, identifier ce qui varie : consigne, contrôles, répartition des rôles ou dispositif entier. Comparer avec le même modèle, les mêmes tâches, informations utiles et plafonds de budget, sauf le facteur étudié ; compter aussi conception, échecs, reprises et temps humain. Une consigne ajoutée à un dispositif commun ne mesure pas l'effet de tout Eiffel++. Pour étudier N1, inclure une génération directe de N0 comme alternative.
 
 ## Résultat à remettre
 

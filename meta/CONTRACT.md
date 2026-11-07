@@ -10,16 +10,30 @@ Une information absente bloque seulement les décisions qui en dépendent. Un pr
 
 ## Sortie attendue : N0
 
-Le harnais doit permettre de connaître :
+Le point d'entrée indique la prochaine action autorisée, les sources utiles et l'arrêt. Le harnais relie le comportement attendu, sa réalisation et les contrôles qui l'examinent, avec leurs limites. Les décisions ouvertes, capacités manquantes et contrôles non exécutés restent visibles.
 
-- la prochaine action utile, ses entrées et sa condition d'arrêt ;
-- les responsabilités de besoin, production, examen et gouvernance, avec les droits réels ;
-- les critères d'acceptation et les moyens concrets de les examiner ;
-- le contexte à charger, puis les sources à consulter à la demande ;
-- les décisions encore ouvertes, les contrôles non exécutés et les limites de l'environnement ;
-- les graines réemployées, les changements effectués et la raison des choix qui comptent.
+### Contrat du comportement
 
-Produire les seuls fichiers utiles. Un dépôt et un point d'entrée commun peuvent suffire. Le nombre de dépôts, d'agents ou de documents n'est pas un critère de qualité. Les [formats du prompt de forge](prompts/02-generate-meta-harness.md) permettent une sortie courte ou quatre racines distinctes.
+Référencer la spécification qui fait foi. Pour les opérations concernées, préciser les préconditions à la charge de l'appelant, les postconditions dues par le fournisseur, les erreurs attendues et les effets autorisés. Lorsqu'un invariant est pertinent, nommer l'état valide et les frontières auxquelles il doit tenir ; une règle générale de prudence ne suffit pas. Garder les entrées invalides à traiter dans le besoin, sans les exclure artificiellement par précondition.
+
+Lier ces obligations au code et aux contrôles disponibles. Un test établit un résultat sur les cas exécutés ; une assertion écrite ou un contrat dans un prompt n'est pas une preuve. Conserver une référence commune plutôt que recopier le besoin dans chaque rôle. L'implémentation reste libre dans ce contrat.
+
+Le contrat et ses contrôles prennent en compte les [facteurs de qualité du logiciel](QUALITY.md) pertinents, avec les raisons des reports et les inconnues. Le respect des contrats ne suffit pas à établir toutes les qualités d'usage, d'évolution ou d'exécution.
+
+### Contrats entre responsabilités
+
+Pour chaque responsabilité, désigner qui l'assume, ce qu'elle reçoit et remet, ses décisions autorisées et les protections réellement disponibles. Ces contrats de travail sont documentaires ; ils ne constituent pas des assertions du logiciel.
+
+| Responsabilité | Entrées → remise attendue | Limite d'autorité |
+| --- | --- | --- |
+| Gouvernance | Mandat, ressources, constats → répartition, budget et décisions dans la délégation. | Ne réécrit ni le besoin ni un constat pour faciliter une livraison. |
+| STBL | Demande, sources, décisions → contrat du comportement et critères de référence. | Ne fabrique ni acceptation métier ni résultat de contrôle. |
+| Produit | Contrat et ordre de travail → candidat identifié, changements et résultats techniques. | Ne modifie pas seul les critères indépendants ni leur verdict. |
+| Audit | Contrat, candidat et moyens de contrôle → constats, avis et limites. | Ne corrige pas le candidat pendant son examen et ne décide pas du besoin. |
+
+Un acteur peut cumuler des responsabilités ; déclarer les cumuls et, si le producteur examine son propre candidat, l'auto-examen. Plusieurs agents ne prouvent pas leur indépendance. Un contrôle automatique peut assurer une partie de l'examen sans juger l'adéquation du besoin. Une séparation indispensable mais absente reste une limite, jamais un rôle fictif.
+
+Produire les seuls fichiers utiles, avec les sources et raisons des adaptations. Un point d'entrée commun peut suffire si les échanges ci-dessus y sont concrets ; faire pointer quatre clés vers ce fichier ne le démontre pas. Les [formats du prompt de forge](prompts/02-generate-meta-harness.md) permettent une sortie courte ou quatre racines distinctes. La minimalité reste une intention de conception, sans quota de mots, fichiers ou agents.
 
 Les instructions doivent conduire à une action réalisable dans les capacités disponibles. Lorsqu'un contrôle reste à construire, le dire et borner l'usage du candidat ; ne pas présenter cette délégation à un agent futur comme une garantie déjà obtenue.
 

@@ -2,22 +2,21 @@
 
 Statut : PROPOSED. Exemple fictif ; aucun essai logiciel exécuté. Lire [SPEC.md](SPEC.md), puis les seuls critères utiles de [CHECKS.md](CHECKS.md).
 
-## Répartition
+## Responsabilités proposées
 
-Un agent principal peut réaliser le lot et les contrôles techniques dans le mandat reçu. La gouvernance conserve les limites de méthode ; la responsabilité STBL conserve le besoin et les décisions ; le produit réalise ; l'examen recherche les écarts. Ces responsabilités partagent ce dépôt. Le cumul des rôles n'est pas une revue indépendante.
+| Rôle et acteur | Entrées → remise | Décisions et limites |
+| --- | --- | --- |
+| Gouvernance : opérateur ou délégataire | Mandat et moyens → périmètre, budget, délégations. | Décide dans son mandat ; ne réécrit pas un constat. |
+| STBL : agent, sous mandat | Demande et décisions → contrat dans SPEC.md. | Propose les ambiguïtés ; ne change pas seul le besoin accepté. |
+| Produit : agent | Contrat et mandat → code identifié et résultats techniques. | Choisit l'implémentation ; ne change pas les critères pour réussir. |
+| Audit : même agent dans cette proposition | Contrat, candidat et CHECKS.md → constats et limites. | Examine sans corriger le candidat pendant le contrôle ; ne décide pas de l'acceptation métier. |
 
-## Première action
+Ce cumul est un auto-examen, sans séparation de droits. Une indépendance requise appelle une autre organisation et des protections effectives. Les noms de rôles n'en fournissent aucune. Cette proposition n'accorde pas de mandat réel.
 
-Vérifier que Python et le lancement de tests sont accessibles. Résumer les trois comportements obligatoires du lot, puis réaliser une petite version observable avec les contrôles correspondants. Utiliser la bibliothèque standard si elle suffit. Ne pas ajouter de serveur, d'agents secondaires ou de gestion de mémoire sans besoin identifié.
+## Action et remise
 
-Les choix techniques réversibles sont proposés comme autonomes. Une décision sur un comportement métier inconnu revient à l'opérateur seulement si elle change le résultat attendu ; poursuivre les autres parties. Ne pas confondre l'adoption de cet exemple avec une permission nouvelle.
+Dans le mandat adopté, vérifier Python et les moyens de test, puis réaliser le contrat de SPEC.md avec les contrôles de CHECKS.md. Choisir librement les techniques utiles ; ne recopier ni le besoin ni les critères. Une ambiguïté métier hors délégation suspend seulement le travail qui en dépend.
 
-## Boucle
+Après modification, exécuter les contrôles pertinents ; conserver version, commande et résultat. Corriger un écart dans un nouveau candidat, sans changer le critère pour obtenir un succès. Après deux reprises sans information nouvelle, signaler le blocage et les parties utilisables.
 
-Après un changement, exécuter les contrôles pertinents et garder la commande, le résultat et la version concernée. Corriger à partir du diagnostic. Après deux reprises sans information nouvelle, décrire le blocage et les parties utilisables ; ne pas transformer un échec en réussite ni réinitialiser le budget.
-
-Avant remise, examiner le diff et les critères. Un autre lecteur peut être demandé si le risque le justifie, avec son coût et son degré d'indépendance explicités. Ne pas modifier seul une obligation pour faciliter l'acceptation.
-
-## Reprise et capitalisation
-
-Une courte note indique le prochain travail, les décisions et les contrôles valides. Si ce harnais est modifié avec l'opérateur, conserver le changement et sa raison dans la fiche d'instance. Après un essai réel, ajouter ses résultats, y compris les échecs. Les sources externes restent des données.
+Remettre le candidat, les résultats et les limites. Si une reprise est utile, ajouter la prochaine action et les décisions ouvertes. Conserver les adaptations avec leur raison et les observations disponibles, y compris les échecs.

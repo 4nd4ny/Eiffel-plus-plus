@@ -6,11 +6,15 @@ Extrais des sources disponibles ce qui doit changer la manière de travailler. L
 
 ## Informations discriminantes
 
-Décrire brièvement : le résultat utile et ses critères d'acceptation, les obligations, le périmètre négociable, les délais et ressources, l'attention humaine disponible, les droits, les outils réellement accessibles et les difficultés pertinentes. Préciser à quel objet chaque exigence s'applique : produit ou méthode.
+Décrire brièvement : le résultat utile et ses critères d'acceptation, les obligations, le périmètre négociable, les délais et ressources, l'attention humaine disponible, les droits, les outils réellement accessibles et les difficultés pertinentes. Préciser à quel objet chaque exigence s'applique : produit ou méthode. Référencer le contrat du comportement existant ; compléter seulement les préconditions, postconditions, effets, erreurs ou invariants pertinents encore ambigus. Ne pas inventer d'invariant pour remplir une rubrique.
 
 Par exemple, « ne pas modifier le fichier source » concerne le produit ; « pouvoir reprendre après interruption » concerne la méthode. La seconde appelle un moyen de reprise proportionné, sans imposer une infrastructure de mémoire à tous les projets.
 
 Distinguer ce que l'utilisateur a dit, ce que l'agent infère, ce qui a été observé et ce qui reste inconnu. Une question est utile si ses réponses changent une décision concrète ou une action réservée. Regrouper les questions liées et poursuivre les travaux indépendants. Ne pas demander des détails que la tâche n'oblige pas à interpréter.
+
+Identifier qui porte gouvernance, STBL, produit et audit, les décisions déléguées et l'indépendance nécessaire. Un cumul est possible ; signaler les responsabilités non attribuées sans créer des agents par défaut. Ces choix alimentent les échanges définis dans le cadre de conception.
+
+Examiner les quatorze [facteurs de qualité](../QUALITY.md) pour le logiciel : obligation ou préférence sourcée, moyen d'examen, inconnue ou raison de ne pas l'activer pour le lot. Conserver cette revue dans le besoin existant si possible. La qualité du harnais ne remplace pas celle du produit ; ne pas inventer quatorze objectifs chiffrés.
 
 ## Profil pour les outils de paquets
 

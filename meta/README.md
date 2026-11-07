@@ -8,7 +8,9 @@ Le besoin du **produit** décrit les comportements utiles et les contraintes des
 
 Eiffel++ emploie ici *Specification Driven Development* pour faire découler la méthode de ces spécifications. Leur précision doit servir une décision ou un contrôle ; elle n'impose ni une rédaction exhaustive avant tout essai ni un format unique.
 
-Le développement par contrat reste un moyen possible au niveau du logiciel : préconditions, postconditions et invariants peuvent aider à examiner les composants. Les règles de coordination écrites en Markdown ne deviennent pas pour autant des assertions exécutables. [CONTRACT.md](CONTRACT.md) conserve son nom pour la continuité des liens ; il expose les exigences de conception du prototype.
+La [revue qualité](QUALITY.md) examine les quatorze facteurs de Meyer au cadrage, puis transmet leurs conséquences pertinentes au lot. Elle complète les arbitrages de méthode sans imposer quatorze agents, tests ou objectifs.
+
+Le contrat du comportement relie les exigences, le code et les contrôles : préconditions, postconditions, effets et invariants pertinents décrivent ce que doit faire le composant. Les contrats entre responsabilités organisent les remises et les décisions ; leurs règles Markdown ne deviennent pas des assertions exécutables. [CONTRACT.md](CONTRACT.md) définit ces deux usages pour la conception du harnais.
 
 ## Réemploi et co-construction
 
@@ -28,7 +30,7 @@ Le générateur peut réemployer sans modifier, paramétrer, composer ou invente
 | **N1 : générateur spécialisé** | Plusieurs phases, équipes ou situations récurrentes justifient des règles de génération et d'adaptation réutilisables. Son coût doit être explicité. |
 | **N2 : patron Eiffel++** | Ces prompts génériques aident à concevoir N0 ou, si utile, N1. Ils n'ont pas à être rechargés pendant chaque tâche. |
 
-Les quatre responsabilités — gouvernance, STBL, audit et produit — sont une autre dimension. Un seul dépôt peut les accueillir. La séparation technique nécessaire dépend du degré d'indépendance demandé.
+Les quatre responsabilités — gouvernance, STBL, audit et produit — restent identifiables avec leurs entrées, remises et droits. Leur répartition entre agents dépend du travail et de l'indépendance nécessaires. La minimalité conserve ces obligations et retire les répétitions ; elle ne privilégie pas par principe un ou quatre agents.
 
 ## Les quatre prompts
 

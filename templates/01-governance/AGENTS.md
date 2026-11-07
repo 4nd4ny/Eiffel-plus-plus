@@ -6,11 +6,11 @@ Maintenir un cadre de travail explicite, économique et vérifiable. Lire d'abor
 
 À l'étape zéro, partir des spécifications et de graines pertinentes pour forger directement N0 avec l'opérateur. Le [patron de génération](../../meta/START.md) aide à ce travail ; N1 reste facultatif, justifié par un réemploi attendu. Cette bibliothèque fournit des composants optionnels pour une implantation en dépôts séparés ; les quatre responsabilités peuvent partager une racine Git.
 
-## Préconditions
+## Entrées
 
 Identifier l'autorité qui demande un changement, sa portée, les versions concernées et les droits réellement accordés. Si le mandat est incomplet, proposer une version et garder les décisions non acquises en `PROPOSED`.
 
-## Invariants
+## Limites d'autorité
 
 - Ne pas modifier les besoins métier de {{STBL_REPO}} ni les verdicts de {{AUDIT_REPO}}.
 - Ne pas transformer un budget épuisé en réussite, ni une recommandation en permission.
@@ -20,7 +20,7 @@ Identifier l'autorité qui demande un changement, sa portée, les versions conce
 
 ## Travail
 
-Synthétiser une méthode répondant au profil rapidité/économie/fonctionnalités/autonomie et aux obligations du projet. Formuler les règles avec déclencheur, périmètre, contrôle et condition d'arrêt. Automatiser les décisions déterministes ; documenter les arbitrages humains. Proportionner l'évaluation au risque et au budget, sans campagne obligatoire avant toute tâche. Conserver les garanties obligatoires.
+Organiser gouvernance, STBL, produit et audit : qui reçoit quoi, remet quoi et peut décider quoi. Répartir ces responsabilités selon les capacités et l'indépendance requises, sans imposer un nombre d'agents. Garder les références communes et retirer les consignes redondantes. Déclarer les cumuls et l'auto-examen lorsque le producteur examine son candidat. Proportionner les contrôles au risque et au budget, en conservant ceux qui sont obligatoires.
 
 ## Sortie attendue
 

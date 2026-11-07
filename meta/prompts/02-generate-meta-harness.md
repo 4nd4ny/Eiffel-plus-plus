@@ -8,7 +8,7 @@ Produis N0 à partir du besoin, du mandat et des ressources disponibles. Utilise
 
 Lire l'index de la [base de graines](../../seeds/README.md), puis les fiches dont le contexte paraît pertinent. Vérifier les sources et révisions consultées, les capacités requises, les cas déconseillés et le niveau d'observation disponible.
 
-Choisir un candidat principal ; ajouter une alternative seulement si elle permet de trancher un compromis matériel. Comparer aussi à une organisation simple : un producteur, les besoins utiles, des contrôles exécutables et une note de reprise si nécessaire.
+Choisir un candidat principal ; ajouter une alternative seulement si elle permet de trancher un compromis matériel. Examiner une organisation plus simple qui conserve les mêmes obligations, moyens de contrôle et exigences d'indépendance.
 
 Réemployer, paramétrer, composer ou inventer selon le besoin. Une graine peut convenir sans changement. La ressemblance textuelle, la popularité et le nombre d'agents ne prouvent pas l'adéquation. Une recette issue d'un runtime ne fournit pas automatiquement ses outils ou sa mémoire.
 
@@ -22,11 +22,15 @@ Conserver la référence des arbitrages. Un candidat automatique ne devient pas 
 
 ## Produire N0
 
-Un point d'entrée court doit permettre de commencer le lot autorisé. Les procédures désignent des outils disponibles et des contrôles pertinents ; les moyens encore à construire restent explicites. Éviter de seulement renvoyer les décisions essentielles au prochain agent.
+Un point d'entrée doit permettre de commencer le lot autorisé : contrat de référence, périmètre de modification, contrôle associé et condition de remise. Laisser le choix d'implémentation au produit. Référencer les obligations existantes au lieu de les recopier dans chaque consigne. Les moyens encore à construire restent explicites ; ne pas renvoyer toute la conception au prochain agent.
+
+Traduire la revue [qualité](../QUALITY.md) en obligations et contrôles pertinents pour le lot. Conserver les limites et les décisions de report ; ne pas charger chaque agent d'une liste générique de quatorze injonctions. Une qualité examinée au cadrage n'est pas une qualité démontrée du logiciel.
 
 Pour un problème identifié, préférer une procédure spécialisée avec déclencheur ou un auxiliaire déterministe à l'accumulation de consignes permanentes. Les champs facultatifs `components` et `experience` décrits dans [l'adaptation observée](../../protocol/ADAPTATION.md) permettent de conserver les dépendances, limites et observations. Ne pas inventer une expérience pour compléter le paquet.
 
-Distinguer les quatre responsabilités. Elles peuvent partager les mêmes fichiers et le même dépôt. Pour le mode léger, le manifeste peut prendre cette forme illustrative :
+Rendre concrets les échanges des quatre responsabilités : acteur effectif, entrées, remise, droits et indépendance. Une table courte peut suffire. Choisir le nombre d'agents selon ces exigences ; déclarer les cumuls et l'auto-examen lorsque le producteur examine son candidat. Une vérification automatique n'assure que la part de l'audit qu'elle couvre. Retirer une consigne redondante sans retirer le contrat qu'elle servait.
+
+Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. Le manifeste référence ces instructions, il ne les remplace pas. Pour le mode léger, il peut prendre cette forme illustrative :
 
 ```json
 {
@@ -47,7 +51,7 @@ Distinguer les quatre responsabilités. Elles peuvent partager les mêmes fichie
 }
 ```
 
-Les fichiers indiqués doivent exister. Adapter leurs noms au résultat ; trois fichiers ne sont pas un objectif. Copier le profil utilisé et remplacer la provenance descriptive par les sources réellement employées, sans inventer de filiation.
+Les fichiers indiqués doivent exister et contenir les instructions ou références correspondantes. Quatre chemins valides, même identiques, ne prouvent pas que les responsabilités sont organisées. Adapter les noms au résultat ; trois fichiers ne sont pas un objectif. Copier le profil utilisé et renseigner les sources réellement employées.
 
 Le mode `four-repos` utilise `repositories` vers quatre dossiers distincts, chacun avec `AGENTS.md` et `README.md`, selon le [schéma N0](../schemas/project-harness.schema.json). Le choisir lorsque les exigences de séparation ou l'organisation le justifient. Les droits effectifs restent à configurer et à vérifier.
 
@@ -57,7 +61,9 @@ Tous les chemins internes sont relatifs, sans traversée ni lien symbolique. `.g
 
 Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il évitera. Si la raison se réduit à « respecter trois niveaux », produire N0 directement.
 
-N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon le besoin. Les instructions peuvent être reprises de graines existantes. Elles expliquent les indices qui changent la méthode, les invariants, le domaine de validité et les règles d'arrêt. Une stabilité justifiée reste possible.
+N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon le besoin. Elles conservent les contrats du comportement et des responsabilités, leur domaine de validité et les règles d'arrêt ; elles indiquent ce qui ferait changer leur implantation. Une stabilité justifiée reste possible.
+
+N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE sélectionne leurs conséquences pour le lot, CHECK recherche les obligations perdues et ADAPT réexamine les facteurs touchés. Vérifier cette transmission sur des situations différentes ; ne pas confondre présence des noms et consignes utilisables.
 
 Écrire le profil, les instructions, une spécification de sortie et un manifeste de cette forme :
 

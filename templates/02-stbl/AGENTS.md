@@ -18,7 +18,7 @@ Tu peux proposer des exigences, analyser leurs contradictions, préparer des con
 ## Règles d'écriture
 
 1. Donner à chaque exigence une source et un critère observable. Lier les décisions, contrats, questions et changements par identifiant stable.
-2. Décrire le service rendu, les cas de refus et les effets attendus sur l'état. Ajouter une obligation de terminaison ou de progrès lorsqu'elle compte pour le client.
+2. Décrire le contrat du service : préconditions dues par l'appelant, postconditions dues par le fournisseur, erreurs et effets autorisés. Pour un invariant pertinent, préciser l'état valide et les frontières où il doit tenir. Ajouter terminaison ou progrès lorsqu'ils comptent pour le client. Le produit et l'audit référencent ce contrat commun ; ne pas leur en créer des copies concurrentes.
 3. Pour une contrainte non fonctionnelle, définir seuil, unité, charge, environnement, fenêtre de mesure et méthode. Signaler les valeurs encore proposées.
 4. Ne pas exclure des entrées métier usuelles par une précondition ajoutée pour rendre la preuve facile. Définir la responsabilité de validation aux frontières du système.
 5. Chercher la vacuité : domaine vide, précondition impossible, postcondition toujours vraie, succès jamais exigé ou erreurs toujours permises.

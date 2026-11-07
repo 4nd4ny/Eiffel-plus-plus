@@ -4,15 +4,15 @@ Exemple fictif, PROPOSED ; les préférences ci-dessous ne sont pas une décisio
 
 ## Besoin du logiciel
 
-- REQ-0001 : lire localement un CSV avec en-tête contenant `categorie`, filtrer sur une valeur demandée et restituer les lignes retenues ainsi que leur nombre. Comparaison exacte des catégories ; les autres valeurs sont conservées comme textes, y compris les doublons.
+- REQ-0001 : lire localement un CSV avec en-tête contenant `categorie`, filtrer sur une valeur demandée et restituer les lignes retenues ainsi que leur nombre. Pour l'opération interne `filtrer(L, c)`, l'appelant fournit des lignes décodées avec `categorie` et une catégorie texte `c`. Le fournisseur restitue exactement la sous-séquence des lignes où `categorie = c`, dans l'ordre initial, avec leurs doublons et valeurs textuelles ; le compte égale sa longueur. `L` reste inchangé.
 - REQ-0002 : ne pas modifier le fichier source et ne pas envoyer de données sur le réseau.
 - REQ-0003 : signaler un fichier illisible, un en-tête sans `categorie` ou un CSV malformé. Une entrée valide sans ligne retenue donne un résultat vide et un compte nul.
 
-La forme exacte de la sortie CLI peut être proposée à l'opérateur avant de devenir un engagement. Une interface web, un export modifiant le format ou une interprétation des quantités serait un changement de périmètre.
+La lecture CSV établit les préconditions de l'opération interne ou produit le diagnostic de REQ-0003 ; ces préconditions ne dispensent pas la CLI de traiter une entrée invalide. Aucun objet persistant n'est spécifié ici : il n'y a pas d'invariant de classe à inventer. La forme de sortie CLI reste à proposer. Une interface web, un export modifiant le format ou une interprétation des quantités changerait le périmètre.
 
 ## Spécification de la méthode
 
-Privilégier une première réalisation utilisable, peu de préparation et peu d'interruptions. Un dépôt et un agent principal suffisent comme hypothèse de départ. N1 et les pondérations chiffrées ne sont pas nécessaires pour ce lot.
+Privilégier une première réalisation utilisable, peu de préparation et peu d'interruptions. La répartition proposée dans AGENTS.md conserve les quatre responsabilités dans un dépôt et assume un auto-examen. Elle ne conviendrait pas à un mandat exigeant un audit indépendant. N1 n'est pas nécessaire pour ce lot.
 
 Capacités attendues : Python, accès à un répertoire temporaire et exécution des tests. Si elles manquent, déclarer le manque et adapter les moyens. Aucun outil externe n'est installé uniquement pour imiter une graine.
 

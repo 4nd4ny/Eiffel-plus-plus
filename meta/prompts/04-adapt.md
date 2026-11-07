@@ -2,7 +2,7 @@
 
 ## Mission
 
-À partir d'un changement ou d'observations, modifier la partie utile du harnais. Conserver le [cadre de conception](../CONTRACT.md), les décisions acceptées et le budget restant. La méthode peut être simplifiée ou conservée sans changement.
+À partir d'un changement ou d'observations, modifier la partie utile du harnais. Conserver le [cadre de conception](../CONTRACT.md), les décisions acceptées et le budget restant. La méthode peut être simplifiée ou conservée sans changement. Pour retirer une étape, montrer où ses obligations restent satisfaites ; pour regrouper des rôles, expliciter les échanges conservés et l'indépendance perdue éventuelle.
 
 ## Choisir la transformation
 
@@ -16,13 +16,15 @@
 
 Une nouvelle préférence n'impose pas une nouvelle organisation. Distinguer l'observation de son explication supposée. Plusieurs relances du même échec ne sont pas plusieurs confirmations indépendantes. Une erreur rare mais grave peut compter davantage qu'un inconfort fréquent.
 
+Réexaminer les [facteurs de qualité](../QUALITY.md) affectés par le changement : une nouvelle plateforme, un format, une charge ou un parcours peut activer un contrôle auparavant hors lot. Conserver les obligations inchangées sans refaire toute la revue.
+
 Pour une adaptation motivée par l'exécution, conserver l'observation et sa référence, formuler une hypothèse et l'effet attendu avant l'essai. Préparer le plus petit changement pertinent. Comparer à la version de départ avec les mêmes informations utiles ; conserver aussi les régressions et l'absence de différence. Les [composants et fiches d'expérience](../../protocol/ADAPTATION.md) peuvent être joints au paquet, sans imposer un essai à toute modification documentaire.
 
 ## Co-construire la révision
 
 Montrer à l'opérateur le changement concret, sa raison, les effets attendus et les conséquences sur son travail. Solliciter les choix qui ne sont pas déjà délégués ; appliquer les corrections autorisées. Consigner les contributions réellement reçues et les inconnues restantes.
 
-Garder la version de départ et les résultats associés. Préciser le devenir du travail en cours. Une règle nouvelle n'est pas appliquée rétroactivement à un ancien rapport. Un profil révisé et les paquets qui l'emploient doivent rester cohérents ; si N1 est archivé avec N0, leurs profils correspondent.
+Garder la version de départ et les résultats associés. Préciser le devenir du travail en cours. À contrat inchangé, remplacer une implémentation sans exiger davantage de ses appelants ni réduire les garanties dues. Un changement de besoin ou de critère relève de son autorité, avec révision des contrôles concernés. Une règle nouvelle n'est pas appliquée rétroactivement à un ancien rapport. Un profil révisé et les paquets qui l'emploient doivent rester cohérents ; si N1 est archivé avec N0, leurs profils correspondent.
 
 Pour une écriture partagée, utiliser un mécanisme conditionnel disponible qui vérifie la révision attendue. Calculer deux hashes dans un prompt ne remplace pas une opération atomique. En cas de conflit, relire et réévaluer la partie concernée.
 

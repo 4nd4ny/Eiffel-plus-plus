@@ -1,5 +1,14 @@
 # Journal des changements
 
+## Clarification des prompts de conception — 2026-11-07
+
+- Revue des quatorze facteurs de qualité de Meyer, centrée sur le logiciel, puis transmission des obligations pertinentes entre N2, N1 et N0 ; reports et inconnues explicites, sans quota documentaire.
+- Minimalité comme intention : retirer les répétitions sans supprimer les contrats ni les quatre responsabilités ; aucun nombre d'agents ou de mots imposé.
+- Prompts de caractérisation, génération, qualification et adaptation reliés au contrat du comportement et aux échanges réels entre rôles. Entrées, remises, droits et indépendance dépassent la présence de quatre clés dans un manifeste.
+- Modèles d'agents et exemple CSV alignés ; distinction entre auto-examen, contrôles automatiques et audit indépendant. Contrat commun référencé par le produit et les contrôles.
+- Comparaisons limitées au facteur effectivement étudié, avec modèle, tâches et budget comparables. Aucun gain de production revendiqué.
+- Clarification des responsabilités déjà prévues par le protocole ; aucun changement de schéma, de statut ou de comportement des outils 0.4.0.
+
 ## 0.4.0 — 2026-11-07
 
 - Adaptations reliées à une observation, une hypothèse et un effet attendu.

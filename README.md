@@ -10,6 +10,8 @@ Partir du besoin, des contraintes et du budget. Examiner quelques harnais exista
 
 Une graine peut être une petite recette extraite d'un projet public ou un harnais complet co-construit dans un contexte donné. Son origine ne garantit pas qu'elle conviendra ailleurs. Eiffel++ autorise le réemploi inchangé, la composition, l'invention lorsque nécessaire, et la décision de ne pas ajouter de procédure.
 
+**Intention de conception : privilégier le harnais minimal suffisant.** Relier les comportements attendus, le code et leurs contrôles ; conserver les quatre responsabilités, leurs échanges et leurs limites d'autorité. Choisir leur répartition entre agents selon le besoin et l'indépendance requise. Retirer les répétitions et les étapes sans effet utile. La minimalité n'est ni un objectif de longueur ni un nombre imposé d'agents. La valeur reste à observer : qualité, reprises humaines, temps et coût total, face à une référence explicite.
+
 Le point d'entrée est [meta/START.md](meta/START.md). La [base de graines](seeds/README.md) et le [démarrage](docs/QUICKSTART.md) permettent de commencer sans lire tout le catalogue.
 
 ## Specification Driven Development : préciser l'objet
