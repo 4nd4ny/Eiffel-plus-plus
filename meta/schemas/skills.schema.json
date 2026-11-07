@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Capacités et skills Eiffel++ 0.5.0",
+  "type": "object",
+  "properties": {
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "path",
+          "trigger",
+          "inputs",
+          "outputs",
+          "dependencies",
+          "limitations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "procedure",
+              "script",
+              "skill"
+            ]
+          },
+          "path": {
+            "$ref": "#/$defs/path"
+          },
+          "trigger": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/path"
+            },
+            "minItems": 0
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "handoff_to": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "governance",
+                "stbl",
+                "audit",
+                "product"
+              ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "skill"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "handoff_to"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "maxLength": 64,
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "path": {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/path"
+                    },
+                    {
+                      "pattern": "/SKILL\\.md$"
+                    }
+                  ]
+                },
+                "inputs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "maxLength": 64,
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  }
+                },
+                "outputs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "maxLength": 64,
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "task"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "enum": [
+              "governance",
+              "stbl",
+              "audit",
+              "product"
+            ]
+          },
+          "task": {
+            "$ref": "#/$defs/text"
+          },
+          "skill": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "native": {
+            "$ref": "#/$defs/text"
+          },
+          "unavailable": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "skill"
+            ]
+          },
+          {
+            "required": [
+              "native"
+            ]
+          },
+          {
+            "required": [
+              "unavailable"
+            ]
+          }
+        ]
+      },
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "role": {
+                "const": "governance"
+              }
+            }
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "role": {
+                "const": "stbl"
+              }
+            }
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "role": {
+                "const": "audit"
+              }
+            }
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "role": {
+                "const": "product"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "schema_version"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": "0.5.0"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "capabilities"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "capabilities"
+          ]
+        },
+        "properties": {
+          "components": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "procedure",
+                    "script"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\s]*$)[^\u0000]+$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)(?:\\.{1,2}|\\.git|_eiffel)(?:/|$))(?!.*[\\\\:\u0000-\u001f])[^/]+(?:/[^/]+)*$"
+    }
+  }
+}

@@ -28,13 +28,17 @@ Traduire la revue [qualité](../QUALITY.md) en obligations et contrôles pertine
 
 Pour un problème identifié, préférer une procédure spécialisée avec déclencheur ou un auxiliaire déterministe à l'accumulation de consignes permanentes. Les champs facultatifs `components` et `experience` décrits dans [l'adaptation observée](../../protocol/ADAPTATION.md) permettent de conserver les dépendances, limites et observations. Ne pas inventer une expérience pour compléter le paquet.
 
+Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.5.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
+
+Dans le point d’entrée, expliquer comment choisir la compétence, préparer ses entrées, examiner sa remise et poursuivre ou arrêter. Pour les missions instrumentées, le coordinateur conserve l’empreinte renvoyée par `skills.py prepare` et la transmet à verify/handoff. Une modification du plan ou des contrôles impose une nouvelle qualification ; ne pas recalculer l’empreinte pour faire disparaître STALE. Ne lancer ni quatre processus par défaut ni des boucles réinitialisant le budget.
+
 Rendre concrets les échanges des quatre responsabilités : acteur effectif, entrées, remise, droits et indépendance. Une table courte peut suffire. Choisir le nombre d'agents selon ces exigences ; déclarer les cumuls et l'auto-examen lorsque le producteur examine son candidat. Une vérification automatique n'assure que la part de l'audit qu'elle couvre. Retirer une consigne redondante sans retirer le contrat qu'elle servait.
 
 Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. Le manifeste référence ces instructions, il ne les remplace pas. Pour le mode léger, il peut prendre cette forme illustrative :
 
 ```json
 {
-  "schema_version": "0.4.0",
+  "schema_version": "0.5.0",
   "kind": "project-harness",
   "level": 0,
   "status": "PROPOSED",
@@ -47,7 +51,13 @@ Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. L
     "stbl": "SPEC.md",
     "audit": "CHECKS.md",
     "product": "AGENTS.md"
-  }
+  },
+  "capabilities": [
+    {"role": "governance", "task": "Répartir le lot et décider la remise", "native": "Mandat et passation décrits dans AGENTS.md."},
+    {"role": "stbl", "task": "Définir le comportement du lot", "native": "Contrat déjà explicite dans SPEC.md."},
+    {"role": "audit", "task": "Examiner le candidat", "native": "Contrôles du lot décrits dans CHECKS.md."},
+    {"role": "product", "task": "Réaliser la modification ciblée", "native": "Méthode disponible dans AGENTS.md pour ce lot simple."}
+  ]
 }
 ```
 
@@ -63,13 +73,15 @@ Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il �
 
 N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon le besoin. Elles conservent les contrats du comportement et des responsabilités, leur domaine de validité et les règles d'arrêt ; elles indiquent ce qui ferait changer leur implantation. Une stabilité justifiée reste possible.
 
+N1 conserve une bibliothèque de skills justifiée par les tâches répétées du projet. GENERATE choisit les compétences du lot, leurs attributions et leurs dépendances ; CHECK éprouve leurs contrats et remises ; ADAPT révise seulement celles affectées. Tester au moins deux lots pertinents, dont un cas où une compétence est inutile ou indisponible. Le N0 livré reste utilisable sans relire N1. Ne remplacer ni le skill concret par sa description dans N1, ni une compétence manquante par une promesse de l’agent.
+
 N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE sélectionne leurs conséquences pour le lot, CHECK recherche les obligations perdues et ADAPT réexamine les facteurs touchés. Vérifier cette transmission sur des situations différentes ; ne pas confondre présence des noms et consignes utilisables.
 
 Écrire le profil, les instructions, une spécification de sortie et un manifeste de cette forme :
 
 ```json
 {
-  "schema_version": "0.4.0",
+  "schema_version": "0.5.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
@@ -77,7 +89,13 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
   "entrypoint": "GENERATE.md",
   "prompts": ["GENERATE.md"],
   "output_contract": "SPEC.md",
-  "source_pattern": "Eiffel++ 0.4.0 ; graines réellement utilisées à préciser"
+  "source_pattern": "Eiffel++ 0.5.0 ; graines réellement utilisées à préciser",
+  "capabilities": [
+    {"role": "governance", "task": "Coordonner les lots couverts", "unavailable": "Méthode à définir dans GENERATE.md ; cet exemple donne seulement le format."},
+    {"role": "stbl", "task": "Spécifier les lots couverts", "unavailable": "Sources et méthode à définir dans SPEC.md avant utilisation."},
+    {"role": "audit", "task": "Qualifier les remises", "unavailable": "Moyens à définir avant utilisation ; cet exemple de format ne les fournit pas."},
+    {"role": "product", "task": "Produire le candidat", "unavailable": "Compétences à choisir selon le projet ; cet exemple de format ne les fournit pas."}
+  ]
 }
 ```
 

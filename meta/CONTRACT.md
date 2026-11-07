@@ -37,6 +37,10 @@ Produire les seuls fichiers utiles, avec les sources et raisons des adaptations.
 
 Les instructions doivent conduire à une action réalisable dans les capacités disponibles. Lorsqu'un contrôle reste à construire, le dire et borner l'usage du candidat ; ne pas présenter cette délégation à un agent futur comme une garantie déjà obtenue.
 
+## Capacités mobilisables
+
+Le [contrat des skills](../protocol/SKILLS.md) relie chaque tâche du lot à une responsabilité et à un moyen : méthode native suffisante, skill concret ou capacité manquante. Un skill reçoit des entrées, produit une remise et préserve les invariants pertinents sous ses préconditions. Ses ressources et son destinataire sont explicites. Les capacités déclarées ne deviennent démontrées qu’à la mesure des observations disponibles.
+
 ## Sortie facultative : N1
 
 Un générateur spécialisé est justifié par les situations qu'il devra traiter plusieurs fois. Il décrit les données discriminantes, les transformations possibles, le domaine de validité et les conditions d'arrêt. Réemploi et stabilité de méthode sont des résultats valides.

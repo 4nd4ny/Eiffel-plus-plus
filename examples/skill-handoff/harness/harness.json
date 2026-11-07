@@ -1,0 +1,87 @@
+{
+  "schema_version": "0.5.0",
+  "kind": "project-harness",
+  "level": 0,
+  "status": "PROPOSED",
+  "profile": "profile.json",
+  "generator": "Application de GENERATE.md au mode produire-ou-examiner de cet exemple fictif ; auto-examen.",
+  "layout": "single-repo",
+  "entrypoint": "AGENTS.md",
+  "responsibilities": {
+    "governance": "AGENTS.md",
+    "stbl": "AGENTS.md",
+    "audit": "AGENTS.md",
+    "product": "AGENTS.md"
+  },
+  "capabilities": [
+    {
+      "role": "governance",
+      "task": "Coordonner la production et la remise",
+      "native": "Préparer les missions et conserver leurs empreintes ; décider la suite selon le mandat dans AGENTS.md."
+    },
+    {
+      "role": "stbl",
+      "task": "Définir la catégorie et les comportements dus",
+      "native": "Le contrat de transformation est fixé dans SPEC.md ; rules.json porte la catégorie du lot."
+    },
+    {
+      "role": "product",
+      "task": "Produire le tableau filtré",
+      "skill": "filter-rows"
+    },
+    {
+      "role": "audit",
+      "task": "Examiner le résultat transmis",
+      "skill": "check-rows"
+    }
+  ],
+  "components": [
+    {
+      "id": "filter-rows",
+      "kind": "skill",
+      "path": "skills/filter-rows/SKILL.md",
+      "trigger": "Après définition de la catégorie, produire un nouveau CSV.",
+      "inputs": [
+        "source",
+        "rules"
+      ],
+      "outputs": [
+        "candidate"
+      ],
+      "dependencies": [
+        "SPEC.md",
+        "skills/filter-rows/scripts/run.py"
+      ],
+      "limitations": [
+        "CSV à virgules et fichiers locaux seulement ; aucune indépendance d’acteur établie."
+      ],
+      "handoff_to": [
+        "audit"
+      ]
+    },
+    {
+      "id": "check-rows",
+      "kind": "skill",
+      "path": "skills/check-rows/SKILL.md",
+      "trigger": "Lorsqu’un candidat filtré est disponible, vérifier les lignes et les erreurs.",
+      "inputs": [
+        "source",
+        "rules",
+        "candidate"
+      ],
+      "outputs": [
+        "report"
+      ],
+      "dependencies": [
+        "SPEC.md",
+        "skills/check-rows/scripts/run.py"
+      ],
+      "limitations": [
+        "CSV à virgules et fichiers locaux seulement ; aucune indépendance d’acteur établie."
+      ],
+      "handoff_to": [
+        "governance"
+      ]
+    }
+  ]
+}

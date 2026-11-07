@@ -39,3 +39,5 @@ Réutiliser un résultat seulement si ses entrées, dépendances et conditions p
 Remettre l'identité exacte du candidat, ses changements, les résultats observés, les limites et les questions restantes. Utiliser un rapport compact ; fournir une passation seulement lorsqu'une reprise est utile.
 
 Respecter les limites d'autorité et le budget du mandat. Si les tentatives n'apportent plus d'information ou si une décision métier bloque, arrêter la boucle concernée et transmettre un état reproductible accompagné de la question précise à arbitrer. Ne pas déclarer le travail accepté à la place de l'autorité compétente.
+
+Mobiliser les skills attribués au lot après lecture de leurs préconditions. Produire les pièces attendues pour le rôle suivant, sans modifier les contrôles indépendants. Une capacité indisponible ne devient pas acquise par déclaration.

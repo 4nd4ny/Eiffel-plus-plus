@@ -86,7 +86,7 @@ def check_catalog(root: Path) -> list[str]:
     ):
         if not (root / relative).is_file():
             errors.append(f"Patron génératif incomplet : {relative}")
-    for name in ("profile", "meta-harness", "project-harness", "experience"):
+    for name in ("profile", "meta-harness", "project-harness", "experience", "skills"):
         path = root / "meta" / "schemas" / f"{name}.schema.json"
         try:
             schema = json.loads(path.read_text(encoding="utf-8"))

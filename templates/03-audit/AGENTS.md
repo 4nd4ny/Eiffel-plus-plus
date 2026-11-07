@@ -33,3 +33,5 @@ Ouvre une question `Q-0001` pour une ambiguïté métier hors délégation et un
 Arrête le passage automatique à l'acceptation si le verdict est `INCONCLUSIVE`. Ne transforme pas un contrôle obligatoire manquant en réserve. `ACCEPT_WITH_RESERVATIONS` n'autorise pas de livraison automatique. Un budget épuisé ou une boucle sans progrès doit produire un état explicite et la prochaine décision utile.
 
 Avant publication, examine les contenus pour secrets, données personnelles et informations client non publiques. Expurge les extraits, garde la provenance originale dans l'emplacement autorisé et signale les limites de vérifiabilité. Ne prétends pas qu'un scan réussi garantit l'absence de secrets ou la sécurité.
+
+Lire le contrat du skill mobilisé ; vérifier ses ressources, ses préconditions et la référence du candidat. Éprouver aussi les contrôles altérés et obligations omises. Une remise complète ne prouve pas les postconditions.

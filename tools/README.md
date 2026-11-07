@@ -1,4 +1,4 @@
-# Outils locaux d'Eiffel++ 0.4.0
+# Outils locaux d'Eiffel++ 0.5.0
 
 Ces programmes utilisent la bibliothèque standard de Python. Ils préparent et copient des fichiers, contrôlent leur structure et conservent leur provenance. Le choix de la méthode et sa mise en œuvre relèvent de l'opérateur, des agents et de l'environnement du projet.
 
@@ -82,3 +82,16 @@ Depuis 0.4.0, `meta_harness.py check` vérifie aussi les champs `components` et 
 ## Essais explicites et sélection
 
 `trials.py probe` lance un composant Python déclaré sur une copie ; `check-probe` vérifie la validité actuelle de ce reçu. `evaluate` exécute le vérificateur Python fourni explicitement, puis `select` choisit une sortie admissible en conservant la référence à égalité. Ces commandes exécutent du code autorisé, contrairement à `check` et `capture` ; elles ne fournissent pas de confinement. Voir [formats, commandes et limites](../docs/LOCAL_TRIALS.md).
+
+## Préparer une mission de skill et sa remise
+
+Les paquets 0.5.0 déclarent leurs [capacités](../protocol/SKILLS.md). `list PAQUET --role ROLE` présente les compétences attribuées sans charger leurs instructions complètes. Une capacité native ou indisponible reste visible ; elle ne devient pas un skill fictif.
+
+```bash
+python3 tools/skills.py list HARNAIS_N0 --role audit
+python3 tools/skills.py prepare HARNAIS_N0 --role audit --skill COMPETENCE --input candidate=FICHIER --output MISSION_NEUVE
+python3 tools/skills.py verify MISSION --order-sha256 EMPREINTE_CONSERVEE
+python3 tools/skills.py handoff MISSION --order-sha256 EMPREINTE_CONSERVEE --to governance --artifact report=RAPPORT --output REMISE_NEUVE
+```
+
+Les ports varient avec le skill ; fournir exactement les entrées/sorties déclarées. `prepare` renvoie l'empreinte de mission que l'appelant doit conserver. Les outils n'exécutent ni le skill ni son code : un acteur autorisé lit ses préconditions, accomplit le travail et examine les postconditions. Une identité périmée interdit la remise ; une remise enregistrée ne certifie pas son contenu. Pour les commandes complètes et les scripts réellement testés, voir [l'exemple CSV](../examples/skill-handoff/README.md).

@@ -16,9 +16,11 @@ Identifier qui porte gouvernance, STBL, produit et audit, les décisions délég
 
 Examiner les quatorze [facteurs de qualité](../QUALITY.md) pour le logiciel : obligation ou préférence sourcée, moyen d'examen, inconnue ou raison de ne pas l'activer pour le lot. Conserver cette revue dans le besoin existant si possible. La qualité du harnais ne remplace pas celle du produit ; ne pas inventer quatorze objectifs chiffrés.
 
+Déduire les capacités des opérations à réaliser, pas des titres d’agents. Pour chaque tâche et responsabilité, identifier une méthode native suffisante, un skill à réemployer/adapter/créer, ou un moyen indisponible et la décision qu’il bloque. Décrire la remise observable et son destinataire. Cette analyse alimente les [capacités du manifeste](../../protocol/SKILLS.md) ; elle ne justifie aucun quota de skills.
+
 ## Profil pour les outils de paquets
 
-Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.3.0` :
+Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.5.0` :
 
 | Section | Contenu |
 | --- | --- |

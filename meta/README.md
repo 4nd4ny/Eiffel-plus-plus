@@ -1,6 +1,6 @@
 # Concevoir la méthode depuis les spécifications
 
-Eiffel++ 0.4.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
+Eiffel++ 0.5.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
 
 ## Deux objets à spécifier
 
@@ -62,3 +62,5 @@ python3 tools/meta_harness.py materialize ../mon-harnais --output ../projet --gi
 `--meta-harness CHEMIN_N1` peut être ajouté si un N1 existe. Le mode `single-repo` matérialise un seul dépôt ; `four-repos` conserve le parcours à quatre racines. Le [guide des outils](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/tools/README.md) décrit leurs formats et limites ; il n'est pas nécessairement copié avec le paquet.
 
 La préparation, le contrôle structurel et la copie ne lancent pas de modèle, n'installent pas les contrôles prescrits et ne décident pas de l'adoption. L'archive d'une source disponible n'est pas une preuve qu'elle a engendré historiquement le candidat.
+
+En 0.5.0, la caractérisation identifie les capacités utiles, la génération fournit les skills nécessaires et leurs attributions, la qualification éprouve leurs contrats et passations, et l'adaptation réexamine les dépendances touchées. Voir le [contrat des capacités](../protocol/SKILLS.md). Un plan peut retenir une méthode native ou signaler une capacité indisponible ; quatre rôles ne signifient pas quatre skills.

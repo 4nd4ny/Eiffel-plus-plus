@@ -10,6 +10,7 @@ Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lor
 - Chaque [facteur de qualité](../QUALITY.md) a-t-il une décision de projet, un contrôle pertinent ou une raison de report ? Les obligations actives passent-elles de N2 à N1 puis N0, lorsque ces niveaux sont utilisés ? Un résultat sur le harnais est-il attribué à tort au produit ?
 - Peut-on relier un comportement demandé au composant concerné et à son contrôle, disponible ou à construire, sans réinterpréter plusieurs copies du besoin ? Les préconditions n'excluent-elles pas un cas dû ? Les invariants ont-ils un état et une frontière définis ?
 - Pour chacune des quatre responsabilités, sait-on qui reçoit quoi, remet quoi et peut décider quoi ? Un manifeste a-t-il remplacé ces instructions par quatre noms ?
+- Les tâches du lot ont-elles des capacités effectives, natives, outillées ou explicitement manquantes ? Les skills sont-ils sélectionnables, attribués, munis de ressources et de contrats, et leurs sorties utilisables par le rôle suivant ?
 - Une graine exige-t-elle un outil absent ou un droit non accordé ?
 - La méthode peut-elle commencer une action concrète, ou délègue-t-elle encore toute sa conception ?
 - Un nouveau fichier, agent, dépôt ou niveau évite-t-il un problème identifié ? Une version plus simple suffirait-elle ?
@@ -31,6 +32,8 @@ Contrôler la cohérence des fichiers et références. Pour N1, examiner aussi s
 `meta_harness.py check` et `seeds.py check` aident à contrôler les structures. Ils n'authentifient pas une décision ni une exécution. Une fiche `source-inspected` ne prouve pas un usage local ; une fiche `co-designed` ne prouve pas une amélioration.
 
 Exécuter les contrôles disponibles qui sont nécessaires à l'usage annoncé. Lorsqu'une protection essentielle manque, bloquer les actions concernées et proposer un périmètre compatible. La simple existence d'une politique Markdown ne satisfait pas cette protection.
+
+Pour les [skills](../../protocol/SKILLS.md), exécuter une mission et sa remise sur une variation utile. Éprouver aussi le dispositif : retirer une entrée ou une obligation, modifier un contrôleur ou le candidat et tenter une remise incomplète ou vers le mauvais rôle. Refuser le résultat périmé ; ne pas déduire la compétence de la présence du fichier, d’un routage correct ou d’un reçu. Conserver les contre-exemples.
 
 Distinguer fichier présent, composant chargé ou lancé, exécution terminée, comportement vérifié et utilité mesurée. Un script qui termine avec succès peut n'avoir rien corrigé. Une procédure texte ne devient pas suivie parce qu'elle existe. Utiliser un mécanisme d'observation réellement disponible ; sinon garder le résultat inconnu.
 

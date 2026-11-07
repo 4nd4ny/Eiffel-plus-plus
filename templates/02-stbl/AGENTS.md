@@ -50,3 +50,5 @@ Les verdicts d'audit `ACCEPT`, `REJECT`, `INCONCLUSIVE`, `ACCEPT_WITH_RESERVATIO
 Arrêter la partie dépendante si une contradiction métier, une source manquante, un mandat absent ou une décision incertaine empêche de définir le résultat attendu. Expliquer le blocage, les options, la recommandation et les travaux qui peuvent continuer.
 
 À la livraison, fournir la révision, les identifiants affectés, les décisions applicables, les questions restantes et les effets sur le produit et l'audit. Préférer ce delta précis à une réécriture complète de la STBL.
+
+Décrire les opérations que le produit et son examen exigent, leurs entrées et résultats. Signaler une capacité manquante ; un titre d’expert ou un fichier SKILL.md ne démontre pas qu’elle est disponible.

@@ -79,3 +79,7 @@ Cette publication porte sur les recettes génériques dérivées des instruction
 ## Harness² — adaptation à partir des exécutions
 
 Sources examinées le 7 novembre 2026 : [article arXiv:2610.14224v1](https://arxiv.org/abs/2610.14224v1), [dépôt Google à la révision 6868817](https://github.com/google-research/harness2/tree/6868817518876de8fd170c6a8354daca273b6191). Les fichiers `core/recursion.py`, `core/library.py`, `core/tree.py`, `core/selection.py`, `core/ledger.py` et `core/prompts.py`, sous `harness2/`, documentent les mécanismes repris. Licence Apache-2.0. Les trois nouvelles graines sont des synthèses originales, sans code ni prompt complet copié. Les scores publiés ne sont pas des résultats Eiffel++.
+
+## Format des compétences réutilisables
+
+[Agent Skills — Specification](https://agentskills.io/specification), consulté le 7 novembre 2026 : dossier par compétence, SKILL.md avec name/description, ressources facultatives et découverte progressive. Eiffel++ reprend cette forme ; capacités, contrats de remise et empreintes de mission sont ses propres ajouts. Son lecteur sans dépendance ne traite qu’un sous-ensemble explicite des en-têtes YAML. Aucun contenu de skill tiers n’est importé.

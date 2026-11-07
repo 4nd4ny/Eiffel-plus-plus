@@ -27,3 +27,5 @@ Une capture emporte naturellement composants, expérience et pièces locales, av
 Repartir du socle adapté au nouveau projet. Consulter quelques graines pertinentes et réexaminer leurs faits, dépendances et contre-indications. Séparer une connaissance métier réutilisable d'un chemin, d'une personne ou d'une hypothèse propre à l'ancien travail. Retirer ce qui n'apporte rien.
 
 Compter la conception, les exécutions, les reprises et la réflexion. Les mécanismes s'inspirent de Harness² ; ses résultats ne sont pas des mesures d'Eiffel++. Source : [Harness²](https://github.com/google-research/harness2/tree/6868817518876de8fd170c6a8354daca273b6191).
+
+En 0.5.0, le type `skill` ajoute les capacités attribuées, ports et destinataires décrits dans [SKILLS.md](SKILLS.md). Une procédure existante peut rester une procédure ; la conversion exige une méthode et une remise réellement utilisables.

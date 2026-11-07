@@ -1,6 +1,6 @@
 # Forger un harnais à partir des spécifications
 
-**Point d'entrée du prototype Eiffel++ 0.4.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
+**Point d'entrée du prototype Eiffel++ 0.5.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
 
 ## Mission
 
@@ -27,6 +27,8 @@ Dans une préparation exportée, l'index des graines indique les seules fiches f
 Le [cadre de conception](CONTRACT.md) conserve le besoin, les droits et les limites des résultats. Les [arbitrages](TETRAHEDRON.md) guident les choix. Le [protocole](../protocol/README.md) fournit les états et références lorsqu'ils sont nécessaires.
 
 N0 rend utilisables les échanges entre gouvernance, STBL, audit et produit décrits dans le [cadre de conception](CONTRACT.md) : entrées, remise attendue, responsable et droits. Elles peuvent partager fichiers, dépôt ou agent ; annoncer le degré d'indépendance réellement obtenu. Quatre noms dans un manifeste ne suffisent pas à organiser le travail.
+
+Déduire les [capacités et skills](../protocol/SKILLS.md) des tâches : opération, responsabilité, méthode disponible ou manquante, remise et destinataire. N1 conserve les compétences réemployables et N0 embarque celles utiles au lot. Éprouver au moins une mission réelle et sa passation avant de revendiquer le fonctionnement de cette orchestration.
 
 Conserver un point d'entrée court, le profil utilisé, les graines sources et les raisons des adaptations. Un manifeste décrit les fichiers produits ; il ne prouve ni leur qualité ni les mécanismes qu'ils prescrivent. Les contrôles prévus mais non exécutés restent `NOT_RUN`.
 

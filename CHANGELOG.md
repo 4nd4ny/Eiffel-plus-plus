@@ -1,5 +1,13 @@
 # Journal des changements
 
+## 0.5.0 — 2026-11-07
+
+- Transmission explicite des capacités entre N2, N1 et N0 : tâche, responsabilité et méthode native, skill concret ou moyen indisponible. Aucun quota de skills ou d’agents.
+- Composants `skill` avec SKILL.md, ports, ressources et destinataires ; conservation des anciens paquets 0.2.0–0.4.0 et des graines 0.3.0–0.4.0.
+- Préparation et remise de missions locales, liées à une empreinte conservée par l’appelant. Contrôles, plan, instructions ou entrées modifiés rendent la mission périmée ; aucun appel de modèle ou lancement implicite de code.
+- Exemple public CSV N1/N0 et tests de passations, variations de lot, ressources manquantes, altérations et remises invalides. Ces essais ne constituent pas un benchmark LLM.
+- Le contrôleur distingue une mission préparée, des pièces remises et leur évaluation sémantique. Aucun droit système ni audit indépendant n’est déduit du format.
+
 ## Clarification des prompts de conception — 2026-11-07
 
 - Revue des quatorze facteurs de qualité de Meyer, centrée sur le logiciel, puis transmission des obligations pertinentes entre N2, N1 et N0 ; reports et inconnues explicites, sans quota documentaire.

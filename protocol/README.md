@@ -1,4 +1,4 @@
-# Protocole Eiffel++ — 0.4.0
+# Protocole Eiffel++ — 0.5.0
 
 Ce protocole distingue les responsabilités et la provenance du travail. Il peut s'appliquer à un dépôt commun ou à plusieurs dépôts. Il ne déploie aucun droit ni contrôle. Dans le projet, la gouvernance identifie la version adoptée ; les copies sont des instantanés, pas des normes concurrentes.
 
@@ -135,3 +135,5 @@ Une instance choisie par l'opérateur peut rejoindre la base avec ses sources, s
 La co-construction permet de conserver des choix utiles ; elle ne valide pas automatiquement la méthode. Les résultats négatifs et les conditions d'échec sont conservés. La réutilisation dans un autre projet exige un nouvel examen d'adéquation, et aucune graine ne peut élargir le mandat.
 
 En 0.4.0, un paquet peut joindre des composants à déclencheur et une expérience structurée. L'observation initiale, l'hypothèse, l'effet attendu, les essais et leurs limites restent distincts. Les références et déclarations sont contrôlables, leur vérité ne l'est pas par leur seul format. La capture conserve les pièces locales. Les anciennes versions restent interprétées selon leurs propres contrats ; voir [compatibilité et usage](ADAPTATION.md).
+
+En 0.5.0, les [capacités et skills](SKILLS.md) rendent explicite le lien entre tâche, responsabilité, méthode et remise. Les quatre responsabilités restent logiques ; aucun agent ni droit nouveau n’est créé par ces déclarations.

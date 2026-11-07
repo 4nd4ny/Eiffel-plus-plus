@@ -25,3 +25,5 @@ Organiser gouvernance, STBL, produit et audit : qui reçoit quoi, remet quoi et 
 ## Sortie attendue
 
 Une modification de politique motivée, son impact et sa version ; ou un mandat borné ; ou un diagnostic qui précise le responsable de la décision manquante. Le besoin, l'audit et le code conservent leurs propres historiques.
+
+Attribuer les tâches selon les capacités disponibles ; choisir les skills utiles et conserver les références des missions et leurs budgets. Une remise déclenche son examen par le destinataire, pas une acceptation automatique.

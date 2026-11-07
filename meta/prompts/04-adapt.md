@@ -55,3 +55,5 @@ Une observation favorable ne garantit pas le transfert. Réexaminer les conditio
 Arrêter les révisions sans information nouvelle. Un changement d'agent, de séance ou de niveau ne recrée pas le budget. Ne lancer une comparaison que si elle peut trancher une question encore pertinente ; ne présenter aucune attente comme un gain observé.
 
 Conserver la sortie de référence parmi les options lorsqu'elle satisfait encore les critères applicables. Une adaptation sans gain établi ne l'emporte pas par sa seule nouveauté. Ne jamais réutiliser une référence invalide, un contrôle périmé ou un artefact différent de celui qui a été évalué. Vérifier toute composition nouvelle avant de la remettre.
+
+Un changement de tâche, d’outil ou de contrat réexamine les capacités et les skills touchés, leurs attributions et leurs remises. Retirer les skills devenus inutiles ; conserver les obligations et requalifier les missions dont les dépendances changent. Ne modifier ni le contrôle ni sa référence pour maquiller un résultat périmé.

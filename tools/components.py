@@ -33,8 +33,10 @@ def validate_components(files, manifest):
         if identifier in ids:
             raise ValueError("component.id répété.")
         ids.add(identifier)
-        if item.get("kind") not in ("procedure", "script"):
-            raise ValueError("component.kind doit être procedure ou script.")
+        if item.get("kind") not in ("procedure", "script", "skill"):
+            raise ValueError("component.kind doit être procedure, script ou skill.")
+        if item["kind"] == "skill" and manifest["schema_version"] != "0.5.0":
+            raise ValueError("Les skills exigent schema_version 0.5.0.")
         path = meta._file(files, item.get("path"), "component.path")
         if item["kind"] == "script" and not path.endswith(".py"):
             raise ValueError("Les composants script pris en charge sont des fichiers Python .py.")

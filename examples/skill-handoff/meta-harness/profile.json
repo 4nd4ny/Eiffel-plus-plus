@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.5.0",
+  "project": {
+    "slug": "csv-skills",
+    "name": "CSV et remises — exemple fictif",
+    "brief": "Filtrer un CSV selon rules.json, puis examiner la remise sur une copie identifiée."
+  },
+  "preferences": {
+    "status": "PROPOSED",
+    "source": "Exemple original Eiffel++ ; aucune préférence client acceptée.",
+    "priorities": [
+      "Livrer une petite version observable avant d’ajouter des procédures.",
+      "Réduire la préparation et les interruptions humaines sans omettre les obligations."
+    ]
+  },
+  "constraints": [
+    {
+      "id": "REQ-0001",
+      "statement": "Filtrer et compter selon SPEC.md en préservant les valeurs.",
+      "verification": "Jeux fictifs de référence et comparaison exacte des lignes et du compte."
+    },
+    {
+      "id": "REQ-0002",
+      "statement": "Conserver la source et traiter les données localement.",
+      "verification": "Empreinte avant/après et examen des moyens réseau ; observation si requise."
+    },
+    {
+      "id": "REQ-0003",
+      "statement": "Signaler les entrées invalides et accepter un résultat vide valide.",
+      "verification": "Cas illisible, en-tête absent, CSV malformé et catégorie absente."
+    }
+  ],
+  "authority": {
+    "mandate": "Proposition fictive pour un lot local ; adoption à établir dans le projet réel.",
+    "autonomous_actions": [
+      "Choix techniques réversibles et corrections dans les exigences adoptées."
+    ],
+    "human_decisions": [
+      "Modification des comportements obligatoires, des données exposées ou des droits."
+    ]
+  },
+  "unknowns": [],
+  "generation_budget": {
+    "max_candidates": 1,
+    "max_iterations": 2,
+    "max_tokens": null
+  }
+}
