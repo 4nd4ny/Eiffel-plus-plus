@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.4.0",
+  "kind": "external-pattern",
+  "source": {
+    "url": "https://github.com/google-research/harness2",
+    "revision": "6868817518876de8fd170c6a8354daca273b6191",
+    "paths": [
+      "harness2/core/library.py",
+      "harness2/core/selection.py",
+      "harness2/core/context.py",
+      "docs/EXPERIMENTS.md",
+      "LICENSE"
+    ],
+    "license": "Apache-2.0 pour les sources examinées ; recette originale de synthèse.",
+    "visibility": "public",
+    "reviewed_on": "2026-11-07",
+    "discovered_via": "Dépôt indiqué par l'utilisateur et article arXiv:2610.14224v1."
+  },
+  "lineage": {
+    "parents": []
+  },
+  "publication": {
+    "status": "public",
+    "contains_private_material": false
+  },
+  "review": {
+    "status": "unreviewed",
+    "decision_ref": null
+  },
+  "id": "harness2-experience-components",
+  "title": "Conserver des composants avec leurs preuves d'emploi",
+  "summary": "Associer chaque harnais réutilisable à des observations, un déclencheur et des contre-indications. Repartir d'un socle commun sur la nouvelle tâche, puis reprendre sélectivement les éléments pertinents.",
+  "context": {
+    "suitable_for": [
+      "Suite de tâches où certaines difficultés ou opérations reviennent.",
+      "Catalogue de graines qui contient des propositions et doit distinguer celles réellement essayées."
+    ],
+    "avoid_when": [
+      "Les expériences contiennent des données que la tâche suivante n'est pas autorisée à lire.",
+      "Le seul argument disponible est que le candidat a été sélectionné.",
+      "Les différences de domaine ou d'environnement invalident les hypothèses de réemploi."
+    ],
+    "required_capabilities": [
+      "Archiver les composants exacts et leurs dépendances avec une provenance vérifiable.",
+      "Indexer les situations d'emploi et lire les fiches pertinentes à la demande.",
+      "Séparer les faits locaux d'une tâche des procédures réutilisables.",
+      "Conserver un ordre des tâches et une bibliothèque distincte par expérience comparative."
+    ],
+    "cost_notes": [
+      "Le tri, la réflexion, la lecture et l'entretien de la bibliothèque doivent être comptés.",
+      "Le réemploi peut éviter une redécouverte mais peut aussi ajouter du contexte inutile ou ancrer une hypothèse erronée.",
+      "Mesurer séparément le premier usage et le réemploi, sans omettre le coût de constitution."
+    ]
+  },
+  "recipe": [
+    "Après une comparaison, décrire le problème, l'intervention, les changements effectivement observés, les régressions et les incertitudes.",
+    "Archiver le composant retenu avec ses versions et sa fiche ; ne pas promouvoir un composant pour remplir la bibliothèque.",
+    "Garder les expériences négatives dans le registre d'audit, même lorsqu'aucun composant réutilisable n'est retenu.",
+    "Indexer un déclencheur concret et des contre-indications plutôt qu'une appréciation vague de qualité.",
+    "À la tâche suivante, repartir du socle commun et sélectionner seulement les entrées pertinentes.",
+    "Copier les dépendances nécessaires dans le paquet courant ; vérifier à nouveau les faits, chemins, seuils et capacités propres au contexte.",
+    "Réexaminer une entrée lorsque ses dépendances ou hypothèses changent ; garder l'ancienne version pour expliquer les résultats."
+  ],
+  "operator_questions": [
+    "Quels éléments sont récurrents entre les tâches et quels faits doivent rester locaux ?",
+    "Quelles observations suffisent à conserver une recette, et quelles informations peuvent être partagées ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "library.py conserve l'arbre du harnais avec EXPERIENCE.md et un index par domaine.",
+      "Une expérience doit contenir cue, lesson et evidence pour être ajoutée par ce code.",
+      "Les tâches ultérieures lisent la bibliothèque pour préparer leur adaptation ; elles ne reprennent pas automatiquement toute la configuration précédente."
+    ],
+    "limitations": [
+      "Les champs de preuve sont des déclarations structurées, pas une authentification de la justesse.",
+      "La consolidation et la gestion de l'obsolescence sont des prolongements proposés, pas des garanties démontrées par la bibliothèque publiée.",
+      "Aucun gain de transfert n'est mesuré pour cette recette dans Eiffel++."
+    ],
+    "runs": []
+  }
+}

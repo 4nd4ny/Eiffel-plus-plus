@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.4.0",
+  "kind": "external-pattern",
+  "source": {
+    "url": "https://github.com/google-research/harness2",
+    "revision": "6868817518876de8fd170c6a8354daca273b6191",
+    "paths": [
+      "harness2/core/recursion.py",
+      "harness2/core/prompts.py",
+      "harness2/core/selection.py",
+      "harness2/core/ledger.py",
+      "LICENSE"
+    ],
+    "license": "Apache-2.0 pour les sources examinées ; recette originale de synthèse.",
+    "visibility": "public",
+    "reviewed_on": "2026-11-07",
+    "discovered_via": "Dépôt indiqué par l'utilisateur et article arXiv:2610.14224v1."
+  },
+  "lineage": {
+    "parents": []
+  },
+  "publication": {
+    "status": "public",
+    "contains_private_material": false
+  },
+  "review": {
+    "status": "unreviewed",
+    "decision_ref": null
+  },
+  "id": "harness2-contrastive-adaptation",
+  "title": "Adapter le harnais à partir d'exécutions comparées",
+  "summary": "Comparer une référence et des interventions ciblées avant de modifier la méthode de travail ; aucune efficacité locale démontrée.",
+  "context": {
+    "suitable_for": [
+      "Défaut récurrent ou difficulté observée que la méthode de travail pourrait expliquer.",
+      "Tâche reproductible sur des copies indépendantes, avec budget pour comparer des interventions."
+    ],
+    "avoid_when": [
+      "Le résultat satisfait déjà les exigences et aucune dépense inutile significative n'est observée.",
+      "Les effets externes ne sont pas réversibles ou les candidats ne peuvent pas repartir du même état.",
+      "Le budget ne permet pas de réexécuter une composition avant adoption."
+    ],
+    "required_capabilities": [
+      "Conserver une version de référence, ses entrées, sa trace et son livrable.",
+      "Exécuter les candidats dans des espaces séparés avec les mêmes outils et paramètres.",
+      "Maintenir hors du périmètre modifiable les droits, le besoin accepté et l'évaluation finale réservée.",
+      "Mesurer les étapes, leur statut de fin et leur coût ; distinguer inconnu et zéro."
+    ],
+    "cost_notes": [
+      "Harness² prévoit 4k exécutions et 3k étapes d'édition, hors réflexion, sélection éventuelle et reprises ; k n'est pas un plafond de jetons.",
+      "Une adaptation minimale peut choisir un seul candidat motivé, mais devient alors une variante à évaluer et non une reproduction exacte.",
+      "Comparer aussi à plusieurs essais ordinaires sous le même budget global."
+    ]
+  },
+  "recipe": [
+    "Conserver N0, les entrées et une exécution de référence ; préciser le défaut observé et une explication alternative.",
+    "Proposer un changement limité de méthode et, si pertinent, un changement propre au domaine ; chaque proposition prédit un effet observable.",
+    "Qualifier les capacités et fichiers des propositions avant de les exécuter sur des copies équivalentes.",
+    "Comparer traces, livrables, contrôles visibles, régressions et dépenses ; ne pas assimiler changement de comportement et justesse.",
+    "Composer uniquement des changements étayés et compatibles, puis exécuter cette composition.",
+    "Conserver ou simplifier le harnais lorsque les observations ne justifient pas son adaptation ; arrêter sans information nouvelle.",
+    "Conserver la décision et les résultats défavorables dans une fiche d'expérience, sans divulguer l'évaluation réservée."
+  ],
+  "operator_questions": [
+    "Quel défaut observé justifie de dépenser davantage pour adapter le harnais ?",
+    "Quels éléments peuvent changer et quelle enveloppe inclut toutes les étapes ?"
+  ],
+  "evidence": {
+    "level": "source-inspected",
+    "claims": [
+      "recursion.py organise les propositions de méthode et de domaine, leurs essais et la composition.",
+      "Les prompts autorisent la conservation du harnais initial lorsque les observations ne justifient pas une modification."
+    ],
+    "limitations": [
+      "Recette non exécutée sur un projet Eiffel++.",
+      "Une seule exécution par candidat ne distingue pas sûrement l'effet du changement de la variabilité du modèle.",
+      "Les tests visibles constituent ici une adaptation au développement logiciel ; ils ne doivent pas être confondus avec les critères finaux cachés."
+    ],
+    "runs": []
+  }
+}

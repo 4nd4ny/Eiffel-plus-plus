@@ -29,6 +29,8 @@ Contrôler la cohérence des fichiers et références. Pour N1, examiner aussi s
 
 Exécuter les contrôles disponibles qui sont nécessaires à l'usage annoncé. Lorsqu'une protection essentielle manque, bloquer les actions concernées et proposer un périmètre compatible. La simple existence d'une politique Markdown ne satisfait pas cette protection.
 
+Distinguer fichier présent, composant chargé ou lancé, exécution terminée, comportement vérifié et utilité mesurée. Un script qui termine avec succès peut n'avoir rien corrigé. Une procédure texte ne devient pas suivie parce qu'elle existe. Utiliser un mécanisme d'observation réellement disponible ; sinon garder le résultat inconnu.
+
 Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, comparer à une organisation crédible avec les mêmes informations et moyens ; compter aussi conception, échecs, reprises et temps humain. Pour étudier N1, inclure une génération directe de N0 comme alternative.
 
 ## Résultat à remettre

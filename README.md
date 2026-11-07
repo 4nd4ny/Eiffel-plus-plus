@@ -2,7 +2,7 @@
 
 **Forger avec un humain une manière de travailler adaptée au projet, à partir de graines réutilisables.**
 
-Version **0.3.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
+Version **0.4.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
 
 ## L'idée
 
@@ -30,6 +30,14 @@ Le SDD désigne ici une démarche de conception guidée par ces spécifications.
 4. **Essayer puis capitaliser.** Exécuter un petit travail réel, conserver les coûts et les échecs observés. Capturer une version réutilisable avec sa provenance et ses limites. Une co-construction humaine et une efficacité mesurée sont deux informations différentes.
 
 L'absence d'essai n'interdit pas d'enregistrer une proposition. Elle interdit de la présenter comme une méthode éprouvée.
+
+## Adapter à partir des observations
+
+Une adaptation part d'un problème référencé, d'une hypothèse et d'un effet attendu. Préférer une procédure spécialisée consultée au besoin ou un auxiliaire déterministe lorsqu'ils répondent au problème. Les composants et leurs dépendances peuvent être déclarés dans N0 ; une fiche d'expérience conserve conditions d'emploi, réussites, échecs, coûts inconnus et limites avec le paquet. Ces contrats sont facultatifs et ne déclenchent aucune exécution automatique.
+
+Voir le [parcours d'adaptation observée](protocol/ADAPTATION.md) et son [exemple fictif](examples/observed-adaptation/README.md). Les captures historiques restent lisibles. Les outils vérifient les références et la cohérence des déclarations ; ils ne les authentifient pas.
+
+Des [essais locaux explicites](docs/LOCAL_TRIALS.md) peuvent observer le lancement d'un composant Python et comparer des artefacts avec un vérificateur commun. Le sélecteur conserve une référence valide en l'absence de gain et refuse de remettre une sortie sans contrôle concluant. Ces mécanismes ont des [tests locaux](docs/VALIDATION_0_4.md), sans gain général de productivité revendiqué.
 
 ## Les niveaux et les responsabilités sont des moyens
 

@@ -16,7 +16,7 @@ Commencer par les obligations, le budget et les capacités du projet. Lire les c
 
 Les six graines externes initiales proviennent de projets référencés par [Harness Lens](https://huggingface.co/spaces/harness-hub/harness-lens). Les fichiers primaires et licences ont été examinés aux révisions indiquées dans les fiches. La [revue des benchmarks](https://tmustier.github.io/harness-benchmarks/) aide à repérer des comparaisons, sans transférer leurs résultats à Eiffel++.
 
-Deux recettes du harnais ICO complètent cette sélection : [incréments et couloirs de travail](records/ico-incremental-lanes.json) et [propositions de contrôles mécaniques](records/ico-mechanical-controls-proposal.json). Leur publication a été autorisée par Christian le 6 novembre 2026. La base publique comprend donc huit graines externes et un exemple local. Le dépôt ICO reste privé ; sa visibilité est conservée dans la provenance. Le statut de publication concerne le contenu de chaque fiche, distinct de celui de sa source. L’autorisation de publication ne constitue ni une co-construction déclarée ni une validation d’efficacité.
+Deux recettes du harnais ICO complètent cette sélection : [incréments et couloirs de travail](records/ico-incremental-lanes.json) et [propositions de contrôles mécaniques](records/ico-mechanical-controls-proposal.json). Leur publication a été autorisée par Christian le 6 novembre 2026. Cette publication portait le catalogue à huit graines externes et un exemple local ; les ajouts ultérieurs sont indiqués plus bas. Le dépôt ICO reste privé ; sa visibilité est conservée dans la provenance. Le statut de publication concerne le contenu de chaque fiche, distinct de celui de sa source. L’autorisation de publication ne constitue ni une co-construction déclarée ni une validation d’efficacité.
 
 Les fiches sont des synthèses originales. Elles ne contiennent pas les runtimes, dépendances ou prompts complets des projets cités. Une extension publique de Claude Code peut être examinée sans donner accès au fonctionnement de son cœur propriétaire.
 
@@ -59,3 +59,7 @@ Les champs structurés facilitent la recherche et la discussion. Ils ne sont ni 
 Conserver les versions qui expliquent les résultats ; créer une nouvelle instance lorsque les changements doivent être comparables. Ajouter les situations d'échec aux contre-indications. Réutiliser une graine seulement dans un contexte compatible, et réduire le harnais lorsque son coût ne se justifie plus.
 
 Le [schéma](schema.json) décrit les fiches. Le [rapport de validation](../docs/VALIDATION.md) indique ce qui a effectivement été exécuté sur cette base et ses outils.
+
+## Recettes Harness²
+
+Trois recettes publiques de synthèse complètent le catalogue (12 fiches) : [adaptation comparative](records/harness2-contrastive-adaptation.json), [composants spécialisés](records/harness2-specialized-components.json) et [expériences situées](records/harness2-experience-components.json). Leur statut `source-inspected` reste distinct de toute efficacité locale. Le [format optionnel de composants et expériences](../protocol/ADAPTATION.md) permet de conserver le travail réalisé dans les captures futures.

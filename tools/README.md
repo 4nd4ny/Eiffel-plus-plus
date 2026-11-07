@@ -1,4 +1,4 @@
-# Outils locaux d'Eiffel++ 0.3.0
+# Outils locaux d'Eiffel++ 0.4.0
 
 Ces programmes utilisent la bibliothèque standard de Python. Ils préparent et copient des fichiers, contrôlent leur structure et conservent leur provenance. Le choix de la méthode et sa mise en œuvre relèvent de l'opérateur, des agents et de l'environnement du projet.
 
@@ -74,3 +74,11 @@ Les outils exigent une destination nouvelle et refusent l'écrasement des source
 `check_catalog.py` contrôle les liens locaux vers les fichiers, les blocs de code, les sections attendues, les variables, les paquets illustratifs et les graines publiques. Il ne contrôle pas les ancres des titres, la disponibilité des URL externes, les licences à lui seul, le YAML libre ou la vérité des textes.
 
 Le [rapport de validation](../docs/VALIDATION.md) distingue les résultats exécutés sur les outils et l'absence d'évaluation de la méthode. Un exécuteur existant peut utiliser les prompts ; Eiffel++ ne fournit pas de moteur d'agents, de sélecteur optimal, de déploiement des permissions ou de certification du logiciel produit.
+
+## Composants et expériences optionnels
+
+Depuis 0.4.0, `meta_harness.py check` vérifie aussi les champs `components` et `experience` lorsqu’ils sont présents. `capture` les conserve avec leurs fichiers, sans exécution et sans promotion du niveau de preuve. Voir [contrats et limites](../protocol/ADAPTATION.md). Les paquets 0.2.0 et 0.3.0 ainsi que les anciennes graines restent lisibles ; les empreintes historiques ne sont pas recalculées pour changer leur version.
+
+## Essais explicites et sélection
+
+`trials.py probe` lance un composant Python déclaré sur une copie ; `check-probe` vérifie la validité actuelle de ce reçu. `evaluate` exécute le vérificateur Python fourni explicitement, puis `select` choisit une sortie admissible en conservant la référence à égalité. Ces commandes exécutent du code autorisé, contrairement à `check` et `capture` ; elles ne fournissent pas de confinement. Voir [formats, commandes et limites](../docs/LOCAL_TRIALS.md).

@@ -1,4 +1,4 @@
-# Protocole Eiffel++ — 0.3.0
+# Protocole Eiffel++ — 0.4.0
 
 Ce protocole distingue les responsabilités et la provenance du travail. Il peut s'appliquer à un dépôt commun ou à plusieurs dépôts. Il ne déploie aucun droit ni contrôle. Dans le projet, la gouvernance identifie la version adoptée ; les copies sont des instantanés, pas des normes concurrentes.
 
@@ -133,3 +133,5 @@ Adapter directement N0 lorsque cela suffit. Utiliser N1 s'il existe et couvre le
 Une instance choisie par l'opérateur peut rejoindre la base avec ses sources, sa provenance humaine, son contexte et les observations disponibles. Les états de décision ci-dessus restent distincts des métadonnées de graine : `source-inspected`, `co-designed` ou `untested` ne sont ni des verdicts d'audit ni des autorisations.
 
 La co-construction permet de conserver des choix utiles ; elle ne valide pas automatiquement la méthode. Les résultats négatifs et les conditions d'échec sont conservés. La réutilisation dans un autre projet exige un nouvel examen d'adéquation, et aucune graine ne peut élargir le mandat.
+
+En 0.4.0, un paquet peut joindre des composants à déclencheur et une expérience structurée. L'observation initiale, l'hypothèse, l'effet attendu, les essais et leurs limites restent distincts. Les références et déclarations sont contrôlables, leur vérité ne l'est pas par leur seul format. La capture conserve les pièces locales. Les anciennes versions restent interprétées selon leurs propres contrats ; voir [compatibilité et usage](ADAPTATION.md).

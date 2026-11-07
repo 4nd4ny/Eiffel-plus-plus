@@ -1,6 +1,6 @@
 # Concevoir la méthode depuis les spécifications
 
-Eiffel++ 0.3.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
+Eiffel++ 0.4.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
 
 ## Deux objets à spécifier
 

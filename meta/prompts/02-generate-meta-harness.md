@@ -24,11 +24,13 @@ Conserver la référence des arbitrages. Un candidat automatique ne devient pas 
 
 Un point d'entrée court doit permettre de commencer le lot autorisé. Les procédures désignent des outils disponibles et des contrôles pertinents ; les moyens encore à construire restent explicites. Éviter de seulement renvoyer les décisions essentielles au prochain agent.
 
+Pour un problème identifié, préférer une procédure spécialisée avec déclencheur ou un auxiliaire déterministe à l'accumulation de consignes permanentes. Les champs facultatifs `components` et `experience` décrits dans [l'adaptation observée](../../protocol/ADAPTATION.md) permettent de conserver les dépendances, limites et observations. Ne pas inventer une expérience pour compléter le paquet.
+
 Distinguer les quatre responsabilités. Elles peuvent partager les mêmes fichiers et le même dépôt. Pour le mode léger, le manifeste peut prendre cette forme illustrative :
 
 ```json
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "kind": "project-harness",
   "level": 0,
   "status": "PROPOSED",
@@ -61,7 +63,7 @@ N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon 
 
 ```json
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
@@ -69,7 +71,7 @@ N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon 
   "entrypoint": "GENERATE.md",
   "prompts": ["GENERATE.md"],
   "output_contract": "SPEC.md",
-  "source_pattern": "Eiffel++ 0.3.0 ; graines réellement utilisées à préciser"
+  "source_pattern": "Eiffel++ 0.4.0 ; graines réellement utilisées à préciser"
 }
 ```
 

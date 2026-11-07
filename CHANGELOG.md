@@ -1,5 +1,14 @@
 # Journal des changements
 
+## 0.4.0 — 2026-11-07
+
+- Adaptations reliées à une observation, une hypothèse et un effet attendu.
+- Composants N0 facultatifs : procédures spécialisées et auxiliaires Python, avec déclencheurs, entrées, sorties, dépendances et limites vérifiées structurellement.
+- Fiches d'expérience facultatives conservant conditions d'emploi, échecs, référence de comparaison et coûts inconnus, emportées par la capture existante.
+- Trois recettes originales attribuées à Harness², avec statut `source-inspected` ; aucun runtime ou prompt tiers importé.
+- Lecture des paquets 0.2.0/0.3.0 et des graines 0.3.0 conservée. Les nouveaux champs ne prouvent ni activation ni efficacité.
+- Après essais locaux, ajout d'un lanceur instrumenté pour composants Python et d'une sélection conservatrice incluant la référence. Les copies sont liées à leur évaluation ; états inconnus et échecs restent distincts. Les procédures textuelles ne reçoivent pas de preuve d'activation automatique.
+
 ## Publication des graines ICO — 2026-11-06
 
 - Ajout public de `ico-incremental-lanes` et `ico-mechanical-controls-proposal`, sur autorisation explicite de Christian. Le catalogue contient maintenant neuf fiches.

@@ -48,8 +48,8 @@ def _public_location(path: Path) -> bool:
 def validate_record(record: dict, require_public: bool = False) -> None:
     """Contrôler des déclarations ; aucune source ou approbation n'est authentifiée."""
     record = meta._object(record, "record")
-    if record.get("schema_version") != VERSION:
-        raise ValueError(f"record.schema_version doit être {VERSION}.")
+    if record.get("schema_version") not in ("0.3.0", VERSION):
+        raise ValueError(f"record.schema_version doit être 0.3.0 ou {VERSION}.")
     _identifier(record.get("id"), "id")
     if record.get("kind") not in KINDS:
         raise ValueError(f"kind doit appartenir à {KINDS}.")
