@@ -1,0 +1,10 @@
+{
+  "verdict": "INCONCLUSIVE",
+  "reasons": [
+    "Revue humaine favorable de ce cycle absente."
+  ],
+  "head": "2d36d6afcb66e8905baba408d10f76335af6e9a2333267ef456291bb58279545",
+  "level": 2,
+  "epoch": 0,
+  "notice": "Preuves déclarées liées aux fichiers ; authenticité et suffisance métier non automatisées."
+}

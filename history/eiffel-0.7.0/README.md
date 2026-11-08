@@ -22,6 +22,8 @@ Cette version répond au besoin de combiner trois niveaux de spécification avec
 
 Ces constats documentent des décisions et des résultats observables, pas une transcription de raisonnement interne. Les commits suivants conservent les validations et résultats disponibles. La revue humaine d'acceptation de cette version reste distincte de l'autorisation de commit/push ; aucune réponse future n'est inventée.
 
+Le [journal de cette auto-application](journal/session.json) conserve deux cycles liés à la révision `fe266c733463b43bfd7019438fc2d8d5f9b19eda` et aux résultats des 115 tests. Son [état de passage](GATE.json) est **INCONCLUSIVE** : les contrôles réussis ne remplacent pas l'avis humain absent. Cette limite est une observation réelle, distincte des réponses simulées du démonstrateur public. Vérification : `python3 -B tools/cascade.py verify history/eiffel-0.7.0/journal --expected-head 2d36d6afcb66e8905baba408d10f76335af6e9a2333267ef456291bb58279545`.
+
 ## Réemploi
 
 Les contre-exemples sont réutilisables pour toute porte de génération. Une leçon issue d'ICO reste située dans cet essai et ne devient pas automatiquement un principe universel. Voir le [guide d'historique](../../docs/HISTORY.md) et la [cascade](../../protocol/CASCADE.md).

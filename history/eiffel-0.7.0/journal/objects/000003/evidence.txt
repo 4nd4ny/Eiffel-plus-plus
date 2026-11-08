@@ -1,0 +1,1 @@
+115 tests exécutés, PASS. Catalogue vérifié : 175 Markdown. Revue de conception séparée a ajouté 27 contre-exemples ; les tests comprennent un démonstrateur synthétique et migration0.6→0.7. Le retour humain a révélé une question trop peu contextualisée ; prompts corrigés. Aucun accord humain sur la suffisance de cette nouvelle version.

@@ -1,0 +1,49 @@
+{
+  "level": 2,
+  "purpose": "Examiner les principes et mécanismes de passage avant leur qualification métier.",
+  "criteria": {
+    "gates-tested": "PASS",
+    "human-context-required": "PASS",
+    "private-history-separated": "PASS"
+  },
+  "evidence": [
+    "evidence.txt"
+  ],
+  "coverage": [
+    {
+      "requirement": "R-gates",
+      "criterion": "gates-tested"
+    },
+    {
+      "requirement": "R-informed-review",
+      "criterion": "human-context-required"
+    },
+    {
+      "requirement": "R-history",
+      "criterion": "private-history-separated"
+    }
+  ],
+  "required_inputs": [
+    {
+      "id": "needs",
+      "status": "AVAILABLE",
+      "source": "needs.txt"
+    },
+    {
+      "id": "revision-and-evidence",
+      "status": "AVAILABLE",
+      "source": "inputs.json"
+    }
+  ],
+  "blocking_unknowns": [],
+  "observation": "Revue des contre-exemples, version et portée : aucune nouveauté mécanique supplémentaire identifiée.",
+  "hypothesis": "Une porte testée et un dossier compréhensible empêchent certaines conclusions sans fondement ; utilité métier à éprouver.",
+  "change": "Maintenir la version et demander sa revue dans le périmètre réel.",
+  "novelty": [],
+  "stability_probe": "Contre-exemples : silence humain, données absentes, critères modifiés, preuves périmées, transition forcée ; tests et contrat relus sur la même révision.",
+  "limits": [
+    "Stabilité bornée aux critères mécaniques déclarés.",
+    "Aucune validation humaine de suffisance reçue.",
+    "Pas de mesure de gain logiciel sur une comparaison achevée."
+  ]
+}

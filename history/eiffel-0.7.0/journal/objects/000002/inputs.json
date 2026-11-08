@@ -1,0 +1,14 @@
+{
+  "revision": "fe266c733463b43bfd7019438fc2d8d5f9b19eda",
+  "protocol": "protocol/CASCADE.md",
+  "prompts": [
+    "meta/prompts/01-characterize.md",
+    "meta/prompts/03-qualify.md"
+  ],
+  "tests": {
+    "total": 115,
+    "result": "PASS",
+    "source_log_sha256": "ddc143e468f56ea759673bea662c9d6b84d042b6b0fa9386e4e256192c97cd94"
+  },
+  "scope": "Mécanismes et cohérence documentaire ; aucune efficacité métier ou identité de signataire prouvée."
+}

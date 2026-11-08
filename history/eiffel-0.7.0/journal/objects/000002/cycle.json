@@ -1,0 +1,51 @@
+{
+  "level": 2,
+  "purpose": "Examiner les principes et mécanismes de passage avant leur qualification métier.",
+  "criteria": {
+    "gates-tested": "PASS",
+    "human-context-required": "PASS",
+    "private-history-separated": "PASS"
+  },
+  "evidence": [
+    "evidence.txt"
+  ],
+  "coverage": [
+    {
+      "requirement": "R-gates",
+      "criterion": "gates-tested"
+    },
+    {
+      "requirement": "R-informed-review",
+      "criterion": "human-context-required"
+    },
+    {
+      "requirement": "R-history",
+      "criterion": "private-history-separated"
+    }
+  ],
+  "required_inputs": [
+    {
+      "id": "needs",
+      "status": "AVAILABLE",
+      "source": "needs.txt"
+    },
+    {
+      "id": "revision-and-evidence",
+      "status": "AVAILABLE",
+      "source": "inputs.json"
+    }
+  ],
+  "blocking_unknowns": [],
+  "observation": "Le besoin de contexte humain a entraîné un correctif réel des prompts.",
+  "hypothesis": "Une porte testée et un dossier compréhensible empêchent certaines conclusions sans fondement ; utilité métier à éprouver.",
+  "change": "Ajouter la revue contextualisée aux principes.",
+  "novelty": [
+    "La revue doit rappeler les usages métier."
+  ],
+  "stability_probe": "",
+  "limits": [
+    "Stabilité bornée aux critères mécaniques déclarés.",
+    "Aucune validation humaine de suffisance reçue.",
+    "Pas de mesure de gain logiciel sur une comparaison achevée."
+  ]
+}
