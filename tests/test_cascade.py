@@ -99,6 +99,19 @@ class CascadeTests(unittest.TestCase):
         self.approve(second)
         self.assertEqual(cascade.gate(self.session)["verdict"], "READY")
 
+    def test_new_observations_can_stabilize_without_becoming_new_requirements(self):
+        cascade.start(self.session)
+        self.record(novelty=["Première observation sur le besoin fixé."])
+        bundle = self.bundle(evidence=["second-observation.txt"],
+                             observation="Une autre variation couvre le même besoin.")
+        (bundle / "evidence.txt").unlink()
+        (bundle / "second-observation.txt").write_text(
+            "Résultat synthétique distinct : variation nouvelle, même obligation satisfaite.\n")
+        last = cascade.cycle(self.session, bundle)
+        self.approve(last)
+        self.assertEqual(cascade.gate(self.session)["verdict"], "READY")
+        self.assertEqual(cascade.verify(self.session)["verdict"], "PASS")
+
     def test_novelty_or_missing_stability_probe_prevents_descent(self):
         for changes in ({"novelty": ["Un nouveau besoin reste à traiter."]},
                         {"stability_probe": ""}):

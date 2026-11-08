@@ -1,6 +1,6 @@
 # Première application : la revue a changé le processus
 
-État au 8 novembre 2026 : **comparaison inachevée**, périmètre soumis à une revue humaine contextualisée. Aucun avantage de la cascade sur N0 direct n'est établi.
+État au 8 novembre 2026 : **comparaison inachevée**. Après la revue contextualisée décrite ci-dessous, l'humain a accepté d'ajouter le parcours complet aux trois corrections. Aucun avantage de la cascade sur N0 direct n'est établi.
 
 La préparation utilise deux constructeurs à contexte neuf, avec le même modèle hérité et aucun changement de configuration demandé. Le service ne fournit pas ici son identifiant résolu, les tokens ou la facturation : ces mesures restent inconnues. Aucun plafond commun n'est imposé. Les preuves détaillées et le code du projet restent dans un dépôt local privé, sans distant ; ce document est une synthèse partageable.
 
@@ -28,3 +28,13 @@ Le pilote employait N0 v3. Son retour a produit v4, qui précise les chemins des
 Le mécanisme a permis de conserver un désaccord de compréhension et d'empêcher une descente prématurée. C'est un résultat sur le processus de revue. La qualité comparative du code, le temps total des deux approches et leur coût monétaire restent **inconnus** tant que le périmètre, les passages et les réalisations comparables ne sont pas terminés.
 
 Les [commits de développement](README.md) et le [contrat de cascade](../../protocol/CASCADE.md) rendent ces choix réexaminables. Cette expérience propose des précautions réutilisables ; elle ne démontre pas une supériorité générale de trois niveaux.
+
+## Reprise après la décision humaine
+
+L'opérateur a choisi d'ajouter le parcours complet. Le quatrième lot fait produire une suite d'intégration du produit existant ; il ne lui ajoute pas de fonctionnalité. Les cinq obligations couvrent import réel, recherche dans la mémoire produite, réponse liée aux sources, abstention par le vrai parcours et contrôle des tentatives réseau. Les modèles déterministes bornent la portée à l'assemblage logiciel.
+
+Les dépendances verrouillées ont été installées dans une copie, sans scripts d'installation, poids de modèle ni navigateur. Les 78 contrôles existants sélectionnés passent. Un lancement externe a vérifié les sources TypeScript, les variables attendues et le refus d'écrire dans le produit. La protection système permet la boucle locale et refuse une connexion extérieure.
+
+L'évaluateur réservé du lot a été qualifié : une suite de référence passe sur le produit et sur un changement sans effet ; quatre régressions comportementales et une tentative réseau injectée sont détectées. Ce résultat qualifie l'instrument de comparaison, pas un harnais candidat. Les solutions et cas réservés restent hors du contexte des constructeurs et des exécutants.
+
+Un contrôle de passage réel a ensuite révélé une mauvaise séparation entre entrées stables et observations nouvelles. Les dossiers sont repris avec leurs anciennes versions conservées ; les [instructions de qualification](../../meta/prompts/03-qualify.md) et le [guide du contrôleur](../../tools/README.md) ont été précisés. Les coûts de ces reprises appartiennent au parcours cascade et ne doivent pas être effacés du bilan.

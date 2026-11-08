@@ -127,6 +127,8 @@ python3 tools/cascade.py gate JOURNAL_NEUF
 
 `direct` démarre à N0 ; `cascade` démarre à N2. `cycle` copie les pièces, conserve leurs empreintes et renvoie notamment `event_sha256`. Répéter avec une nouvelle itération et ses preuves. Le passage exige les deux derniers cycles du niveau actif à critères tous `PASS`, avec le même inventaire ; le dernier ne déclare aucune nouveauté ni inconnue bloquante et renseigne sa sonde de stabilité. Aucune entrée requise ne doit manquer.
 
+Le contrôle compare aussi `purpose`, la couverture, les entrées requises avec leurs empreintes et modes, et `limits`. **`required_inputs` contient les références stables du besoin et des moyens ; les nouveaux résultats d'essai vont dans `evidence`.** Placer un compte rendu horodaté dans les entrées rendrait chaque nouvelle mesure incomparable à la précédente. Référencer le contrat normatif inchangé plutôt qu'une synthèse reformulée à chaque cycle. Les artefacts produits et les observations peuvent évoluer ; leur dossier est réexaminé. Une exigence réellement modifiée impose un nouveau cycle comparable, sans la déplacer artificiellement dans les preuves pour contourner le contrôle. La comparaison est littérale : conserver le texte des limites lorsqu'il n'a pas changé de sens.
+
 Présenter ce dernier dossier à l'humain compétent. Après sa réponse effective, conserver son texte et utiliser l'empreinte renvoyée pour ce cycle :
 
 ```bash

@@ -2,6 +2,8 @@
 
 ## 0.7.0 — 2026-11-08
 
+- Clarification du contrôle déjà implémenté : entrées normatives stables distinctes des nouvelles preuves d'essai ; liste complète des champs comparés pour la stabilité. Retour observé pendant l'application élargie à ICO.
+
 - Revue humaine contextualisée : rappel du produit et des usages, sources métier, conséquences et alternatives avant de demander une décision. Une demande de contexte reste une revue ouverte.
 
 - Cascade explicite N2 principes → N1 méthode → N0 harnais, avec une boucle IA + essais + humain dans chaque niveau. Descente après suffisance, couverture, données disponibles, stabilité et revue humaine de la version examinée ; une impasse sans nouveauté reste inconclusive.

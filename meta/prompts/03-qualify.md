@@ -45,6 +45,8 @@ Une première proposition ne réclame pas un grand benchmark. Avant de revendiqu
 
 ## Préparer la décision de passage
 
+Dans un dossier pour `cascade.py`, séparer les références stables (`required_inputs` : exigences, données et moyens) des nouvelles observations (`evidence` : comptes rendus d'essais). Un résultat horodaté n'est pas une nouvelle spécification. Vérifier la comparabilité mécanique des deux cycles avant d'annoncer la stabilité ; conserver les formulations normatives inchangées et expliquer tout changement réel, sans maquiller ses empreintes.
+
 Présenter une décision intelligible par elle-même : bref rappel métier, besoin accepté ou proposé, exemple de conséquence, options et limites des preuves. Vérifier que la question ne demande pas seulement de faire confiance à l'agent. Une demande de contexte oblige à clarifier la présentation avant de solliciter à nouveau l'avis ; aucune acceptation n'en découle.
 
 Appliquer le [contrat de cascade](../../protocol/CASCADE.md) sur l'artefact exact, ses critères et ses preuves. Examiner la dernière itération par rapport à la précédente : qu'a-t-on recherché, quelle couverture soutient la conclusion, quelles inconnues restent, et une nouveauté modifierait-elle la décision ? Un second passage identique sans sonde utile ne suffit pas. `cascade.py` exige au moins deux cycles du même niveau, un inventaire de critères stable et une dernière sonde sans nouveauté déclarée ; ces contrôles ne prouvent pas la pertinence de la sonde.
