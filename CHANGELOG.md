@@ -2,6 +2,10 @@
 
 ## 0.7.0 — 2026-11-08
 
+- Comparaison locale terminée : seize réalisations cascade/direct, résultats agrégés et durées individuelles publiés, limites et coûts inconnus conservés. Aucun avantage de qualité observé dans le périmètre ; adoption N0 distincte et encore ouverte. Les harnais, le code et les preuves ICO restent privés.
+
+- Mesures de qualification précisées : bornes et périmètre des durées, fenêtres partielles, délais de réponse distincts du travail actif, absence de double comptage et consommations inconnues. Clarification issue d'un relevé historique partiel ; aucun changement des critères ou harnais déjà gelés.
+
 - Limite de portabilité Git documentée après reproduction : les permissions complètes d'un journal peuvent différer après clone malgré des contenus identiques. Préparation et récupération manuelle bornées, sans assouplissement de `verify` ni outil de restauration automatique.
 
 - Qualification des auxiliaires générés précisée après une revue réelle : pièces effectivement transportées, identité du candidat testé, frontières d'écriture et signal d'échec. Leur coût de création et de correction fait partie du bilan ; aucun changement de schéma ou de sémantique des outils.

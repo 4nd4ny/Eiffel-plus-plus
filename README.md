@@ -2,7 +2,7 @@
 
 **Forger avec un humain une manière de travailler adaptée au projet, à partir de graines réutilisables.**
 
-Version **0.7.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
+Version **0.7.0 — prototype non évalué en production de logiciels**. Une [comparaison locale sur seize réalisations](history/eiffel-0.7.0/APPLICATION-ICO.md) observe les mêmes réussites pour la cascade et le N0 direct, avec des temps différents et des coûts incomplets. Les bénéfices généraux et les économies restent à démontrer ; les exemples fictifs ne sont pas des résultats d’usage.
 
 ## L'idée
 

@@ -1,52 +1,51 @@
-# Première application : la revue a changé le processus
+# ICO : comparaison locale de la cascade et du N0 direct
 
-État au 8 novembre 2026 : **comparaison inachevée**. Après la revue contextualisée décrite ci-dessous, l'humain a accepté d'ajouter le parcours complet aux trois corrections. Aucun avantage de la cascade sur N0 direct n'est établi.
+8 novembre 2026. **Les deux approches réussissent les mêmes critères sur les seize réalisations étudiées. Aucun avantage de qualité ou de robustesse de la cascade n’est observé dans ce périmètre.** Ses huit réalisations prennent 57 min 19 s, contre 50 min 46 s pour le direct : 6 min 33 s supplémentaires (+12,9 % par rapport au direct), hors construction.
 
-La préparation utilise deux constructeurs à contexte neuf, avec le même modèle hérité et aucun changement de configuration demandé. Le service ne fournit pas ici son identifiant résolu, les tokens ou la facturation : ces mesures restent inconnues. Aucun plafond commun n'est imposé. Les preuves détaillées et le code du projet restent dans un dépôt local privé, sans distant ; ce document est une synthèse partageable.
+Cette synthèse agrégée est partageable. Le code, les harnais, les décisions détaillées et les preuves brutes ICO restent dans le dépôt local privé, sans distant. Les résultats ne sont donc pas reproductibles depuis ce catalogue public seul. L’[état précédent](https://github.com/4nd4ny/Eiffel-plus-plus/blob/5717ed7fe06c842ffc5aab6649298fb6052a4cfd/history/eiffel-0.7.0/APPLICATION-ICO.md) et l’historique Git conservent le cheminement antérieur.
 
-## Observations initiales qui ont changé une décision
+## Conditions
 
-| Observation réelle | Suite observée | Ce qu'elle établit |
-| --- | --- | --- |
-| Un contrôleur visible référençait un runtime situé dans le dossier réservé à l'évaluateur. | Le runtime générique a été rendu accessible aux deux bras, sans exposer les oracles. | Le contrôle des entrées peut détecter une dépendance incohérente avant réalisation. |
-| Les sessions employaient des versions de Node différentes malgré une commande identique. | Le binaire et son empreinte ont été fixés pour les deux bras ; la référence a été réévaluée. | La commande seule ne suffit pas à identifier l'environnement. |
-| L'humain ne pouvait pas juger les trois corrections sans rappel du cahier des charges. | Le contexte produit et les conséquences ont été présentés ; les prompts Eiffel++ ont été corrigés. | Une revue humaine doit être compréhensible sans dépendre de la mémoire de la conversation. |
-| Trois corrections de modules couvrent peu les interactions essentielles du produit. | Un parcours import → recherche → réponse sourcée ou abstention, avec contrôle des sorties réseau, a été proposé. | Le périmètre des essais conditionne la portée d'une conclusion sur le harnais. La proposition reste ouverte. |
+Le besoin retenu couvre trois corrections isolées et une suite du parcours import → recherche → réponse sourcée ou abstention, avec contrôle réseau. Données fictives et modèles simulés ; le parcours utilise le produit initial, sans intégrer les trois correctifs.
 
-## Ce qui avait été exécuté au premier arrêt
+A suit N2 principes → N1 méthode → quatre N0 spécialisés, après les revues humaines N2 et N1. B construit directement un N0, itéré jusqu’à v6, avec sélection de la compétence utile. Une seule construction par approche ; deux réalisations neuves par tâche et approche, séquentielles et d’ordre alterné. Même configuration de modèle héritée, sans remplacement ni plafond commun ; identifiant résolu du modèle non exposé. Sources, contrats et moyens communs gelés avant les essais. Pilotes et solutions restent hors du contexte des réalisateurs ; aucun résultat réservé ne retourne à la construction.
 
-Le bras cascade conserve deux dossiers N2, des sondes et une porte `INCONCLUSIVE`. Aucun N1 ni N0 n'a été généré dans ce bras sans la décision requise. Le retour humain est réel ; il demande une clarification, pas une acceptation.
+Un exécutant tient les quatre responsabilités logiques. Son auto-examen est complété par l’évaluateur extérieur ; ce n’est pas une architecture de quatre agents indépendants. La revue extérieure est non aveugle : l’évaluateur connaît l’approche utilisée.
 
-Le bras direct conserve ses versions N0 et un pilote de correction d'URL. Ce pilote réussit les 4 contrôles visibles et les 98 vérifications complémentaires écrites par l'exécutant ; seul le module autorisé a changé. Ces compléments sont un auto-contrôle, pas une évaluation indépendante. Les cas réservés n'ont pas été exécutés sur ce pilote. La durée observée est de 362,914 secondes, dont 23,554 de correction et 0,599 de tests instrumentés ; le reste comprend lecture, analyse, préparation et rédaction des preuves. Ces mesures ne suffisent pas à comparer les parcours.
+## Résultats
 
-Une sonde de faisabilité du parcours élargi a exercé les vraies fonctions d'import et de réponse avec un fournisseur fictif, sans installation : sortie d'import attendue, citation et abstention sur ensemble vide. La recherche, la CLI et la suite complète n'ont pas été exécutées, faute de dépendances dans la copie. Le journal réseau vide de cette sonde ne prouve pas une absence générale de sorties réseau. Aucun résultat n'est attribué à un harnais pour cette sonde.
+| Contrôle | Cascade | Direct |
+|---|---:|---:|
+| Cas visibles des corrections (12 cas × 2 réalisations) | 24/24 | 24/24 |
+| Cas réservés des corrections (43 cas × 2 réalisations) | 86/86 | 86/86 |
+| Suites parcours acceptées après revue | 2/2 | 2/2 |
+| Ruptures métier détectées (4 par suite) | 8/8 | 8/8 |
+| Injection réseau détectée | 2/2 | 2/2 |
+| Témoin sans effet accepté | 2/2 | 2/2 |
+| Intégrité et compilation diagnostique | PASS | PASS |
 
-Le pilote employait N0 v3. Son retour a produit v4, qui précise les chemins des copies et l'environnement commun. V4 n'a pas encore fait l'objet d'une nouvelle réalisation : les résultats de v3 ne sont pas présentés comme des résultats d'exécution de v4.
+Chaque suite passe sur la référence. Les causes d’échec des variantes ont été examinées : les incidents d’environnement, sous-tests parents et échecs secondaires ne comptent pas comme détections supplémentaires. Un seul témoin sans effet est utilisé par suite ; aucune absence universelle de faux positifs n’est établie. La relecture des douze corrections observe des changements localisés et des API préservées, sans classement général de maintenabilité.
 
-## Conclusion bornée
+## Durées observées
 
-Le mécanisme a permis de conserver un désaccord de compréhension et d'empêcher une descente prématurée. C'est un résultat sur le processus de revue. La qualité comparative du code, le temps total des deux approches et leur coût monétaire restent **inconnus** tant que le périmètre, les passages et les réalisations comparables ne sont pas terminés.
+Chaque cellule donne les répétitions 1 puis 2. Les intervalles vont de la préparation/dispatch à la notification de fin et comprennent lectures, outils et rédaction. Ce ne sont pas des temps d’inférence isolés.
 
-Les [commits de développement](README.md) et le [contrat de cascade](../../protocol/CASCADE.md) rendent ces choix réexaminables. Cette expérience propose des précautions réutilisables ; elle ne démontre pas une supériorité générale de trois niveaux.
+| Travail | Cascade — R1 ; R2 | Direct — R1 ; R2 |
+|---|---|---|
+| Liens | 7 min 24 s ; 6 min 31 s | 5 min 31 s ; 5 min 24 s |
+| Abstention et citations | 5 min 16 s ; 5 min 31 s | 5 min 16 s ; 4 min 49 s |
+| Dates et heures | 7 min 07 s ; 7 min 11 s | 6 min 45 s ; 5 min 51 s |
+| Suite du parcours complet | 6 min 27 s ; 11 min 52 s | 8 min 49 s ; 8 min 21 s |
+| Total des huit réalisations | 57 min 19 s | 50 min 46 s |
 
-## Reprise après la décision humaine
+La forte variation du parcours cascade interdit de retenir seulement son premier passage favorable. Deux réalisations par lot ne démontrent ni équivalence statistique ni supériorité générale.
 
-L'opérateur a choisi d'ajouter le parcours complet. Le quatrième lot fait produire une suite d'intégration du produit existant ; il ne lui ajoute pas de fonctionnalité. Les cinq obligations couvrent import réel, recherche dans la mémoire produite, réponse liée aux sources, abstention par le vrai parcours et contrôle des tentatives réseau. Les modèles déterministes bornent la portée à l'assemblage logiciel.
+## Coût et interprétation
 
-Les dépendances verrouillées ont été installées dans une copie, sans scripts d'installation, poids de modèle ni navigateur. Les 78 contrôles existants sélectionnés passent. Un lancement externe a vérifié les sources TypeScript, les variables attendues et le refus d'écrire dans le produit. La protection système permet la boucle locale et refuse une connexion extérieure.
+Tokens, facturation et coût complet de construction restent **inconnus**. Les fenêtres de construction sont partielles : notamment 104,302 s pour fabriquer les quatre N0 cascade, 223,193 s pour leur revue après pilotes et 1 392 s de fenêtres de construction/relecture directe. Ces chiffres ne forment pas deux totaux comparables. Les pilotes, travaux communs et délais de réponse humaine ne sont pas ajoutés arbitrairement ; l’attention active de l’humain n’a pas été mesurée.
 
-L'évaluateur réservé du lot a été qualifié : une suite de référence passe sur le produit et sur un changement sans effet ; quatre régressions comportementales et une tentative réseau injectée sont détectées. Ce résultat qualifie l'instrument de comparaison, pas un harnais candidat. Les solutions et cas réservés restent hors du contexte des constructeurs et des exécutants.
+Les mêmes cas sont répétés ; aucune tâche tenue à l’écart de la construction n’a été étudiée. Le comparateur possède un harnais. Le découpage en niveaux varie aussi avec l’organisation du paquet et les auxiliaires de remise : leur effet causal n’est pas isolé. Les modèles réels, l’interface, la synchronisation, le déploiement et la protection contre toutes les voies réseau restent hors qualification.
 
-Un contrôle de passage réel a ensuite révélé une mauvaise séparation entre entrées stables et observations nouvelles. Les dossiers sont repris avec leurs anciennes versions conservées ; les [instructions de qualification](../../meta/prompts/03-qualify.md) et le [guide du contrôleur](../../tools/README.md) ont été précisés. Les coûts de ces reprises appartiennent au parcours cascade et ne doivent pas être effacés du bilan.
+Le retour humain a élargi le périmètre après une présentation plus compréhensible du besoin. Les auxiliaires générés ont nécessité leurs propres corrections et essais. Un relevé N2 partiel, conservé sous un horodatage ultérieur, a motivé une précision du [prompt de qualification](../../meta/prompts/03-qualify.md) sur les bornes des durées et les coûts inconnus. Ces observations améliorent le processus de revue ; elles ne prouvent pas que trois niveaux produisent un meilleur logiciel.
 
-Deux nouveaux cycles comparables ont ensuite permis le passage N2 → N1. Le reçu distingue l'accord humain sur le périmètre de l'examen technique du coordinateur ; il ne prétend pas que l'humain a lu des pièces produites après sa réponse. La méthode N1 a ensuite été qualifiée techniquement ; son avis humain demeure attendu.
-
-Le bras direct a conservé six versions N0. Son second pilote, avec v6, a produit une suite du parcours complet : les cinq obligations sont étayées, les six tests comptés par Node (dont le parent) passent sans saut, et le produit est préservé. Sa durée observée est de 608,070 secondes, dont 1,516 seconde pour le lancement réussi avec compilation et tests. Les cas réservés n'ont pas été exécutés sur ce candidat. V6 a été maintenu après examen de ce retour.
-
-Une reprise de lancement a aussi révélé une erreur du mandat commun : une destination de preuves déjà créée ne doit pas être réutilisée. La consigne commune exige désormais une destination neuve à chaque tentative et la conservation des anciennes traces. Ce défaut de coordination n'est pas attribué au harnais v6, qui exigeait déjà une destination neuve.
-
-Le plan final prévoit quatre lots, deux répétitions par lot et par bras, soit seize réalisations à contexte neuf après gel des deux N0. Il sépare qualité des correctifs et capacité de la suite d'intégration à détecter des régressions. Aucune de ces réalisations finales n'a encore été exécutée ; les pilotes et sondes ne les remplacent pas.
-
-La rédaction de N1 a ajouté des scripts de contrôle et de remise. Une revue statique par un autre agent a découvert des défauts dans ces nouveaux auxiliaires : identité calculée seulement après le test, journaux absents des pièces transportées, exclusions masquant des fichiers de solution, vérification lexicale des chemins et contrôles de remise incomplets. Ces constats portent sur un brouillon identifié, pas sur le produit ICO. Ils ont déclenché des corrections et des essais négatifs ; une correction annoncée reste distincte de sa vérification. Les instructions de qualification ont été précisées pour couvrir les auxiliaires générés. Cette automatisation constitue à ce stade un coût et une hypothèse de bénéfice, pas un avantage démontré de la cascade.
-
-Deux cycles N1 sont maintenant figés. Quatre prototypes passent les contrôles de structure ; une correction et un parcours exercent les missions et les remises réelles. Le parcours réutilise explicitement une sonde N2 : il qualifie ce circuit de travail, sans mesurer une génération indépendante de suite. Quinze cas négatifs satisfont leurs attentes ; deux simulent une opération, les autres utilisent les opérations réelles. La confirmation ciblée par un second agent relie les corrections aux versions et aux pièces remises, sans nouveau test produit. Le contrôleur officiel ne signale plus que l'avis humain N1 manquant. La question contextualisée a été présentée ; aucun accord futur, N0 final ou résultat comparatif n'est inventé.
+Conserver le parcours N0 direct et demander une raison concrète de réemploi à N1 reste cohérent avec l’intention de minimalité. L’effet des auxiliaires ou le transfert à de nouvelles tâches seraient des questions distinctes à éprouver. **La qualification technique N0 est bornée aux quatre travaux ; son adoption humaine reste ouverte.** Aucun accord de fabrication n’a été transformé en acceptation des résultats.

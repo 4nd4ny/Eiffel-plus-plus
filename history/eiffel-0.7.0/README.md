@@ -31,4 +31,4 @@ Le [journal de cette auto-application](journal/session.json) conserve deux cycle
 
 Les contre-exemples sont réutilisables pour toute porte de génération. Une leçon issue d'ICO reste située dans cet essai et ne devient pas automatiquement un principe universel. Voir le [guide d'historique](../../docs/HISTORY.md) et la [cascade](../../protocol/CASCADE.md).
 
-L'[application ICO en cours](APPLICATION-ICO.md) distingue les observations déjà obtenues, le pilote N0 direct et les décisions encore ouvertes. Le code et les preuves privées du projet ne sont pas publiés dans cet historique.
+La [comparaison ICO terminée](APPLICATION-ICO.md) conserve les résultats agrégés de seize réalisations : mêmes critères réussis, durées distinctes, coûts complets inconnus et adoption humaine N0 encore ouverte. Les observations de construction restent dans l’historique Git. Le code, les harnais et les preuves privées du projet ne sont pas publiés ici.

@@ -45,6 +45,8 @@ Distinguer fichier présent, composant chargé ou lancé, exécution terminée, 
 
 Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, identifier ce qui varie : consigne, contrôles, répartition des rôles ou dispositif entier. Comparer avec le même modèle et sa configuration, les mêmes tâches, informations utiles, droits et critères externes ; compter aussi conception, échecs, reprises et temps humain. Fixer des plafonds communs si l'étude le demande ; sinon relever les ressources de chaque parcours et distinguer meilleur résultat et meilleure efficience. Une consigne ajoutée à un dispositif commun ne mesure pas l'effet de tout Eiffel++. Pour étudier la cascade, inclure un N0 direct amélioré par itérations, sans lui transmettre les solutions de l'autre parcours.
 
+Lier chaque durée à son début, sa fin et au travail couvert. Distinguer fenêtre partielle, délai de réponse humaine et travail actif ; ne pas additionner des intervalles qui se recouvrent. La taille du paquet ne mesure pas les tokens consommés. Les coûts ou consommations non exposés restent inconnus.
+
 ## Préparer la décision de passage
 
 Dans un dossier pour `cascade.py`, séparer les références stables (`required_inputs` : exigences, données et moyens) des nouvelles observations (`evidence` : comptes rendus d'essais). Un résultat horodaté n'est pas une nouvelle spécification. Vérifier la comparabilité mécanique des deux cycles avant d'annoncer la stabilité ; conserver les formulations normatives inchangées et expliquer tout changement réel, sans maquiller ses empreintes.
