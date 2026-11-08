@@ -2,7 +2,7 @@
 
 ## 0.7.0 — 2026-11-08
 
-- Comparaison locale terminée : seize réalisations cascade/direct, résultats agrégés et durées individuelles publiés, limites et coûts inconnus conservés. Aucun avantage de qualité observé dans le périmètre ; adoption N0 distincte et encore ouverte. Les harnais, le code et les preuves ICO restent privés.
+- Comparaison locale terminée : seize réalisations cascade/direct, résultats agrégés et durées individuelles publiés, limites et coûts inconnus conservés. Aucun avantage de qualité observé dans le périmètre. Après revue des résultats, les quatre N0 ont reçu l’acceptation humaine pour le périmètre local testé et leur cycle a été clôturé. Cette acceptation ne qualifie ni toute l’application ni un déploiement. Les harnais, le code et les preuves ICO restent privés.
 
 - Mesures de qualification précisées : bornes et périmètre des durées, fenêtres partielles, délais de réponse distincts du travail actif, absence de double comptage et consommations inconnues. Clarification issue d'un relevé historique partiel ; aucun changement des critères ou harnais déjà gelés.
 

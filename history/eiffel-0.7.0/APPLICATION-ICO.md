@@ -48,4 +48,10 @@ Les mêmes cas sont répétés ; aucune tâche tenue à l’écart de la constru
 
 Le retour humain a élargi le périmètre après une présentation plus compréhensible du besoin. Les auxiliaires générés ont nécessité leurs propres corrections et essais. Un relevé N2 partiel, conservé sous un horodatage ultérieur, a motivé une précision du [prompt de qualification](../../meta/prompts/03-qualify.md) sur les bornes des durées et les coûts inconnus. Ces observations améliorent le processus de revue ; elles ne prouvent pas que trois niveaux produisent un meilleur logiciel.
 
-Conserver le parcours N0 direct et demander une raison concrète de réemploi à N1 reste cohérent avec l’intention de minimalité. L’effet des auxiliaires ou le transfert à de nouvelles tâches seraient des questions distinctes à éprouver. **La qualification technique N0 est bornée aux quatre travaux ; son adoption humaine reste ouverte.** Aucun accord de fabrication n’a été transformé en acceptation des résultats.
+Conserver le parcours N0 direct et demander une raison concrète de réemploi à N1 reste cohérent avec l’intention de minimalité. L’effet des auxiliaires ou le transfert à de nouvelles tâches seraient des questions distinctes à éprouver.
+
+## Acceptation après revue des résultats
+
+Le 8 novembre 2026, après présentation de cette comparaison et de ses limites, l’utilisateur a explicitement accepté les quatre N0 cascade dans le périmètre testé. La décision a été liée au dernier cycle conservé dans le journal privé ; le contrôle de passage a été satisfait et N0 a été clôturé. La vérification du journal confirme cette clôture. Les artefacts et preuves évalués sont inchangés.
+
+Cette acceptation porte sur les quatre travaux dans l’environnement préparé, avec données fictives et modèles simulés. Elle ne qualifie ni l’ensemble d’ICO ni un déploiement et ne démontre aucun avantage de qualité de la cascade. Le journal distinct d’auto-application d’Eiffel++ reste dans son état antérieur. Les pièces détaillées de décision demeurent privées ; l’[état publié avant cette réponse](https://github.com/4nd4ny/Eiffel-plus-plus/blob/87d88b97432f3ead66dc0cf0836880353578072b/history/eiffel-0.7.0/APPLICATION-ICO.md) conserve la revue encore ouverte.
