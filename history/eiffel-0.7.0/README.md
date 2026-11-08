@@ -27,3 +27,5 @@ Le [journal de cette auto-application](journal/session.json) conserve deux cycle
 ## Réemploi
 
 Les contre-exemples sont réutilisables pour toute porte de génération. Une leçon issue d'ICO reste située dans cet essai et ne devient pas automatiquement un principe universel. Voir le [guide d'historique](../../docs/HISTORY.md) et la [cascade](../../protocol/CASCADE.md).
+
+L'[application ICO en cours](APPLICATION-ICO.md) distingue les observations déjà obtenues, le pilote N0 direct et les décisions encore ouvertes. Le code et les preuves privées du projet ne sont pas publiés dans cet historique.
