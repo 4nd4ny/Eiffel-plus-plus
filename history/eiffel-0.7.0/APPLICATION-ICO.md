@@ -4,7 +4,7 @@
 
 La préparation utilise deux constructeurs à contexte neuf, avec le même modèle hérité et aucun changement de configuration demandé. Le service ne fournit pas ici son identifiant résolu, les tokens ou la facturation : ces mesures restent inconnues. Aucun plafond commun n'est imposé. Les preuves détaillées et le code du projet restent dans un dépôt local privé, sans distant ; ce document est une synthèse partageable.
 
-## Observations qui ont changé une décision
+## Observations initiales qui ont changé une décision
 
 | Observation réelle | Suite observée | Ce qu'elle établit |
 | --- | --- | --- |
@@ -13,7 +13,7 @@ La préparation utilise deux constructeurs à contexte neuf, avec le même modè
 | L'humain ne pouvait pas juger les trois corrections sans rappel du cahier des charges. | Le contexte produit et les conséquences ont été présentés ; les prompts Eiffel++ ont été corrigés. | Une revue humaine doit être compréhensible sans dépendre de la mémoire de la conversation. |
 | Trois corrections de modules couvrent peu les interactions essentielles du produit. | Un parcours import → recherche → réponse sourcée ou abstention, avec contrôle des sorties réseau, a été proposé. | Le périmètre des essais conditionne la portée d'une conclusion sur le harnais. La proposition reste ouverte. |
 
-## Ce qui a réellement été exécuté
+## Ce qui avait été exécuté au premier arrêt
 
 Le bras cascade conserve deux dossiers N2, des sondes et une porte `INCONCLUSIVE`. Aucun N1 ni N0 n'a été généré dans ce bras sans la décision requise. Le retour humain est réel ; il demande une clarification, pas une acceptation.
 
