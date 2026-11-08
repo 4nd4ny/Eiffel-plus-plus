@@ -20,7 +20,7 @@ class Release07Tests(unittest.TestCase):
         self.example = ROOT / "examples/ico-0.6.0"
 
     def test_06_and_07_preserve_skills_and_require_design(self):
-        for version in ("0.6.0", "0.7.0"):
+        for version in ("0.6.0", "0.7.0", "0.8.0"):
             for folder, manifest_name in (("N0", "harness.json"), ("N1", "meta-harness.json")):
                 bundle = self.root / (folder + version)
                 shutil.copytree(self.example / folder, bundle)

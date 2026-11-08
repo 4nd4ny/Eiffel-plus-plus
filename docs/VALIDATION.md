@@ -1,5 +1,7 @@
 # Vérifications d'Eiffel++ 0.3.0
 
+Complément du 9 novembre 2026 : la [validation 0.8.0](VALIDATION_0_8.md) couvre la mémoire révisable, 149 tests du catalogue et un essai déterministe privé sur les contrats ICO. Elle ne mesure pas le comportement d'un LLM après oubli.
+
 Complément du 8 novembre 2026 : la [comparaison locale cascade/direct](../history/eiffel-0.7.0/APPLICATION-ICO.md) rapporte seize réalisations sur un périmètre borné. Le rapport daté ci-dessous conserve son périmètre historique ; cette observation ne valide pas la méthode en production.
 
 Date : **6 novembre 2026**. Périmètre : documents du catalogue, formats JSON, outils locaux, exemples et base de graines. **La méthode reste un prototype non évalué sur la production de logiciels réels.**

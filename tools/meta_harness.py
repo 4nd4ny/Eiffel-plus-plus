@@ -25,8 +25,8 @@ import tempfile
 from typing import Any
 
 
-VERSION = "0.7.0"
-SUPPORTED_VERSIONS = ("0.2.0", "0.3.0", "0.4.0", "0.5.0", "0.6.0", VERSION)
+VERSION = "0.8.0"
+SUPPORTED_VERSIONS = ("0.2.0", "0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", VERSION)
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = ("governance", "stbl", "audit", "product")
 AXES = ("speed", "economy", "scope", "autonomy")
@@ -266,7 +266,7 @@ def _file(files: dict[str, bytes], value: Any, label: str) -> str:
 def design_rationale(files: dict[str, bytes], manifest: dict[str, Any]) -> dict[str, Any] | None:
     """Identifier une note explicative ; ne pas évaluer la qualité de ses arguments."""
     if "design_rationale" not in manifest:
-        if manifest["schema_version"] in ("0.6.0", "0.7.0"):
+        if manifest["schema_version"] in ("0.6.0", "0.7.0", "0.8.0"):
             raise ValueError("design_rationale : note de conception requise pour N1 et N0 depuis 0.6.0.")
         return None
     path = _file(files, manifest["design_rationale"], "design_rationale")

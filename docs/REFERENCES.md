@@ -93,6 +93,10 @@ Sources primaires consultées le 8 novembre 2026 :
 
 L'[historique de construction](HISTORY.md) reprend cette intention de capitalisation : décisions et preuves versionnées, limites conservées, transfert réévalué. La mémoire privée du projet et une contribution publique sélectionnée restent deux objets distincts.
 
+## Mémoire révisable et consolidation
+
+Sources primaires examinées le 8 novembre 2026 : [Anthropic, Dreams](https://platform.claude.com/docs/en/managed-agents/dreams) et [Using agent memory](https://platform.claude.com/docs/en/managed-agents/memory). Le premier décrit une consolidation asynchrone produisant une mémoire distincte de l'entrée ; le second documente les versions, les accès et une précondition d'empreinte pour les écritures concurrentes. Ces sources inspirent la séparation proposition/application, le contexte reconstruit et la révision conditionnelle. Aucun SDK, service, prompt complet ou résultat de performance Anthropic n'est incorporé. Eiffel++ fournit son propre contrôleur déterministe ; la révision sémantique et l'identité restent à qualifier dans l'hôte.
+
 ## Format des compétences réutilisables
 
 [Agent Skills — Specification](https://agentskills.io/specification), consulté le 7 novembre 2026 : dossier par compétence, SKILL.md avec name/description, ressources facultatives et découverte progressive. Eiffel++ reprend cette forme ; capacités, contrats de remise et empreintes de mission sont ses propres ajouts. Son lecteur sans dépendance ne traite qu’un sous-ensemble explicite des en-têtes YAML. Aucun contenu de skill tiers n’est importé.

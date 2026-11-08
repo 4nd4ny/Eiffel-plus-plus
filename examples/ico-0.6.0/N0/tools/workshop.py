@@ -20,8 +20,8 @@ def runtime(root):
     import meta_harness
     import skills
     import trials
-    if meta_harness.VERSION not in ('0.6.0', '0.7.0'):
-        raise ValueError('Runtime Eiffel++ 0.6.0 ou 0.7.0 requis.')
+    if meta_harness.VERSION not in ('0.6.0', '0.7.0', '0.8.0'):
+        raise ValueError('Runtime Eiffel++ 0.6.0, 0.7.0 ou 0.8.0 requis.')
     return meta_harness, skills, trials
 
 
@@ -172,7 +172,7 @@ def compare(meta, trials, workspace, anchor, evaluations, dest):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--eiffel', type=Path, required=True, help='Racine du runtime Eiffel++ 0.6.0 ou 0.7.0')
+    parser.add_argument('--eiffel', type=Path, required=True, help='Racine du runtime Eiffel++ 0.6.0, 0.7.0 ou 0.8.0')
     sub = parser.add_subparsers(dest='action', required=True)
     op = sub.add_parser('open')
     for name in ('harness', 'code', 'checker', 'contract', 'output'):

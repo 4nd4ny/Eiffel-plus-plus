@@ -2,6 +2,8 @@
 
 Git conserve l'histoire des versions ; les décisions expliquent ce qui a été retenu et pourquoi. Cette mémoire sert à reprendre le travail, contester une conclusion et améliorer une méthode. Elle ne demande ni transcription intégrale des conversations ni journal de raisonnement interne.
 
+Depuis 0.8.0, le [contexte actif](../protocol/MEMORY.md) est reconstruit séparément de cette histoire. Une note retirée reste explicable sans être réinjectée ; la recherche normale applique sa validité actuelle. Une correction explicite invalide immédiatement les remises concernées. Les sources historiques et leurs droits restent conservés ; le prompt de consolidation prépare une proposition distincte de son application.
+
 ## Un historique utile au projet
 
 Conserver dans un dépôt privé ou local, selon les droits du projet :

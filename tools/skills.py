@@ -50,9 +50,9 @@ def skill_header(raw):
 
 def validate_capabilities(files, manifest):
     skills = {c['id']: c for c in manifest.get('components', []) if c['kind'] == 'skill'}
-    if manifest['schema_version'] not in ('0.5.0', '0.6.0', '0.7.0'):
+    if manifest['schema_version'] not in ('0.5.0', '0.6.0', '0.7.0', '0.8.0'):
         if 'capabilities' in manifest or skills:
-            raise ValueError('Les capacités explicites exigent schema_version 0.5.0, 0.6.0 ou 0.7.0.')
+            raise ValueError('Les capacités explicites exigent schema_version 0.5.0, 0.6.0, 0.7.0 ou 0.8.0.')
         return
     capabilities = manifest.get('capabilities')
     if not isinstance(capabilities, list) or not capabilities:

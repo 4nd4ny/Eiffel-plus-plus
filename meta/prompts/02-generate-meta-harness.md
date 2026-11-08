@@ -38,7 +38,7 @@ Traduire la revue [qualité](../QUALITY.md) en obligations et contrôles pertine
 
 Pour un problème identifié, préférer une procédure spécialisée avec déclencheur ou un auxiliaire déterministe à l'accumulation de consignes permanentes. Les champs facultatifs `components` et `experience` décrits dans [l'adaptation observée](../../protocol/ADAPTATION.md) permettent de conserver les dépendances, limites et observations. Ne pas inventer une expérience pour compléter le paquet.
 
-Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.7.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
+Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.8.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
 
 Dans le point d’entrée, expliquer comment choisir la compétence, préparer ses entrées, examiner sa remise et poursuivre ou arrêter. Pour les missions instrumentées, le coordinateur conserve l’empreinte renvoyée par `skills.py prepare` et la transmet à verify/handoff. Une modification du plan ou des contrôles impose une nouvelle qualification ; ne pas recalculer l’empreinte pour faire disparaître STALE. Ne lancer ni quatre processus par défaut ni des boucles réinitialisant le budget.
 
@@ -48,7 +48,7 @@ Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. L
 
 ```json
 {
-  "schema_version": "0.7.0",
+  "schema_version": "0.8.0",
   "kind": "project-harness",
   "level": 0,
   "status": "PROPOSED",
@@ -80,6 +80,10 @@ Le mode `four-repos` utilise `repositories` vers quatre dossiers distincts, chac
 
 Tous les chemins internes sont relatifs, sans traversée ni lien symbolique. `.git` et `_eiffel` sont réservés aux outils. Examiner le résultat avec [03-qualify.md](03-qualify.md).
 
+## Contexte des reprises
+
+Pour les reprises de contexte, transmettre le [contrat de mémoire](../../protocol/MEMORY.md) au niveau produit. N1 précise sources, natures, portées, dépendances, versions pertinentes et acteurs autorisés. GENERATE fournit à N0 la préparation/revalidation du contexte et l'adaptateur réellement disponible ; CHECK éprouve retrait d'une consigne et maintien d'une exigence ; ADAPT conserve la provenance et réexamine les descendants. N0 nomme ses commandes concrètes, l'emplacement privé du magasin et les ancres conservées par l'hôte. Si l'hôte ne peut empêcher la réinjection de l'ancien historique, déclarer cette capacité manquante. Ne pas embarquer le journal brut comme instructions ni ajouter cette infrastructure à un lot qui ne réutilise aucune mémoire.
+
 ## Produire N1 lorsque le parcours le demande
 
 Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il évitera. Si une cascade a été explicitement choisie, rendre ces décisions de méthode distinctes des principes N2 et des opérations N0 ; comparer leur utilité au parcours direct. Hors de ce mandat, si la raison se réduit à « respecter trois niveaux », produire N0 directement.
@@ -98,7 +102,7 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
 
 ```json
 {
-  "schema_version": "0.7.0",
+  "schema_version": "0.8.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
@@ -107,7 +111,7 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
   "entrypoint": "GENERATE.md",
   "prompts": ["GENERATE.md"],
   "output_contract": "SPEC.md",
-  "source_pattern": "Eiffel++ 0.7.0 ; graines réellement utilisées à préciser",
+  "source_pattern": "Eiffel++ 0.8.0 ; graines réellement utilisées à préciser",
   "capabilities": [
     {"role": "governance", "task": "Coordonner les lots couverts", "unavailable": "Méthode à définir dans GENERATE.md ; cet exemple donne seulement le format."},
     {"role": "stbl", "task": "Spécifier les lots couverts", "unavailable": "Sources et méthode à définir dans SPEC.md avant utilisation."},

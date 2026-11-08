@@ -6,6 +6,8 @@
 
 ## Choisir la transformation
 
+Une correction explicite d'une consigne est traitée immédiatement dans son périmètre. Pour une révision plus large, utiliser [05-revise-memory.md](05-revise-memory.md) : proposition sourcée distincte de l'application, maintien des exigences rares et réexamen des dépendances. Après application, reconstruire le contexte depuis l'état courant et refuser l'ancienne remise. Conserver l'histoire sans la réinjecter comme obligation ; aucune ancienneté ou fréquence ne crée ou ne retire une autorité.
+
 | Situation | Suite possible |
 | --- | --- |
 | Un paramètre ou une procédure locale ne convient plus. | Modifier N0 dans le mandat et reprendre les contrôles concernés. |

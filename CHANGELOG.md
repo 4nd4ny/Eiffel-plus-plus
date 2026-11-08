@@ -1,5 +1,12 @@
 # Journal des changements
 
+## 0.8.0 — 2026-11-09
+
+- Mémoire locale révisable : sources citées, nature et portée des notes, conditions de réexamen, dépendances, retrait et contestation. Une exigence valide reste présente sans critère de popularité ; une exigence incertaine bloque le contexte concerné.
+- Propositions de consolidation séparées de leur application, contrôles des droits déclarés, comparaison de révision sous verrou et remplacement atomique. Historique conservé ; identité de l'acteur et protection du magasin restent à la charge de l'hôte.
+- Préparation puis revalidation d'une requête neuve ; refus des consignes périmées, remises anciennes, exigences perdues et ajouts d'historique. Aucun appel LLM ni service de consolidation automatique ; l'adaptateur doit réellement écarter l'ancien contexte.
+- Prompts N2/N1/N0 et prompt de révision reliés au contrat de mémoire. Exemple fictif exécutable et contre-exemples. Lecture des paquets 0.2.0–0.7.0 conservée ; l'atelier public ICO 0.6.0 accepte aussi le runtime 0.8.0 sans réécrire ses observations historiques.
+
 ## 0.7.0 — 2026-11-08
 
 - Comparaison locale terminée : seize réalisations cascade/direct, résultats agrégés et durées individuelles publiés, limites et coûts inconnus conservés. Aucun avantage de qualité observé dans le périmètre. Après revue des résultats, les quatre N0 ont reçu l’acceptation humaine pour le périmètre local testé et leur cycle a été clôturé. Cette acceptation ne qualifie ni toute l’application ni un déploiement. Les harnais, le code et les preuves ICO restent privés.

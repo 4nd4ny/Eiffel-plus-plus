@@ -35,8 +35,8 @@ def validate_components(files, manifest):
         ids.add(identifier)
         if item.get("kind") not in ("procedure", "script", "skill"):
             raise ValueError("component.kind doit être procedure, script ou skill.")
-        if item["kind"] == "skill" and manifest["schema_version"] not in ("0.5.0", "0.6.0", "0.7.0"):
-            raise ValueError("Les skills exigent schema_version 0.5.0, 0.6.0 ou 0.7.0.")
+        if item["kind"] == "skill" and manifest["schema_version"] not in ("0.5.0", "0.6.0", "0.7.0", "0.8.0"):
+            raise ValueError("Les skills exigent schema_version 0.5.0, 0.6.0, 0.7.0 ou 0.8.0.")
         path = meta._file(files, item.get("path"), "component.path")
         if item["kind"] == "script" and not path.endswith(".py"):
             raise ValueError("Les composants script pris en charge sont des fichiers Python .py.")

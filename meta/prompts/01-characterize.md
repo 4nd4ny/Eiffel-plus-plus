@@ -12,6 +12,8 @@ Par exemple, « ne pas modifier le fichier source » concerne le produit ; « po
 
 Distinguer ce que l'utilisateur a dit, ce que l'agent infère, ce qui a été observé et ce qui reste inconnu. Une question est utile si ses réponses changent une décision concrète ou une action réservée. Regrouper les questions liées et poursuivre les travaux indépendants. Ne pas demander des détails que la tâche n'oblige pas à interpréter.
 
+Pour une reprise, retrouver la source des consignes qui orientent le lot, leur nature et leur portée. Identifier les conditions de réexamen des hypothèses/choix et les versions courantes fournies par l'hôte. Ne pas prendre un ancien résumé pour une nouvelle exigence humaine. Le [contrat de mémoire](../../protocol/MEMORY.md) précise la sélection active et les capacités nécessaires ; un carnet historique ne suffit pas à assurer l'oubli.
+
 Identifier le parcours demandé : N0 direct itératif ou [cascade N2 principes → N1 méthode → N0 usage](../../protocol/CASCADE.md). Pour le niveau courant, définir les exigences métier et de méthode, les critères de suffisance, les cas à éprouver, les informations et capacités requises pour la suite. Distinguer disponible, manquant et exclusion justifiée. Nommer les inconnues bloquantes et la personne compétente pour les trancher.
 
 Fixer avant l'essai ce qui constituerait une nouveauté utile : nouvelle exigence, contre-exemple, défaut, capacité absente ou correction qui changerait la décision. Préparer une revue humaine concrète des critères et de leur couverture. Le mandat de concevoir autorise le travail ; il ne confirme pas d'avance que le futur artefact comprend correctement le besoin métier.

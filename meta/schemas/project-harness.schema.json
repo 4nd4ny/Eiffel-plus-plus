@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Paquet N0 de harnais de projet Eiffel++ 0.7.0",
+  "title": "Paquet N0 de harnais de projet Eiffel++ 0.8.0",
   "description": "Un dépôt peut accueillir les quatre responsabilités ; four-repos conserve l’ancien format. Les fichiers référencés doivent exister. generator est une provenance descriptive, jamais une adresse chargée automatiquement. Ces contraintes structurelles ne qualifient pas la méthode.",
   "type": "object",
   "required": [
@@ -19,7 +19,8 @@
         "0.4.0",
         "0.5.0",
         "0.6.0",
-        "0.7.0"
+        "0.7.0",
+        "0.8.0"
       ]
     },
     "kind": {
@@ -159,7 +160,8 @@
               "0.4.0",
               "0.5.0",
               "0.6.0",
-              "0.7.0"
+              "0.7.0",
+              "0.8.0"
             ]
           }
         },
@@ -187,7 +189,8 @@
           "schema_version": {
             "enum": [
               "0.6.0",
-              "0.7.0"
+              "0.7.0",
+              "0.8.0"
             ]
           }
         }

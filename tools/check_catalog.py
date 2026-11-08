@@ -83,6 +83,7 @@ def check_catalog(root: Path) -> list[str]:
         "meta/START.md", "meta/README.md", "meta/CONTRACT.md", "meta/TETRAHEDRON.md", "meta/DESIGN.md",
         "meta/prompts/01-characterize.md", "meta/prompts/02-generate-meta-harness.md",
         "meta/prompts/03-qualify.md", "meta/prompts/04-adapt.md",
+        "meta/prompts/05-revise-memory.md", "protocol/MEMORY.md", "tools/memory.py",
     ):
         if not (root / relative).is_file():
             errors.append(f"Patron génératif incomplet : {relative}")

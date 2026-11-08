@@ -1,6 +1,22 @@
-# Outils locaux d'Eiffel++ 0.7.0
+# Outils locaux d'Eiffel++ 0.8.0
 
 Ces programmes utilisent la bibliothèque standard de Python. Ils préparent et copient des fichiers, contrôlent leur structure et conservent leur provenance. Le choix de la méthode et sa mise en œuvre relèvent de l'opérateur, des agents et de l'environnement du projet.
+
+## Réviser la mémoire et préparer un contexte neuf
+
+`memory.py` fournit un magasin local et un contrôle de remise pour macOS/Linux. Son [contrat](../protocol/MEMORY.md) décrit les entrées, droits, exclusions et limites ; l'[exemple Python](../examples/memory-0.8.0/demo.py) montre le cycle complet. Aucun modèle ni processus de consolidation n'est lancé implicitement.
+
+```sh
+python3 -B tools/memory.py init MAGASIN projet policy.json
+python3 -B tools/memory.py propose MAGASIN worker changement.json --output proposition.json
+python3 -B tools/memory.py apply MAGASIN proposition.json EMPREINTE_RETOURNEE worker
+python3 -B tools/memory.py prepare MAGASIN PAQUET_NEUF --scope lot --bindings versions.json --task-file tache.txt
+python3 -B tools/memory.py request MAGASIN PAQUET_NEUF --scope lot --bindings versions.json --task-file tache.txt --packet-sha256 EMPREINTE_DU_RECU
+```
+
+`policy.json` contient les listes `maintainers` et `writers`. `changement.json` contient `reason` et `operations` ; leurs formats sont illustrés par le démonstrateur. `propose` écrit une proposition neuve hors magasin et retourne l'empreinte de son JSON canonique ; il ne l'applique pas. `apply` vérifie cette empreinte, la révision de départ et les droits de l'acteur fourni par l'hôte. Les erreurs sortent avec un code non nul. `inspect --expected-revision`, `select` et `recall ID` permettent de vérifier une ancre et consulter l'état applicable.
+
+Conserver les ancres hors des remises. Transmettre seulement les messages rendus par `request`, sans historique ajouté. L'hôte doit authentifier l'acteur, protéger le magasin, fournir les versions réellement courantes et assurer le démarrage dans un contexte neuf ; le CLI ne configure pas ces protections. Les notes retirées restent dans l'histoire privée, qui ne doit pas être montée comme instructions chez le réalisateur.
 
 ## Consulter les graines
 

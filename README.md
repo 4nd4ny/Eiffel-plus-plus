@@ -2,7 +2,7 @@
 
 **Forger avec un humain une manière de travailler adaptée au projet, à partir de graines réutilisables.**
 
-Version **0.7.0 — prototype non évalué en production de logiciels**. Une [comparaison locale sur seize réalisations](history/eiffel-0.7.0/APPLICATION-ICO.md) observe les mêmes réussites pour la cascade et le N0 direct, avec des temps différents et des coûts incomplets. Les bénéfices généraux et les économies restent à démontrer ; les exemples fictifs ne sont pas des résultats d’usage.
+Version **0.8.0 — prototype non évalué en production de logiciels**. Une [comparaison locale sur seize réalisations](history/eiffel-0.7.0/APPLICATION-ICO.md) observe les mêmes réussites pour la cascade et le N0 direct, avec des temps différents et des coûts incomplets. Les bénéfices généraux et les économies restent à démontrer ; les exemples fictifs ne sont pas des résultats d’usage.
 
 ## L'idée
 
@@ -13,6 +13,10 @@ Une graine peut être une petite recette extraite d'un projet public ou un harna
 **Intention de conception : privilégier le harnais minimal suffisant.** Relier les comportements attendus, le code et leurs contrôles ; conserver les quatre responsabilités, leurs échanges et leurs limites d'autorité. Choisir leur répartition entre agents selon le besoin et l'indépendance requise. Retirer les répétitions et les étapes sans effet utile. La minimalité n'est ni un objectif de longueur ni un nombre imposé d'agents. La valeur reste à observer : qualité, reprises humaines, temps et coût total, face à une référence explicite.
 
 Le point d'entrée est [meta/START.md](meta/START.md). La [base de graines](seeds/README.md) et le [démarrage](docs/QUICKSTART.md) permettent de commencer sans lire tout le catalogue.
+
+La version 0.8.0 ajoute une [mémoire révisable](protocol/MEMORY.md) : les consignes conservent leur provenance et leurs conditions d'application ; le contexte est reconstruit sans les notes périmées, avec toutes les exigences applicables. Un [exemple exécutable](examples/memory-0.8.0/README.md) montre le retrait et le refus d'une ancienne remise. Ce mécanisme contrôle les données transmises ; il ne garantit ni la vérité des souvenirs ni le comportement d'un modèle.
+
+La [validation 0.8.0](docs/VALIDATION_0_8.md) rapporte 149 tests passants et 12 reprises déterministes sur les contrats ICO : consignes périmées exclues, exigences applicables conservées. Les données et preuves ICO restent privées ; aucun benchmark LLM n'est revendiqué.
 
 ## Specification Driven Development : préciser l'objet
 

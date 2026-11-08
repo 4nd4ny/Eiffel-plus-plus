@@ -1,4 +1,4 @@
-# Protocole Eiffel++ — 0.7.0
+# Protocole Eiffel++ — 0.8.0
 
 Ce protocole distingue les responsabilités et la provenance du travail. Il peut s'appliquer à un dépôt commun ou à plusieurs dépôts. Il ne déploie aucun droit ni contrôle. Dans le projet, la gouvernance identifie la version adoptée ; les copies sont des instantanés, pas des normes concurrentes.
 
@@ -125,6 +125,8 @@ Arrêter les boucles sans information nouvelle. Ne pas recréer le budget en cha
 Charger l'entrée du harnais, les besoins utiles au lot, le mandat et le diagnostic courant. Consulter les autres sources à la demande. Ne pas injecter toute la base de graines ni l'historique intégral à chaque tâche.
 
 Les résumés facilitent la navigation ; les décisions de référence restent accessibles. Voir le [modèle de confiance](TRUST.md).
+
+Depuis 0.8.0, le [contrat de mémoire révisable](MEMORY.md) précise les reprises : sources et natures conservées, exclusion des consignes périmées, préservation des exigences applicables, propositions séparées de leur application et revalidation avant transmission d'un contexte neuf. Le contrôleur local ne détecte pas toutes les erreurs sémantiques et ne remplace ni l'identité imposée par l'hôte ni l'adaptateur qui écarte l'ancien historique.
 
 ## 10. Révision et capitalisation
 

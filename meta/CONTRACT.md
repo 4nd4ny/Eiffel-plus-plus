@@ -69,6 +69,7 @@ N1 fournit des fonctions de génération, d'examen et d'adaptation, éventuellem
 4. **Résultats.** Description, exécution, observation, décision et prévision sont distinguées. `NOT_RUN`, `UNKNOWN` et `STALE` ne satisfont pas une obligation exigeant `PASS`.
 5. **Provenance.** Les sources, adaptations et versions sont conservées sans inventer de filiation. Les restrictions de licence et de confidentialité restent applicables.
 6. **Proportion.** Une étape, une mémoire ou une nouvelle abstraction doit répondre à une difficulté identifiable. Le coût inclut conception, usage, corrections et attention humaine.
+7. **Contexte.** Une consigne conserve son origine, sa nature et ses conditions d'application. Appliquer le [contrat de mémoire](../protocol/MEMORY.md) aux reprises : exclure les notes périmées, conserver toutes les exigences applicables et refuser une remise qui les perd. Une exigence incertaine appelle un réexamen ; elle ne disparaît pas au nom de l'oubli. L'adaptateur doit effectivement fournir un contexte neuf.
 
 ## Examiner, adopter, capitaliser
 

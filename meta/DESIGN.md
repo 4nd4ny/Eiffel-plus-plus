@@ -4,6 +4,8 @@ Cette note décrit les choix du N2 actuel. Les [exigences de conception](CONTRAC
 
 ## Décisions et compromis
 
+En 0.8.0, la reprise de contexte distingue l'histoire conservée et les consignes encore applicables. Le [contrat de mémoire](../protocol/MEMORY.md) préfère une sélection reconstruite, des sources exactes et des transitions contrôlées à un résumé cumulatif libre. Une exigence incertaine bloque la seule portée concernée ; une hypothèse périmée en est retirée. Ce choix évite une suppression silencieuse d'obligation, au prix d'un réexamen quand les versions changent. Le traitement sémantique reste une proposition d'agent et l'authentification une responsabilité de l'hôte. Le contrôleur ne sait pas effacer un historique déjà envoyé à un modèle.
+
 | Choix | Motif de génie logiciel et contrepartie | Conséquence observable |
 | --- | --- | --- |
 | Séparer besoin, réalisation, examen et gouvernance sans imposer quatre processus | Limiter les confusions d'autorité tout en permettant une organisation proportionnée. Un même acteur réduit la coordination mais perd l'indépendance de l'examen. | Les prompts font préciser les remises et droits effectifs ; le nombre de rôles ne prouve pas la séparation. |

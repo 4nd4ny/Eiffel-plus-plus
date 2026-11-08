@@ -1,6 +1,6 @@
 # Forger un harnais à partir des spécifications
 
-**Point d'entrée du prototype Eiffel++ 0.7.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
+**Point d'entrée du prototype Eiffel++ 0.8.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
 
 ## Mission
 
@@ -41,6 +41,8 @@ Déduire les [capacités et skills](../protocol/SKILLS.md) des tâches : opérat
 Produire en même temps que les instructions et scripts du niveau suivant sa [note de conception](../protocol/DESIGN.md) : choix effectifs, motifs, compromis, limites et points d’adaptation métier. Chaque N1 et N0 a sa propre note ; elle doit permettre à l’humain de comprendre et modifier la méthode sans retrouver la conversation d’origine.
 
 Conserver un point d'entrée court, le profil utilisé, les graines sources et les raisons des adaptations. Un manifeste décrit les fichiers produits ; il ne prouve ni leur qualité ni les mécanismes qu'ils prescrivent. Les contrôles prévus mais non exécutés restent `NOT_RUN`.
+
+Pour un travail avec reprises, appliquer le [contrat de mémoire](../protocol/MEMORY.md) : conserver origine, nature, portée et conditions de validité des consignes ; reconstruire le contexte utile à partir de l'état courant. Un résumé ou une descente ne transforme pas une hypothèse en exigence. Préciser le moyen réellement disponible pour commencer sans l'ancien historique ; s'il manque, ne pas revendiquer l'oubli effectif. La [révision de mémoire](prompts/05-revise-memory.md) propose des changements séparés de leur application.
 
 ## Budget et arrêt
 
