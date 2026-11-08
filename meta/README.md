@@ -1,6 +1,6 @@
 # Concevoir la méthode depuis les spécifications
 
-Eiffel++ 0.6.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
+Eiffel++ 0.7.0 est un **prototype de conception et de réutilisation de harnais**. Les outils vérifient des fichiers ; aucun gain de qualité, de coût, de délai ou d'autonomie n'est établi pour la méthode proposée.
 
 ## Deux objets à spécifier
 
@@ -14,7 +14,7 @@ Le contrat du comportement relie les exigences, le code et les contrôles : pré
 
 ## Réemploi et co-construction
 
-Donner [START.md](START.md) à un agent avec un brief. Le parcours est : spécifier ce qui change la méthode, chercher une graine, proposer N0, le forger avec l'opérateur, puis observer son usage et conserver l'instance choisie.
+Donner [START.md](START.md) à un agent avec un brief. Choisir selon le mandat : génération directe de N0 avec itérations, ou cascade N2 → N1 → N0. Dans les deux cas : spécifier ce qui change la méthode, chercher une graine, proposer, éprouver, intégrer les retours humains et conserver les décisions utiles.
 
 La [base de graines](../seeds/README.md) contient des fiches de provenance et, pour les instances capturées, un instantané du harnais. Un mécanisme décrit dans un projet externe peut inspirer une proposition sans être installé. Une instance co-construite peut rester non testée ; une observation favorable ne démontre pas son transfert à un autre projet.
 
@@ -27,19 +27,27 @@ Le générateur peut réemployer sans modifier, paramétrer, composer ou invente
 | Objet | Quand l'utiliser |
 | --- | --- |
 | **N0 : harnais du projet** | Instructions et contrôles concrets nécessaires au travail. La génération directe depuis le brief et les graines est le parcours court. |
-| **N1 : générateur spécialisé** | Plusieurs phases, équipes ou situations récurrentes justifient des règles de génération et d'adaptation réutilisables. Son coût doit être explicité. |
+| **N1 : méthode et générateur spécialisé** | Plusieurs phases, équipes ou situations récurrentes justifient des règles réutilisables ; la cascade peut aussi éprouver cette séparation explicitement. Son coût doit être comparé au parcours direct. |
 | **N2 : patron Eiffel++** | Ces prompts génériques aident à concevoir N0 ou, si utile, N1. Ils n'ont pas à être rechargés pendant chaque tâche. |
 
 Les quatre responsabilités — gouvernance, STBL, audit et produit — restent identifiables avec leurs entrées, remises et droits. Leur répartition entre agents dépend du travail et de l'indépendance nécessaires. La minimalité conserve ces obligations et retire les répétitions ; elle ne privilégie pas par principe un ou quatre agents.
+
+## Boucles internes, descente qualifiée
+
+La [cascade hybride](../protocol/CASCADE.md) suit **N2 principes → N1 méthode → N0 harnais utilisable**. Dans chaque niveau, une version est éprouvée, ses observations discutées avec l'humain, puis ses choix révisés et vérifiés. La descente exige des spécifications suffisantes, des preuves pertinentes, aucune inconnue bloquante et une revue humaine liée à la version examinée. La dernière itération n'apporte plus de nouveauté utile selon les critères annoncés ; ce constat de stabilité ne suffit jamais seul à accepter le niveau.
+
+Sans réponse humaine ou avec une exigence manquante, conserver une conclusion inconclusive et poursuivre uniquement les travaux indépendants. Une information nouvelle peut rouvrir un niveau supérieur. Le N0 direct itératif permet de vérifier si la séparation apporte réellement quelque chose ; même modèle, tâches et critères, avec coûts mesurés même lorsque le budget n'est pas plafonné.
+
+L'[historique Git](../docs/HISTORY.md) conserve observations, hypothèses, changements, preuves, décisions humaines et motifs, sans journal de raisonnement interne. Il reste privé par défaut. Les contributions sélectionnées et autorisées peuvent améliorer la base de graines, puis N1 ou N2 après réévaluation de leur transfert.
 
 ## Les quatre prompts
 
 | Prompt | Travail |
 | --- | --- |
 | [01-characterize.md](prompts/01-characterize.md) | Décrire les spécifications, priorités, plafonds, capacités et questions qui influencent la méthode. |
-| [02-generate-meta-harness.md](prompts/02-generate-meta-harness.md) | Choisir des graines et forger N0 ; produire N1 seulement si son réemploi le justifie. |
-| [03-qualify.md](prompts/03-qualify.md) | Examiner la cohérence, la capacité d'exécution et les résultats effectivement disponibles. |
-| [04-adapt.md](prompts/04-adapt.md) | Modifier la partie concernée, puis capturer une instance avec sa provenance et ses limites. |
+| [02-generate-meta-harness.md](prompts/02-generate-meta-harness.md) | Choisir des graines et forger le niveau autorisé avec rôles, skills et justification. |
+| [03-qualify.md](prompts/03-qualify.md) | Examiner les preuves, la suffisance et la stabilité ; préparer la décision humaine de passage. |
+| [04-adapt.md](prompts/04-adapt.md) | Corriger au niveau utile et conserver l'expérience avec sa provenance, ses limites et ses droits de partage. |
 
 ## Outils de fichiers
 

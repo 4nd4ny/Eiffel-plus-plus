@@ -12,6 +12,12 @@ Par exemple, « ne pas modifier le fichier source » concerne le produit ; « po
 
 Distinguer ce que l'utilisateur a dit, ce que l'agent infère, ce qui a été observé et ce qui reste inconnu. Une question est utile si ses réponses changent une décision concrète ou une action réservée. Regrouper les questions liées et poursuivre les travaux indépendants. Ne pas demander des détails que la tâche n'oblige pas à interpréter.
 
+Identifier le parcours demandé : N0 direct itératif ou [cascade N2 principes → N1 méthode → N0 usage](../../protocol/CASCADE.md). Pour le niveau courant, définir les exigences métier et de méthode, les critères de suffisance, les cas à éprouver, les informations et capacités requises pour la suite. Distinguer disponible, manquant et exclusion justifiée. Nommer les inconnues bloquantes et la personne compétente pour les trancher.
+
+Fixer avant l'essai ce qui constituerait une nouveauté utile : nouvelle exigence, contre-exemple, défaut, capacité absente ou correction qui changerait la décision. Préparer une revue humaine concrète des critères et de leur couverture. Le mandat de concevoir autorise le travail ; il ne confirme pas d'avance que le futur artefact comprend correctement le besoin métier.
+
+Préparer aussi le contexte de la question : but du produit, usages et exigences sources, proposition et alternatives, exemple concret et conséquence du choix. L'humain peut suivre plusieurs projets ; ne pas supposer qu'il se souvient des acronymes, des corrections ou de leur enjeu. Expliquer ce qu'un essai limité permettra de conclure et les usages qu'il ne couvre pas.
+
 Identifier qui porte gouvernance, STBL, produit et audit, les décisions déléguées et l'indépendance nécessaire. Un cumul est possible ; signaler les responsabilités non attribuées sans créer des agents par défaut. Ces choix alimentent les échanges définis dans le cadre de conception.
 
 Examiner les quatorze [facteurs de qualité](../QUALITY.md) pour le logiciel : obligation ou préférence sourcée, moyen d'examen, inconnue ou raison de ne pas l'activer pour le lot. Conserver cette revue dans le besoin existant si possible. La qualité du harnais ne remplace pas celle du produit ; ne pas inventer quatorze objectifs chiffrés.
@@ -20,7 +26,7 @@ Déduire les capacités des opérations à réaliser, pas des titres d’agents.
 
 ## Profil pour les outils de paquets
 
-Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.6.0` :
+Le travail de compréhension peut commencer en Markdown. Pour employer les outils, écrire `profile.json` selon le [schéma](../schemas/profile.schema.json), version `0.7.0` :
 
 | Section | Contenu |
 | --- | --- |
@@ -33,10 +39,12 @@ Le travail de compréhension peut commencer en Markdown. Pour employer les outil
 
 Les poids, s'ils existent, portent sur les quatre axes et totalisent 1. Les mesures ne sont renseignées que lorsqu'elles sont utiles ; chaque mesure indique `metric`, `unit`, `direction` et éventuellement `target`. Une absence de donnée n'est ni un zéro ni une performance prévue.
 
+Le profil des outils de paquets décrit une opération de génération. Si l'étude ne fixe pas de plafond global, le préciser dans son mandat et conserver les bornes techniques locales comme telles ; elles ne prouvent ni convergence ni acceptation. Relever les ressources consommées même sans contrainte de budget.
+
 Les préférences inférées restent `PROPOSED`. `ACCEPTED` exige une décision identifiable et sa `decision_ref` ; ce champ ne l'authentifie pas. Une modification d'un profil existant conserve l'origine des décisions inchangées.
 
 Identifier les sources et inconnues qui devront soutenir la note de conception : politiques de l’entreprise effectivement fournies, hypothèses de travail, décision compétente et conditions qui changeraient la méthode. Ne pas demander par défaut une politique manquante sans effet sur le lot ; signaler la limite et poursuivre le travail autorisé.
 
 ## Résultat court
 
-Donner le profil et les conséquences pratiques : quelle information motive quel choix de méthode, et qu'est-ce qui ferait réviser ce choix ? Ces conséquences servent à chercher les graines compatibles. Décrire les conflits non résolus sans multiplier les formulaires ni inventer un arbitrage du responsable.
+Donner le profil et les conséquences pratiques : quelle information motive quel choix de méthode, et qu'est-ce qui ferait réviser ce choix ? Ces conséquences servent à chercher les graines compatibles. En cascade, joindre les critères et informations nécessaires au passage, avec les questions encore ouvertes. Décrire les conflits non résolus sans multiplier les formulaires ni inventer un arbitrage du responsable.

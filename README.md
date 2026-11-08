@@ -2,7 +2,7 @@
 
 **Forger avec un humain une manière de travailler adaptée au projet, à partir de graines réutilisables.**
 
-Version **0.6.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
+Version **0.7.0 — prototype non évalué en production de logiciels**. Les outils de fichiers sont testables ; l'utilité de la méthode, les économies et la qualité des logiciels produits restent à mesurer. Les exemples ne sont pas des expériences réussies.
 
 ## L'idée
 
@@ -43,7 +43,11 @@ Des [essais locaux explicites](docs/LOCAL_TRIALS.md) peuvent observer le lanceme
 
 ## Les niveaux et les responsabilités sont des moyens
 
-N0 est le harnais de travail. **N1**, un générateur spécialisé de harnais, devient utile si sa réutilisation ou ses adaptations récurrentes le justifient. **N2**, le patron de conception, aide à produire directement N0 ou à concevoir N1. Une chaîne N2 → N1 → N0 reste possible ; elle n'est plus obligatoire.
+N0 est le harnais de travail. **N1** décrit une méthode et un générateur spécialisé ; **N2** en fixe les principes. Le mandat choisit une [cascade N2 → N1 → N0](protocol/CASCADE.md) ou un **N0 direct amélioré par itérations**. La séparation doit aider à comprendre et réviser les décisions ; trois niveaux ne garantissent pas un meilleur harnais.
+
+La cascade comprend une boucle **IA + essais + humain dans chaque niveau**. Descendre exige des exigences suffisamment comprises, les données et capacités nécessaires, des preuves pertinentes, aucune inconnue bloquante, puis une revue humaine de la version stable. La dernière itération n'apporte plus de nouveauté utile selon les critères annoncés. L'absence de nouveauté seule, le silence humain ou la répétition d'un essai ne suffisent pas ; une impasse reste inconclusive.
+
+Le [journal local](tools/README.md#conserver-les-cycles-et-controler-un-passage) relie cycles, preuves et réponses humaines par leurs empreintes. Il contrôle leur cohérence, sans authentifier les personnes ni juger l'exhaustivité du besoin métier. À N0, la clôture exige aussi preuves et revue. Une correction en amont rouvre les niveaux affectés.
 
 Les responsabilités de gouvernance, de spécification du besoin (`stbl`), d'examen (`audit`) et de production restent identifiables. Elles peuvent partager des fichiers et une racine Git. Quatre dépôts séparés sont une option lorsque les droits, la confidentialité ou l'organisation le demandent. Une séparation de noms ne constitue pas une indépendance de contrôle.
 
@@ -62,6 +66,8 @@ python3 tools/seeds.py check
 ```
 
 La présence dans la base ne vaut ni recommandation universelle ni classement d'efficacité. Une instance co-construite conserve sa filiation et la référence de la décision humaine, sans transformer cette référence en identité authentifiée. Les contenus privés restent dans un catalogue privé choisi explicitement.
+
+L'[historique de construction](docs/HISTORY.md) conserve observations, hypothèses, changements, preuves, décisions et motifs dans Git. Il reste privé par défaut. Une contribution publique est sélectionnée, relue et autorisée séparément, sans embarquer l'histoire privée du projet. Les leçons proposées à N1 ou N2 sont réévaluées avant de modifier Eiffel++ lui-même.
 
 ## Un exemple plus petit
 

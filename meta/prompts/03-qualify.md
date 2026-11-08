@@ -2,7 +2,7 @@
 
 ## Mission
 
-Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lorsqu'un générateur spécialisé existe. Annoncer si l'examen est réalisé par son propre auteur. Adapter l'effort à la décision et au budget ; ne pas refaire un contrôle encore valable sans motif.
+Examine le candidat, ses spécifications et son mandat. Identifier N2, N1 ou N0 et le passage envisagé ; le parcours direct examine N0. Annoncer si l'examen est réalisé par son propre auteur. Adapter l'effort à la décision et au budget ; ne pas refaire un contrôle encore valable sans motif.
 
 ## Questions qui peuvent invalider le candidat
 
@@ -18,6 +18,7 @@ Examine le candidat, ses spécifications et son mandat. Identifier N0, ou N1 lor
 - Le contexte utile est-il accessible sans charger tout le catalogue ?
 - La séparation annoncée est-elle effective, ou les mêmes droits permettent-ils de réécrire le besoin et son évaluation ? Un auto-examen ou un test automatique est-il présenté comme un audit indépendant complet ?
 - Une contribution humaine ou une observation a-t-elle été inventée, exagérée ou transférée à un autre contexte ?
+- Les exigences métier, critères et données nécessaires au niveau suivant sont-ils suffisamment définis ? La couverture repose-t-elle sur des essais exécutés ou sur une liste de contrôles à faire ? Une inconnue bloquante est-elle cachée par une conclusion globale ?
 
 Pour N1, vérifier que les sorties N0 comportent leur propre note de conception. Examiner une variation métier utile et vérifier que la note du lot indique les changements nécessaires sans supprimer une obligation. Une note qui se limite à « bonnes pratiques » ou au nom des rôles ne suffit pas. Ne pas transformer cet examen sémantique en test de mots-clés.
 
@@ -40,10 +41,20 @@ Pour les [skills](../../protocol/SKILLS.md), exécuter une mission et sa remise 
 
 Distinguer fichier présent, composant chargé ou lancé, exécution terminée, comportement vérifié et utilité mesurée. Un script qui termine avec succès peut n'avoir rien corrigé. Une procédure texte ne devient pas suivie parce qu'elle existe. Utiliser un mécanisme d'observation réellement disponible ; sinon garder le résultat inconnu.
 
-Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, identifier ce qui varie : consigne, contrôles, répartition des rôles ou dispositif entier. Comparer avec le même modèle, les mêmes tâches, informations utiles et plafonds de budget, sauf le facteur étudié ; compter aussi conception, échecs, reprises et temps humain. Une consigne ajoutée à un dispositif commun ne mesure pas l'effet de tout Eiffel++. Pour étudier N1, inclure une génération directe de N0 comme alternative.
+Une première proposition ne réclame pas un grand benchmark. Avant de revendiquer un bénéfice, identifier ce qui varie : consigne, contrôles, répartition des rôles ou dispositif entier. Comparer avec le même modèle et sa configuration, les mêmes tâches, informations utiles, droits et critères externes ; compter aussi conception, échecs, reprises et temps humain. Fixer des plafonds communs si l'étude le demande ; sinon relever les ressources de chaque parcours et distinguer meilleur résultat et meilleure efficience. Une consigne ajoutée à un dispositif commun ne mesure pas l'effet de tout Eiffel++. Pour étudier la cascade, inclure un N0 direct amélioré par itérations, sans lui transmettre les solutions de l'autre parcours.
+
+## Préparer la décision de passage
+
+Présenter une décision intelligible par elle-même : bref rappel métier, besoin accepté ou proposé, exemple de conséquence, options et limites des preuves. Vérifier que la question ne demande pas seulement de faire confiance à l'agent. Une demande de contexte oblige à clarifier la présentation avant de solliciter à nouveau l'avis ; aucune acceptation n'en découle.
+
+Appliquer le [contrat de cascade](../../protocol/CASCADE.md) sur l'artefact exact, ses critères et ses preuves. Examiner la dernière itération par rapport à la précédente : qu'a-t-on recherché, quelle couverture soutient la conclusion, quelles inconnues restent, et une nouveauté modifierait-elle la décision ? Un second passage identique sans sonde utile ne suffit pas. `cascade.py` exige au moins deux cycles du même niveau, un inventaire de critères stable et une dernière sonde sans nouveauté déclarée ; ces contrôles ne prouvent pas la pertinence de la sonde.
+
+Présenter à l'humain les exigences couvertes, les choix qui en résultent, les preuves, leurs limites et les points à confirmer ou corriger. Enregistrer sa réponse réelle liée au dossier examiné : `DESCEND` pour N2/N1, `ACCEPT` pour N0, ou `REVISE`. Ne pas déduire cette réponse du mandat initial, d'un accord sur une autre version ou du silence. L'outil conserve la déclaration, il n'authentifie pas son auteur.
+
+Seule la réunion de suffisance, contrôles requis réussis, absence d'inconnue bloquante, stabilité revue et décision humaine permet le passage explicite. Sans nouveauté mais avec une preuve, une information ou une revue manquante, conclure `INCONCLUSIVE` et nommer ce qui débloquerait la suite. On peut rendre un candidat exploratoire et ses résultats techniques sans annoncer une cascade achevée.
 
 ## Résultat à remettre
 
-Un rapport court suffit : version examinée, contrôles et états, constats, corrections, limites, prochaines actions possibles et blocages précis. Employer les [états du protocole](../../protocol/README.md). Aucun résultat non exécuté ne devient `PASS`.
+Un rapport court suffit : version examinée, critères, couverture, contrôles et états, constats de nouveauté ou de stabilité, corrections, limites, réponse humaine reçue ou attendue, prochaines actions et blocages précis. Employer les [états du protocole](../../protocol/README.md). Aucun résultat non exécuté ne devient `PASS`.
 
 Séparer examen et adoption. Le mandat peut déjà autoriser l'emploi du candidat ou une modification réversible. Une autorité absente ne se remplace pas par `ACCEPTED`. Conserver aussi les résultats défavorables : ils peuvent rendre une graine plus utile en précisant quand l'éviter.

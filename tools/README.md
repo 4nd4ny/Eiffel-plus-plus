@@ -1,4 +1,4 @@
-# Outils locaux d'Eiffel++ 0.6.0
+# Outils locaux d'Eiffel++ 0.7.0
 
 Ces programmes utilisent la bibliothèque standard de Python. Ils préparent et copient des fichiers, contrôlent leur structure et conservent leur provenance. Le choix de la méthode et sa mise en œuvre relèvent de l'opérateur, des agents et de l'environnement du projet.
 
@@ -20,11 +20,11 @@ Un catalogue privé extérieur au dépôt est accessible avec `--catalog DOSSIER
 python3 tools/meta_harness.py prepare --brief BRIEF.md --profile PROFILE.json --seed mini-swe-loop --seed codex-scoped-instructions --output NOUVEAU_DOSSIER
 ```
 
-`prepare` assemble le besoin, le profil et les prompts de conception. `--seed ID` est répétable ; `--catalog DOSSIER` choisit leur base. Seules les fiches sélectionnées sont copiées dans `context/seeds/`, sans leurs artefacts ou dépendances. `preparation.json` indique `seed_artifacts_loaded: false` et conserve un statut de publication prudent. Sans graine sélectionnée, un index vide explique comment en choisir.
+`prepare` assemble le besoin, le profil et les prompts de conception. `--mode cascade` demande N2 → N1 → N0 ; `--mode direct` demande un N0 itératif. Sans cette option, le point d'entrée conserve le choix du mandat au lieu d'imposer un parcours. `--seed ID` est répétable ; `--catalog DOSSIER` choisit leur base. Seules les fiches sélectionnées sont copiées dans `context/seeds/`, sans leurs artefacts ou dépendances. `preparation.json` indique `requested_mode`, `seed_artifacts_loaded: false` et un statut de publication prudent. Les documents d'historique et de références sont également copiés et identifiés par empreinte ; leurs liens vers les ressources non embarquées renvoient au catalogue public. Sans graine sélectionnée, un index vide explique comment en choisir.
 
 La visibilité de la source et celle de la fiche restent distinctes : une recette autorisée à la publication peut provenir d'un dépôt privé. Pour les seules fiches copiées, `publication.status` et `contains_private_material` déterminent si la préparation doit être marquée privée. Sinon elle reste `unreviewed`, car la publication des graines n'autorise pas celle du brief et du profil. Ce contrôle conserve les déclarations ; il n'authentifie pas l'autorisation et ne lit pas la source privée.
 
-Le paquet obtenu est une entrée pour un agent, pas un harnais déjà produit. L'agent peut proposer directement N0 dans un dossier distinct ; un générateur N1 n'est utile que si le réemploi le justifie.
+Le paquet obtenu est une entrée pour un agent, pas un harnais déjà produit. L'agent suit le parcours demandé dans des dossiers distincts. La préparation ne crée pas un journal de cycles ni une décision de passage ; utiliser le mécanisme explicite ci-dessous pour la cascade.
 
 ## Contrôler un paquet N0 ou N1
 
@@ -98,6 +98,58 @@ Les ports varient avec le skill ; fournir exactement les entrées/sorties décla
 
 ## Conserver la justification de conception
 
-Les nouveaux paquets N1 et N0 0.6.0 exigent `design_rationale`, chemin vers un document Markdown non vide et distinct des instructions exécutées. `check` expose son chemin et son empreinte avec une revue NOT_RUN. `materialize` conserve la note et indique sa localisation dans `_eiffel/project.json` ; en quatre dépôts, elle doit appartenir à une racine de rôle. Le N1 explicitement fourni est conservé avec sa propre note. Les captures incluent ces documents sans changement.
+Les paquets N1 et N0 0.6.0 et 0.7.0 exigent `design_rationale`, chemin vers un document Markdown non vide et distinct des instructions exécutées. `check` expose son chemin et son empreinte avec une revue NOT_RUN. `materialize` conserve la note et indique sa localisation dans `_eiffel/project.json` ; en quatre dépôts, elle doit appartenir à une racine de rôle. Le N1 explicitement fourni est conservé avec sa propre note. Les captures incluent ces documents sans changement.
 
 Les missions de skill rendent la note N0 consultable et la lient à leur empreinte. Les versions historiques 0.2.0–0.5.0 restent lisibles sans note inventée ; une note explicitement référencée est contrôlée. La pertinence des arguments et l’adaptation métier demandent la revue décrite dans [DESIGN.md](../protocol/DESIGN.md).
+
+## Conserver les cycles et contrôler un passage
+
+Le [contrat de cascade](../protocol/CASCADE.md) définit la suffisance attendue. `cascade.py` conserve un journal local de déclarations et de pièces, sans appeler de modèle, lancer les tests cités ou obtenir lui-même une réponse humaine. Un dossier de cycle contient `cycle.json` et ses artefacts/preuves réguliers, sans lien symbolique ni chemin sortant.
+
+| Champ de `cycle.json` | Contenu |
+| --- | --- |
+| `level`, `purpose` | Niveau entier 2, 1 ou 0 et but de l'itération. |
+| `criteria` | Objet non vide : identifiant de critère → `PASS`, `FAIL` ou `UNKNOWN`. |
+| `evidence` | Chemins relatifs de pièces existantes et non vides. Leur présence ne prouve pas leur conclusion. |
+| `coverage` | Liste de `{requirement, criterion}` ; chaque critère déclaré doit être relié à une exigence. |
+| `required_inputs` | Liste de `{id, status}` : `AVAILABLE` exige `source` vers une pièce ; `EXCLUDED` exige `reason` ; `MISSING` empêche le passage. |
+| `observation`, `hypothesis`, `change` | Textes non vides distinguant constat, explication proposée et modification ou maintien. |
+| `novelty`, `blocking_unknowns`, `limits` | Listes de textes ; une liste vide indique l'absence déclarée, pas une preuve automatique. |
+| `stability_probe` | Examen effectué pour rechercher une nouveauté pertinente ; texte vide autorisé au premier cycle, insuffisant pour passer. |
+
+Depuis la racine du catalogue, avec des destinations nouvelles et des dossiers de cycles réellement préparés :
+
+```bash
+python3 tools/cascade.py start JOURNAL_NEUF --mode cascade
+python3 tools/cascade.py cycle JOURNAL_NEUF DOSSIER_CYCLE
+python3 tools/cascade.py gate JOURNAL_NEUF
+```
+
+`direct` démarre à N0 ; `cascade` démarre à N2. `cycle` copie les pièces, conserve leurs empreintes et renvoie notamment `event_sha256`. Répéter avec une nouvelle itération et ses preuves. Le passage exige les deux derniers cycles du niveau actif à critères tous `PASS`, avec le même inventaire ; le dernier ne déclare aucune nouveauté ni inconnue bloquante et renseigne sa sonde de stabilité. Aucune entrée requise ne doit manquer.
+
+Présenter ce dernier dossier à l'humain compétent. Après sa réponse effective, conserver son texte et utiliser l'empreinte renvoyée pour ce cycle :
+
+```bash
+python3 tools/cascade.py review JOURNAL EMPREINTE_CYCLE DESCEND IDENTITE_DECLAREE REPONSE.md
+python3 tools/cascade.py gate JOURNAL
+python3 tools/cascade.py advance JOURNAL
+```
+
+La décision est `DESCEND` pour N2/N1, `ACCEPT` pour N0, ou `REVISE`. `gate` retourne `READY` ou `INCONCLUSIVE` avec ses motifs ; il ne change pas de niveau. `advance` exige `READY`, puis descend ou clôt N0. Ces verdicts de dossier ne sont ni un test métier ni une authentification du signataire. Une demande générale de travail ou le silence ne remplit pas `REPONSE.md`.
+
+```bash
+python3 tools/cascade.py verify JOURNAL --expected-head EMPREINTE_CONSERVEE_HORS_DU_JOURNAL
+python3 tools/cascade.py reopen JOURNAL 1 "Observation nouvelle affectant la méthode"
+```
+
+`verify` examine les empreintes et les pièces ; l'ancre externe est facultative, mais permet de détecter une histoire entièrement réécrite ou tronquée par rapport à la référence conservée. Sans cette ancre, une chaîne cohérente n'est pas une preuve d'inaltérabilité. `reopen` conserve les événements et commence une nouvelle époque au niveau courant ou à un ancêtre ; les passages de ce niveau et de ses descendants sont invalidés. En mode direct, seul N0 peut être rouvert. Le journal ne crée ni commit, ni dépôt distant, ni publication réseau. Conserver les décisions utiles dans Git selon [HISTORY.md](../docs/HISTORY.md).
+
+## Exporter une contribution revue
+
+Préparer séparément un dossier contenant exactement les fichiers partageables, sans journal privé ni histoire Git. Le fichier JSON de revue comprend `publication: "public"`, `contains_private_material: false`, les textes `authorization_ref`, `reviewer`, `license`, `scope`, puis `files` : objet chemin relatif → `{sha256, mode}` décrivant les octets et permissions ordinaires de chaque fichier relu.
+
+```bash
+python3 tools/cascade.py export DOSSIER_PUBLIC_PREPARE REVUE_PUBLICATION.json EXPORT_NEUF
+```
+
+L'export refuse une divergence avec les empreintes revues et ajoute `PUBLICATION.json`. Il conserve une déclaration d'autorisation, sans détecteur exhaustif de secrets ni authentification de la revue. Il ne pousse rien sur GitHub. Toute publication ultérieure doit rester dans l'autorisation portant sur ce contenu exact ; le retrait d'un fichier du dernier commit ne purge pas une histoire privée.

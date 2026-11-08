@@ -1,12 +1,14 @@
 # Démarrer par une proposition concrète
 
-Eiffel++ 0.3.0 est un prototype de conception de harnais, sans gain d'efficacité démontré. Le parcours courant produit directement un harnais N0 et le travaille avec l'opérateur. Un générateur N1 est facultatif.
+Eiffel++ 0.7.0 est un prototype de conception de harnais, sans gain d'efficacité démontré. Le mandat choisit un N0 direct itératif ou la [cascade N2 principes → N1 méthode → N0 harnais](../protocol/CASCADE.md). Les étapes ci-dessous servent les deux parcours ; en cascade, elles se répètent à chaque niveau avant son passage.
 
 ## 1. Décrire le projet et la méthode attendue
 
 Donner à l'agent [meta/START.md](../meta/START.md), le brief et les décisions disponibles. Indiquer les obligations, les outils accessibles, les ressources, la charge humaine souhaitée et les actions déjà déléguées. Ne pas inventer de pondérations si des priorités verbales suffisent.
 
 La spécification du logiciel décrit le résultat recherché. La spécification de méthode décrit comment organiser sa production : moyens, contrôles, coordination et limites. Une inconnue sur l'une ne doit pas être résolue silencieusement dans l'autre.
+
+Pour préparer un dossier autonome, employer `meta_harness.py prepare --mode cascade` ou `--mode direct`, avec `--brief`, `--profile` et une nouvelle destination `--output`. Sans `--mode`, le point d'entrée demande de respecter le parcours du mandat. La préparation copie les documents nécessaires, sans générer ni accepter un harnais.
 
 ## 2. Examiner quelques graines
 
@@ -61,6 +63,8 @@ Une instance destinée au catalogue public pourra être capturée dans `seeds/in
 
 ## Parcours plus élaborés
 
-Le [guide des prompts](../meta/README.md) décrit la génération facultative de N1 et l'adaptation. Les anciens paquets 0.2.0 restent lisibles et conservent leurs exigences d'origine ; ils ne sont pas requalifiés rétroactivement.
+Le [guide des prompts](../meta/README.md) décrit la cascade et l'adaptation. Dans chaque niveau, fixer les critères, éprouver une version, intégrer les retours humains et vérifier la correction. Le [journal de passage](../tools/README.md#conserver-les-cycles-et-controler-un-passage) conserve ces cycles. Une stabilité sans couverture suffisante ou sans réponse humaine reste inconclusive. Les anciens paquets 0.2.0–0.6.0 restent lisibles et conservent leurs exigences d'origine ; ils ne sont pas requalifiés rétroactivement.
+
+Conserver l'[historique utile](HISTORY.md) dans le périmètre privé du projet. Ne partager qu'un export du contenu relu et autorisé, avec ses preuves disponibles et ses limites ; conserver le résultat de transfert lorsqu'une leçon améliore N1 ou N2.
 
 `instantiate.py` reste un copieur de composants génériques en quatre dépôts. Son existence ne signifie pas que cette implantation soit recommandée pour chaque projet.

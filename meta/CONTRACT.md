@@ -4,9 +4,17 @@ Ce fichier conserve son chemin historique. Il spécifie ce qu'une proposition de
 
 ## Entrées utiles
 
-La demande, ses sources, le mandat, les obligations, les ressources et les inconnues doivent être identifiables. Les capacités nécessaires sont observées ou signalées comme non confirmées. La conception possède une borne de travail.
+La demande, ses sources, le mandat, les obligations, les ressources et les inconnues doivent être identifiables. Les capacités nécessaires sont observées ou signalées comme non confirmées. La borne de travail, ou l'absence de plafond demandée, est explicite ; le coût consommé reste à relever.
 
 Une information absente bloque seulement les décisions qui en dépendent. Un premier candidat peut avoir un domaine d'usage limité et des hypothèses réversibles. Les préférences chiffrées sont facultatives.
+
+## Passage d'un niveau au suivant
+
+Le mandat choisit le parcours direct ou la [cascade hybride](../protocol/CASCADE.md). Dans la cascade, chaque niveau confronte sa proposition aux essais et à une contribution humaine réelle avant de descendre. Les exigences et critères de suffisance sont fixés avant la conclusion ; les références, la couverture exécutée, les capacités disponibles et les inconnues sont examinées ensemble.
+
+La stabilité est un constat distinct du succès : la dernière revue ne révèle plus de changement pertinent selon les critères annoncés. Elle n'autorise la descente que si les exigences sont suffisamment comprises, les preuves requises disponibles, les inconnues bloquantes levées et l'accord humain lié à la version et aux critères examinés. Une impasse sans nouveauté reste `INCONCLUSIVE`. Le même contrat s'applique à la clôture de N0 ; un contrôle structurel réussi ne la prononce pas.
+
+Une modification affectant l'artefact, ses critères ou ses dépendances invalide les résultats et décisions concernés. Le retour vers un niveau supérieur est possible et réexamine les descendants touchés. Chaque itération conserve observation, hypothèse, changement ou maintien, preuves, décision humaine et justification utile, selon le [guide d'historique](../docs/HISTORY.md).
 
 ## Sortie attendue : N0
 
@@ -49,7 +57,7 @@ Le [contrat des skills](../protocol/SKILLS.md) relie chaque tâche du lot à une
 
 ## Sortie facultative : N1
 
-Un générateur spécialisé est justifié par les situations qu'il devra traiter plusieurs fois. Il décrit les données discriminantes, les transformations possibles, le domaine de validité et les conditions d'arrêt. Réemploi et stabilité de méthode sont des résultats valides.
+Un générateur spécialisé est justifié par les situations qu'il devra traiter plusieurs fois ou par la cascade explicitement choisie pour éprouver cette séparation. Il décrit les données discriminantes, les transformations possibles, le domaine de validité et les conditions de passage. Son coût et son utilité se comparent au N0 direct itératif. Réemploi et stabilité de méthode sont des résultats valides, sans constituer seuls une acceptation.
 
 N1 fournit des fonctions de génération, d'examen et d'adaptation, éventuellement réunies dans un fichier. Son manifeste pointe vers les instructions réelles. Le profil et les spécifications de sortie permettent de comprendre N0 sans relire la conversation d'origine.
 
@@ -68,4 +76,4 @@ L'examen structurel concerne les formats et les chemins. Une revue de cohérence
 
 Le niveau d'examen dépend de la décision. Écrire un premier candidat n'exige pas un benchmark, mais revendiquer un gain exige des résultats. Une décision d'adoption autorise un usage ; elle ne transforme pas le harnais en méthode éprouvée.
 
-La co-construction humaine est une provenance identifiable, distincte des observations. Capturer l'instance conserve cet état de connaissance, y compris ses échecs. La réutilisation dans un nouveau contexte exige d'en examiner à nouveau l'adéquation.
+La co-construction humaine est une provenance identifiable, distincte des observations. Capturer l'instance conserve cet état de connaissance, y compris ses échecs. La réutilisation dans un nouveau contexte exige d'en examiner à nouveau l'adéquation. La mémoire reste privée par défaut ; partager un harnais, ses décisions ou une leçon requiert une revue et une autorisation du contenu exact. Une contribution peut proposer une amélioration de N1 ou N2, jamais contourner leur réévaluation.

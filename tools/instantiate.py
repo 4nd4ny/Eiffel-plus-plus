@@ -17,10 +17,10 @@ import stat
 import subprocess
 import tempfile
 
-from meta_harness import SEED_CATALOG_REFERENCE
+from meta_harness import SEED_CATALOG_REFERENCE, support_documents
 
 
-VERSION = "0.6.0"
+VERSION = "0.7.0"
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = {
     "governance": "01-governance",
@@ -90,6 +90,7 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
     meta_pattern = source_files(ROOT / "meta")
     if not meta_pattern:
         raise ValueError("Patron de génération absent.")
+    docs = support_documents(ROOT)
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=".eiffel-staging-", dir=destination.parent))
@@ -129,6 +130,12 @@ def instantiate(project: str, name: str, destination: Path, git_init: bool) -> l
                     target.chmod(stat.S_IMODE(path.stat().st_mode) & 0o777)
                 (repo / "_eiffel/seeds").mkdir()
                 (repo / "_eiffel/seeds/README.md").write_text(SEED_CATALOG_REFERENCE, encoding="utf-8")
+            for relative, raw in docs.items():
+                target = repo / "_eiffel/docs" / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(raw)
+                target.chmod(docs.modes[relative])
+                source_manifest["docs/" + relative] = digest(raw)
             shutil.copyfile(ROOT / "LICENSE", repo / "_eiffel" / "LICENSE")
             metadata = {
                 "template_version": VERSION,

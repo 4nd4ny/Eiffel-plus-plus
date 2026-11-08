@@ -2,7 +2,9 @@
 
 ## Mission
 
-Produis N0 à partir du besoin, du mandat et des ressources disponibles. Utilise le [cadre de conception](../CONTRACT.md). La sortie attendue est une méthode utilisable dans son périmètre, avec ses limites ; N1 est une option de réemploi, pas une étape obligatoire.
+Produis le niveau autorisé à partir du besoin, du mandat et des ressources disponibles. Utilise le [cadre de conception](../CONTRACT.md). La sortie attendue est une méthode utilisable dans son périmètre, avec ses limites. Le parcours direct produit N0 ; la [cascade](../../protocol/CASCADE.md) stabilise N2, puis N1, puis N0 avec une boucle IA + essais + humain dans chacun.
+
+En cascade, examiner le dossier de passage du niveau supérieur avant de produire son descendant adopté : exigences et critères identifiés, preuves, données et capacités disponibles, inconnues, stabilité et accord humain liés à la version. Des sondes isolées peuvent éprouver le niveau courant ; les nommer comme telles, sans fabriquer une autorisation de descente. Une absence de nouveauté avec une exigence manquante reste inconclusive.
 
 ## Choisir un point de départ
 
@@ -20,6 +22,8 @@ Rendre visibles les choix sur lesquels une contribution humaine changerait la m�
 
 Conserver la référence des arbitrages. Un candidat automatique ne devient pas « co-construit » du seul fait qu'un champ le dit. Une préférence exprimée par l'opérateur ne démontre pas que le harnais fonctionne mieux.
 
+Enregistrer l'observation qui motive le candidat, l'hypothèse, le changement ou maintien, puis les preuves et la décision effectivement reçue. Conserver ces éléments avec les versions concernées dans l'[historique privé du projet](../../docs/HISTORY.md). Une synthèse de décisions suffit ; ne pas produire un journal de raisonnement interne ni publier automatiquement les échanges humains.
+
 ## Livrer la justification avec la génération
 
 Pour chaque paquet produit, rédiger sa [note de conception](../../protocol/DESIGN.md) avec les instructions et scripts, puis référencer son chemin dans `design_rationale`. Rendre la note accessible depuis le point d’entrée. Partir des choix réellement retenus et de leurs sources, sans reconstituer un journal de délibération. Relier les décisions importantes aux qualités de génie logiciel qu’elles servent, à une alternative pertinente, aux contreparties et aux observations disponibles.
@@ -34,7 +38,7 @@ Traduire la revue [qualité](../QUALITY.md) en obligations et contrôles pertine
 
 Pour un problème identifié, préférer une procédure spécialisée avec déclencheur ou un auxiliaire déterministe à l'accumulation de consignes permanentes. Les champs facultatifs `components` et `experience` décrits dans [l'adaptation observée](../../protocol/ADAPTATION.md) permettent de conserver les dépendances, limites et observations. Ne pas inventer une expérience pour compléter le paquet.
 
-Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.6.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
+Relier les tâches aux [capacités et skills](../../protocol/SKILLS.md). Le manifeste 0.7.0 contient `capabilities` pour les quatre responsabilités : une tâche et son skill concret, sa méthode native justifiée ou le moyen manquant. Réemployer un skill adéquat avant d’en écrire un. Livrer chaque skill utile avec sa méthode, ses contrats, ses ressources, ses ports d’entrée/sortie et ses destinataires ; la présence de SKILL.md seule ne satisfait pas ce besoin. Les scripts rendent les opérations déterministes vérifiables ; les instructions ne prouvent pas leur exécution.
 
 Dans le point d’entrée, expliquer comment choisir la compétence, préparer ses entrées, examiner sa remise et poursuivre ou arrêter. Pour les missions instrumentées, le coordinateur conserve l’empreinte renvoyée par `skills.py prepare` et la transmet à verify/handoff. Une modification du plan ou des contrôles impose une nouvelle qualification ; ne pas recalculer l’empreinte pour faire disparaître STALE. Ne lancer ni quatre processus par défaut ni des boucles réinitialisant le budget.
 
@@ -44,7 +48,7 @@ Les responsabilités peuvent partager les mêmes fichiers et le même dépôt. L
 
 ```json
 {
-  "schema_version": "0.6.0",
+  "schema_version": "0.7.0",
   "kind": "project-harness",
   "level": 0,
   "status": "PROPOSED",
@@ -76,13 +80,15 @@ Le mode `four-repos` utilise `repositories` vers quatre dossiers distincts, chac
 
 Tous les chemins internes sont relatifs, sans traversée ni lien symbolique. `.git` et `_eiffel` sont réservés aux outils. Examiner le résultat avec [03-qualify.md](03-qualify.md).
 
-## Produire N1 seulement si son réemploi est utile
+## Produire N1 lorsque le parcours le demande
 
-Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il évitera. Si la raison se réduit à « respecter trois niveaux », produire N0 directement.
+Nommer les situations répétées que N1 devra couvrir et la difficulté qu'il évitera. Si une cascade a été explicitement choisie, rendre ces décisions de méthode distinctes des principes N2 et des opérations N0 ; comparer leur utilité au parcours direct. Hors de ce mandat, si la raison se réduit à « respecter trois niveaux », produire N0 directement.
 
 N1 demande explicitement à GENERATE de livrer la note N0, à CHECK de confronter ses motifs aux fichiers et au besoin, et à ADAPT de réviser les décisions affectées par les changements métier. Les productions de code sous N0 documentent aussi leurs décisions de conception utiles dans les documents du produit.
 
 N1 fournit les fonctions GENERATE, CHECK et ADAPT, réunies ou séparées selon le besoin. Elles conservent les contrats du comportement et des responsabilités, leur domaine de validité et les règles d'arrêt ; elles indiquent ce qui ferait changer leur implantation. Une stabilité justifiée reste possible.
+
+En cascade, GENERATE exige le passage valide avant la descente et livre avec N0 ses critères, rôles, skills et motifs. CHECK éprouve la suffisance, les remises, les inconnues et la stabilité sur une version précise, puis prépare la revue humaine. ADAPT rattache une correction au niveau qui la possède, invalide les résultats affectés et conserve l'historique. Le prompt ne peut ni se donner lui-même l'accord métier ni fermer le passage par une mention `PASS`.
 
 N1 conserve une bibliothèque de skills justifiée par les tâches répétées du projet. GENERATE choisit les compétences du lot, leurs attributions et leurs dépendances ; CHECK éprouve leurs contrats et remises ; ADAPT révise seulement celles affectées. Tester au moins deux lots pertinents, dont un cas où une compétence est inutile ou indisponible. Le N0 livré reste utilisable sans relire N1. Ne remplacer ni le skill concret par sa description dans N1, ni une compétence manquante par une promesse de l’agent.
 
@@ -92,7 +98,7 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
 
 ```json
 {
-  "schema_version": "0.6.0",
+  "schema_version": "0.7.0",
   "kind": "meta-harness",
   "level": 1,
   "status": "PROPOSED",
@@ -101,7 +107,7 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
   "entrypoint": "GENERATE.md",
   "prompts": ["GENERATE.md"],
   "output_contract": "SPEC.md",
-  "source_pattern": "Eiffel++ 0.6.0 ; graines réellement utilisées à préciser",
+  "source_pattern": "Eiffel++ 0.7.0 ; graines réellement utilisées à préciser",
   "capabilities": [
     {"role": "governance", "task": "Coordonner les lots couverts", "unavailable": "Méthode à définir dans GENERATE.md ; cet exemple donne seulement le format."},
     {"role": "stbl", "task": "Spécifier les lots couverts", "unavailable": "Sources et méthode à définir dans SPEC.md avant utilisation."},
@@ -113,4 +119,4 @@ N1 conserve aussi le traitement des quatorze facteurs pour ce projet. GENERATE s
 
 Le fichier unique peut inclure les trois fonctions. Le nom machine `output_contract` désigne la spécification attendue, sans lui attribuer une preuve exécutable.
 
-Examiner une variation pertinente du contexte : quelle décision changerait, et pourquoi ? Cette réflexion reste un examen argumenté. La capacité d'adaptation sera observée seulement lorsque N1 sera exécuté sur des situations distinctes. Appliquer ensuite son point d'entrée pour produire N0, dans le budget commun.
+Examiner une variation pertinente du contexte : quelle décision changerait, et pourquoi ? Cette réflexion reste un examen argumenté. La capacité d'adaptation sera observée seulement lorsque N1 sera exécuté sur des situations distinctes. En cascade, qualifier N1, obtenir sa revue humaine et son passage avant d'appliquer son point d'entrée pour produire N0. Compter tout le travail, avec ou sans plafond commun.

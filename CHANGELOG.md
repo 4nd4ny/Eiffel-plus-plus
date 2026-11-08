@@ -1,5 +1,16 @@
 # Journal des changements
 
+## 0.7.0 — 2026-11-08
+
+- Revue humaine contextualisée : rappel du produit et des usages, sources métier, conséquences et alternatives avant de demander une décision. Une demande de contexte reste une revue ouverte.
+
+- Cascade explicite N2 principes → N1 méthode → N0 harnais, avec une boucle IA + essais + humain dans chaque niveau. Descente après suffisance, couverture, données disponibles, stabilité et revue humaine de la version examinée ; une impasse sans nouveauté reste inconclusive.
+- Journal local de cycles et de preuves liées par empreintes, revues humaines déclarées, passage explicite et réouverture invalidant les descendants. Les outils contrôlent la cohérence du dossier, sans authentifier les personnes ni certifier la suffisance métier.
+- N0 direct itératif conservé comme parcours et comparateur ; comparaison au même modèle, coûts et attention humaine relevés même sans plafond de budget commun.
+- Historique Git des observations, hypothèses, changements, preuves et décisions ; mémoire privée par défaut et export public sélectionné, relu et autorisé, sans reprise automatique d'une histoire client. Le transfert d'une leçon vers N1/N2 demande une nouvelle évaluation.
+- Préparation avec `--mode cascade|direct`, documents de passage et d'historique exportés. Lecture des versions 0.2.0–0.6.0 conservée ; notes de conception toujours requises depuis 0.6.0. L'atelier de l'exemple ICO 0.6.0 accepte le runtime 0.7.0 sans réécrire ses résultats historiques.
+- Filiations Kolb, Harness² et Experience Factory documentées. Leur combinaison reste une proposition à éprouver, sans supériorité des trois niveaux revendiquée.
+
 ## 0.6.0 — 2026-11-07
 
 - Note de conception livrée avec chaque nouveau N1 et N0 : sources, choix, motifs de génie logiciel, compromis, limites et adaptations métier concrètes. Le patron N2 explicite également sa conception.

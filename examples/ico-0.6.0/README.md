@@ -6,7 +6,7 @@ Le code ICO et ses données ne sont pas distribués. Les instructions et l’ate
 
 ## Exécuter l’exemple
 
-Python 3.10+ et environnement POSIX ; runtime Eiffel++ **0.6.0** de ce dépôt. Depuis la racine du dépôt, choisir des destinations nouvelles hors du dépôt de sources :
+Python 3.10+ et environnement POSIX ; runtime Eiffel++ **0.6.0 ou 0.7.0** de ce dépôt. Les paquets et résultats historiques restent en 0.6.0. Depuis la racine du dépôt, choisir des destinations nouvelles hors du dépôt de sources :
 
 ```sh
 python3 -B examples/ico-0.6.0/demo.py --output "$SORTIE_NEUVE"

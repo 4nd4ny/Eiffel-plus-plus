@@ -1,4 +1,4 @@
-# Protocole Eiffel++ — 0.6.0
+# Protocole Eiffel++ — 0.7.0
 
 Ce protocole distingue les responsabilités et la provenance du travail. Il peut s'appliquer à un dépôt commun ou à plusieurs dépôts. Il ne déploie aucun droit ni contrôle. Dans le projet, la gouvernance identifie la version adoptée ; les copies sont des instantanés, pas des normes concurrentes.
 
@@ -6,7 +6,7 @@ Ce protocole distingue les responsabilités et la provenance du travail. Il peut
 
 Les spécifications du produit décrivent le résultat utile. Celles de la méthode décrivent les moyens de production et de vérification : sources, rôles, décisions, capacités, budgets et conditions d'arrêt. Les contrats exécutables du logiciel sont un moyen possible de contrôle, distinct des règles de travail en Markdown.
 
-**N0** est le harnais utilisable. Il peut être forgé directement depuis un brief et des graines. **N1** est un générateur spécialisé facultatif, justifié par son réemploi. **N2** désigne le patron générique Eiffel++. Ces noms ne rendent pas obligatoire une chaîne de trois productions.
+**N0** est le harnais utilisable. Il peut être forgé directement depuis un brief et des graines. **N1** décrit une méthode et un générateur spécialisé ; **N2** désigne les principes du patron générique Eiffel++. Le mandat peut choisir la [cascade hybride](CASCADE.md) N2 → N1 → N0 ; le parcours N0 direct itératif reste disponible.
 
 Réemploi, composition, adaptation et invention sont permis. Conserver les sources effectivement employées, les changements, le profil et les contributions humaines identifiables. Une co-construction ne démontre ni fonctionnement ni efficacité. L'étape zéro peut commencer sous un mandat exploratoire ; elle n'exige pas des dépôts déjà créés.
 
@@ -139,3 +139,13 @@ En 0.4.0, un paquet peut joindre des composants à déclencheur et une expérien
 En 0.5.0, les [capacités et skills](SKILLS.md) rendent explicite le lien entre tâche, responsabilité, méthode et remise. Les quatre responsabilités restent logiques ; aucun agent ni droit nouveau n’est créé par ces déclarations.
 
 En 0.6.0, chaque N1 et N0 livre une [note de conception](DESIGN.md) dans la même version que ses instructions et scripts. Cette justification facilite l’examen et l’adaptation métier ; elle reste distincte des décisions faisant autorité et des résultats exécutés.
+
+## 11. Itérer, descendre et conserver l'expérience
+
+En 0.7.0, la [cascade](CASCADE.md) donne un contrat au passage entre niveaux : critères fixés, couverture exécutée, informations et capacités disponibles, inconnues bloquantes levées, stabilité examinée et revue humaine liée à l'artefact et aux preuves. Chaque niveau comporte des itérations IA + essais + humain. La dernière revue ne découvre plus de changement utile selon les critères annoncés ; cette stabilité reste distincte de l'acceptation.
+
+Sans preuve ou réponse humaine suffisante, le passage reste `INCONCLUSIVE`. Le mandat initial, un succès structurel ou le silence ne vaut pas validation métier. Une révision d'artefact ou de critères invalide les résultats et décisions concernés ; rouvrir un niveau supérieur réexamine les descendants affectés. Les essais exploratoires autorisés peuvent continuer sans annoncer une descente acquise.
+
+Le journal local de cycles conserve les déclarations, pièces et empreintes. `READY` désigne uniquement l'éligibilité mécanique à la commande de passage ; il ne remplace aucun état de test ni verdict métier. La décision `DESCEND` porte sur N2/N1, `ACCEPT` sur N0 et `REVISE` demande une reprise. Leur enregistrement n'authentifie pas l'humain.
+
+L'[historique Git](../docs/HISTORY.md) conserve les décisions et les preuves utiles sans chaîne de pensée interne. Il reste privé par défaut. Une publication exige un export sélectionné, relu et explicitement autorisé, distinct de l'histoire privée ; aucune boucle ne pousse automatiquement de données client. Les leçons proposées au catalogue ou à N2 doivent être réévaluées dans leurs nouveaux contextes.

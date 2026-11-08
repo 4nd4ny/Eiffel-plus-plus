@@ -1,4 +1,4 @@
-# Justifier la conception pour l'humain — 0.6.0
+# Justifier la conception pour l'humain — 0.7.0
 
 Chaque génération livre ses instructions, scripts et une note de conception dans la même version du paquet. La note explique les décisions qui changent la manière de produire ou de vérifier le logiciel. Elle fournit une synthèse argumentée à partir du besoin, des contraintes et des observations, utilisable sans relire la conversation de génération.
 
@@ -9,7 +9,7 @@ Chaque génération livre ses instructions, scripts et une note de conception da
 - N2 → N0 directement : fournir la même justification concrète, avec la raison de ce parcours.
 - N0 → réalisation : demander une synthèse des décisions du produit réellement affectées par la livraison, dans sa documentation de conception existante lorsqu'elle convient. Aucun niveau supplémentaire ni journal exhaustif n'est imposé.
 
-La note propre au patron N2 est `meta/DESIGN.md`. Chaque N1 et N0 0.6.0 référence sa note par `design_rationale`, généralement `DESIGN.md`. Elle est distincte des instructions exécutées et accessible depuis le point d'entrée. En `four-repos`, la placer dans une racine effectivement matérialisée, généralement `governance/DESIGN.md` ; les métadonnées indiquent aux autres rôles où la retrouver.
+La note propre au patron N2 est `meta/DESIGN.md`. Depuis 0.6.0, chaque N1 et N0 référence sa note par `design_rationale`, généralement `DESIGN.md`. Elle est distincte des instructions exécutées et accessible depuis le point d'entrée. En `four-repos`, la placer dans une racine effectivement matérialisée, généralement `governance/DESIGN.md` ; les métadonnées indiquent aux autres rôles où la retrouver.
 
 ## Contenu qui permet de décider
 

@@ -1,6 +1,6 @@
 # Forger un harnais à partir des spécifications
 
-**Point d'entrée du prototype Eiffel++ 0.6.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
+**Point d'entrée du prototype Eiffel++ 0.7.0.** Donner ce prompt à l'agent avec le brief, les sources utiles et, s'il existe, le profil du projet. L'efficacité de cette méthode de conception n'a pas encore été évaluée sur la production de logiciels.
 
 ## Mission
 
@@ -8,7 +8,15 @@ Produis un harnais N0 assez concret pour commencer le travail autorisé. Pars de
 
 L'intention est le harnais minimal suffisant : relier le contrat du comportement, sa réalisation et sa vérification, en conservant les quatre responsabilités. Choisir les agents selon le travail et l'indépendance nécessaires. Retirer les répétitions et les étapes sans effet utile ; la longueur et le nombre d'agents ne sont pas des objectifs. Comparer à une référence explicite avant de revendiquer un bénéfice.
 
-Recherche une graine pertinente, puis réemploie-la, adapte-la ou compose plusieurs mécanismes. Une organisation inchangée peut être le bon résultat. Invente seulement ce que les ressources disponibles ne couvrent pas. Un générateur spécialisé N1 est facultatif ; il doit avoir un réemploi attendu qui justifie sa conception.
+Recherche une graine pertinente, puis réemploie-la, adapte-la ou compose plusieurs mécanismes. Une organisation inchangée peut être le bon résultat. Invente seulement ce que les ressources disponibles ne couvrent pas. Choisir le parcours selon le mandat : **N0 direct itératif**, ou **cascade N2 principes → N1 méthode → N0 harnais**. La cascade explicite les choix à stabiliser à chaque niveau ; hors de ce parcours, un générateur spécialisé N1 reste facultatif et doit avoir un réemploi attendu.
+
+## Si le mandat retient la cascade
+
+Appliquer le [contrat de passage](../protocol/CASCADE.md). À chaque niveau, fixer les exigences et critères de suffisance, éprouver une version, examiner les observations avec l'humain, puis réviser et tester. Avant de descendre, vérifier que les exigences métier sont compréhensibles et que le niveau suivant dispose des données, capacités et droits nécessaires.
+
+La descente exige une couverture étayée, aucune inconnue bloquante, une dernière revue sans nouveauté pertinente et un accord humain sur la version examinée. « Rien de nouveau » sans ces conditions donne `INCONCLUSIVE`, pas un succès. Le silence ou le mandat initial ne remplacent pas cette revue. Présenter les choix concrets à l'humain et poursuivre les travaux indépendants déjà autorisés pendant l'attente.
+
+Conserver chaque itération utile et sa décision dans l'[historique du projet](../docs/HISTORY.md). Une nouvelle observation peut faire rouvrir le niveau qui possède la décision et invalider les descendants concernés. Les cinq fonctions ci-dessous s'appliquent à chaque niveau ; elles ne sont pas trois passages automatiques du même texte.
 
 ## Parcours court
 
@@ -16,7 +24,7 @@ Recherche une graine pertinente, puis réemploie-la, adapte-la ou compose plusie
 2. **Chercher un point de départ.** Parcourir l'index de la [base de graines](../seeds/README.md), puis lire seulement les fiches candidates. Examiner leur contexte, leurs sources, leurs limites et les capacités nécessaires. Une source inspectée n'est pas un harnais évalué dans ce projet.
 3. **Forger un candidat.** Appliquer [02-generate-meta-harness.md](prompts/02-generate-meta-harness.md). Fournir N0 directement lorsque cela suffit. Présenter les choix qui comptent pour l'opérateur : organisation du travail, contrôles, attention humaine, coût attendu et inconnues. Proposer une variante seulement si elle aide à trancher un vrai désaccord.
 4. **Co-construire et examiner.** Intégrer les corrections et arbitrages effectivement donnés par l'opérateur, puis utiliser [03-qualify.md](prompts/03-qualify.md). Une décision déjà acquise n'est pas redemandée. Une revue textuelle ne devient pas un résultat d'exécution.
-5. **Employer, observer et conserver.** Commencer le lot autorisé, relever ce qui se passe et appliquer [04-adapt.md](prompts/04-adapt.md) si nécessaire. Lorsque l'opérateur choisit de conserver l'instance, enregistrer sa provenance, le harnais effectif et les observations disponibles dans une nouvelle graine.
+5. **Employer, observer et conserver.** Commencer le lot autorisé, relever ce qui se passe et appliquer [04-adapt.md](prompts/04-adapt.md) si nécessaire. Lorsque l'opérateur choisit de conserver l'instance, enregistrer sa provenance, le harnais effectif et les observations disponibles dans une nouvelle graine. Cette mémoire est privée par défaut ; son partage exige une revue et une autorisation portant sur le contenu à publier.
 
 Ces fonctions peuvent tenir dans une séance. La co-construction exige une contribution humaine identifiable ; ne pas l'inventer pour remplir une fiche. Une instance peut être conservée comme non testée. L'essai et son résultat restent distincts de son adoption.
 
@@ -36,6 +44,6 @@ Conserver un point d'entrée court, le profil utilisé, les graines sources et l
 
 ## Budget et arrêt
 
-Compter le travail de conception, les échanges humains, les essais et les révisions. Sans borne donnée, proposer un candidat principal et au plus une alternative motivée, puis une revue de cohérence. Ne pas réinitialiser le budget en changeant d'agent ou de niveau.
+Compter le travail de conception, les échanges humains, les essais et les révisions. Indiquer la borne donnée ou l'absence de plafond demandé. Sans autre mandat, commencer par un candidat principal et au plus une alternative motivée, puis examiner les résultats avant d'étendre l'effort. Ne pas réinitialiser le budget en changeant d'agent ou de niveau.
 
-S'arrêter lorsqu'une organisation utilisable répond au besoin dans le mandat, ou lorsqu'un conflit précis empêche la suite. Ne pas prolonger la conception pour rendre le dispositif plus impressionnant. Une nouvelle procédure doit changer une décision, prévenir un défaut pertinent ou réduire un travail identifié.
+S'arrêter lorsqu'une organisation utilisable répond au besoin dans le mandat, ou lorsqu'un conflit précis empêche la suite. En cascade, clore N0 seulement lorsque son passage réunit preuves et revue humaine ; un arrêt faute d'information reste inconclusif. Ne pas prolonger la conception pour rendre le dispositif plus impressionnant. Une nouvelle procédure doit changer une décision, prévenir un défaut pertinent ou réduire un travail identifié.

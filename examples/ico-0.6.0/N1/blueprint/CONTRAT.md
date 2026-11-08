@@ -2,7 +2,7 @@
 
 Le contrat comportemental du lot fait foi : entrées valides, erreurs dues, sorties, effets autorisés et invariants. Référencer l’exigence d’origine ; ne pas remplacer le besoin par l’état actuel du code. Un renforcement proposé peut échouer sans devenir une régression sur les obligations acceptées.
 
-Préconditions de l’atelier : Python et runtime Eiffel++ 0.6.0 ; sources régulières sans liens, hors dépendances installées et données personnelles ; vérificateur local explicitement autorisé. Les arbres d’entrée doivent être distincts des nouvelles destinations. Préparer un export propre si le dépôt comporte `.git`, `_eiffel` ou des liens ; ne pas supprimer ces éléments dans l’original.
+Préconditions de l’atelier : Python et runtime Eiffel++ 0.6.0 ou 0.7.0 ; sources régulières sans liens, hors dépendances installées et données personnelles ; vérificateur local explicitement autorisé. Les arbres d’entrée doivent être distincts des nouvelles destinations. Préparer un export propre si le dépôt comporte `.git`, `_eiffel` ou des liens ; ne pas supprimer ces éléments dans l’original.
 
 Invariants du lot : référence complète, consignes, compétences, justification, contrôles et contrat restent identiques à leur empreinte initiale. Le dossier `work` est seul mutable. Un candidat est une copie complète, avec empreinte conservée séparément. Les artefacts d’essai sont écrits hors du lot. Les vérifications encadrent l’exécution ; toute dérive invalide le résultat.
 

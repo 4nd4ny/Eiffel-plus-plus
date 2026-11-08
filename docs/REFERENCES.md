@@ -4,7 +4,7 @@ Sources consultées pour concevoir le catalogue le **6 novembre 2026**. Les text
 
 ## Bertrand Meyer et ses coauteurs
 
-- **Object-Oriented Software Construction**, 2e édition, chapitre 1, §1.1–1.2, pp. 3–16 : [page de l'auteur](https://bertrandmeyer.com/oosc2/), [édition officielle et extrait](https://smarties-press.com/books/oosc2/). Dix facteurs développés et quatre complémentaires servent à la [revue qualité](../meta/QUALITY.md). Consultation du 7 novembre 2026 : les anciennes URL PDF publiques répondent 404 ; les passages encore indexés ont été utilisés, sans prétendre avoir téléchargé l'ouvrage complet.
+- **Object-Oriented Software Construction**, 2e édition, chapitre 1, §1.1–1.2, pp. 3–16 : [page de l'auteur](https://bertrandmeyer.com/oosc2/), [édition officielle et extrait](https://smarties-press.com/books/oosc2/). Dix facteurs développés et quatre complémentaires servent à la [revue qualité](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/meta/QUALITY.md). Consultation du 7 novembre 2026 : les anciennes URL PDF publiques répondent 404 ; les passages encore indexés ont été utilisés, sans prétendre avoir téléchargé l'ouvrage complet.
 
 - **Design by Contract — Introduction**, Eiffel Software : [source](https://www.eiffel.com/values/design-by-contract/introduction/). Obligations entre composants, distinction correction/robustesse et intérêt de spécifications explicites. Un contrat seul ne constitue pas une preuve.
 - **Design by Contract and Assertions**, Eiffel Software, consulté le 7 novembre 2026 : [source](https://www.eiffel.org/doc/solutions/Design_by_Contract_and_Assertions). Préconditions à la charge du client, postconditions dues par le fournisseur, invariants aux frontières publiques et substitution compatible. La répartition gouvernance/STBL/produit/audit est un choix d'Eiffel++, pas une prescription de Meyer.
@@ -35,6 +35,8 @@ La répartition en quatre responsabilités, les formats de provenance et les heu
 
 La version 0.2.0 proposait une chaîne N2 → N1 → N0 et quatre dépôts. La version 0.3.0 retire leur caractère obligatoire : on peut réutiliser une graine et forger directement un harnais N0, dans un seul dépôt. Un générateur intermédiaire et la séparation physique des responsabilités doivent répondre à un besoin.
 
+La [cascade hybride](../protocol/CASCADE.md) donne un contrat au parcours N2 principes → N1 méthode → N0 harnais, lorsqu'il est choisi : boucles d'essais et de revue humaine dans chaque niveau, descente après suffisance et stabilité examinées. Le N0 direct itératif reste disponible. La pertinence de cette séparation est une question expérimentale, pas une conséquence acquise des sources ci-dessous.
+
 **Specification Driven Development** désigne ici le guidage par les spécifications du produit et celles de sa production. C'est un choix de vocabulaire et de conception d'Eiffel++, pas l'affirmation d'une norme SDD unique. Les préconditions, postconditions et invariants restent des moyens éventuels de vérifier le comportement du code. Ils ne deviennent pas, par analogie, une preuve de l'efficacité de l'organisation du travail.
 
 Le tétraèdre rapidité/coût/fonctionnalités/autonomie décrit des préférences. Une priorité qualitative peut suffire ; ces axes ne constituent ni des mesures indépendantes ni une fonction d'optimisation déjà établie.
@@ -54,21 +56,21 @@ Ces sources alimentent les hypothèses des générateurs. Le catalogue ne repren
 
 ## Base initiale de graines
 
-Les [fiches de graines](../seeds/records/) indiquent les fichiers lus, les révisions immuables, les licences, les adaptations proposées et les limites. La sélection publiée comprend :
+Les [fiches de graines](https://github.com/4nd4ny/Eiffel-plus-plus/tree/main/seeds/records/) indiquent les fichiers lus, les révisions immuables, les licences, les adaptations proposées et les limites. La sélection publiée comprend :
 
 | Projet primaire | Fiche et mécanisme étudié |
 | --- | --- |
-| [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | [Boucle courte et bornée](../seeds/records/mini-swe-loop.json) |
-| [Codex](https://github.com/openai/codex) | [Consignes selon la portée des fichiers](../seeds/records/codex-scoped-instructions.json) |
-| [Pi](https://github.com/earendil-works/pi) | [Chargement progressif du contexte](../seeds/records/pi-progressive-context.json) |
-| [Deep Agents](https://github.com/langchain-ai/deepagents) | [Délégation de tâches séparables](../seeds/records/deepagents-delegation.json) |
-| [Letta Code](https://github.com/letta-ai/letta-code) | [Mémoire attribuée et versionnée](../seeds/records/letta-versioned-memory.json) |
-| [Extension publique feature-dev de Claude Code](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) | [Exploration, décision et revue](../seeds/records/claude-feature-review.json) |
-| ICO — source privée, publication du harnais autorisée | [Incréments et couloirs de travail](../seeds/records/ico-incremental-lanes.json) ; [propositions de contrôles mécaniques](../seeds/records/ico-mechanical-controls-proposal.json) |
+| [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | [Boucle courte et bornée](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/mini-swe-loop.json) |
+| [Codex](https://github.com/openai/codex) | [Consignes selon la portée des fichiers](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/codex-scoped-instructions.json) |
+| [Pi](https://github.com/earendil-works/pi) | [Chargement progressif du contexte](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/pi-progressive-context.json) |
+| [Deep Agents](https://github.com/langchain-ai/deepagents) | [Délégation de tâches séparables](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/deepagents-delegation.json) |
+| [Letta Code](https://github.com/letta-ai/letta-code) | [Mémoire attribuée et versionnée](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/letta-versioned-memory.json) |
+| [Extension publique feature-dev de Claude Code](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) | [Exploration, décision et revue](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/claude-feature-review.json) |
+| ICO — source privée, publication du harnais autorisée | [Incréments et couloirs de travail](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/ico-incremental-lanes.json) ; [propositions de contrôles mécaniques](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/seeds/records/ico-mechanical-controls-proposal.json) |
 
 Ce relevé est une sélection, pas une couverture exhaustive des catalogues. Les sources ont été lues, pas exécutées dans Eiffel++. Les recettes sont des synthèses originales ; les licences des projets cités continuent de s'appliquer à leurs contenus. La fiche Claude Code porte uniquement sur l'extension publique examinée, dont la licence est signalée, sans import du cœur du produit ou d'un prompt complet.
 
-L'[exemple local](../examples/forge-local/README.md) est une composition illustrative, sans décision humaine d'adoption inventée ni résultat de production. Les futurs harnais co-construits pourront être capturés avec leurs propres traces et contre-indications.
+L'[exemple local](https://github.com/4nd4ny/Eiffel-plus-plus/blob/main/examples/forge-local/README.md) est une composition illustrative, sans décision humaine d'adoption inventée ni résultat de production. Les futurs harnais co-construits pourront être capturés avec leurs propres traces et contre-indications.
 
 ### Publication des recettes ICO
 
@@ -79,6 +81,17 @@ Cette publication porte sur les recettes génériques dérivées des instruction
 ## Harness² — adaptation à partir des exécutions
 
 Sources examinées le 7 novembre 2026 : [article arXiv:2610.14224v1](https://arxiv.org/abs/2610.14224v1), [dépôt Google à la révision 6868817](https://github.com/google-research/harness2/tree/6868817518876de8fd170c6a8354daca273b6191). Les fichiers `core/recursion.py`, `core/library.py`, `core/tree.py`, `core/selection.py`, `core/ledger.py` et `core/prompts.py`, sous `harness2/`, documentent les mécanismes repris. Licence Apache-2.0. Les trois nouvelles graines sont des synthèses originales, sans code ni prompt complet copié. Les scores publiés ne sont pas des résultats Eiffel++.
+
+Le [guide des expériences](https://github.com/google-research/harness2/blob/main/docs/EXPERIMENTS.md), revu le 8 novembre 2026, distingue récursion parallèle et séquentielle, essais de référence, conservation du harnais adopté et leçons appuyées par des observations. Il motive une comparaison où tâches, modèle et configuration sont identifiés, ainsi que la séparation des travaux et de leurs résultats. Eiffel++ ajoute une revue humaine de suffisance et des niveaux de spécification ; ces choix ne sont pas une reproduction du dispositif Harness².
+
+## Apprentissage expérientiel et mémoire du génie logiciel
+
+Sources primaires consultées le 8 novembre 2026 :
+
+- David A. Kolb, Richard E. Boyatzis et Charalampos Mainemelis, **Experiential Learning Theory: Previous Research and New Directions**, texte du 31 août 1999, version révisée annoncée dans l'ouvrage dirigé par Sternberg et Zhang en 2000 : [texte des auteurs](https://learningfromexperience.com/downloads/research-library/experiential-learning-theory.pdf). Expérience concrète, observation réflexive, conceptualisation et expérimentation inspirent la boucle interne. Leur transposition à un harnais d'IA est un choix d'Eiffel++, sans preuve d'équivalence cognitive ni de supériorité des trois niveaux.
+- Victor R. Basili et Gianluigi Caldiera, **The Experience Factory: Strategy and Practice**, 1995 : [notice et résumé NASA](https://ntrs.nasa.gov/citations/19990021257). Le Quality Improvement Paradigm caractérise le contexte, fixe les buts, choisit et exécute un processus, analyse les données puis capitalise l'expérience. C'est un précédent humain de l'amélioration des pratiques par leurs résultats et leur réemploi ; il ne valide pas automatiquement notre mécanisme d'agents ou de passage.
+
+L'[historique de construction](HISTORY.md) reprend cette intention de capitalisation : décisions et preuves versionnées, limites conservées, transfert réévalué. La mémoire privée du projet et une contribution publique sélectionnée restent deux objets distincts.
 
 ## Format des compétences réutilisables
 
