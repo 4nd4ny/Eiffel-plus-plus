@@ -38,3 +38,11 @@ Les dépendances verrouillées ont été installées dans une copie, sans script
 L'évaluateur réservé du lot a été qualifié : une suite de référence passe sur le produit et sur un changement sans effet ; quatre régressions comportementales et une tentative réseau injectée sont détectées. Ce résultat qualifie l'instrument de comparaison, pas un harnais candidat. Les solutions et cas réservés restent hors du contexte des constructeurs et des exécutants.
 
 Un contrôle de passage réel a ensuite révélé une mauvaise séparation entre entrées stables et observations nouvelles. Les dossiers sont repris avec leurs anciennes versions conservées ; les [instructions de qualification](../../meta/prompts/03-qualify.md) et le [guide du contrôleur](../../tools/README.md) ont été précisés. Les coûts de ces reprises appartiennent au parcours cascade et ne doivent pas être effacés du bilan.
+
+Deux nouveaux cycles comparables ont ensuite permis le passage N2 → N1. Le reçu distingue l'accord humain sur le périmètre de l'examen technique du coordinateur ; il ne prétend pas que l'humain a lu des pièces produites après sa réponse. La méthode N1 est en préparation et reste à soumettre à la revue prévue.
+
+Le bras direct a conservé six versions N0. Son second pilote, avec v6, a produit une suite du parcours complet : les cinq obligations sont étayées, les six tests comptés par Node (dont le parent) passent sans saut, et le produit est préservé. Sa durée observée est de 608,070 secondes, dont 1,516 seconde pour le lancement réussi avec compilation et tests. Les cas réservés n'ont pas été exécutés sur ce candidat. V6 a été maintenu après examen de ce retour.
+
+Une reprise de lancement a aussi révélé une erreur du mandat commun : une destination de preuves déjà créée ne doit pas être réutilisée. La consigne commune exige désormais une destination neuve à chaque tentative et la conservation des anciennes traces. Ce défaut de coordination n'est pas attribué au harnais v6, qui exigeait déjà une destination neuve.
+
+Le plan final prévoit quatre lots, deux répétitions par lot et par bras, soit seize réalisations à contexte neuf après gel des deux N0. Il sépare qualité des correctifs et capacité de la suite d'intégration à détecter des régressions. Aucune de ces réalisations finales n'a encore été exécutée ; les pilotes et sondes ne les remplacent pas.
