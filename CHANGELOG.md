@@ -2,6 +2,8 @@
 
 ## 0.7.0 — 2026-11-08
 
+- Limite de portabilité Git documentée après reproduction : les permissions complètes d'un journal peuvent différer après clone malgré des contenus identiques. Préparation et récupération manuelle bornées, sans assouplissement de `verify` ni outil de restauration automatique.
+
 - Qualification des auxiliaires générés précisée après une revue réelle : pièces effectivement transportées, identité du candidat testé, frontières d'écriture et signal d'échec. Leur coût de création et de correction fait partie du bilan ; aucun changement de schéma ou de sémantique des outils.
 
 - Clarification du contrôle déjà implémenté : entrées normatives stables distinctes des nouvelles preuves d'essai ; liste complète des champs comparés pour la stabilité. Retour observé pendant l'application élargie à ICO.

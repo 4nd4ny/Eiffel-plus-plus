@@ -18,6 +18,14 @@ Figer le candidat et les entrées avant l'essai. Le rapport identifie cette vers
 
 Un commit constate un contenu, pas une acceptation. Un nom d'auteur ou un champ `decision_ref` n'authentifie pas la personne. L'accord humain doit correspondre au dossier effectivement présenté, selon le [contrat de passage](../protocol/CASCADE.md). L'autorisation de travailler ou de pousser des correctifs publics ne vaut pas validation métier des harnais générés.
 
+## Vérifier une reprise par Git
+
+En 0.7.0, le journal lie aussi les permissions complètes des pièces. Un essai synthétique a montré une limite : un journal dont les objets sont en lecture seule (`0444`) reste valide après le commit local, mais devient `STALE` après clone, qui les restitue en `0644`. Les contenus et la chaîne étaient identiques ; le témoin créé en `0644` restait valide. `core.fileMode=false` ne change pas la vérification d'Eiffel++.
+
+Pour une histoire neuve destinée à Git, choisir des permissions compatibles avant d'enregistrer les cycles et vérifier une reprise réelle avant de revendiquer sa portabilité. Figer un candidat par une empreinte et un commit n'impose pas de rendre ses fichiers non modifiables au niveau du système.
+
+Pour une histoire existante, garder l'ancre externe. Sur une copie dédiée, vérifier inventaire, contenus et identité de la chaîne avant de rétablir uniquement les permissions consignées, puis relancer `verify` avec cette même ancre. Ne pas réécrire les événements ou recalculer leurs empreintes pour effacer l'écart. La restauration ponctuelle a réussi dans l'essai ; aucun outil automatique de récupération n'est fourni. Un contenu différent reste une altération à examiner.
+
 ## Du projet à la communauté
 
 La conservation privée et le partage public sont deux décisions différentes. Aucun générateur n'ajoute automatiquement un dépôt distant ni ne pousse des traces client.
