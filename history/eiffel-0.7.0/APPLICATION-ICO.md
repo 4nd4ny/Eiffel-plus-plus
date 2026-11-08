@@ -21,6 +21,8 @@ Le bras direct conserve ses versions N0 et un pilote de correction d'URL. Ce pil
 
 Une sonde de faisabilité du parcours élargi a exercé les vraies fonctions d'import et de réponse avec un fournisseur fictif, sans installation : sortie d'import attendue, citation et abstention sur ensemble vide. La recherche, la CLI et la suite complète n'ont pas été exécutées, faute de dépendances dans la copie. Le journal réseau vide de cette sonde ne prouve pas une absence générale de sorties réseau. Aucun résultat n'est attribué à un harnais pour cette sonde.
 
+Le pilote employait N0 v3. Son retour a produit v4, qui précise les chemins des copies et l'environnement commun. V4 n'a pas encore fait l'objet d'une nouvelle réalisation : les résultats de v3 ne sont pas présentés comme des résultats d'exécution de v4.
+
 ## Conclusion bornée
 
 Le mécanisme a permis de conserver un désaccord de compréhension et d'empêcher une descente prématurée. C'est un résultat sur le processus de revue. La qualité comparative du code, le temps total des deux approches et leur coût monétaire restent **inconnus** tant que le périmètre, les passages et les réalisations comparables ne sont pas terminés.
